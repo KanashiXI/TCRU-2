@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    font-family: 'Kanit', sans-serif;
+    box-sizing: border-box;
+}
+
+.headTitle{
+    font-family: 'Kanit', sans-serif;
+    font-size: 25px;
+}
+
+button{
+    color: #ffff;
+}
+
+p {
+    color: #363636;
+    /* color: blueviolet; */
+}
+label{
+    color: #292929;
+}
+nav a{
+    color: #495057;
+}
+
+.inbd {
+    /* padding-left: 5rem;
+    padding-right: 5rem; */
+    padding-top: 5.10rem;
+}
+.border-filed {
+    padding-top: 1rem;
+}
+.logo-login{
+    padding-left: 5rem;
+    padding-top: 3rem;
+    width: 80%;
+}
+small{
+    color: gray;
+}
+
+body { height: 100%; }
+/* body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */

@@ -1,0 +1,57 @@
+<body class="inbd">
+    <br><br>
+    <div class="p-grid">
+        <div class="p-col-1"></div>
+        <div class="p-col-12 p-md-10 p-lg-10">
+            <p-panel>
+                <p-header>
+                    &nbsp;<b>
+                        <p><i class="pi pi-id-card" style="font-size: 1.5rem"></i>&nbsp; | &nbsp;ข้อมูลบัญชีผู้ใช้</p>
+                    </b>
+                </p-header>
+                <!-- Content -->
+                <div class="p-grid">
+                    <div class="p-col-11 p-offset-1">
+                        <b>
+                            <p>อีเมล์ผู้ใช้</p>
+                        </b>
+                        <p>{{setEmail}}</p>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-11 p-offset-1">
+                        <b>
+                            <p>ชื่อ - นามสกุล</p>
+                        </b>
+                        <p>{{ShowName_title}}&nbsp;&nbsp;{{ShowFirstname}}&nbsp;&nbsp;{{ShowLastname}}
+                        </p>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-11 p-offset-1">
+                        <b>
+                            <p>เบอร์โทรศัพท์</p>
+                        </b>
+                        <p>{{ShowTelephone}}</p>
+                    </div>
+                </div>
+                <div class="p-grid p-formgrid p-fluid">
+                    <div class="p-col-12 p-mb-2 p-lg-3"></div>
+                    <div class="p-col-12 p-mb-2 p-lg-2">
+                        <button type="submit" pButton icon="pi pi-user-edit" iconPos="left" label="แก้ไขบัญชีผู้ใช้"
+                            routerLink="/editprofile" class="p-button-outlined p-button-raised p-mx-auto"></button>
+                    </div>
+                    <div class="p-col-12 p-mb-2 p-lg-2">
+                        <button type="submit" pButton icon="pi pi-envelope" iconPos="left" label="ข้อมูลจัดส่ง"
+                            routerLink="/showaddress" class="p-button-outlined p-button-raised p-mx-auto"></button>
+                    </div>
+                    <div class="p-col-12 p-mb-2 p-lg-2">
+                        <button type="submit" pButton icon="pi pi-book" iconPos="left" label="ใบกำกับภาษี"
+                            routerLink="/showtax" class="p-button-outlined p-button-raised p-mx-auto"></button>
+                    </div>
+                </div>
+            </p-panel>
+        </div>
+    </div>
+    <br><br><br><br><br>
+</body>

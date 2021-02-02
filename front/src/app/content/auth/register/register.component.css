@@ -1,0 +1,13 @@
+::ng-deep a .warn{
+    position: relative;
+    top: -2px;
+}
+::ng-deep a .decrese{
+    position: relative;
+    bottom: -15px;
+}
+.logo-login{
+    padding-left: 5rem;
+    padding-top: 5rem;
+    width: 80%;
+}

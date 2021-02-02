@@ -1,0 +1,73 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/">
+        <img src="../../../assets/primeng.png" height="45" style="margin-left: 10px;">
+        TCRU
+    </a> -->
+<!-- <p-menubar [model]="items" styleClass="menu"></p-menubar> -->
+<!-- 
+    <a class="navbar-brand menu" routerLink="productinfo">ผลิตภัณฑ์</a>
+    <a class="navbar-brand menu" routerLink="profile" *ngIf="loggedIn">บัญชีผู้ใช้</a>
+    <a class="navbar-brand menu" routerLink="register" *ngIf="!loggedIn">ลงทะเบียน</a>
+    <a class="navbar-brand menu" routerLink="login/resetpassword">ลืมรหัสผ่าน</a>
+    
+    <div class="">
+
+    </div>
+
+    <a class="navbar-brand menu" style="text-align: right;" routerLink="login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
+    <a class="navbar-brand menu" href="#" (click)="logout($event)" *ngIf="loggedIn">ออกจากระบบ</a>
+
+</nav> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/">
+        <img src="../../../assets/tcru-crop-removebg.png" height="47" style="margin-left: 30px;">
+
+    </a>
+    <ul class="navbar-nav mr-auto">
+        <a class="navbar-brand list" routerLink="productinfo">ผลิตภัณฑ์</a>
+
+    </ul>
+
+
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+
+
+    <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item active">
+            <a class="navbar-brand list" routerLink="profile" *ngIf="loggedIn"><i class="pi pi-id-card"
+                    style="font-size: 1.25rem"></i>&nbsp;&nbsp;บัญชีผู้ใช้</a>
+        </li>
+        <!-- <li class="nav-item active">
+            <a class="navbar-brand list" routerLink="showaddress" *ngIf="loggedIn">ข้อมูลจัดส่ง</a>
+        </li>
+        <li class="nav-item active">
+            <a class="navbar-brand list" routerLink="showtax" *ngIf="loggedIn">ใบกำกับภาษี</a>
+        </li> -->
+        <li class="nav-item active">
+            <a class="navbar-brand list" routerLink="/cart" *ngIf="loggedIn"><i class="pi pi-shopping-cart"
+                    style="font-size: 1.25rem"></i>&nbsp;&nbsp;ตะกร้าสินค้า</a>
+        </li>
+        <li class="nav-item">
+            <a class="navbar-brand list" routerLink="/register" *ngIf="!loggedIn">ลงทะเบียน</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="navbar-brand list" routerLink="login/resetpassword">ลืมรหัสผ่าน</a>
+        </li> -->
+        <li class="nav-item">
+            <a class="navbar-brand list" routerLink="/login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
+        </li>
+        <li class="nav-item">
+            <a class="navbar-brand list" routerLink="#" (click)="logout($event)" *ngIf="loggedIn">
+                <i class="pi pi-sign-out" style="font-size: 1.25rem"></i>&nbsp;&nbsp;ออกจากระบบ</a>
+        </li>
+        <!-- <li class="nav-item">
+            <a class="navbar-brand list" routerLink="cart" *ngIf="loggedIn"><i class="pi pi-shopping-cart"></i></a>
+        </li> -->
+    </ul>
+
+</nav>

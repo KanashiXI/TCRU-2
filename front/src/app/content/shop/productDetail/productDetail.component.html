@@ -1,0 +1,50 @@
+<div class="inbd">
+  <p-breadcrumb [model]="items"></p-breadcrumb>
+  <div class="p-grid">
+    <div class="p-col-10 p-md-10 p-offset-1">
+      <div class="card">
+        <div class="p-grid">
+          <div class="p-col-7 p-md-4 p-lg-4">
+            <img src="../../../assets/FreshTricoderma.jpg" class="p-d-block p-mx-auto picshow">
+          </div>
+          <div class="p-col-6 p-md-5 p-lg-5 p-offset-2">
+            <div class="p-grid">
+              <div class="p-col-10 form-group">
+                <label class="headTitle">{{productName}}</label>
+              </div>
+            </div>
+            <div class="p-grid">
+              <div class="p-col-10 form-group">
+                <p>ราคา: {{productPrice}}</p>
+                <!-- <p>รายละเอียด..</p> -->
+              </div>
+            </div>
+            <!-- <div class="p-grid">
+              <div class="p-col-10 p-md-6 p-lg-6">
+                <p>จำนวน</p>
+                <div class="p-inputgroup" style="height: 2.25rem;">
+                  <button type="button" pButton (click)="decrese()" icon="pi pi-minus"></button>
+                  <input type="text" pInputText [value]="counter">
+                  <button type="button" pButton (click)="increse()" icon="pi pi-plus"></button>
+                </div>
+              </div>
+            </div> -->
+            <br>
+            <div class="p-grid">
+              <div class="p-col-12 p-md-6 p-lg-6 form-group">
+                <button *ngIf="loggedIn" (click)="handleAddToCart()" pButton type="submit" icon="pi pi-shopping-cart"
+                  iconPos="left" label="เพิ่มลงในตะกร้า" class="p-button-outlined p-button-raised w-100"></button>
+                <!-- <button (click)="getProductList()" pButton type="submit" icon="pi pi-shopping-cart" iconPos="left"
+                  label="เพิ่มลงในตะกร้า" class="p-button-outlined p-button-raised w-100"></button> -->
+              </div>
+              <div class="p-col-12 p-md-6 p-lg-6 form-group">
+                <!-- <button type="submit" pButton label="สั่งซื้อสินค้า" routerLink="" class="p-button-raised w-100">
+                </button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

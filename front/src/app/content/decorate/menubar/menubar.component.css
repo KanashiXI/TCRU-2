@@ -1,0 +1,57 @@
+nav{
+  overflow: visible;
+  padding: 0.325rem;
+  background: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  font-size: 18px;
+}
+
+.nev-item {
+  font-size: 18px;
+  color: #495057;
+}
+
+
+.rightside {
+  align-items: flex-end;
+  flex-direction: column-reverse;
+  font-size: 18px;
+}
+
+.navbar-brand{
+  display: inline-block;
+  /* padding-top: .3125rem;
+  padding-bottom: .3125rem; */
+  padding: 0.75rem 0.75rem 0.75rem;
+  /* margin-right: 1rem; */
+  font-size: 18px;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+.navbar-light .navbar-brand {
+  color: #495057;
+}
+
+.list:hover{
+  background-color: #e9ecef;
+  padding: 0.75rem 0.75rem 0.75rem;
+  border-radius: 3px;
+  transition: box-shadow 0.2s;
+}
+
+.navbar-nav {
+  flex-direction: row;
+}
+
+/* Fixes dropdown menus placed on the right side */
+.ml-auto .dropdown-menu {
+  left: auto !important;
+  right: 0px;
+}

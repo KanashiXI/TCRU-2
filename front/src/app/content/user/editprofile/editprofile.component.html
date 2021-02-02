@@ -1,0 +1,149 @@
+<body class="inbd">
+    <br><br><br>
+    <form [formGroup]=reactiveForm>
+        <div class="p-grid">
+            <div class="p-col-1"></div>
+            <div class="p-col-12 p-md-10 p-lg-10">
+                <p-panel>
+                    <p-header>
+                        &nbsp;<b>
+                            <p><i class="pi pi-user-edit" style="font-size: 1.5rem"></i>&nbsp; | &nbsp;ข้อมูลบัญชีผู้ใช้
+                            </p>
+                        </b>
+                    </p-header>
+                    <!-- Content -->
+                    <div class="p-grid">
+                        <div class="p-col-11 p-offset-1">
+                            <b>
+                                <p>อีเมล์ผู้ใช้</p>
+                            </b>
+                            <p>{{setEmail}}</p>
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2 p-mt-3">
+                            <div class="p-inputgroup">
+                                <div class="p-field">
+                                    <a class="text-danger">*</a><label for="name_title">คำนำหน้า</label>
+                                    <input type="text" id="name_title" pInputText
+                                        class="p-inputtext-sm form-control w-100" formControlName="name_title"
+                                        pattern="^[ฯๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ.]+$"
+                                        maxlength="25" required aria-describedby="firstname-help" />
+                                    <div class="text-danger"
+                                        *ngIf="name_title.invalid && (name_title.dirty || name_title.touched)">
+                                        <div *ngIf="name_title.errors['required']">โปรดกรอกคำนำหน้า</div>
+                                        <div *ngIf="name_title.errors.pattern">โปรดกรอกคำนำหน้าให้ถูกต้อง</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <div class="p-inputgroup">
+                                <div class="p-field">
+                                    <label for="firstname">ชื่อ (ภาษาไทย)</label>
+                                    <input type="text" id="password" pInputText
+                                        class="p-inputtext-sm form-control w-100" formControlName="firstname"
+                                        pattern="^[ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$"
+                                        required aria-describedby="firstname-help" />
+                                    <div class="text-danger"
+                                        *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+                                        <div *ngIf="firstname.errors['required']">โปรดกรอกชื่อ</div>
+                                        <div *ngIf="firstname.errors.pattern">โปรดกรอกชื่อหน้าให้ถูกต้อง</div>
+                                    </div>
+                                    <a class="text-danger">*</a><small id="firstname-help">โปรดกรอกชื่อเป็นภาษาไทย
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </small>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <div class="p-inputgroup">
+                                <div class="p-field">
+                                    <label for="lastname">นามสกุล (ภาษาไทย)</label>
+                                    <input type="text" id="lastname" pInputText
+                                        class="p-inputtext-sm form-control w-100" formControlName="lastname" required
+                                        pattern="^[ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$"
+                                        aria-describedby="lastname-help" />
+                                    <div class="text-danger"
+                                        *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+                                        <div *ngIf="lastname.errors['required']">โปรดกรอกนามสกุล</div>
+                                        <div *ngIf="lastname.errors.pattern">โปรดกรอกนามสกุลให้ถูกต้อง</div>
+                                    </div>
+                                    <a class="text-danger">*</a><small id="lastname-help">โปรดกรอกนามสกุลเป็นภาษาไทย
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </small>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2">
+                            <div class="p-inputgroup">
+                                <div class="p-field">
+                                    <label for="telephone"><a class="text-danger">*</a>เบอร์โทรศัพท์</label>
+                                    <input type="text" id="telephone" pInputText
+                                        class="p-inputtext-sm form-control fullwidth" formControlName="telephone"
+                                        pattern="[0-9]+" minlength="9" maxlength="10" required
+                                        aria-describedby="telephone-help" />
+                                    <div class="text-danger"
+                                        *ngIf="telephone.invalid && (telephone.dirty || telephone.touched)">
+                                        <div *ngIf="telephone.errors['required']">โปรดกรอกเบอร์โทรศัพท์</div>
+                                    </div>
+                                    <small id="telephone-help">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-grid p-formgrid p-fluid">
+                        <div class="p-col-12 p-mb-2 p-lg-4"></div>
+                        <div class="p-col-12 p-mb-2 p-lg-2">
+                            <button type="submit" pButton icon="pi pi-times" iconPos="left" label="ยกเลิก"
+                                routerLink="/profile" class="p-button-outlined p-button-raised p-mx-auto"></button>
+                        </div>
+                        <div class="p-col-12 p-mb-2 p-lg-2 form-group">
+                            <button type="submit" pButton icon="pi pi-check" iconPos="left" label="บันทึกข้อมูล"
+                                class="p-button-raised p-mx-auto" [disabled]="reactiveForm.invalid"
+                                (click)="onClickSubmit()"></button>
+                        </div>
+                    </div>
+                </p-panel>
+            </div>
+        </div>
+
+        <!-- <div class="p-grid">
+            <div class="p-col-12 p-md-6 p-lg-6 form-group">
+                <button type="submit" pButton label="บันทึก" [disabled]="reactiveForm.invalid"
+                    (click)="onClickSubmit()" class="p-button-raised"></button>
+            </div>
+        </div> -->
+
+    </form>
+</body>

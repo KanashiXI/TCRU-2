@@ -1,0 +1,132 @@
+<form [formGroup]=reactiveForm>
+
+    <body class="inbd">
+        <div class="p-grid">
+            <div class="p-col-1"></div>
+            <div class="p-col-12 p-md-4 p-lg-4">
+                <img src="../../../assets/tcru-image.jpg" class="p-d-block p-mx-auto logo-login">
+            </div>
+            <div class="p-col-1 p-md-1 p-lg-1"></div>
+            <div class="p-col-12 p-md-5 p-lg-5">
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-12 p-lg-12 form-group border-filed p-input-filled">
+                        <div class="p-field">
+                            <label>อีเมล</label>
+                            <input type="text" pInputText class="p-inputtext-sm form-control w-100"
+                                formControlName="email" aria-describedby="email-help"
+                                pattern="[a-zA-Z0-9][A-Za-z0-9._-]+@[a-z0-9.-]*" />
+                            <a class="text-danger">*</a>
+                            <small id="email-help">กรุณากรอกอีเมลที่สามารถใช้งานได้</small>
+                        </div>
+                        <div class="text-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+                            <div *ngIf="email.errors.pattern">โปรดกรอกอีเมลล์ให้ถูกต้อง</div>
+                            <div *ngIf="email.errors['required']">โปรดกรอกอีเมลล์</div>
+                            <div *ngIf="email.errors['uniqueEmail']">อีเมลล์นี้มีผู้ใช้แล้ว</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6 p-lg-6 form-group border-filed p-input-filled">
+                        <div class="p-inputgroup">
+                            <div class="p-field">
+                                <label>รหัสผ่าน</label>
+                                <input type="password" pInputText class="p-inputtext-sm form-control w-100"
+                                    formControlName="password" minlength="6" maxlength="16"
+                                    pattern="^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$" aria-describedby="password-help" />
+                                <a class="text-danger">*</a><small id="password-help">โปรดกรอกรหัสผ่านด้วย a-z
+                                    พิมพ์เล็กหรือพิมพ์ใหญ่หรือตัวเลข 6-16 ตัวอักษร</small>
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="password.invalid && (password.dirty || password.touched)">
+                            <div *ngIf="password.errors.pattern">
+                                รหัสผ่านประกอบไปด้วยa-zพิมพ์เล็กหรือพิมพ์ใหญ่ ตัวเลข
+                            </div>
+                            <div *ngIf="password.errors['required']">โปรดกรอกรหัสผ่าน</div>
+                            <div *ngIf="password.errors.minlength">
+                                รหัสผ่านควรมากกว่า6ตัว
+                            </div>
+                            <div *ngIf="password.errors.maxlength">
+                                รหัสผ่านควรไม่เกิน16ตัว
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-6 form-group border-filed p-input-filled">
+                        <div class="p-inputgroup">
+                            <div class="p-field">
+                                <label for="password_confirmation" calss="decrese">ยืนยันรหัสผ่าน</label>
+                                <input type="password" id="password_confirmation" pInputText
+                                    class="p-inputtext-sm form-control w-100 " formControlName="password_confirmation"
+                                    required minlength="6" maxlength="16" pattern="^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$"
+                                    aria-describedby="password-help" />
+                                <a class="text-danger">*</a><small id="password-help">โปรดกรอกรหัสผ่านด้วย a-z
+                                    พิมพ์เล็กหรือพิมพ์ใหญ่หรือตัวเลข 6-16 ตัวอักษร</small>
+                            </div>
+                        </div>
+                        <div class="text-danger"
+                            *ngIf="password_confirmation.invalid && (password_confirmation.dirty || password_confirmation.touched)">
+                            <div *ngIf="password_confirmation.errors['required']">โปรดกรอกรหัสผ่าน</div>
+                            <div *ngIf="password_confirmation.errors['compare']">โปรดกรอกรหัสผ่านให้เหมือนกัน</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6 p-sm-6 form-group border-filed p-input-filled">
+                        <div class="p-inputgroup">
+                            <div class="p-field">
+                                <label for="firstname">ชื่อ (ภาษาไทย)</label>
+                                <input type="text" id="firstname" pInputText class="p-inputtext-sm form-control w-100"
+                                    formControlName="firstname"
+                                    pattern="^[ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$"
+                                    required aria-describedby="firstname-help" />
+                                <a class="text-danger">*</a><small id="firstname-help">โปรดกรอกชื่อเป็นภาษาไทย
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;
+                                </small>
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="firstname.invalid && (firstname.dirty || firstname.touched)">
+                            <div *ngIf="firstname.errors['required']">โปรดกรอกชื่อ</div>
+                            <div *ngIf="firstname.errors.pattern">โปรดกรอกชื่อเป็นภาษาไทย</div>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-6 p-lg-6 form-group border-filed p-input-filled">
+                        <div class="p-inputgroup">
+                            <div class="p-field">
+                                <label for="lastname">นามสกุล (ภาษาไทย)</label>
+                                <input type="text" id="lastname" pInputText class="p-inputtext-sm form-control w-100"
+                                    formControlName="lastname"
+                                    pattern="^[ๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$"
+                                    required aria-describedby="lastname-help" />
+                                <a class="text-danger">*</a><small id="lastname-help">โปรดกรอกนามสกุลเป็นภาษาไทย
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;
+                                </small>
+                            </div>
+                        </div>
+                        <div class="text-danger" *ngIf="lastname.invalid && (lastname.dirty || lastname.touched)">
+                            <div *ngIf="lastname.errors['required']">โปรดกรอกนามสกุล</div>
+                            <div *ngIf="lastname.errors.pattern">โปรดกรอกนามสกุลเป็นภาษาไทย</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="p-grid">
+                    <div class="p-col-12 p-md-6 p-lg-6 form-group">
+                        <button type="submit" pButton label="สมัครสมาชิก" [disabled]="reactiveForm.invalid"
+                            (click)="onClickRegis()" routerLink="" class="p-button-raised"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</form>
