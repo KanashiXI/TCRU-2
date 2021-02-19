@@ -1,0 +1,35 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+    <br>
+
+
+
+    <form class="example-form" [formGroup]=reactiveForm>
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput [formControl]="email" [errorStateMatcher]="matcher"
+                 placeholder="Ex. pat@example.com">
+          <mat-hint>Errors appear instantly!</mat-hint>
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput  formControlName="password" placeholder="Password">
+        </mat-form-field>
+      </mat-card-content>
+      <br>
+      <button mat-stroked-button color="primary" class="btn-block" (click)="onClickSubmit()">Log in</button>
+    </form>
+  </mat-card>
+
+</div>

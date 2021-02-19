@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 120%;
+}
+mat-grid-tile {
+  background: lightblue;
+}

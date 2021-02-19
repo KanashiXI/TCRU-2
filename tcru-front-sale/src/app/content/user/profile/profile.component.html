@@ -1,0 +1,36 @@
+<div class="container">
+  <br><br>
+  <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>ข้อมูลบัญชีผู้ใช้</mat-card-title>
+      </mat-card-header>
+      <br>
+      <form class="example-form">
+        <mat-card-content>
+          <strong>อีเมล์ผู้ใช้: </strong> 
+          <p class="info">{{setEmail}}</p>
+          <br>
+          <strong>ชื่อ - นามสกุล: </strong> 
+          <p class="info">{{ShowName_title}}&nbsp;&nbsp;{{ShowFirstname}}&nbsp;&nbsp;{{ShowLastname}}</p>
+          <br>
+          <strong>เบอร์โทรศัพท์: </strong> 
+          <p class="info">{{ShowTelephone}}</p>
+        </mat-card-content>
+        <div class="row">
+            <div class="col-md-4">
+              <button mat-stroked-button color="primary" class="btn-block" routerLink="/editprofile">แก้ไขข้อมูลส่วนตัว</button>
+            </div>
+            <div class="col-md-4">
+              <button mat-stroked-button color="primary" class="btn-block">ข้อมูลที่อยู่จัดส่ง</button>
+            </div>
+            <div class="col-md-4">
+              <button mat-stroked-button color="primary" class="btn-block">ข้อมูลที่อยู่ใบกำกับภาษี</button>
+            </div>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+  <br>
+</div>

@@ -1,0 +1,54 @@
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card>ขายดี</mat-card>
+    </div>
+  </div>
+  <br><br>
+  <hr>
+  <br><br>
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+
+      </mat-card>
+    </div>
+  </div> -->
+
+  <br><br>
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of productList; let i = index">
+      <br>
+      <mat-card>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="material-icons">label</span>
+            {{item.product_name}}
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <img src="../../../assets/FreshTricoderma.jpg" style="width: 100%;">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12" style="text-align: center;">
+            {{item.product_name}}
+          </div>
+        </div>
+        <br>  
+        <div class="row">
+          <div class="col-md-5">
+            {{item.retail_price}} ฿
+          </div>
+          <div class="col-md-7">
+            <button mat-stroked-button color="primary" class="btn-block">รายละเอียด</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
