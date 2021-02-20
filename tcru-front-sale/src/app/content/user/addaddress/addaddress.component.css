@@ -1,4 +1,18 @@
 ::ng-deep .tittle{
-    font-size: 22px;
+    /* padding: 16px 16px 16px 16px; */
+    font-size: 25px;
     font-weight: bolder;
+}
+
+.example-full-width{
+    width: 90%;
+    padding-top: 10px;
+}
+
+::ng-deep .dropHeight{
+    height: 50%;
+}
+
+.dropdown {
+    width: 90%;
 }

@@ -8,10 +8,10 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { JarwisService } from 'src/app/shared/service/jarwis.service';
 
-interface Title {
-  id: number;
-  name: string;
-}
+// interface Title {
+//   id: number;
+//   name: string;
+// }
 
 @Component({
   selector: 'app-editprofile',
@@ -83,13 +83,13 @@ export class EditprofileComponent implements OnInit {
     })
   }
 
-  titleControl = new FormControl('', Validators.required);
-  selectFormControl = new FormControl('', Validators.required);
-  titles: Title[] = [
-    {id:1, name: 'นาย'},
-    {id:2, name: 'นาง'},
-    {id:3, name: 'นางสาว'},
-  ];
+  // titleControl = new FormControl('', Validators.required);
+  // selectFormControl = new FormControl('', Validators.required);
+  // titles: Title[] = [
+  //   {id:1, name: 'นาย'},
+  //   {id:2, name: 'นาง'},
+  //   {id:3, name: 'นางสาว'},
+  // ];
 
   get name_title() {
     return this.reactiveForm.get('name_title')

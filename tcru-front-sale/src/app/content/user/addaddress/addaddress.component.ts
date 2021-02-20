@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
 import { CustomerService } from 'src/app/shared/service/customer.service';
@@ -60,7 +60,11 @@ export class AddaddressComponent implements OnInit {
           lastname: this.dataForm[0].lastname,
           telephone: this.dataForm[0].telephone,
           user_id: this.dataForm[0].id,
-          // postal_code: this.dataForm[0].postal_code,
+          province_id: this.dataForm[0].name_th,
+          amphures_id: this.dataForm[0].name_th,
+          district: this.dataForm[0].name_th,
+          postal_code: this.dataForm[0].postal_code,
+          // jwefoifoie:this.dataForm[0].postal_code,
         })
       },
       error => this.errorMessage = <any>error
@@ -71,14 +75,14 @@ export class AddaddressComponent implements OnInit {
     this.reactiveForm = this.fb.group({
       address: ['', [Validators.required]],
       user_id: ['', [Validators.required]],
-      province_id: ['', [Validators.required]],
+      province_id: ['', Validators.compose([Validators.required])],
       amphures_id: ['', [Validators.required]],
       districts_id: ['', [Validators.required]],
       postal_code: ['', [Validators.required]],
       geographic_id: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      telephone: ['',],
+      telephone: ['',[Validators.required]],
     })
   }
 
@@ -107,9 +111,10 @@ export class AddaddressComponent implements OnInit {
 
   getAumph(event) {
     var obj = {
-      id: event.target.value,
-      geography_id: event.target.value
+      id: event.value,
+      geography_id: event.value
     }
+    // console.log(event.value)
     this.provinceValue = obj.id;
     this.geographieValue = obj.geography_id;
     this.reactiveForm.patchValue({   // set จังหวัด,ภาค ใน form สำหรับ insert 
@@ -123,7 +128,7 @@ export class AddaddressComponent implements OnInit {
 
   getDistr(event) {
     var obj = {
-      id: event.target.value
+      id: event.value
     }
     this.aumphureValue = obj.id;
     this.reactiveForm.patchValue({   // set aumphureใน form สำหรับ insert 
@@ -136,7 +141,7 @@ export class AddaddressComponent implements OnInit {
 
   getLast(event) {
     var obj = {
-      id: event.target.value
+      id: event.value
     }
     this.districtValue = obj.id;
     this.reactiveForm.patchValue({   // set districtใน form สำหรับ insert 
@@ -155,6 +160,15 @@ export class AddaddressComponent implements OnInit {
   }
   get address() {
     return this.reactiveForm.get('address')
+  }
+  get province() {
+    return this.reactiveForm.get('province')
+  }
+  get district() {
+    return this.reactiveForm.get('district')
+  }
+  get sub_district() {
+    return this.reactiveForm.get('sub_district')
   }
   get postal_code() {
     return this.reactiveForm.get('postal_code')
