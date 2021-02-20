@@ -2,3 +2,12 @@
     font-size: 22px;
     font-weight: bolder;
 }
+
+.btn-padding {
+    padding: 5px;
+}
+
+.address-padding{
+   padding-top: 10px;
+   padding-bottom: 5px;
+}

@@ -15,17 +15,18 @@
     <div class="col-md-12">
       <mat-card>
         <div class="row">
-          <div class="col-md-8">
-            {{item.firstname}} {{item.lastname}}: {{item.address}} {{item.amphures_id}}        
+          <div class="col-md-10 address-padding">
+            {{item.firstname}} {{item.lastname}}: {{item.address}} {{item.districts_id}} {{item.amphures_id}} {{item.province_id}}  {{item.postal_code}}     
           </div>
-          <div class="col-md-2">
-            <button mat-raised-button color="primary" class="btn-block">เพิ่มที่อยู่จัดส่ง</button>
+          <div class="col-md-1 btn-padding">
+            <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button>
           </div>
-          <div class="col-md-2">
-            <button mat-raised-button color="primary" class="btn-block">เพิ่มที่อยู่จัดส่ง</button>
+          <div class="col-md-1 btn-padding">
+            <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="onClickDelete(item.address_id)">ลบ</button>
           </div>
         </div>
       </mat-card>
+      <br>
     </div>
   </div>
 </div>
