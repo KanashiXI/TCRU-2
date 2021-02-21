@@ -1,28 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { TaxService } from './../services/tax.service';
-import { Tax } from './../interfaces/tax';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { CustomerService } from 'src/app/shared/service/customer.service';
-import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
+import { Tax } from '../interfaces/tax';
+import { TaxService } from './../services/tax.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { AddressService } from '../../addaddress/services/address.service';
-import { Address } from '../../addaddress/interfaces/address';
 import { Amphure } from '../../addaddress/interfaces/amphure';
 import { District } from '../../addaddress/interfaces/district';
 import { Province } from '../../addaddress/interfaces/province';
 
 @Component({
-  selector: 'app-addTaxAddress',
-  templateUrl: './addTaxAddress.component.html',
-  styleUrls: ['./addTaxAddress.component.css']
+  selector: 'app-editTaxAddress',
+  templateUrl: './editTaxAddress.component.html',
+  styleUrls: ['./editTaxAddress.component.css']
 })
-export class AddTaxAddressComponent implements OnInit {
+export class EditTaxAddressComponent implements OnInit {
 
-  dataForm: Emloyeeinterface;
   reactiveForm: FormGroup;
+  dataForm: Tax;
   errorMessage: String;
-
 
   provinceArr: Province[] = [];
   aumphureArr: Amphure[] = [];
@@ -36,20 +32,47 @@ export class AddTaxAddressComponent implements OnInit {
   constructor(
     private taxService: TaxService,
     private fb: FormBuilder,
-    private customerService: CustomerService,  
     private addressService: AddressService
 
   ) { }
 
   ngOnInit() {
-    this.getTaxForm(),
+    const requestData = {
+      ...Subject,
+      tax_id: localStorage.getItem('local_tax_id'),
+    }
     this.createForm(),
+    this.getTaxForm(requestData.tax_id),
     this.getPro();
+  }
+
+  getTaxForm(data) {
+
+    this.taxService.getOneTax(data).subscribe(
+      res => {
+        this.dataForm = res;
+        this.reactiveForm.patchValue({
+          firstname: this.dataForm[0].firstname,
+          lastname: this.dataForm[0].lastname,
+          telephone: this.dataForm[0].telephone,
+          postal_code: this.dataForm[0].postal_code,
+          user_id: this.dataForm[0].user_id,
+          company_name: this.dataForm[0].company_name,
+          address: this.dataForm[0].address,
+          vat_identification_number: this.dataForm[0].vat_identification_number,
+          province_id: this.dataForm[0].province_id,
+          amphure_id: this.dataForm[0].amphure_id,
+          district_id: this.dataForm[0].district_id,
+          tax_id: this.dataForm[0].tax_id,
+        })
+      },
+      error => this.errorMessage = <any>error
+    )
   }
 
   createForm() {
     this.reactiveForm = this.fb.group({
-
+      tax_id: ['',],
       user_id: ['',],
       address: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
@@ -58,36 +81,11 @@ export class AddTaxAddressComponent implements OnInit {
       vat_identification_number: ['', [Validators.required]],
       company_name: ['', [Validators.required]],
       postal_code: ['', [Validators.required]],
-      province_id: ['', [Validators.required]],
-      amphures_id: ['', [Validators.required]],
-      districts_id: ['', [Validators.required]],
-      geographic_id: ['', [Validators.required]]
-
+      province: ['', [Validators.required]],
+      amphure: ['', [Validators.required]],
+      district: ['', [Validators.required]],
 
     })
-  }
-
-  getTaxForm() {
-    const requestData = {
-      ...Subject,
-      customerUsername: localStorage.getItem('customerUsername'),
-    }
-    this.customerService.getCustomerProfileByEmail(requestData.customerUsername).subscribe(
-      res => {
-        this.dataForm = res;
-        this.reactiveForm.patchValue({
-          firstname: this.dataForm[0].firstname,
-          lastname: this.dataForm[0].lastname,
-          telephone: this.dataForm[0].telephone,
-          postal_code: this.dataForm[0].postal_code,
-          user_id: this.dataForm[0].id,
-          province_id: this.dataForm[0].name_th,
-          amphures_id: this.dataForm[0].name_th,
-          district: this.dataForm[0].name_th,
-        })
-      },
-      error => this.errorMessage = <any>error
-    )
   }
 
   getPro() {
@@ -137,7 +135,7 @@ export class AddTaxAddressComponent implements OnInit {
   }
 
   onClickSubmit() {
-    this.taxService.addTax(this.reactiveForm.getRawValue()).subscribe();
+    this.taxService.editTax(this.reactiveForm.getRawValue()).subscribe();
     Swal.fire({
       icon: 'success',
       title: 'บันทึกใบกำกับภาษีเรียบร้อย',
@@ -167,15 +165,15 @@ export class AddTaxAddressComponent implements OnInit {
   get company_name() {
     return this.reactiveForm.get('company_name')
   }
+  get province_id() {
+    return this.reactiveForm.get('province_id')
+  }
+  get amphure_id() {
+    return this.reactiveForm.get('amphure_id')
+  }
+  get district_id() {
+    return this.reactiveForm.get('district_id')
+  }
 
-  get province() {
-    return this.reactiveForm.get('province')
-  }
-  get district() {
-    return this.reactiveForm.get('district')
-  }
-  get sub_district() {
-    return this.reactiveForm.get('sub_district')
-  }
 
 }

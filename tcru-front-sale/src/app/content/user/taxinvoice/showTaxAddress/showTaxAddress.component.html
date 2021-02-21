@@ -16,10 +16,10 @@
       <mat-card>
         <div class="row">
           <div class="col-md-10 address-padding">
-            {{item.company_name}}: {{item.address}} {{item.districts_id}} {{item.amphures_id}} {{item.province_id}}  {{item.postal_code}}     
+            {{item.company_name}}: {{item.address}} {{item.district}} {{item.amphure_id}} {{item.province_id}}  {{item.postal_code}}     
           </div>
           <div class="col-md-1 btn-padding">
-            <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickSubmit(item.tax_id)" routerLink="/editaddress">แก้ไข</button>
+            <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickEdit(item.tax_id)" routerLink="/edittaxaddress">แก้ไข</button>
           </div>
           <div class="col-md-1 btn-padding">
             <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="onClickDelete(item.tax_id)">ลบ</button>
