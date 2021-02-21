@@ -25,6 +25,9 @@ import { ProfileComponent } from './content/user/profile/profile.component';
 import { EditprofileComponent } from './content/user/editprofile/editprofile.component';
 import { ShowaddressComponent } from './content/user/showaddress/showaddress.component';
 import { AddaddressComponent } from './content/user/addaddress/addaddress.component';
+import { EditaddressComponent } from './content/user/editaddress/editaddress.component';
+import { ShowTaxAddressComponent } from './content/user/taxinvoice/showTaxAddress/showTaxAddress.component';
+import { AddTaxAddressComponent } from './content/user/taxinvoice/addTaxAddress/addTaxAddress.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { AddaddressComponent } from './content/user/addaddress/addaddress.compon
     ProfileComponent,
     EditprofileComponent,
     ShowaddressComponent,
-    AddaddressComponent
+    AddaddressComponent,
+    EditaddressComponent,
+    ShowTaxAddressComponent,
+    AddTaxAddressComponent,
   ],
   imports: [
     BrowserModule,

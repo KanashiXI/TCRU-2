@@ -1,0 +1,146 @@
+<br><br>
+<div class="container">
+  <div class="row">
+    <!-- <div class="col-md-1"></div> -->
+    <div class="col-md-8">
+        <p class="tittle">เพิ่มที่อยู่จัดส่ง</p>
+    </div>
+  </div>
+  <br><br>
+  <form [formGroup]=reactiveForm>
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <mat-card>
+          <!-- <mat-card-header>
+            <mat-card-title class="tittle">เพิ่มที่อยู่จัดส่ง</mat-card-title>
+          </mat-card-header> -->
+          <mat-card-content>
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>ชื่อ</mat-label>
+                  <input matInput [formControl]="firstname" placeholder="" name="firstname">
+                  <mat-error *ngIf="firstname.hasError('required')">
+                    โปรดกรอกชื่อ
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>นามสกุล</mat-label>
+                  <input matInput [formControl]="lastname" placeholder="" name="lastname">
+                  <mat-error *ngIf="lastname.hasError('required')">
+                    โปรดกรอกนามสกุล
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>เบอร์โทรศัพท์</mat-label>
+                  <input matInput [formControl]="telephone" placeholder="" name="telephone" 
+                      pattern="[0-9]+" minlength="9" maxlength="10">
+                  <mat-error *ngIf="telephone.hasError('required')">
+                    โปรดกรอกเบอร์โทรศัพท์
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>เลขประจำตัวผู้เสียภาษี</mat-label>
+                  <input matInput [formControl]="vat_identification_number" placeholder="" name="vat_identification_number" 
+                      pattern="[0-9]+" maxlength="13">
+                  <mat-error *ngIf="vat_identification_number.hasError('required')">
+                    โปรดกรอกเลขประจำตัวผู้เสียภาษี
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>ชื่อหน่วยงาน</mat-label>
+                  <input matInput [formControl]="company_name" placeholder="" name="company_name">
+                  <mat-error *ngIf="company_name.hasError('required')">
+                    โปรดกรอกชื่อหน่วยงาน
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>ที่อยู่หน่วยงาน</mat-label>
+                  <input matInput [formControl]="address" placeholder="" name="address">
+                  <mat-error *ngIf="address.hasError('required')">
+                    โปรดกรอกที่อยู่หน่วยงาน
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+              <div class="col-md-4">
+                <mat-form-field appearance="fill" class="dropdown dropHeight">
+                  <mat-label>จังหวัด</mat-label>
+                  <mat-select formControlName="province" (selectionChange)="getAumph($event)" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let obj of provinceArr" value="{{obj.id}}">
+                      {{obj.name_th}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="reactiveForm.controls['province'].errors?.required">โปรดเลือกจังหวัด</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field appearance="fill" class="dropdown dropHeight">
+                  <mat-label>อำเภอ</mat-label>
+                  <mat-select formControlName="amphure" (selectionChange)="getDistr($event)" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let obj of aumphureArr" value="{{obj.id}}">
+                      {{obj.name_th}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="reactiveForm.controls['amphure'].errors?.required">โปรดเลือกอำเภอ</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field appearance="fill" class="dropdown dropHeight">
+                  <mat-label>ตำบล</mat-label>
+                  <mat-select formControlName="district" (selectionChange)="getLast($event)" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let obj of districtArr" value="{{obj.id}}">
+                      {{obj.name_th}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="reactiveForm.controls['district'].errors?.required">โปรดเลือกตำบล</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row justify-content-center">              
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>รหัสไปรษณีย์</mat-label>
+                  <input matInput [formControl]="postal_code" placeholder="" name="postal_code" pattern="[0-9]+" maxlength="5">
+                  <mat-error *ngIf="postal_code.hasError('required')">
+                    โปรดกรอกรหัสไปรษณีย์
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="row">
+              <div class="col-md-4"></div>
+              <div class="col-md-2">
+                <button mat-stroked-button color="primary" class="btn-block" routerLink="/taxaddress">ยกเลิก</button>
+              </div>
+              <div class="col-md-2">
+                <button mat-raised-button color="primary" type="submit" class="btn-block" [disabled]="reactiveForm.invalid"
+                (click)="onClickSubmit()">บันทึกข้อมูล</button>
+              </div>
+            </div>
+          </mat-card-actions>
+          <br>
+        </mat-card>
+      </div>
+    </div> 
+  </form> 
+</div>   

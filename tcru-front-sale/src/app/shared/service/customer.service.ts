@@ -17,6 +17,8 @@ export class CustomerService {
   private url = '/api/register/';
   private validateEmailURL = '/api/emailvailate/';
   private profileURL = '/api/editprofile/'
+
+  
   constructor(private http: HttpClient) { }
   // getCustomer() {
   //   let httpParms = new HttpParams();

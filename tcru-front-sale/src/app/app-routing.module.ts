@@ -10,6 +10,9 @@ import { ProfileComponent } from './content/user/profile/profile.component';
 import { EditprofileComponent } from './content/user/editprofile/editprofile.component';
 import { ShowaddressComponent } from './content/user/showaddress/showaddress.component';
 import { AddaddressComponent } from './content/user/addaddress/addaddress.component';
+import { EditaddressComponent } from './content/user/editaddress/editaddress.component';
+import { ShowTaxAddressComponent } from './content/user/taxinvoice/showTaxAddress/showTaxAddress.component';
+import { AddTaxAddressComponent } from './content/user/taxinvoice/addTaxAddress/addTaxAddress.component';
 
 const routes: Routes = [
   {
@@ -43,6 +46,18 @@ const routes: Routes = [
   {
     path: 'addaddress',
     component: AddaddressComponent,
+  },
+  {
+    path: 'editaddress',
+    component: EditaddressComponent,
+  },
+  {
+    path: 'taxaddress',
+    component: ShowTaxAddressComponent,
+  },
+    {
+    path: 'addtaxaddress',
+    component: AddTaxAddressComponent,
   },
   {
     path: '**',
