@@ -23,9 +23,12 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>tcru-front-sale</span>
+      <a class="navbar-brand" routerLink="/">
+        <img src="../../../assets/tcru-crop-removebg.png" height="47" style="margin-left: 30px;">
+        <label style="font-size: 16px;">&nbsp;&nbsp;หน้าหลัก</label>
+      </a>      
       <span class="spacer"></span>
-      <a mat-list-item routerLink="profile" *ngIf="loggedIn">บัญชีผู้ใช้</a>
+      <a mat-list-item routerLink="/profile" *ngIf="loggedIn">บัญชีผู้ใช้</a>
       <!-- <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">ตะกร้าสินค้า</a> -->
       <a routerLink="/register" *ngIf="!loggedIn">ลงทะเบียน</a>
       <a routerLink="/login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
