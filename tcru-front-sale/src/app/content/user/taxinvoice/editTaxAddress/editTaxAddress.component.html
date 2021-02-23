@@ -80,37 +80,37 @@
               <div class="col-md-4">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>จังหวัด</mat-label>
-                  <mat-select formControlName="province" (selectionChange)="getAumph($event)" required>
+                  <mat-select formControlName="province_id" (selectionChange)="getAumph($event)" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let obj of provinceArr" value="{{obj.id}}">
                       {{obj.name_th}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="reactiveForm.controls['province'].errors?.required">โปรดเลือกจังหวัด</mat-error>
+                  <mat-error *ngIf="reactiveForm.controls['province_id'].errors?.required">โปรดเลือกจังหวัด</mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>อำเภอ</mat-label>
-                  <mat-select formControlName="amphure" (selectionChange)="getDistr($event)" required>
+                  <mat-select formControlName="amphures_id" (selectionChange)="getDistr($event)" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let obj of aumphureArr" value="{{obj.id}}">
                       {{obj.name_th}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="reactiveForm.controls['amphure'].errors?.required">โปรดเลือกอำเภอ</mat-error>
+                  <mat-error *ngIf="reactiveForm.controls['amphures_id'].errors?.required">โปรดเลือกอำเภอ</mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>ตำบล</mat-label>
-                  <mat-select formControlName="district" (selectionChange)="getLast($event)" required>
+                  <mat-select formControlName="districts_id" (selectionChange)="getLast($event)" required>
                     <mat-option>--</mat-option>
                     <mat-option *ngFor="let obj of districtArr" value="{{obj.id}}">
                       {{obj.name_th}}
                     </mat-option>
                   </mat-select>
-                  <mat-error *ngIf="reactiveForm.controls['district'].errors?.required">โปรดเลือกตำบล</mat-error>
+                  <mat-error *ngIf="reactiveForm.controls['districts_id'].errors?.required">โปรดเลือกตำบล</mat-error>
                 </mat-form-field>
               </div>
             </div>

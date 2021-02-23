@@ -61,8 +61,8 @@ export class EditTaxAddressComponent implements OnInit {
           address: this.dataForm[0].address,
           vat_identification_number: this.dataForm[0].vat_identification_number,
           province_id: this.dataForm[0].province_id,
-          amphure_id: this.dataForm[0].amphure_id,
-          district_id: this.dataForm[0].district_id,
+          amphures_id: this.dataForm[0].amphures_id,
+          districts_id: this.dataForm[0].districts_id,
           tax_id: this.dataForm[0].tax_id,
         })
       },
@@ -81,9 +81,9 @@ export class EditTaxAddressComponent implements OnInit {
       vat_identification_number: ['', [Validators.required]],
       company_name: ['', [Validators.required]],
       postal_code: ['', [Validators.required]],
-      province: ['', [Validators.required]],
-      amphure: ['', [Validators.required]],
-      district: ['', [Validators.required]],
+      province_id: ['', [Validators.required]],
+      amphures_id: ['', [Validators.required]],
+      districts_id: ['', [Validators.required]],
 
     })
   }
@@ -135,13 +135,32 @@ export class EditTaxAddressComponent implements OnInit {
   }
 
   onClickSubmit() {
-    this.taxService.editTax(this.reactiveForm.getRawValue()).subscribe();
-    Swal.fire({
-      icon: 'success',
-      title: 'บันทึกใบกำกับภาษีเรียบร้อย',
-      showConfirmButton: false,
-      timer: 2000
-    });
+    this.taxService.editTax(this.reactiveForm.getRawValue()).subscribe(
+      res => {
+        Swal.fire({
+          icon: 'success',
+          title: 'เพิ่มข้อมูลสำเร็จ',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+      },
+      error => {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'เพิ่มข้อมูลไม่สำเร็จ',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    );
+    // Swal.fire({
+    //   icon: 'success',
+    //   title: 'บันทึกใบกำกับภาษีเรียบร้อย',
+    //   showConfirmButton: false,
+    //   timer: 2000
+    // });
   }
 
   get firstname() {
@@ -168,11 +187,11 @@ export class EditTaxAddressComponent implements OnInit {
   get province_id() {
     return this.reactiveForm.get('province_id')
   }
-  get amphure_id() {
-    return this.reactiveForm.get('amphure_id')
+  get amphures_id() {
+    return this.reactiveForm.get('amphures_id')
   }
-  get district_id() {
-    return this.reactiveForm.get('district_id')
+  get districts_id() {
+    return this.reactiveForm.get('districts_id')
   }
 
 

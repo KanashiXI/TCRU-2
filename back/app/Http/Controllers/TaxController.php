@@ -23,7 +23,7 @@ class TaxController extends Controller
         $new->postal_code = $request->input('postal_code');
         $new->province_id = $request->input('province_id');
         $new->amphures_id = $request->input('amphures_id');
-        $new->district_id = $request->input('districts_id');
+        $new->districts_id = $request->input('districts_id');
         $new->telephone = $request->input('telephone');
         $new->vat_identification_number = $request->input('vat_identification_number');       
         $new->user_id = $request->input('user_id');       
@@ -51,7 +51,7 @@ class TaxController extends Controller
         $edit->postal_code=$request->postal_code;
         $edit->province_id=$request->province_id;
         $edit->amphures_id=$request->amphures_id;
-        $edit->district_id=$request->district_id;
+        $edit->districts_id=$request->districts_id;
         $edit->telephone=$request->telephone;
         $edit->vat_identification_number=$request->vat_identification_number;
         $edit->user_id=$request->user_id;      
