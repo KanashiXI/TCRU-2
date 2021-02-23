@@ -137,13 +137,37 @@ export class AddTaxAddressComponent implements OnInit {
   }
 
   onClickSubmit() {
-    this.taxService.addTax(this.reactiveForm.getRawValue()).subscribe();
-    Swal.fire({
-      icon: 'success',
-      title: 'บันทึกใบกำกับภาษีเรียบร้อย',
-      showConfirmButton: false,
-      timer: 2000
-    });
+    this.taxService.addTax(this.reactiveForm.getRawValue()).subscribe(
+      res => {
+        Swal.fire({
+          icon: 'success',
+          title: 'เพิ่มข้อมูลสำเร็จ',
+          showConfirmButton: false,
+          timer: 2000
+        });
+
+      },
+      error => {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'เพิ่มข้อมูลไม่สำเร็จ',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+
+
+    )
+    
+  
+   
+    // Swal.fire({
+    //   icon: 'success',
+    //   title: 'บันทึกใบกำกับภาษีเรียบร้อย',
+    //   showConfirmButton: false,
+    //   timer: 2000
+    // });
   }
 
   get firstname() {
