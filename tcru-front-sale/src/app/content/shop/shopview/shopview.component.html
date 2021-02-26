@@ -8,14 +8,24 @@
   <br><br>
   <hr>
   <br><br>
-  <!-- <div class="row">
+  <div class="row">
     <div class="col-md-12">
       <mat-card>
-
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field appearance="fill">
+              <mat-label>Favorite food</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{food.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
       </mat-card>
     </div>
-  </div> -->
-
+  </div>
   <br><br>
   <div class="row">
     <div class="col-md-3" *ngFor="let item of productList; let i = index">

@@ -16,7 +16,7 @@
       <mat-card>
         <div class="row">
           <div class="col-md-10 address-padding">
-            {{item.firstname}} {{item.lastname}}: {{item.address}} {{item.districts_id}} {{item.amphures_id}} {{item.province_id}}  {{item.postal_code}}     
+            {{item.firstname}} {{item.lastname}}: {{item.address}} ตำบล {{item.district_name}} อำเภอ {{item.amphure_name}}  จังหวัด {{item.province_name}}  {{item.postal_code}}     
           </div>
           <div class="col-md-1 btn-padding">
             <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button>

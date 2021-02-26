@@ -43,14 +43,15 @@ export class RegisterComponent implements OnInit {
     this.reactiveForm = this.fb.group({
       email: ['', [Validators.required], uniqueEmailValidator(this.customerService)],
       name: ['user'],
+      name_title: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
       password: ['', [Validators.required]],
       password_confirmation: ['', [Validators.required, compareValidator('password'), Validators.maxLength(16)]],
-
+      telephone: ['', [Validators.required]]
     })
     this.roleForm = this.fb.group({
-      role: [1],
+      // role: [1],
       id: []
     })
 
@@ -78,6 +79,7 @@ export class RegisterComponent implements OnInit {
         timer: 2000
       });
     }
+    // console.log(this.reactiveForm.get('telephone').value)
 
   }
 
@@ -93,10 +95,13 @@ export class RegisterComponent implements OnInit {
         })
       }
     )
-    this.Jarwis.setRole(this.roleForm.getRawValue()).subscribe()
+    // this.Jarwis.setRole(this.roleForm.getRawValue()).subscribe()
 
   }
-
+  
+  get name_title() {
+    return this.reactiveForm.get('name_title')
+  }
   get lastname() {
     return this.reactiveForm.get('lastname')
   }
@@ -117,6 +122,9 @@ export class RegisterComponent implements OnInit {
   }
   get password_confirmation() {
     return this.reactiveForm.get('password_confirmation')
+  }
+  get telephone() {
+    return this.reactiveForm.get('telephone')
   }
 
 }

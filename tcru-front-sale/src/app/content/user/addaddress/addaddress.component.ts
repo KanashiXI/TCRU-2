@@ -27,8 +27,11 @@ export class AddaddressComponent implements OnInit {
   districtArr: District[] = [];
 
   provinceValue: number;
+  provinceName: string;
   aumphureValue: number;
+  aumphureName: string;
   districtValue: number;
+  districtName: string;
   geographieValue: number;
   dataForm: Emloyeeinterface;
 
@@ -76,8 +79,11 @@ export class AddaddressComponent implements OnInit {
       address: ['', [Validators.required]],
       user_id: ['', [Validators.required]],
       province_id: ['', Validators.compose([Validators.required])],
+      province_name: ['', [Validators.required]],
       amphures_id: ['', [Validators.required]],
+      amphures_name: ['', [Validators.required]],
       districts_id: ['', [Validators.required]],
+      districts_name: ['', [Validators.required]],
       postal_code: ['', [Validators.required]],
       geographic_id: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
@@ -131,13 +137,18 @@ export class AddaddressComponent implements OnInit {
   getAumph(event) {
     var obj = {
       id: event.value,
+      name_th: event.value,
       geography_id: event.value
     }
-    // console.log(event.value)
-    this.provinceValue = obj.id;
+    // this.reactiveForm.get('province_id').value
+    console.log(event.value)
+    this.provinceValue = this.reactiveForm.get('province_id').value
+    console.log(this.provinceValue)
+    this.provinceName = obj.name_th
     this.geographieValue = obj.geography_id;
     this.reactiveForm.patchValue({   // set จังหวัด,ภาค ใน form สำหรับ insert 
       province_id: this.provinceValue,
+      province_name: this.provinceName,
       geographic_id: this.geographieValue,
     })
     this.addressService.getAumphure(obj).subscribe(res => {
@@ -147,11 +158,14 @@ export class AddaddressComponent implements OnInit {
 
   getDistr(event) {
     var obj = {
-      id: event.value
+      id: event.value,
+      name_th: event.value
     }
     this.aumphureValue = obj.id;
+    this.aumphureName = obj.name_th;
     this.reactiveForm.patchValue({   // set aumphureใน form สำหรับ insert 
       amphures_id: this.aumphureValue,
+      amphures_name: this.aumphureName,
     });
     this.addressService.getDistrict(obj).subscribe(res => {
       this.districtArr = res;
@@ -160,11 +174,14 @@ export class AddaddressComponent implements OnInit {
 
   getLast(event) {
     var obj = {
-      id: event.value
+      id: event.value,
+      name_th: event.value
     }
     this.districtValue = obj.id;
+    this.districtName = obj.name_th;
     this.reactiveForm.patchValue({   // set districtใน form สำหรับ insert 
       districts_id: this.districtValue,
+      districts_name: this.districtName,
     });
   }
 

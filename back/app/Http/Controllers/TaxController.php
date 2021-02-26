@@ -3,13 +3,31 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\tax;
+use DB;
 
 class TaxController extends Controller
 {
+    // public function gettaxById($request)
+    // {       
+    //     $getall = tax::where('user_id', $request)->get();  
+    //     return response()->json($getall,200); 
+    // }
+
     public function gettaxById($request)
     {       
-        $getall = tax::where('user_id', $request)->get();  
-        return response()->json($getall,200); 
+    
+        $getall = DB::table('tax_info')
+            ->join('provinces', 'provinces.id', '=', 'tax_info.province_id')
+            ->join('amphures', 'amphures.province_id', '=', 'provinces.id')
+            ->join('districts', 'districts.amphure_id', '=', 'amphures.id')
+            ->join('users', 'users.id', '=', 'tax_info.user_id')
+            ->select('tax_info.postal_code', 'tax_info.user_id', 'tax_info.firstname', 'tax_info.lastname', 'tax_info.tax_id', 'tax_info.address' , 'provinces.name_th as province_name', 'amphures.name_th as amphure_name', 'districts.name_th as districts_name', 'tax_info.company_name')
+            ->where('tax_info.user_id', $request)
+            ->groupBy('tax_info.user_id')
+            ->get();
+
+        return response()->json($getall,200);
+
     }
 
     public function createTax(Request $request)

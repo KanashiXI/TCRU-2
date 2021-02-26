@@ -3,6 +3,11 @@ import { Product } from './interfaces/product';
 import { ProductviewService } from './services/productview.service';
 
 
+interface Food {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-shopview',
   templateUrl: './shopview.component.html',
@@ -20,6 +25,12 @@ export class ShopviewComponent implements OnInit {
   products: Product[];
   sortOrder: number;
   sortField: string;
+
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
 
 
   constructor(

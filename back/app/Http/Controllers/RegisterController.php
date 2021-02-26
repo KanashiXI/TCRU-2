@@ -47,6 +47,7 @@ class RegisterController extends Controller
         $new = new customer;
         $new->username = $request->input('username');
         $new->password = $request->input('password');
+        $new->name_title = $request->input('name_title');
         $new->firstname = $request->input('firstname');
         $new->lastname = $request->input('lastname');
         // $new->mail = $request->input('mail');

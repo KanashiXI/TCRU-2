@@ -14,6 +14,7 @@ import { EditaddressComponent } from './content/user/editaddress/editaddress.com
 import { ShowTaxAddressComponent } from './content/user/taxinvoice/showTaxAddress/showTaxAddress.component';
 import { AddTaxAddressComponent } from './content/user/taxinvoice/addTaxAddress/addTaxAddress.component';
 import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddress/editTaxAddress.component';
+import { CartComponent } from './content/shop/cart/cart.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'edittaxaddress',
     component: EditTaxAddressComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
   },
   {
     path: '**',

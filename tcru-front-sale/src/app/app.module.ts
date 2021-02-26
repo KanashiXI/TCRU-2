@@ -29,6 +29,10 @@ import { EditaddressComponent } from './content/user/editaddress/editaddress.com
 import { ShowTaxAddressComponent } from './content/user/taxinvoice/showTaxAddress/showTaxAddress.component';
 import { AddTaxAddressComponent } from './content/user/taxinvoice/addTaxAddress/addTaxAddress.component';
 import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddress/editTaxAddress.component';
+import { CartComponent } from './content/shop/cart/cart.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,8 @@ import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddres
     EditaddressComponent,
     ShowTaxAddressComponent,
     AddTaxAddressComponent,
-    EditTaxAddressComponent
+    EditTaxAddressComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,7 @@ import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddres
     BrowserAnimationsModule,
     LayoutModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule, MatTableModule, MatPaginatorModule, MatSortModule
   ],
   providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService],
   bootstrap: [AppComponent],

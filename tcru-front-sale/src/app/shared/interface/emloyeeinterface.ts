@@ -8,6 +8,7 @@ export interface Emloyeeinterface {
     id?: number;
     remember_token?: any;
     telephone?: string;
+    name_title?: string;
     firstname?: string;
     lastname?: string;
     address?: string;

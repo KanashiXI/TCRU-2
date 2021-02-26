@@ -77,7 +77,7 @@ export class EditprofileComponent implements OnInit {
       name_title: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      telephone: ['', [Validators.required],],
+      telephone: ['', [Validators.required]],
       email: [this.setEmail = requestData.customerUsername],
 
     })

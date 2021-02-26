@@ -1,86 +1,128 @@
 <br><br>
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title>ลงทะเบียน</mat-card-title>
-    </mat-card-header>
-
-    <form class="example-form" [formGroup]=reactiveForm>
-
-      <mat-card-content>
-        <mat-form-field class="example-full-width">
-          <mat-label>ชื่อผู้ใช้ (Email)</mat-label>
-          <input type="email" matInput [formControl]="email" placeholder="Ex. example@mail.com" name="email">
-          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="email.hasError('required')">
-            Email is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>รหัสผ่าน</mat-label>
-          <input type="password" matInput [formControl]="password" #message placeholder="" name="password" 
-                  minlength="6" maxlength="16">
-          <mat-hint align="start">โปรดกรอกรหัสผ่านด้วย a-z พิมพ์ใหญ่หรือพิมพ์เล็ก <br> หรือตัวเลข <strong> 6-16 ตัวอักษร</strong> </mat-hint>
-          <mat-hint align="end">{{message.value.length}} / 16</mat-hint>
-          <mat-error *ngIf="password.hasError('required')">
-            โปรดกรอกรหัสผ่าน
-          </mat-error>
-          <mat-error *ngIf="password.errors?.minlength">
-            รหัสผ่านมากกว่า 6 ตัวอักษร
-          </mat-error>
-          <mat-error *ngIf="password.errors?.maxlength">
-            รหัสผ่านน้อยกว่า 16 ตัวอักษร
-          </mat-error>
-        </mat-form-field>
-
-        <br><br>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>ยืนยันรหัสผ่าน</mat-label>
-          <input type="password" matInput [formControl]="password_confirmation" #message placeholder="" name="password_confirmation" 
-                  minlength="6" maxlength="16">
-          <mat-hint align="start">โปรดกรอกรหัสผ่านด้วย a-z พิมพ์ใหญ่หรือพิมพ์เล็ก <br> หรือตัวเลข <strong> 6-16 ตัวอักษร</strong> </mat-hint>
-          <mat-hint align="end">{{message.value.length}} / 16</mat-hint>
-          <mat-error *ngIf="password.hasError('required')">
-            โปรดกรอกรหัสผ่าน
-          </mat-error>
-          <mat-error *ngIf="password.errors?.minlength">
-            รหัสผ่านมากกว่า 6 ตัวอักษร
-          </mat-error>
-          <mat-error *ngIf="password.errors?.maxlength">
-            รหัสผ่านน้อยกว่า 16 ตัวอักษร
-          </mat-error>
-          <mat-error *ngIf="password_confirmation.hasError('compare')">
-            โปรดกรอกรหัสผ่านให้เหมือนกัน
-          </mat-error>
-        </mat-form-field>
-
-        <br><br>
-        <mat-form-field class="example-full-width">
-          <mat-label>ชื่อ</mat-label>
-          <input matInput [formControl]="firstname" placeholder="" name="firstname">
-          <mat-error *ngIf="firstname.hasError('required')">
-            โปรดกรอกชื่อ
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>นามสกุล</mat-label>
-          <input matInput [formControl]="lastname" placeholder="" name="lastname">
-          <mat-error *ngIf="lastname.hasError('required')">
-            โปรดกรอกนามสกุล
-          </mat-error>
-        </mat-form-field>
-        
-      </mat-card-content>
-
-      <button mat-stroked-button color="primary" class="btn-block" [disabled]="reactiveForm.invalid"
-          (click)="onClickRegis()" routerLink="">Register</button>
-
-    </form>
-  </mat-card>
+<!-- <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center"> -->
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <mat-card class="">
+        <mat-card-header>
+          <mat-card-title>ลงทะเบียน</mat-card-title>
+        </mat-card-header>
+    
+        <form class="example-form" [formGroup]=reactiveForm>
+          <mat-card-content>
+            <div class="row justify-content-center">
+              <div class="col-md-3">
+                <mat-form-field>
+                  <mat-label>ชื่อผู้ใช้ (Email)</mat-label>
+                  <input type="emai" matInput [formControl]="email" placeholder="Ex. example@mail.com" name="email">
+                  <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    <small> Please enter a valid email address</small>
+                  </mat-error>
+                  <mat-error *ngIf="email.hasError('required')">
+                    <small>Email is <strong>required</strong></small>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>รหัสผ่าน</mat-label>
+                  <input type="password" matInput [formControl]="password" #message placeholder="" name="password" 
+                          minlength="6" maxlength="16">
+                  <mat-hint align="start"><small>โปรดกรอกรหัสผ่านด้วย a-z พิมพ์ใหญ่หรือพิมพ์เล็ก หรือตัวเลข 6-16 ตัวอักษร</small></mat-hint>
+                  <br>
+                  <mat-hint align="end"><small> {{message.value.length}} / 16</small></mat-hint>
+                  <mat-error *ngIf="password.hasError('required')">
+                    <small>โปรดกรอกรหัสผ่าน</small>
+                  </mat-error>
+                  <mat-error *ngIf="password.errors?.minlength">
+                    <small>รหัสผ่านมากกว่า 6 ตัวอักษร</small>
+                  </mat-error>
+                  <mat-error *ngIf="password.errors?.maxlength">
+                    <small>รหัสผ่านน้อยกว่า 16 ตัวอักษร</small>
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>ยืนยันรหัสผ่าน</mat-label>
+                  <input type="password" matInput [formControl]="password_confirmation" #message placeholder="" name="password_confirmation" 
+                          minlength="6" maxlength="16">
+                  <mat-hint align="start"><small>โปรดกรอกรหัสผ่านด้วย a-z พิมพ์ใหญ่หรือพิมพ์เล็ก หรือตัวเลข 6-16 ตัวอักษร</small>  </mat-hint>
+                  <mat-hint align="end"><small>{{message.value.length}} / 16</small></mat-hint>
+                  <mat-error *ngIf="password.hasError('required')">
+                    โปรดกรอกรหัสผ่าน
+                  </mat-error>
+                  <mat-error *ngIf="password.errors?.minlength">
+                    รหัสผ่านมากกว่า 6 ตัวอักษร
+                  </mat-error>
+                  <mat-error *ngIf="password.errors?.maxlength">
+                    รหัสผ่านน้อยกว่า 16 ตัวอักษร
+                  </mat-error>
+                  <mat-error *ngIf="password_confirmation.hasError('compare')">
+                    โปรดกรอกรหัสผ่านให้เหมือนกัน
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+              <div class="col-md-2">
+                <mat-form-field class="example-full-width">
+                  <mat-label>คำนำหน้า</mat-label>
+                  <input matInput [formControl]="name_title" placeholder="" name="name_title">
+                  <mat-error *ngIf="name_title.hasError('required')">
+                    โปรดกรอก
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>ชื่อ</mat-label>
+                  <input matInput [formControl]="firstname" placeholder="" name="firstname">
+                  <mat-error *ngIf="firstname.hasError('required')">
+                    โปรดกรอกชื่อ
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                  <mat-label>นามสกุล</mat-label>
+                  <input matInput [formControl]="lastname" placeholder="" name="lastname">
+                  <mat-error *ngIf="lastname.hasError('required')">
+                    โปรดกรอกนามสกุล
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-3">
+                <mat-form-field class="example-full-width">
+                <mat-label>เบอร์โทรศัพท์</mat-label>
+                <input matInput [formControl]="telephone" placeholder="" name="telephone" 
+                    >
+                <!-- <mat-error *ngIf="telephone.hasError('required')">
+                  โปรดกรอกเบอร์โทรศัพท์
+                </mat-error> -->
+              </mat-form-field>
+              </div>
+            </div>
+            <br><br>
+          </mat-card-content>
+          <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+              <button mat-stroked-button color="primary" class="btn-block" routerLink="">ยกเลิก</button>
+            </div>
+            <div class="col-md-2">
+              <button mat-raised-button color="primary" class="btn-block" [disabled]="reactiveForm.invalid"
+              (click)="onClickRegis()" routerLink="">ลงทะเบียน</button>
+            </div>
+          </div>
+          
+    
+        </form>
+      </mat-card>
+    </div>
+  </div>
 </div>
+<!-- </div> -->
 <br>
