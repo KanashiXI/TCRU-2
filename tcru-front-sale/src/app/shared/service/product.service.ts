@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Product } from 'src/app/content/shop/productview/interfaces/product';
+import { Product } from 'src/app/content/shop/shopview/interfaces/product';
 import { ApiConstants } from '../constants/ApiConstants';
 import { Productinterface } from '../interface/productinterface';
 
@@ -19,7 +19,7 @@ export class ProductService {
 
   }
   getDetail(id) {
-    return this.http.get<Product>(`${ApiConstants.baseURl}${ApiConstants.productdetailURL}${id}`)
+    return this.http.get<Product>(`${ApiConstants.baseURl}${ApiConstants.productdetailURL}/${id}`)
   }
 
 

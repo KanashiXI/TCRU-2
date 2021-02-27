@@ -33,6 +33,9 @@ export class ApiConstants {
     public static get productURL(): string {
         return '/api/product';
     }
+    public static get productTypeURL(): string {
+        return '/api/producttype';
+    }
     public static get productdetailURL(): string {
         return '/api/productdetail';
     }
@@ -50,6 +53,18 @@ export class ApiConstants {
     }
     public static get addmoreproductcartURL(): string {
         return '/api/editproduct';
+    }
+    public static get deleteproductcartURL(): string {
+        return '/api/deleteproduct';
+    }
+    public static get getCartPromotionURL(): string {
+        return '/api/cartpromotion';
+    }
+    public static get getHotProductURL(): string {
+        return '/api/hotproduct';
+    }
+    public static get checkoutCartURL(): string {
+        return '/api/cartcheckout';
     }
 
 

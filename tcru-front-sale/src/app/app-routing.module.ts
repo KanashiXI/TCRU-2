@@ -22,7 +22,7 @@ const routes: Routes = [
     component: ShopviewComponent,
   },
   {
-    path: 'productdetail',
+    path: 'productdetail/:product_id',
     component: ProductDetailComponent,
   },
   {

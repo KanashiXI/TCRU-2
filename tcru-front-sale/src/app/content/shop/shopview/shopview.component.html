@@ -49,13 +49,14 @@
             {{item.product_name}}
           </div>
         </div>
-        <br>  
+        <br>
         <div class="row">
           <div class="col-md-5">
             {{item.retail_price}} ฿
           </div>
           <div class="col-md-7">
-            <button mat-stroked-button color="primary" class="btn-block">รายละเอียด</button>
+            <button mat-stroked-button color="primary" class="btn-block"
+              routerLink="/productdetail/{{item.product_id}}">รายละเอียด</button>
           </div>
         </div>
       </mat-card>
