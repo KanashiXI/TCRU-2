@@ -1,7 +1,6 @@
 <br><br>
 <div class="container">
-  <div class="row">
-    <!-- <div class="col-md-1"></div> -->
+  <!-- <div class="row">
     <div class="col-md-2">
         <p class="tittle">ที่อยู่จัดส่ง</p>
     </div>
@@ -10,13 +9,13 @@
       <button mat-raised-button color="primary" class="btn-block" routerLink="/addaddress">เพิ่มที่อยู่จัดส่ง</button>
     </div>
   </div>
-  <br><br>
+  <br><br> -->
   <div class="row" *ngFor="let item of dataSource; let i = index">
     <div class="col-md-12">
       <mat-card>
         <div class="row">
           <div class="col-md-10 address-padding">
-            {{item.firstname}} {{item.lastname}}: {{item.address}} ตำบล {{item.district_name}} อำเภอ {{item.amphure_name}}  จังหวัด {{item.province_name}}  {{item.postal_code}}     
+            {{item.firstname}} {{item.lastname}}: {{item.address}} {{item.district_name}} {{item.amphure_name}}  {{item.province_name}}  {{item.postal_code}}     
           </div>
           <div class="col-md-1 btn-padding">
             <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button>

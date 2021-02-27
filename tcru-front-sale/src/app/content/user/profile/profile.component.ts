@@ -26,6 +26,8 @@ export class ProfileComponent implements OnInit {
   ShowLastname: String
   ShowTelephone: String
 
+  panelOpenState = false;
+
   constructor(
 
     private customerService: CustomerService,
