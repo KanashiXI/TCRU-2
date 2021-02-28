@@ -12,7 +12,10 @@ export class ProductviewService {
 
   getProduct() {
     return this.http.get<Product[]>(`${ApiConstants.baseURl}${ApiConstants.productURL}`)
+  }
 
+  getProductType() {
+    return this.http.get<Product[]>(`${ApiConstants.baseURl}${ApiConstants.productTypeURL}`)
   }
 
 }

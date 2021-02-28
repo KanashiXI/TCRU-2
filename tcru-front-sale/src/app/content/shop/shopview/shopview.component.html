@@ -8,25 +8,77 @@
   <br><br>
   <hr>
   <br><br>
+
   <div class="row">
     <div class="col-md-12">
       <mat-card>
         <div class="row">
-          <div class="col-md-4">
-            <mat-form-field appearance="fill">
-              <mat-label>Favorite food</mat-label>
-              <mat-select>
-                <mat-option *ngFor="let food of foods" [value]="food.value">
-                  {{food.viewValue}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+          <div class="col-md-12" style="margin: auto;">
+            <div class="wrapper">
+              <mat-button-toggle-group #group="matButtonToggleGroup" multiple=false>
+                <mat-button-toggle *ngFor="let item of typeList; index as i;" [value]="i"
+                  (click)="onClickSelectType(i)">{{item.product_type}}</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
           </div>
         </div>
       </mat-card>
     </div>
   </div>
-  <br><br>
+
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of productOnfilter; let i = index">
+      <br>
+      <mat-card>
+        <div class="row">
+          <div class="col-md-12">
+            <span class="material-icons">label</span>
+            {{item.product_name}}
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <img src="../../../assets/FreshTricoderma.jpg" style="width: 100%;">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12" style="text-align: center;">
+            {{item.product_name}}
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-5">
+            {{item.retail_price}} ฿
+          </div>
+          <div class="col-md-7">
+            <button mat-stroked-button color="primary" class="btn-block"
+              routerLink="/productdetail/{{item.product_id}}">รายละเอียด</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <br>
+
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-4">
+            สินค้าทั้งหมด
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+  <br>
   <div class="row">
     <div class="col-md-3" *ngFor="let item of productList; let i = index">
       <br>
@@ -62,4 +114,6 @@
       </mat-card>
     </div>
   </div>
+
+
 </div>
