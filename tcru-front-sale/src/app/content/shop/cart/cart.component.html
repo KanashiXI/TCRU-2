@@ -81,23 +81,36 @@
             ราคารวม
           </div>
           <div class="col-md-6 cart-total-value">
-            {{totalPrice | currency :'USD':true}}
+            {{totalPrice | currency :'฿':true}}
           </div>
         </div>
+
+
+        <div class="cart-total-row row" *ngIf="isGotPromotion == true">
+          <div class="col-md-6 cart-total-label">
+            คุณได้รับโปรโมชัน {{discribePromotion}} ส่วนลด
+          </div>
+          <div class="col-md-6 cart-total-value">
+            {{discount | currency :'฿':true}}
+          </div>
+        </div>
+
+
+
         <div class="cart-total-row row">
           <div class="col-md-6 cart-total-label">
             ยอดสุทธิ
           </div>
           <div class="col-md-6 cart-total-value cart-total-price">
-            {{cartTotal}}
-            {{totalPrice | currency :'USD':true}} AUD
+            {{cartTotal | currency :'฿':true}}
+            <!-- {{totalPrice | currency :'USD':true}} AUD -->
           </div>
         </div>
       </div>
     </div>
     <div class="cart-buttons">
       <div class="continue-shopping"><a routerLink="/">เลือกสินค้าเพิ่ม</a></div>
-      <div class="checkout-button button button-primary button-large">ซื้อ ({{totalPrice | currency :'USD':true}})
+      <div class="checkout-button button button-primary button-large">ซื้อ ({{cartTotal | currency}})
       </div>
 
       <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button>
