@@ -5,6 +5,8 @@ mat-grid-list{
     border: 1px solid #dee2e6;
     border-radius: 3px;
     bottom: 0;
+    /* position: absolute; */
+    width: 100%;
 }
 p{
     text-align: center;
