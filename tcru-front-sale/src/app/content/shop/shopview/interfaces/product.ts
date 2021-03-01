@@ -1,4 +1,5 @@
 export interface Product {
+    // isChecked: unknown;
     product_id: number;
     product_name: string;
     whale_price: string;

@@ -52,6 +52,16 @@ export class CartComponent implements AfterViewInit, OnInit {
     this.queryCartProduct(requestData.customerUsername)
     this.getCartPromotion()
   }
+  changeSelection() {
+    this.fetchSelectedItems()
+    this.ngAfterViewInit()
+  }
+
+  fetchSelectedItems() {
+    this.selectItem = this.productInCart.filter((value, index) => {
+      return value.product_id
+    });
+  }
 
 
   changeQuantity(cart, $event) {
@@ -65,6 +75,7 @@ export class CartComponent implements AfterViewInit, OnInit {
       this.discribePromotion = this.promotionData[0].detail
       this.condition = this.promotionData[0].cost_condidtion
     })
+    this.ngAfterViewInit()
   }
 
   queryCartProduct(user_id) {
@@ -79,9 +90,10 @@ export class CartComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-
+    console.log('epofke')
     this.cartTotal = 0;
     this.selectItem.map((obj) => {
+      console.log(obj.retail_price)
       this.cartTotal += Number(obj.retail_price);
     });
     this.totalPrice = this.cartTotal;

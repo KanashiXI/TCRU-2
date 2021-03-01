@@ -2,23 +2,33 @@
   <div class="cart-page-header">
     <h1>Shopping Cart</h1>
   </div>
-
+  {{selectItem}}
   <div class="cart-page-content" *ngIf="productInCart.length > 0">
     <div class="cart-item-header cart-item-row">
+
       <div class="cart-item-cell cart-item-product"><span>Product</span></div>
       <div class="cart-item-cell cart-item-quantity"><span>Quantity</span></div>
       <div class="cart-item-cell cart-item-total"><span>Total</span></div>
       <div class="cart-item-cell cart-item-action"><span>Action</span></div>
     </div>
     <div class="cart-item-row" *ngFor="let cart of productInCart;let i = index">
-      <div class="cart-item-cell cart-item-product">
+      <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()">
+      <div class=" cart-item-cell cart-item-product">
+
         <div class="cart-item-thumbnail"
           [ngStyle]="{'background-image': 'url(http://www.clinictech.ops.go.th/online/cmo/fileuser/340/images/05.jpg)'}">
         </div>
         <!-- <div class="cart-item-thumbnail">
           <img src="assets/FreshTricoderma.jpg" height="100px">
         </div> -->
+
         <div class="cart-item-info">
+          <!-- <mat-checkbox [(ngModel)]="cart" (ngModelChange)="updateAllComplete(cart)">
+          </mat-checkbox> -->
+          <!-- <mat-checkbox  value="cart" [value]="cart" [(ngModel)]="selectItem"
+            [inputId]="cart.retail_price">
+          </mat-checkbox> -->
+
           <div class="cart-item-brand">{{cart.product_name}}</div>
           <div class="cart-item-title">{{cart.product_quantity}}</div>
         </div>
@@ -60,6 +70,7 @@
             total
           </div>
           <div class="col-md-6 cart-total-value cart-total-price">
+            {{cartTotal}}
             {{totalPrice | currency :'USD':true}} AUD
           </div>
         </div>
@@ -76,6 +87,8 @@
     <a routerLink="/">Go shopping</a>
   </div>
 </div>
+
+
 
 
 

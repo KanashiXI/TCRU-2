@@ -64,6 +64,13 @@ Route::group([
     // เพิ่มสินค้า
     Route::post('addproductcart','CartController@addtoCart');
 
+        // โปรโมชัน
+    Route::get('promotion','PromotionController@getPromotion'); // all promotion
+    Route::post('addpromotion','PromotionController@addPromotion'); 
+    Route::delete('deletepromotion/{promotion_id}','PromotionController@deletePromotion'); 
+    Route::post('editpromotion','PromotionController@editPromotion'); 
+    Route::get('cartpromotion','PromotionController@getCartPromotion'); //promotion in cart
+    
 
     //Product managemant
     Route::post('/material','MaterialController@addMaterial');

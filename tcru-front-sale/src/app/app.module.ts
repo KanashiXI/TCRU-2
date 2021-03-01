@@ -1,13 +1,13 @@
 import { MaterialModule } from './material/material.module';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout'; 
+import { LayoutModule } from '@angular/cdk/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AfterLoginService } from './shared/service/after-login.service';
 import { BeforeLoginService } from './shared/service/before-login.service';
@@ -33,6 +33,7 @@ import { CartComponent } from './content/shop/cart/cart.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -61,10 +62,13 @@ import { MatSortModule } from '@angular/material/sort';
     HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule, MatTableModule, MatPaginatorModule, MatSortModule
   ],
-  providers: [JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService],
+  providers: [
+    JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService
+    , { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions }
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
