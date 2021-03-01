@@ -36,18 +36,17 @@
                 remove
               </span>
             </button>
-
             <mat-form-field appearance="outline">
               <input matInput [value]="counter">
             </mat-form-field>
-
             <button mat-stroked-button (click)="increse()">
               <span class="material-icons">
                 add
               </span>
             </button>
             <br>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="loggedIn" (click)="handleAddToCart()">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="loggedIn"
+              (click)="handleAddToCart()">
               <span class="material-icons">
                 add
               </span>

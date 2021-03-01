@@ -64,6 +64,7 @@ export class ProductDetailComponent implements OnInit {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
     }
+    console.log('กดเพิ่ม')
     this.calPrice()
     const productId = this.route.snapshot.paramMap.get('product_id');
     this.cartService.searchProduct(productId, requestData.customerUsername).subscribe(res => {
@@ -72,9 +73,17 @@ export class ProductDetailComponent implements OnInit {
       console.log(oldQuantity)
       var oldPrice = this.productInCart[0].retail_price;
       console.log(oldPrice)
+
+
       if (this.productInCart.length == 0) {
+        this.editProductQuantityForm.patchValue({
+          product_quantity: curQuantity + 0,
+          retail_price: Number(curPrice) + Number(0),
+        })
+        console.log('ไม่มีสินค้านี้ในตะกร้า')
         this.cartService.addToCart(this.reactiveForm.getRawValue()).subscribe()
       } else {
+        console.log('มีสินค้านี้ในตะกร้า')
         var curQuantity = this.reactiveForm.get('product_quantity').value
         var curPrice = this.reactiveForm.get('retail_price').value
         this.editProductQuantityForm.patchValue({
