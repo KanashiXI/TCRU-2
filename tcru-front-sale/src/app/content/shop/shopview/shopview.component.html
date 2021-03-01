@@ -27,7 +27,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3" *ngFor="let item of productOnfilter; let i = index">
+    <div class="col-md-3" *ngFor="let item of productOnfilter; let i = index" routerLink="/productdetail/{{item.product_id}}">
       <br>
       <mat-card>
         <div class="row">

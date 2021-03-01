@@ -100,3 +100,20 @@ body { margin: 0;}
     font-size: 22px;
     font-weight: bolder;
 }
+
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
+  color: green;
+}
+
+.mat-raised-button.mat-primary{
+  color: #fff;
+  background-color: blue;
+} 
+
+
+
+
+
+
+/* 336335 */
