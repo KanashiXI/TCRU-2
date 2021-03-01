@@ -80,6 +80,8 @@
       <div class="continue-shopping"><a routerLink="/">continue shopping</a></div>
       <div class="checkout-button button button-primary button-large">Checkout ({{totalPrice | currency :'USD':true}})
       </div>
+
+      <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button>
     </div>
   </div>
   <div class="cart-page-content" *ngIf="productInCart.length == 0">

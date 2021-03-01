@@ -52,6 +52,13 @@ export class CartComponent implements AfterViewInit, OnInit {
     this.queryCartProduct(requestData.customerUsername)
     this.getCartPromotion()
   }
+
+  checkoutCart() {
+    // const jsonValue = JSON.stringify(this.selectItem);
+    this.cartService.checkoutCart(this.selectItem).subscribe()
+    // console.log('okfoekrfokrofk' + this.selectItem)
+  }
+
   changeSelection() {
     this.fetchSelectedItems()
     this.ngAfterViewInit()
@@ -64,9 +71,9 @@ export class CartComponent implements AfterViewInit, OnInit {
   }
 
 
-  changeQuantity(cart, $event) {
+  // changeQuantity(cart, $event) {
 
-  }
+  // }
 
   getCartPromotion() {
     this.cartService.getCartPromotion().subscribe(res => {

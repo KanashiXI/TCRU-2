@@ -64,6 +64,8 @@ Route::group([
     // เพิ่มสินค้า
     Route::post('addproductcart','CartController@addtoCart');
 
+    Route::post('cartcheckout','OrderController@createShippingAddress');
+
         // โปรโมชัน
     Route::get('promotion','PromotionController@getPromotion'); // all promotion
     Route::post('addpromotion','PromotionController@addPromotion'); 
