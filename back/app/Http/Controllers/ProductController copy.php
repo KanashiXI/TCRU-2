@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Models\product;
+use App\productType;
+use DB;
 class ProductController extends Controller
 {
 
