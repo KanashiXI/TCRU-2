@@ -49,7 +49,8 @@ Route::group([
     //api product
     Route::get('product','ProductController@getproduct'); //get data
     Route::get('productdetail{product_id}','ProductController@getOneProduct'); //get data
-
+    Route::get('producttype','ProductController@getproductType'); //get data product type
+    Route::get('hotproduct','ProductController@bestsalseProduct'); 
 
     //api cart 
     // แสดงรายการสินค้าในตะกร้า

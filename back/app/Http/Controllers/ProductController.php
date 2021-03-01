@@ -17,4 +17,90 @@ class ProductController extends Controller
         return response()->json($getall,200); 
     }
 
+    public function getproductType()
+    {
+        $getall = productType::all();
+        return response()->json($getall,200); 
+    }
+
+    public function bestsalseProduct()
+    {
+        $getall = DB::table('product')
+            ->join('product_in_order', 'product.product_id', '=', 'product_in_order.product_id')
+            ->select('product.product_name', 'product_in_order.count', 'product.product_description', 
+                    'product.retail_price', 'product.weight', 'product.unit'
+                    )
+            ->get();
+
+        // $grouped = $getall->groupBy('product_name')->map(function ($item) {
+        //     return  [
+        //         // 'product_name' => $group->first()['product_name'],
+        //         'count' => $item->sum('count'),
+        //     ];
+        //     // $item->sum('count'); 
+        // });
+        $groups = $getall->groupBy('product_name'); 
+        $groupwithcount = $groups->mapWithKeys(function ($group, $key) {
+            return [
+                    $key =>
+                        [
+                            'product_name' => $key, // $key is what we grouped by, it'll be constant by each  group of rows
+                            'count' => $group->sum('count'),
+                            // 'won' => $group->where('result', 'won')->count(),
+                            // 'lost' => $group->where('result', 'lost')->count(),
+                        ]
+            ];
+        });
+
+
+        // $groupwithcount = $groups->map(function ($group) {
+        //     return [
+        //         'product_name' => $group->first()['product_name'], // opposition_id is constant inside the same group, so just take the first or whatever.
+        //         'count' => $group->sum('count'),
+
+        //     ];
+        // });    
+
+        return response()->json($groupwithcount ,200); 
+
+        // $mappedCollection = collect($data->first())->mapWithKeys(function($item,$key) use($data){
+        //     return[
+        //        $item => $data->map(function ($mapItem, $mapKey) use($item) {         
+        //           return $mapItem[$item];
+        //        })
+        //     ];
+        //  })->mapWithKeys(function($item,$key){
+        //     $eachLine = collect($item->first())->mapWithKeys(function($mapItem) use($item){
+        //        return[ $mapItem => $item->sum($mapItem)  ];
+        //     });       
+        //     return [$key =>  $eachLine];
+        //  })->all();
+
+
+        // $scores = $data->mapToDictionary(function ($item, $key) {
+        //     return [$item['product_name'] => $item['count']];
+        // });
+
+                // $sums = $collection->map(function ($option) {
+        //     return $option
+        //         ->groupBy('product_name')
+        //         ->map(function($group) {
+        //            // Loop through each group and reduce them.
+        //            $group->reduce(function($carry, $item) {
+        //                 // Assume that we always want the last value by using php end() function on array.
+        //                 return $carry + end($item);
+        //            }, 0);
+        //         });
+        
+        // });
+
+        
+        // $sums = $collection->map(function ($group, $key) {
+        //     return [$key => $group->sum('count')];
+        // });
+
+
+        
+    }
+
 }
