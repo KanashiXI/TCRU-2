@@ -15,6 +15,12 @@
     },
     {
       "path": "./e2e/tsconfig.json"
+    },
+    {
+      "path": "./projects/pos/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/pos/tsconfig.spec.json"
     }
 ]
 }

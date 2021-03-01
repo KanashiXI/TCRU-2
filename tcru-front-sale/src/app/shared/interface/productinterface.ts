@@ -7,4 +7,6 @@ export interface Productinterface {
     product_type_id: number;
     unit_count_id: number;
     weight?: any;
+    material_name: string;
+    price: number;
 }

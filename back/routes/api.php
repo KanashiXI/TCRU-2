@@ -48,7 +48,7 @@ Route::group([
 
     //api product
     Route::get('product','ProductController@getproduct'); //get data
-    Route::get('productdetail{product_id}','ProductController@getOneProduct'); //get data
+    Route::get('productdetail/{product_id}','ProductController@getOneProduct'); //get data
     Route::get('producttype','ProductController@getproductType'); //get data product type
     Route::get('hotproduct','ProductController@bestsalseProduct'); 
 
@@ -60,7 +60,7 @@ Route::group([
     // แก้ไขจำนวนสินค้าในตะกร้า
     Route::post('editproduct','CartController@editCartByProductId');
     // ค้นหาสินค้าชิ้นนั้นๆ
-    Route::get('searchproduct/{product_id}','CartController@getProductByProductId');
+    Route::get('searchproduct/{product_id}/{userId}','CartController@getProductByProductId');
     // เพิ่มสินค้า
     Route::post('addproductcart','CartController@addtoCart');
 

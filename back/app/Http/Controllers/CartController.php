@@ -38,9 +38,12 @@ class CartController extends Controller
         $edit->product_quantity=$request->product_quantity;
         $result = $edit->save();
     }
-    public function getProductByProductId($request)
+
+    public function getProductByProductId($product_id, $userId)
     {       
-        $getall = cart::where('product_id', $request)->get();  
+        $getall = cart::where('user_id', $userId)
+        ->where('product_id', $product_id)
+        ->get();  
         return response()->json($getall,200);
     }
 
