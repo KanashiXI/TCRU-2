@@ -14,71 +14,48 @@
   </mat-card>
 </div> -->
 
-<div class="inbd">
-
-  <div class="p-grid">
-    <div class="p-col-10 p-md-10 p-offset-1">
-      <div class="card">
-        <div class="p-grid">
-          <div class="p-col-7 p-md-4 p-lg-4">
-            <!-- <img src="../../../assets/FreshTricoderma.jpg" class="p-d-block p-mx-auto picshow"> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-6 align-self-center">
+            <img mat-card-image src="../../../../assets/FreshTricoderma.jpg" alt="Photo of a Shiba Inu">
           </div>
-          <div class="p-col-6 p-md-5 p-lg-5 p-offset-2">
-            <div class="p-grid">
-              <div class="p-col-10 form-group">
-                <label class="headTitle">{{productName}}</label>
-              </div>
-            </div>
-            <div class="p-grid">
-              <div class="p-col-10 form-group">
-
-                <p>{{productDescription}}</p>
-                <p>จำนวนต่อหน่วย: {{productWeight}} {{productUnit}}</p><br>
-                <label style="font-size: 25px; padding-right: 15px; color: orange;">ราคา: {{productPrice}}
-                </label>
-              </div>
-            </div>
-
-            <div *ngIf="!checkStock ;">
-              สินค้าหมด
-            </div>
-
-
-            <div class="p-grid">
-              <p style="padding-top: 15px; ">จำนวน</p>
-              <div class="p-col-10 p-md-6 p-lg-6">
-                <div class="p-inputgroup" style="height: 2.25rem;">
-                  <button type="button" pButton (click)="decrese()" icon="pi pi-minus"></button>
-                  <input type="text" pInputText [value]="counter" style="text-align: center;">
-                  <button type="button" pButton (click)="increse()" icon="pi pi-plus"
-                    style=" margin-right: 10px;"></button>
-                </div>
-              </div>
-            </div>
-
-
+          <div class="col-md-6">
+            <mat-card-title>{{productName}}</mat-card-title>
             <br>
-            <div class="p-grid">
-              <div class="p-col-12 p-md-6 p-lg-6 form-group">
-                <button [disabled]="!checkStock" *ngIf="loggedIn" (click)="handleAddToCart()" pButton type="submit"
-                  icon="pi pi-shopping-cart" iconPos="left" label="เพิ่มลงในตะกร้า"
-                  class="p-button-outlined p-button-raised w-100"></button>
+            <p>{{productDescription}}</p>
+            <p>จำนวนต่อหน่วย: {{productWeight}} {{productUnit}}</p><br>
+            <label style="font-size: 25px; padding-right: 15px; color: orange;">ราคา: {{productPrice}} </label>
+            <div *ngIf="!checkStock ;"> สินค้าหมด </div>
+            <p style="padding-top: 15px; ">จำนวน</p>
+            <button mat-stroked-button (click)="decrese()">
+              <span class="material-icons">
+                remove
+              </span>
+            </button>
 
-              </div>
-            </div>
+            <mat-form-field appearance="outline">
+              <input matInput [value]="counter">
+            </mat-form-field>
 
+            <button mat-stroked-button (click)="increse()">
+              <span class="material-icons">
+                add
+              </span>
+            </button>
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="loggedIn" (click)="handleAddToCart()">
+              <span class="material-icons">
+                add
+              </span>
+              เพิ่มลงในตะกร้า
+            </button>
           </div>
         </div>
-      </div>
+      </mat-card>
     </div>
   </div>
 </div>
-
-<!-- <mat-grid-list [cols]="breakpoint" rowHeight="2:0.5" (window:resize)="onResize($event)">
-  <mat-grid-tile>1</mat-grid-tile>
-  <mat-grid-tile>2</mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
-  <mat-grid-tile>5</mat-grid-tile>
-  <mat-grid-tile>6</mat-grid-tile>
-</mat-grid-list> -->
