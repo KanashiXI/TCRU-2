@@ -6,10 +6,10 @@
   <div class="cart-page-content" *ngIf="productInCart.length > 0">
     <div class="cart-item-header cart-item-row">
 
-      <div class="cart-item-cell cart-item-product"><span>Product</span></div>
-      <div class="cart-item-cell cart-item-quantity"><span>Quantity</span></div>
-      <div class="cart-item-cell cart-item-total"><span>Total</span></div>
-      <div class="cart-item-cell cart-item-action"><span>Action</span></div>
+      <div class="cart-item-cell cart-item-product"><span>สินค้า</span></div>
+      <div class="cart-item-cell cart-item-quantity"><span>จำนวนสินค้า(ชิ้น)</span></div>
+      <div class="cart-item-cell cart-item-total"><span>ราคารวม(บาท)</span></div>
+      <div class="cart-item-cell cart-item-action"><span></span></div>
     </div>
     <div class="cart-item-row" *ngFor="let cart of productInCart;let i = index">
       <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()">
@@ -36,7 +36,25 @@
       <div class="cart-item-cell cart-item-quantity">
         <quantity-control [quantity]="cart.product_quantity">
         </quantity-control>
-        {{cart.product_quantity}}
+
+        <div class="wrapper">
+          <button class="plusminus" (click)="handleMinus(cart)">-</button>
+          <input type="number" class="num" id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" />
+          <button class="plusminus" (click)="handlePlus(cart)">+</button>
+        </div>
+
+
+        <!-- <a (click)="minusOne(productInOrder)"><i class="fa fa-minus"></i></a>
+            <input min="1" id="{{productInOrder.productId}}"
+                   [max]=productInOrder.productStock
+                   [(ngModel)]="productInOrder.count"
+                   (change)="onChange(productInOrder)"
+                   size="5"
+                   type="number"
+                   required
+                   name='count'>
+            <a (click)="addOne(productInOrder)"> <i class="fa fa-plus"></i></a> -->
+
         <!-- <quantity-control [quantity]="cart.product_quantity" (onChange)="changeQuantity(cart,$event)">
         </quantity-control> -->
       </div>
@@ -51,15 +69,15 @@
     </div>
     <div class="row cart-total">
       <div class="col-lg-offset-6">
-        <div class="cart-total-row row">
+        <!-- <div class="cart-total-row row">
           <div class="col-md-6 cart-total-label">
             Cart overview
           </div>
           <div class="col-md-6 cart-total-value"></div>
-        </div>
+        </div> -->
         <div class="cart-total-row row">
           <div class="col-md-6 cart-total-label">
-            subtotal
+            ราคารวม
           </div>
           <div class="col-md-6 cart-total-value">
             {{totalPrice | currency :'USD':true}}
@@ -67,7 +85,7 @@
         </div>
         <div class="cart-total-row row">
           <div class="col-md-6 cart-total-label">
-            total
+            ยอดสุทธิ
           </div>
           <div class="col-md-6 cart-total-value cart-total-price">
             {{cartTotal}}
@@ -77,8 +95,8 @@
       </div>
     </div>
     <div class="cart-buttons">
-      <div class="continue-shopping"><a routerLink="/">continue shopping</a></div>
-      <div class="checkout-button button button-primary button-large">Checkout ({{totalPrice | currency :'USD':true}})
+      <div class="continue-shopping"><a routerLink="/">เลือกสินค้าเพิ่ม</a></div>
+      <div class="checkout-button button button-primary button-large">ซื้อ ({{totalPrice | currency :'USD':true}})
       </div>
 
       <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button>

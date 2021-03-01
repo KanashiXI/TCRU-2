@@ -38,6 +38,9 @@ export class CartComponent implements AfterViewInit, OnInit {
   selectItem: Product[] = [];
   arr: any[] = [];
 
+
+  value = 0;
+
   constructor(
     private cartService: CartService
   ) { }
@@ -113,4 +116,14 @@ export class CartComponent implements AfterViewInit, OnInit {
     }
 
   }
+
+  handleMinus(cart) {
+    cart.product_quantity--;
+    // this.value--;
+  }
+  handlePlus(cart) {
+    cart.product_quantity++;
+  }
+
+
 }
