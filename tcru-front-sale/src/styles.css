@@ -3,7 +3,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 
 html, body { height: 100%;}
-body { margin: 0;}
+body { margin: 0; position: relative;}
 * { font-family: 'Kanit', sans-serif; font-size: 16px;}
 
 .login-wrapper {
@@ -101,14 +101,17 @@ body { margin: 0;}
     font-weight: bolder;
 }
 
+.pointer{
+  cursor: pointer;
+}
 
-.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
-  color: green;
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary, .material-icons{
+  color: #336335;
 }
 
 .mat-raised-button.mat-primary{
   color: #fff;
-  background-color: blue;
+  background-color: #336335;
 } 
 
 

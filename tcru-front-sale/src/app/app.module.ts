@@ -63,7 +63,7 @@ import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angula
     BrowserAnimationsModule,
     LayoutModule,
     FormsModule,
-    ReactiveFormsModule, MatTableModule, MatPaginatorModule, MatSortModule
+    ReactiveFormsModule,
   ],
   providers: [
     JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService
