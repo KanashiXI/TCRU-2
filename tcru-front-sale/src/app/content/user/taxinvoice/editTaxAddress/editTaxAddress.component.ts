@@ -52,8 +52,8 @@ export class EditTaxAddressComponent implements OnInit {
       res => {
         this.dataForm = res;
         this.reactiveForm.patchValue({
-          firstname: this.dataForm[0].firstname,
-          lastname: this.dataForm[0].lastname,
+          // firstname: this.dataForm[0].firstname,
+          // lastname: this.dataForm[0].lastname,
           telephone: this.dataForm[0].telephone,
           postal_code: this.dataForm[0].postal_code,
           user_id: this.dataForm[0].user_id,
@@ -75,8 +75,8 @@ export class EditTaxAddressComponent implements OnInit {
       tax_id: ['',],
       user_id: ['',],
       address: ['', [Validators.required]],
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
+      // firstname: ['', [Validators.required]],
+      // lastname: ['', [Validators.required]],
       telephone: ['', [Validators.required]],
       vat_identification_number: ['', [Validators.required]],
       company_name: ['', [Validators.required]],

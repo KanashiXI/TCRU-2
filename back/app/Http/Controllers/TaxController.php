@@ -33,8 +33,8 @@ class TaxController extends Controller
     public function createTax(Request $request)
     {       
         $new = new tax;
-        $new->firstname = $request->input('firstname');
-        $new->lastname = $request->input('lastname');
+        // $new->firstname = $request->input('firstname');
+        // $new->lastname = $request->input('lastname');
         
         $new->company_name = $request->input('company_name');
         $new->address = $request->input('address');

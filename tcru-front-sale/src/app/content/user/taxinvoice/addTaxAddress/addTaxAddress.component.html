@@ -16,7 +16,7 @@
           </mat-card-header> -->
           <mat-card-content>
             <div class="row justify-content-center">
-              <div class="col-md-4">
+              <!-- <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>ชื่อ</mat-label>
                   <input matInput [formControl]="firstname" placeholder="" name="firstname">
@@ -33,19 +33,7 @@
                     โปรดกรอกนามสกุล
                   </mat-error>
                 </mat-form-field>
-              </div>
-              <div class="col-md-4">
-                <mat-form-field class="example-full-width">
-                  <mat-label>เบอร์โทรศัพท์</mat-label>
-                  <input matInput [formControl]="telephone" placeholder="" name="telephone" 
-                      pattern="[0-9]+" minlength="9" maxlength="10">
-                  <mat-error *ngIf="telephone.hasError('required')">
-                    โปรดกรอกเบอร์โทรศัพท์
-                  </mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="row justify-content-center">
+              </div> -->
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>เลขประจำตัวผู้เสียภาษี</mat-label>
@@ -62,6 +50,47 @@
                   <input matInput [formControl]="company_name" placeholder="" name="company_name">
                   <mat-error *ngIf="company_name.hasError('required')">
                     โปรดกรอกชื่อหน่วยงาน
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <!-- <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>เบอร์โทรศัพท์</mat-label>
+                  <input matInput [formControl]="telephone" placeholder="" name="telephone" 
+                      pattern="[0-9]+" minlength="9" maxlength="10">
+                  <mat-error *ngIf="telephone.hasError('required')">
+                    โปรดกรอกเบอร์โทรศัพท์
+                  </mat-error>
+                </mat-form-field>
+              </div> -->
+            </div>
+            <div class="row justify-content-center">
+              <!-- <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>เลขประจำตัวผู้เสียภาษี</mat-label>
+                  <input matInput [formControl]="vat_identification_number" placeholder="" name="vat_identification_number" 
+                      pattern="[0-9]+" maxlength="13">
+                  <mat-error *ngIf="vat_identification_number.hasError('required')">
+                    โปรดกรอกเลขประจำตัวผู้เสียภาษี
+                  </mat-error>
+                </mat-form-field>
+              </div> -->
+              <!-- <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>ชื่อหน่วยงาน</mat-label>
+                  <input matInput [formControl]="company_name" placeholder="" name="company_name">
+                  <mat-error *ngIf="company_name.hasError('required')">
+                    โปรดกรอกชื่อหน่วยงาน
+                  </mat-error>
+                </mat-form-field>
+              </div> -->
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label>เบอร์ติดต่อ</mat-label>
+                  <input matInput [formControl]="telephone" placeholder="" name="telephone" 
+                      pattern="[0-9]+" minlength="9" maxlength="10">
+                  <mat-error *ngIf="telephone.hasError('required')">
+                    โปรดกรอกเบอร์ติดต่อ
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -101,6 +130,20 @@
                   <mat-error *ngIf="reactiveForm.controls['amphures_id'].errors?.required">โปรดเลือกอำเภอ</mat-error>
                 </mat-form-field>
               </div>
+              <!-- <div class="col-md-4">
+                <mat-form-field appearance="fill" class="dropdown dropHeight">
+                  <mat-label>ตำบล</mat-label>
+                  <mat-select formControlName="districts_id" (selectionChange)="getLast($event)" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let obj of districtArr" value="{{obj.id}}">
+                      {{obj.name_th}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="reactiveForm.controls['districts_id'].errors?.required">โปรดเลือกตำบล</mat-error>
+                </mat-form-field>
+              </div> -->
+            </div>
+            <div class="row justify-content-center">
               <div class="col-md-4">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>ตำบล</mat-label>
@@ -112,9 +155,7 @@
                   </mat-select>
                   <mat-error *ngIf="reactiveForm.controls['districts_id'].errors?.required">โปรดเลือกตำบล</mat-error>
                 </mat-form-field>
-              </div>
-            </div>
-            <div class="row justify-content-center">              
+              </div>              
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>รหัสไปรษณีย์</mat-label>
