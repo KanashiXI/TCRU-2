@@ -7,6 +7,12 @@ import { CartDataSource, CartItem } from './cart-datasource';
 import { Product } from '../shopview/interfaces/product';
 import { Subject } from 'rxjs';
 import { CartService } from 'src/app/shared/service/cart.service';
+import { Observable } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
+
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -21,6 +27,11 @@ export class CartComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   // displayedColumns = ['id', 'name'];
 
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+  .pipe(
+    map(result => result.matches),
+    shareReplay()
+  );
 
   checked: boolean = false;
   counter: number = 0;
@@ -42,6 +53,7 @@ export class CartComponent implements OnInit {
   value = 0;
 
   constructor(
+    private breakpointObserver: BreakpointObserver,
     private cartService: CartService
   ) { }
 
