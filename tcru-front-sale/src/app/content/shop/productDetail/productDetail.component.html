@@ -29,29 +29,46 @@
             <p>{{productDescription}}</p>
             <p>จำนวนต่อหน่วย: {{productWeight}} {{productUnit}}</p><br>
             <label style="font-size: 25px; padding-right: 15px; color: orange;">ราคา: {{productPrice}} บาท</label>
-            <div *ngIf="!checkStock ;"> สินค้าหมด </div>
-            <p style="padding-top: 15px; ">จำนวน</p>
-            <button mat-stroked-button (click)="decrese()">
-              <span class="material-icons">
-                remove
-              </span>
-            </button>
-            <mat-form-field appearance="outline">
-              <input matInput [value]="counter">
-            </mat-form-field>
-            <button mat-stroked-button (click)="increse()">
-              <span class="material-icons">
-                add
-              </span>
-            </button>
             <br>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="loggedIn"
-              (click)="handleAddToCart()">
+            <div *ngIf="!checkStock ;"> สินค้าหมด </div>
+
+            <div *ngIf="loggedIn">
+              <p style="padding-top: 15px; ">จำนวน</p>
+              <button mat-stroked-button (click)="decrese()">
+                <span class="material-icons">
+                  remove
+                </span>
+              </button>
+              <mat-form-field appearance="outline">
+                <input matInput [value]="counter">
+              </mat-form-field>
+              <button mat-stroked-button (click)="increse()">
+                <span class="material-icons">
+                  add
+                </span>
+              </button>
+              <br>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="loggedIn"
+                (click)="handleAddToCart()">
+                <span class="material-icons">
+                  add
+                </span>
+                เพิ่มลงในตะกร้า
+              </button>
+
+            </div>
+
+
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="!loggedIn"
+              routerLink="/login">
               <span class="material-icons">
-                add
+                login
               </span>
-              เพิ่มลงในตะกร้า
+              เข้าสู่ระบบ
             </button>
+
+
           </div>
         </div>
       </mat-card>

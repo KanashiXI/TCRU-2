@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -12,7 +12,7 @@ import { CartService } from 'src/app/shared/service/cart.service';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css']
 })
-export class CartComponent implements AfterViewInit, OnInit {
+export class CartComponent implements OnInit {
   // @ViewChild(MatPaginator) paginator: MatPaginator;
   // @ViewChild(MatSort) sort: MatSort;
   // @ViewChild(MatTable) table: MatTable<CartItem>;
@@ -64,7 +64,7 @@ export class CartComponent implements AfterViewInit, OnInit {
 
   changeSelection() {
     this.fetchSelectedItems()
-    this.ngAfterViewInit()
+
   }
 
   fetchSelectedItems() {
@@ -85,7 +85,7 @@ export class CartComponent implements AfterViewInit, OnInit {
       this.discribePromotion = this.promotionData[0].detail
       this.condition = this.promotionData[0].cost_condidtion
     })
-    this.ngAfterViewInit()
+
   }
 
   queryCartProduct(user_id) {
@@ -99,8 +99,8 @@ export class CartComponent implements AfterViewInit, OnInit {
     );
   }
 
-  ngAfterViewInit() {
-    console.log('epofke')
+  ngAfterContentChecked() {
+    console.log('after content checked')
     this.cartTotal = 0;
     this.selectItem.map((obj) => {
       console.log(obj.retail_price)
