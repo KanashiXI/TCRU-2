@@ -56,7 +56,7 @@ Route::group([
     // แสดงรายการสินค้าในตะกร้า
     Route::get('cartlist/{user_id}','CartController@getCartByUserId');
     // ลบสินค้าในตะกร้า
-    Route::delete('deleteproduct/{product_id}','CartController@deleteCartByProductId');
+    Route::delete('deleteproduct/{cart_id}','CartController@deleteCartByProductId');
     // แก้ไขจำนวนสินค้าในตะกร้า
     Route::post('editproduct','CartController@editCartByProductId');
     // ค้นหาสินค้าชิ้นนั้นๆ

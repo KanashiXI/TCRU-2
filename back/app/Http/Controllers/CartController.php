@@ -23,9 +23,10 @@ class CartController extends Controller
         $new->save();
         return response()->json(['newitem'=>$new],201);
     }
+
     public function deleteCartByProductId($request)
     {       
-        $prod = cart::where('product_id', $request);
+        $prod = cart::where('cart_id', $request);
             if($prod)
                 $prod->delete(); 
             else
