@@ -28,7 +28,7 @@
             <br>
             <p>{{productDescription}}</p>
             <p>จำนวนต่อหน่วย: {{productWeight}} {{productUnit}}</p><br>
-            <label style="font-size: 25px; padding-right: 15px; color: orange;">ราคา: {{productPrice}} </label>
+            <label style="font-size: 25px; padding-right: 15px; color: orange;">ราคา: {{productPrice}} บาท</label>
             <div *ngIf="!checkStock ;"> สินค้าหมด </div>
             <p style="padding-top: 15px; ">จำนวน</p>
             <button mat-stroked-button (click)="decrese()">
