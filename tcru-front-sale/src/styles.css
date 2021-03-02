@@ -105,7 +105,7 @@ body { margin: 0; position: relative;}
   cursor: pointer;
 }
 
-.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary, .material-icons{
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
   color: #336335;
 }
 

@@ -9,6 +9,8 @@ import { District } from '../addaddress/interfaces/district';
 import { Province } from '../addaddress/interfaces/province';
 import { AddressService } from '../addaddress/services/address.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-editaddress',
@@ -40,6 +42,7 @@ export class EditaddressComponent implements OnInit {
     private customerService: CustomerService,
     private addressService: AddressService,
     private fb: FormBuilder,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -100,6 +103,7 @@ export class EditaddressComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
+        this.router.navigateByUrl('profile');
 
       },
       error => {

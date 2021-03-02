@@ -110,14 +110,34 @@ export class EditprofileComponent implements OnInit {
     // if (this.reactiveForm.invalid) {
     //   return;
     // } else {
-    await this.Jarwis.editProfile(this.reactiveForm.getRawValue()).subscribe();
-    await this.router.navigate(['/profile'])
-    Swal.fire({
-      icon: 'success',
-      title: 'บันทึกข้อมูลเรียบร้อย',
-      showConfirmButton: false,
-      timer: 2000
-    });
+    await this.Jarwis.editProfile(this.reactiveForm.getRawValue()).subscribe(
+      res => {
+        Swal.fire({
+          icon: 'success',
+          title: 'บันทึกข้อมูลสำเร็จ',
+          showConfirmButton: false,
+          timer: 2000
+        });
+        this.router.navigateByUrl('profile');
+
+      },
+      error => {
+
+        Swal.fire({
+          icon: 'error',
+          title: 'บันทึกข้อมูลไม่สำเร็จ',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+    );
+    // await this.router.navigate(['/profile'])
+    // Swal.fire({
+    //   icon: 'success',
+    //   title: 'บันทึกข้อมูลเรียบร้อย',
+    //   showConfirmButton: false,
+    //   timer: 2000
+    // });
     // }
 
   }
