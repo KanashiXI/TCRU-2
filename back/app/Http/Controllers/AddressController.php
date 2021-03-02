@@ -39,12 +39,12 @@ class AddressController extends Controller
         $new->address = $request->input('address');
         $new->user_id = $request->input('user_id');
         $new->amphures_id = $request->input('amphures_id');
-        $new->amphures_name = $request->input('amphures_name');
+        // $new->amphures_name = $request->input('amphures_name');
         $new->districts_id = $request->input('districts_id');
-        $new->districts_name = $request->input('districts_name');
+        // $new->districts_name = $request->input('districts_name');
         $new->postal_code = $request->input('postal_code');
         $new->province_id = $request->input('province_id');
-        $new->province_name = $request->input('province_name');
+        // $new->province_name = $request->input('province_name');
         $new->geographic_id = $request->input('geographic_id');
         $new->status = $request->input('status');            
         $new->telephone = $request->input('telephone');

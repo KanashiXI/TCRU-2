@@ -6,6 +6,8 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { Product } from '../shopview/interfaces/product';
 import { ProductService } from 'src/app/shared/service/product.service';
 import { CartService } from 'src/app/shared/service/cart.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
+
 
 @Component({
   selector: 'app-productDetail',
