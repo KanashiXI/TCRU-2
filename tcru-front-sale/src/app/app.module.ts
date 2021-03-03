@@ -33,6 +33,7 @@ import { AddTaxAddressComponent } from './content/user/taxinvoice/addTaxAddress/
 import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddress/editTaxAddress.component';
 import { CartComponent } from './content/shop/cart/cart.component';
 import { ShowPromotionComponent } from './content/promotion/showPromotion/showPromotion.component';
+import { AddPromotionComponent } from './content/promotion/addPromotion/addPromotion.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { ShowPromotionComponent } from './content/promotion/showPromotion/showPr
     EditTaxAddressComponent,
     CartComponent,
     ShowPromotionComponent,
+    AddPromotionComponent,
   ],
   imports: [
     BrowserModule,
