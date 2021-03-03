@@ -14,6 +14,8 @@ import { BeforeLoginService } from './shared/service/before-login.service';
 import { AuthService } from './shared/service/auth.service';
 import { TokenService } from './shared/service/token.service';
 import { JarwisService } from './shared/service/jarwis.service';
+import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 import { MenubarComponent } from './content/decorate/menubar/menubar.component';
 import { FooterComponent } from './content/decorate/footer/footer.component';
@@ -30,11 +32,8 @@ import { ShowTaxAddressComponent } from './content/user/taxinvoice/showTaxAddres
 import { AddTaxAddressComponent } from './content/user/taxinvoice/addTaxAddress/addTaxAddress.component';
 import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddress/editTaxAddress.component';
 import { CartComponent } from './content/shop/cart/cart.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { ShowPromotionComponent } from './content/promotion/showPromotion/showPromotion.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +52,8 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     ShowTaxAddressComponent,
     AddTaxAddressComponent,
     EditTaxAddressComponent,
-    CartComponent
+    CartComponent,
+    ShowPromotionComponent,
   ],
   imports: [
     BrowserModule,

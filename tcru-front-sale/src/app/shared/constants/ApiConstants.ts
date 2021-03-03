@@ -66,6 +66,9 @@ export class ApiConstants {
     public static get checkoutCartURL(): string {
         return '/api/cartcheckout';
     }
+    public static get getPromotionURL(): string {
+        return '/api/promotion';
+    }
 
 
 
