@@ -32,6 +32,44 @@ class ProductController extends Controller
                     'product.retail_price', 'product.weight', 'product.unit'
                     )
             ->get();
+        $groups = $getall->groupBy('product_name'); 
+        $groupwithcount = $groups->mapWithKeys(function ($group, $key) {
+            return [
+                    $key =>
+                        [
+                            'product_name' => $key, 
+                            'count' => $group->sum('count'),
+                        ]
+            ];
+        });
+        $res = [];
+        foreach ($groupwithcount  as $key => $value) {
+            $res[] = $value;
+        }
+
+          
+        // Collection::macro('toAssoc', function () {
+        //     return $this->reduce(function ($assoc, $keyValuePair) {
+        //         list($key, $value) = $keyValuePair;
+        //         $assoc[$key] = $value;
+        //         return $assoc;
+        //     }, new static);
+        // });
+
+        // $collection = $groupwithcount->map(function ($item) {
+        //     return $item->only(['product_name', 'count']);
+        // });
+
+
+
+        return response()->json($res ,200); 
+
+
+    }
+
+}
+
+
 
         // $grouped = $getall->groupBy('product_name')->map(function ($item) {
         //     return  [
@@ -40,18 +78,6 @@ class ProductController extends Controller
         //     ];
         //     // $item->sum('count'); 
         // });
-        $groups = $getall->groupBy('product_name'); 
-        $groupwithcount = $groups->mapWithKeys(function ($group, $key) {
-            return [
-                    $key =>
-                        [
-                            'product_name' => $key, // $key is what we grouped by, it'll be constant by each  group of rows
-                            'count' => $group->sum('count'),
-                            // 'won' => $group->where('result', 'won')->count(),
-                            // 'lost' => $group->where('result', 'lost')->count(),
-                        ]
-            ];
-        });
 
 
         // $groupwithcount = $groups->map(function ($group) {
@@ -60,9 +86,7 @@ class ProductController extends Controller
         //         'count' => $group->sum('count'),
 
         //     ];
-        // });    
-
-        return response()->json($groupwithcount ,200); 
+        // });  
 
         // $mappedCollection = collect($data->first())->mapWithKeys(function($item,$key) use($data){
         //     return[
@@ -99,9 +123,3 @@ class ProductController extends Controller
         // $sums = $collection->map(function ($group, $key) {
         //     return [$key => $group->sum('count')];
         // });
-
-
-        
-    }
-
-}

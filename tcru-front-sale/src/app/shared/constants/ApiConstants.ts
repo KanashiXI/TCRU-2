@@ -36,6 +36,7 @@ export class ApiConstants {
     public static get productTypeURL(): string {
         return '/api/producttype';
     }
+
     public static get productdetailURL(): string {
         return '/api/productdetail';
     }

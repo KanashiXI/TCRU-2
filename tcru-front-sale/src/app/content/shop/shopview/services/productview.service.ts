@@ -18,4 +18,10 @@ export class ProductviewService {
     return this.http.get<Product[]>(`${ApiConstants.baseURl}${ApiConstants.productTypeURL}`)
   }
 
+  getHotProducte() {
+    return this.http.get<Product[]>(`${ApiConstants.baseURl}${ApiConstants.getHotProductURL}`)
+  }
+
+
+
 }
