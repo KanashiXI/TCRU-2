@@ -16,8 +16,6 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 })
 export class ProductDetailComponent implements OnInit {
 
-  breakpoint: number;
-
   public loggedIn: boolean;
   checkStock: boolean = true;
   stock: number;
@@ -31,9 +29,8 @@ export class ProductDetailComponent implements OnInit {
   productUnit: string;
   productWeight: string;
   productCapacity: string;
-
+  breakpoint: number;
   productInCart: Product[] = [];
-
 
   constructor(
     private Auth: AuthService,
@@ -44,22 +41,11 @@ export class ProductDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.breakpoint = (window.innerWidth <= 400) ? 1 : 6;
     this.Auth.authStatus.subscribe(value => this.loggedIn = value);
-    const requestData = {
-      ...Subject,
-      customerUsername: localStorage.getItem('user_id'),
-    }
     this.createForm();
     this.getProduct();
 
   }
-
-  // onResize(event) {
-  //   this.breakpoint = (event.target.innerWidth <= 400) ? 1 : 6;
-  // }
-
-
 
   handleAddToCart() {
     const requestData = {
@@ -71,21 +57,20 @@ export class ProductDetailComponent implements OnInit {
     const productId = this.route.snapshot.paramMap.get('product_id');
     this.cartService.searchProduct(productId, requestData.customerUsername).subscribe(res => {
       this.productInCart = res;
-      var oldQuantity = this.productInCart[0].product_quantity
-      console.log(oldQuantity)
-      var oldPrice = this.productInCart[0].retail_price;
-      console.log(oldPrice)
-
-
+      if (this.productInCart.length == 0) {
+        var oldQuantity = 0;
+        var oldPrice = 0;
+      } else {
+        var oldQuantity = this.productInCart[0].product_quantity;
+        var oldPrice = this.productInCart[0].retail_price;
+      }
       if (this.productInCart.length == 0) {
         this.editProductQuantityForm.patchValue({
           product_quantity: curQuantity + 0,
           retail_price: Number(curPrice) + Number(0),
         })
-        console.log('ไม่มีสินค้านี้ในตะกร้า')
         this.cartService.addToCart(this.reactiveForm.getRawValue()).subscribe()
       } else {
-        console.log('มีสินค้านี้ในตะกร้า')
         var curQuantity = this.reactiveForm.get('product_quantity').value
         var curPrice = this.reactiveForm.get('retail_price').value
         this.editProductQuantityForm.patchValue({
