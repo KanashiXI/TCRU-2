@@ -1,0 +1,83 @@
+<div class="content-wrapper" style="min-height: 121212.06px;">
+    <!-- Content Header (Page header) -->
+
+  
+    <!-- Main content -->
+    <section class="content-header">
+      
+
+          <h5 class="card-title">เพิ่มข้อมูลสินค้า</h5>
+       
+        <!-- /.card-header -->
+        <div class="card-body">
+          <form (ngSubmit)="insertData()">
+            
+              <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>รูปสินค้า</label>
+                  <input type="file" class="form-control" (change)="imageUpload($event)">
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>รหัสสินค้า</label>
+                  <input name="product_id" type="text" class="form-control" [(ngModel)]="product.product_id">
+                </div>
+              </div>
+  
+              <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>ชื่อสินค้า</label>
+                  <input name="product_name" type="text" class="form-control" [(ngModel)]="product.product_name">
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>ราคาขายปลีก</label>
+                  <input name="retail" type="text" class="form-control" [(ngModel)]="product.retail">
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>ราคาขายส่ง</label>
+                  <input name="wholesale" type="text" class="form-control" [(ngModel)]="product.wholesale">
+                </div>
+              </div>
+              <div class="col-sm-12">
+                <div class="form-group">
+                  <label>น้ำหนักสินค้า</label>
+                  <input name="weight" type="text" class="form-control" [(ngModel)]="product.weight">
+                </div>
+              </div>
+    
+            <div class="col-sm-12">
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>รายละเอียดของสินค้า</label>
+                  <textarea class="form-control" rows="3"name="Detail"  [(ngModel)]="product.Detail"placeholder="Enter ..."></textarea>
+                </div>
+              </div>
+          
+            <div class="form-group">
+              <td>
+                <button class="btn btn-block btn-success ">ยืนยัน</button>
+              </td>
+              <td>
+                <button class="btn btn-block  " routerLink="/showp"> กลับ</button>
+              </td>
+            </div>
+  
+  
+  
+  
+          </form>
+        </div>
+        <!-- /.card-body -->
+      
+    </section>
+  </div>
+  }

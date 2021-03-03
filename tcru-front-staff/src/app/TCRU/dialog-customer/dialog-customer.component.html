@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>เพิ่มข้อมูลลูกค้า</h1>
+<mat-dialog-content>
+    <form novalidate [formGroup]="formImport" (submit)='handleSubmit($event, formImport)'>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" multiple class="custom-file-input" multiple formControlName="importFile" id="importFile" (change)="onFileChange($event.target.files)">
+                <label class="custom-file-label" #labelImport for="importFile">เลือกไฟล์ </label>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-action>
+    <button class="btn btn-success" type="submit" [disabled]='formImport.invalid'>ยืนยัน</button>
+    <span class="flex"></span>
+    <button mat-button mat-dialog-close mat-dialog-close="true" class="btn btn-danger">ปิด</button>
+</mat-dialog-action>

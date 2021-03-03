@@ -1,0 +1,63 @@
+<div class="content-wrapper" style="min-height: 1244.04px;">
+    
+      
+    <section class="content-header">
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">แก้ไขข้อมูลวัตถุดิบ</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <form (ngSubmit)="editMaterial()">
+                    <div class="row">
+
+                    
+                        <div class="col-sm-4">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>ชื่อวัตถุดิบ</label>
+                                <input name="material_name" type="text" class="form-control"[(ngModel)] ="Materials.material_name"  >
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-4">
+                          <div class="form-group">
+                              <label>ชื่อวัตถุดิบ</label>
+                              <input name="category_id" type="text" class="form-control"[(ngModel)] ="Materials.category_id"  >
+                          </div>
+                      </div> -->
+                        <div class="col-sm-4">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>น้ำหนัก</label>
+                                <input name="weight" type="text" class="form-control"[(ngModel)] ="Materials.weight" >
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label>ราคา/หน่วย</label>
+                                <input name="price" type="text" class="form-control"[(ngModel)] ="Materials.price"  >
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+
+                      
+                  <td>
+                    <button  class="btn btn-block btn-warning ">ยืนยัน</button>
+                    
+                  </td>
+                  <td>
+                    <button  class="btn btn-block  "routerLink="/addm"> กลับ</button>
+                  </td>
+                </div>
+
+
+
+
+                </form>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </section>
+</div>

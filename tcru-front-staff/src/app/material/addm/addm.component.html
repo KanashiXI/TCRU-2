@@ -1,0 +1,62 @@
+<div class="main-container" style=" height:200vh;">
+  <section class="content-header">
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row ">
+          <div class="col-sm-4 ">
+            <a href="#" class="btn btn-success " [routerLink]="['/formm']"
+              routerLinkActive="router-link-active">เพิ่มวัตถุดิบ <i class="fas fa-arrow-circle "></i></a>
+          </div>
+          <div class="form-group col-sm-4 ">
+          </div>
+          <div class="form-group col-sm-4 ">
+            <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="Search">
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <h5 class="card-title">วัตถุดิบ</h5>
+    <div class="card-body p-0 ">
+      <table class="table">
+        <thead>
+          <tr>
+            <!-- <th>รหัสวัตถุดิบ</th> -->
+            <th>รูปวัตถุดิบ</th>
+            <th>รหัสวัตถุดิบ</th>
+            <th>ชื่อวัตถุดิบ</th>
+            <th>น้ำหนัก/หน่วย</th>
+            <th>ราคา/หน่วย</th>
+            <th>ประเภทวัตถุดิบ</th>
+            <th></th>
+          </tr>
+        </thead>
+        <!-- <li *ngFor="let mat of materialList"> -->
+        <tbody>
+          <tr *ngFor="let mat of dataArr ">
+            <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="100px">
+            </td>
+            <td>{{mat.material_id}}</td>
+            <td>{{mat.material_name}}</td>
+            <td>{{mat.weight}}</td>
+            <!-- <td>{{mat.price}}</td>
+            <td >{{mat.category_id}}</td> -->
+            <td class="text-right py-0 align-middle">
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-info" routerLink="/editm/{{mat.material_id}}">
+                  <mat-icon class="mode_edit"></mat-icon>
+                </button>
+                <button class="btn btn-danger" (click)="deleteMaterial(mat.material_id)"><i
+                    class="fas fa-trash"></i></button>
+                <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+
+    <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination"
+      (pageChange)="getMeterial()"></ngb-pagination>
+  </section>
+</div>

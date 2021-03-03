@@ -1,0 +1,139 @@
+<div class="main-container" style=" height:200vh;">
+  <!-- Content Header (Page header) -->
+  <h3 class="card-title">เพิ่มข้อมูลร้านค้า</h3>
+  <div class="card card-primary">
+    <!-- Main content -->
+    <section class="content-header">
+
+
+
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form [formGroup]=form (ngSubmit)="insertData()">
+          <!-- <form [FormGroup]="form" > -->
+          <div class="row">
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>ชื่อร้านค้า :</label>
+                <input type="text" class="form-control" formControlName="store_name" [(ngModel)]="supplier.store_name">
+                <div *ngIf="store_name.invalid && (store_name.dirty || store_name.touched)" class="text-error">
+
+                  <div *ngIf="store_name.errors.required">
+                    กรุณากรอกรหัสวัตถุดิบ
+                  </div>
+                  <div *ngIf="store_name.errors.pattern">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>ชื่อ :</label>
+                <input type="text" class="form-control" formControlName="supplier_name"
+                  [(ngModel)]="supplier.supplier_name">
+                <div *ngIf="supplier_name.invalid && (supplier_name.dirty || supplier_name.touched)" class="text-error">
+
+                  <div *ngIf="supplier_name.errors.required">
+                    กรุณากรอกรหัสวัตถุดิบ
+                  </div>
+                  <div *ngIf="supplier_name.errors.pattern">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>นามสกุล :</label>
+                <input type="text" class="form-control" formControlName="supplier_surname"
+                  [(ngModel)]="supplier.supplier_surname">
+                <div *ngIf="supplier_surname.invalid && (supplier_surname.dirty || supplier_surname.touched)"
+                  class="text-error">
+
+                  <div *ngIf="supplier_surname.errors.required">
+                    กรุณากรอกรหัสวัตถุดิบ
+                  </div>
+                  <div *ngIf="supplier_surname.errors.pattern">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>เบอร์โทรศัพท์ :</label>
+                <input type="text" class="form-control" formControlName="phone" [(ngModel)]="supplier.phone">
+                <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-error">
+
+                  <div *ngIf="phone.errors.required">
+                    กรุณากรอกรหัสวัตถุดิบ
+                  </div>
+                  <div *ngIf="phone.errors.pattern">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>อีเมล :</label>
+                <input type="text" class="form-control" formControlName="email" [(ngModel)]="supplier.email">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-error">
+
+                  <div *ngIf="email.errors.required">
+                    กรุณากรอกรหัสวัตถุดิบ
+                  </div>ฃ
+                  <div *ngIf="email.errors.pattern">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>ที่ตั้ง</label>
+                <textarea class="form-control" formControlName="address" [(ngModel)]="supplier.address" rows="3"
+                  placeholder=""></textarea>
+                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-error">
+
+                  <div *ngIf="address.errors.required">
+                    กรุณากรอกรหัสวัตถุดิบ
+                  </div>
+                  <div *ngIf="address.errors.pattern">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+
+            <td>
+              <button class="btn btn-block btn-success ">ยืนยัน</button>
+            </td>
+            <td>
+              <button class="btn btn-block  " routerLink="/addm"> กลับ</button>
+            </td>
+          </div>
+
+        </form>
+      </div>
+      <!-- /.card-body -->
+
+    </section>
+  </div>
+</div>
+}
