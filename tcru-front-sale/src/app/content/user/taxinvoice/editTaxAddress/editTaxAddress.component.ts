@@ -8,6 +8,8 @@ import { AddressService } from '../../addaddress/services/address.service';
 import { Amphure } from '../../addaddress/interfaces/amphure';
 import { District } from '../../addaddress/interfaces/district';
 import { Province } from '../../addaddress/interfaces/province';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-editTaxAddress',
@@ -32,8 +34,8 @@ export class EditTaxAddressComponent implements OnInit {
   constructor(
     private taxService: TaxService,
     private fb: FormBuilder,
-    private addressService: AddressService
-
+    private addressService: AddressService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -143,7 +145,7 @@ export class EditTaxAddressComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
-
+        this.router.navigateByUrl('profile');
       },
       error => {
 
