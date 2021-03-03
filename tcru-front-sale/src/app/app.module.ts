@@ -34,6 +34,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angula
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    MatCarouselModule.forRoot(),
   ],
   providers: [
     JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService

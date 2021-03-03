@@ -1,6 +1,7 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Product } from './interfaces/product';
 import { ProductviewService } from './services/productview.service';
+import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 
 
 interface Food {
@@ -28,11 +29,15 @@ export class ShopviewComponent implements OnInit {
   typeList: Product[] = [];
   productOnfilter: Product[] = [];
 
-  // foods: Food[] = [
-  //   { value: 'steak-0', viewValue: 'Steak' },
-  //   { value: 'pizza-1', viewValue: 'Pizza' },
-  //   { value: 'tacos-2', viewValue: 'Tacos' }
-  // ];
+  slides = [
+    {'image': 'https://media.istockphoto.com/photos/blue-abstract-background-or-texture-picture-id1138395421?k=6&m=1138395421&s=612x612&w=0&h=bJ1SRWujCgg3QWzkGPgaRiArNYohPl7-Wc4p_Fa_cyA='}, 
+    {'image': 'https://gsr.dev/material2-carousel/assets/demo.png'},
+    {'image': 'https://gsr.dev/material2-carousel/assets/demo.png'}, 
+    {'image': 'https://gsr.dev/material2-carousel/assets/demo.png'}, 
+    {'image': 'https://gsr.dev/material2-carousel/assets/demo.png'},
+    {'image': 'https://gsr.dev/material2-carousel/assets/demo.png'},
+  ];
+
 
   constructor(
     private productViewService: ProductviewService
