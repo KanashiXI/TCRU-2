@@ -20,6 +20,12 @@ export class ShowPromotionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.PromotionService.getPromotion().subscribe(
+      res => {
+        this.dataSource = res;
+      },
+      error => this.errorMessage = <any>error
+    )
   }
 
 }
