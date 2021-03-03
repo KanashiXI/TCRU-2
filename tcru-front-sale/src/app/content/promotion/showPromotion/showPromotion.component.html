@@ -1,0 +1,31 @@
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2">
+        <p class="tittle">โปรโมชัน</p>
+    </div>
+    <div class="col-md-8"></div>
+    <div class="col-md-2">
+      <button mat-raised-button color="primary" class="btn-block" routerLink="/addaddress">เพิ่มที่อยู่จัดส่ง</button>
+    </div>
+  </div>
+  <br><br>
+  <div class="row" *ngFor="let item of dataSource; let i = index">
+    <div class="col-md-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-10 address-padding">
+            {{item.promotion_name}}     
+          </div>
+          <div class="col-md-1 btn-padding">
+            <button mat-raised-button color="accent" class="btn-block" type="submit" routerLink="/editaddress">แก้ไข</button>
+          </div>
+          <div class="col-md-1 btn-padding">
+            <button mat-raised-button color="warn" class="btn-block" type="submit">ลบ</button>
+          </div>
+        </div>
+      </mat-card>
+      <br>
+    </div>
+  </div>
+</div>
