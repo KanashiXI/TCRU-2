@@ -1,0 +1,45 @@
+<div class="main-container" style=" height:90vh;">
+  <div class="row">
+      <div class="col-sm-8">
+          <div class="example-button-row">
+              <button mat-stroked-button>เพิ่มโปรโมชัน</button>
+          </div>
+      </div>
+      <div class="col-sm-3">
+          <input type="text" class="form-control" placeholder="Search...">
+      </div>
+
+  </div>
+
+  <div class="card card-success" style="margin-top: 50px; margin-right: 90px;">
+      <div class="card-header">
+          <h3 class="card-title">รายการโปรโมชัน</h3>
+      </div>
+      <div class="card-body">
+          <table class="table" id="excel-table">
+              <thead>
+                  <tr>
+                      <th>รหัสโปรโมชัน</th>
+                      <th>ชื่อ</th>
+                      <th>รายละเอียด</th>
+                      <th>status</th>
+                      <th>update_at</th>
+                  </tr>
+              </thead>
+
+              <tbody>
+                  <tr *ngFor="let item of dataSource; let i = index">
+                      <td>{{item.index}}</td>
+                      <td>{{item.promotion_name}}</td>
+                      <td>{{item.detail}}</td>
+                      <td>{{item.status}}</td>
+                      <td>{{item.update_at}}</td>
+                  </tr>
+              </tbody>
+          </table>
+
+      </div>
+
+  </div>
+  <!-- <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination" (pageChange)="getCustomers()"></ngb-pagination> -->
+</div>

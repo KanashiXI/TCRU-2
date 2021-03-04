@@ -1,3 +1,4 @@
+import { ShowPromotionComponent } from './TCRU/promotion/showPromotion/showPromotion.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -141,7 +142,11 @@ const appRoutes: Routes = [
   {
     path: 'addOrderMaterials',
     component: PurchaseOrderComponent
-  }
+  },
+  {
+    path: 'promotion',
+    component: ShowPromotionComponent
+  },
 
 ];
 
@@ -170,7 +175,8 @@ const appRoutes: Routes = [
     DialogCustomerComponent,
     PurchaseOrderComponent,
     ShowOrderMaterialsComponent,
-    EditStatusMaterialsComponent
+    EditStatusMaterialsComponent,
+    ShowPromotionComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
