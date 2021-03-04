@@ -1,0 +1,80 @@
+<div class="content-wrapper" style="min-height: 1244.06px;">
+    <section class="content-header">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row ">
+            <div class="col-sm-4 ">
+              <a  href="#" class="btn btn-success " [routerLink]="['/addp']" routerLinkActive="router-link-active" >เพิ่มข้อมูลสินค้า <i class="fas fa-arrow-circle "></i></a>
+            </div> 
+            <div class="form-group col-sm-4 ">
+            </div>
+            <div class="form-group col-sm-4 ">
+              <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="Search">
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+        
+      </section>
+  
+  
+      
+      <div class="card card-success">
+        
+              <div class="card-header">
+                <h3 class="card-title">ตารางข้อมูลสินค้า</h3>
+  
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+                </div>
+              </div>
+  
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="Search">
+              </div>
+  
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <!-- <th>รหัสวัตถุดิบ</th> -->
+                      <th >รูปสินค้า</th>
+                      <th>ชื่อสินค้า</th>
+                      <th>ราคาปลีก</th>
+                      <th>ราคาส่ง</th>
+                      <th>น้ำหนัก</th>
+                      <th>รายละเอียด</th>
+  
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <!-- <li *ngFor="let mat of materialList"> -->
+  
+                  <tbody>
+                    <tr *ngFor="let mat of dataArr ">
+                      <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px"></td>
+                      <td>{{mat.product_name}}</td>
+                      <td>{{mat.retail}}</td>
+                      <td>{{mat.wholesale}}</td>
+                      <td>{{mat.weight}}</td>
+                      <td>{{mat.Detail}}</td>
+                      
+                      <td class="text-right py-0 align-middle">
+                        
+                        <div class="btn-group btn-group-sm">
+                          <button class="btn btn-info" routerLink="/editp/{{mat.product_id}}" ><i class="nav-icon fas fa-edit"></i></button>
+                          <button  class="btn btn-danger"(click)="deleteProduct(mat.product_id)"><i class="fas fa-trash"></i></button>
+                          <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
+                        </div>
+                      </td>
+                    </tr></tbody>
+                   
+  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page"  aria-label="Default pagination" (pageChange)="getProduct()"></ngb-pagination>
+  
+          </section>
+    </div>

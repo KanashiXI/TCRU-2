@@ -1,0 +1,47 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+body {
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    /* padding: 30px; */
+}
+
+* {
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+}
+
+.version-info {
+    font-size: 8pt;
+    float: right;
+    margin: 8px;
+}
+
+.main-container {
+    padding: 20px 20px;
+}
+
+input[type=text],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #c5bfbf;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.text-error {
+    font-size: 1rem;
+    margin: 4px;
+    text-align: right;
+    color: #ff0000;
+    opacity: 0.9;
+    font-family: 'Kanit', sans-serif;
+    /* font-weight: bold; */
+}
+
+.form-control.ng-invalid.ng-touched {
+    border-color: #ff0000;
+}

@@ -16,6 +16,7 @@ import { AddTaxAddressComponent } from './content/user/taxinvoice/addTaxAddress/
 import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddress/editTaxAddress.component';
 import { CartComponent } from './content/shop/cart/cart.component';
 import { ShowPromotionComponent } from './content/promotion/showPromotion/showPromotion.component';
+import { AddPromotionComponent } from './content/promotion/addPromotion/addPromotion.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,10 @@ const routes: Routes = [
   {
     path: 'promotion',
     component: ShowPromotionComponent,
+  },
+  {
+    path: 'addPromotion',
+    component: AddPromotionComponent,
   },
   {
     path: '**',

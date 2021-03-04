@@ -1,0 +1,158 @@
+<div class="main-container" style=" height:200vh;">
+  <h5 class="card-title">เพิ่มข้อมูลวัตถุดิบ</h5>
+  <div class="card card-primary">
+  <section class="content-header">
+
+    <!-- /.card-header -->
+    <div class="card-body">
+      <form [formGroup]=form (ngSubmit)="insertData()">
+        <!-- <form [FormGroup]="form" > -->
+          <div class="row">
+        <div class="col-sm-4">
+          <!-- text input -->
+          <div class="form-group">
+            <label>รหัสวัตถุดิบ</label>
+            <input type="text" class="form-control" formControlName="material_id" [(ngModel)]="Materials.material_id">
+            <div *ngIf="material_id.invalid && (material_id.dirty || material_id.touched)" class="text-error">
+
+              <div *ngIf="material_id.errors.required">
+                กรุณากรอกรหัสวัตถุดิบ
+              </div>
+              <div *ngIf="material_id.errors.uniquematerial_name">
+                มีวัตถุดิบนี้อยู่ในระบบแล้ว
+              </div>
+              <div *ngIf="material_id.errors.pattern">
+                กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <!-- text input -->
+          <div class="form-group">
+            <label>ชื่อวัตถุดิบ</label>
+            <input formControlName="material_name" type="text" class="form-control"
+              pattern="^[A-Za-zๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$"
+              [(ngModel)]="Materials.material_name">
+
+            <div *ngIf="material_name.invalid && (material_name.dirty || material_name.touched)" class="text-error">
+
+              <div *ngIf="material_name.errors.required">
+                กรุณากรอกชื่อวัตถุดิบ
+              </div>
+              <div *ngIf="material_name.errors.uniquematerial_name">
+                มีวัตถุดิบนี้อยู่ในระบบแล้ว
+              </div>
+              <div *ngIf="material_name.errors.pattern">
+                กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <label>ประเภทวัตถุดิบ</label>
+              <select class="form-control" formControlName="category_id" [(ngModel)]="Materials.category_id">
+                <option value="">ประเภทวัตถุดิบ</option>
+                <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>น้ำหนัก</label>
+            <input formControlName="weight" type="text" class="form-control"pattern="[0-9]" [(ngModel)]="Materials.weight">
+            <div *ngIf="weight.invalid && (weight.dirty || weight.touched)" class="text-error">
+
+              <div *ngIf="weight.errors.required">
+                กรุณากรอกน้ำหนักวัตถุดิบ
+              </div>
+              <div *ngIf="weight.errors.pattern">
+                กรุณากรอกน้ำหนักเป็นตัวเลข
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label>ราคา/หน่วย</label>
+            <input formControlName="price" type="text" class="form-control"pattern="[0-9]" [(ngModel)]="Materials.price">
+            <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-error">
+
+              <div *ngIf="price.errors.required">
+                กรุณากรอกราคาวัตถุดิบ
+              </div>
+              <div *ngIf="price.errors.pattern">
+                กรุณากรอกราคาป็นตัวเลข
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <label>หน่วยนับ</label>
+              <select class="form-control" formControlName="category_id" [(ngModel)]="Materials.category_id">
+                <option value="">ประเภทวัตถุดิบ</option>
+                <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <label>ประเภทวัตถุดิบ</label>
+              <select class="form-control" formControlName="category_id" [(ngModel)]="Materials.category_id" >
+                <option value="">ประเภทวัตถุดิบ</option>
+                <option *ngFor="let obj of category" value="{{obj.id}}">{{obj.name}}</option>
+              </select>
+              </div>
+          </div>
+        </div> -->
+        <div class="col-sm-4">
+          <!-- text input -->
+          <div class="form-group">
+            <label>รูปวัตถุดิบ</label>
+            <input type="file" class="form-control" formControlName="img" (change)="imageUpload($event)">
+            <div *ngIf="img.invalid && (img.dirty || img.touched)" class="text-error">
+
+              <div *ngIf="img.errors.required">
+                กรุณาใส่รูปภาพ
+              </div>
+              <div *ngIf="img.errors.pattern">
+                กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+
+          <td>
+            <button class="btn btn-block btn-success ">ยืนยัน</button>
+          </td>
+          <td>
+            <button class="btn btn-block  " routerLink="/addm"> กลับ</button>
+          </td>
+        </div>
+
+
+      </div>
+
+      </form>
+    </div>
+    <!-- /.card-body -->
+
+  </section>
+</div>
+</div>

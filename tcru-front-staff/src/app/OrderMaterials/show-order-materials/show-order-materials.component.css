@@ -1,0 +1,9 @@
+.example-button-row {
+    display: table-cell;
+    width: 500px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.example-button-row .mat-button-base {
+    margin: 0px 1px 8px 10px;
+}

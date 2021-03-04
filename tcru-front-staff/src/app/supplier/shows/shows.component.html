@@ -1,0 +1,119 @@
+<div class="main-container" style=" height:200vh;">
+    <div class="card-body">
+
+        <br>
+        <div class="card card-success">
+            <div class="card-header">
+                <h3 class="card-title">คลังสินค้า</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body p-0 ">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th>รหัสวัตถุดิบ</th> -->
+                            <th>รหัสสินค้า</th>
+                            <th>ชื่อสินค้า</th>
+                            <th>สินค้าคงเหลือ</th>
+                            <th>หน่วยนับ</th>
+                            <th>รายละเอียด</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <!-- <li *ngFor="let mat of materialList"> -->
+                    <tbody>
+                        <tr>
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right py-0 align-middle">
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-info">
+                                  <mat-icon class="mode_edit"></mat-icon>
+                                </button>
+                                    <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <!-- /.card-body -->
+
+</div>
+<div class="content-wrapper" style="height:90vh;">
+    <div fxLayout="row">
+        <div div fxLayout="column-reverse" class="flex">
+            <mat-form-field>
+                <mat-label>Filter</mat-label>
+                <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+            </mat-form-field>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="font"><b> รหัสร้านค้า </b></th>
+                <td mat-cell *matCellDef="let row of dataArr"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="supplier_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="font"><b> ชื่อ </b></th>
+                <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="supplier_surname">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="font"><b> นามสกุล </b></th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="store_name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="font"><b>ชื่อร้านค้า</b></th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="font"><b> อีเมล </b></th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="font"><b> เบอร์โทรศัพท์ </b></th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="address">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="font"><b> ที่ตั้ง </b></th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <!-- Color Column -->
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+</div>
+>>>>>>> dedb96a1e6d56cc6f9af7828e54d021dd4926c13

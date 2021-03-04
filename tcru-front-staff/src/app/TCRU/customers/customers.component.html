@@ -1,0 +1,45 @@
+<div class="main-container" style=" height:90vh;">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="example-button-row">
+                <button mat-stroked-button (click)="openDialog()">เพิ่มข้อมูลลูกค้า</button>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
+        </div>
+
+    </div>
+
+    <div class="card card-success" style="margin-top: 50px; margin-right: 90px;">
+        <div class="card-header">
+            <h3 class="card-title">รายชื่อลูกค้า</h3>
+        </div>
+        <div class="card-body">
+            <table class="table" id="excel-table">
+                <thead>
+                    <tr>
+                        <th>รหัสลูกค้า</th>
+                        <th>ชื่อ</th>
+                        <th>นามสกุล</th>
+                        <th>ที่อยู่</th>
+                        <th>เบอร์โทรศัพท์</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let customer of customersList">
+                        <td>{{customer.customer_id}}</td>
+                        <td>{{customer.firstname}}</td>
+                        <td>{{customer.lastname}}</td>
+                        <td>{{customer.address}}</td>
+                        <td>{{customer.phoneNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination" (pageChange)="getCustomers()"></ngb-pagination>
+</div>
