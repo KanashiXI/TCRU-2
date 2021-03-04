@@ -6,17 +6,27 @@
       <mat-card>
         <div *ngIf="!(isHandset$ | async)">
           <div class="row">
-            <div class="col-md-1" style="text-align: center;"><p>เลือก</p></div>
-            <div class="col-md-6"><p>สินค้า</p></div>
-            <div class="col-md-3"><p>จำนวนสินค้า(ชิ้น)</p></div>
-            <div class="col-md-2"><p>ราคารวม(บาท)</p></div>
+            <div class="col-md-1" style="text-align: center;">
+              <p>เลือก</p>
+            </div>
+            <div class="col-md-6">
+              <p>สินค้า</p>
+            </div>
+            <div class="col-md-3">
+              <p>จำนวนสินค้า(ชิ้น)</p>
+            </div>
+            <div class="col-md-2">
+              <p>ราคารวม(บาท)</p>
+            </div>
           </div>
           <div class="row">
-            <div class="col-md-12"><hr></div>
+            <div class="col-md-12">
+              <hr>
+            </div>
           </div>
         </div>
         <br>
-        <div class="row" *ngFor="let cart of productInCart;let i = index"  style="padding: 30px;">
+        <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
           <div class="col-md-1" style="text-align: center; padding: 15px;" *ngIf="!(isHandset$ | async)">
             <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()">
           </div>
@@ -25,7 +35,8 @@
           </div>
           <div class="col-md-4">
             <mat-card-title>
-              <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()" *ngIf="(isHandset$ | async)">
+              <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()"
+                *ngIf="(isHandset$ | async)">
               &nbsp;&nbsp;{{cart.product_name}}
             </mat-card-title>
             <mat-card-subtitle>{{cart.product_description}}</mat-card-subtitle>
@@ -37,7 +48,7 @@
               </span>
             </button>
             <mat-form-field appearance="outline">
-              <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity">
+              <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" min="1">
             </mat-form-field>
             <button mat-stroked-button (click)="handlePlus(cart)">
               <span class="material-icons">
@@ -49,7 +60,8 @@
             <p>{{cart.retail_price}} ฿</p>
           </div>
           <div class="col-md-1" style="text-align: center;">
-            <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="remove(cart.cart_id)">ลบ</button>
+            <button mat-raised-button color="warn" class="btn-block" type="submit"
+              (click)="remove(cart.cart_id)">ลบ</button>
           </div>
         </div>
       </mat-card>
@@ -80,39 +92,39 @@
           </div> -->
 
 
-          <!-- <div class="cart-item-row" *ngFor="let cart of productInCart;let i = index">
+      <!-- <div class="cart-item-row" *ngFor="let cart of productInCart;let i = index">
             <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()">
             <div class=" cart-item-cell cart-item-product">
     
               <div class="cart-item-thumbnail"
                 [ngStyle]="{'background-image': 'url(http://www.clinictech.ops.go.th/online/cmo/fileuser/340/images/05.jpg)'}">
               </div> -->
-              <!-- <div class="cart-item-thumbnail">
+      <!-- <div class="cart-item-thumbnail">
                 <img src="assets/FreshTricoderma.jpg" height="100px">
               </div> -->
-    
-              <!-- <div class="cart-item-info"> -->
-                <!-- <mat-checkbox [(ngModel)]="cart" (ngModelChange)="updateAllComplete(cart)">
+
+      <!-- <div class="cart-item-info"> -->
+      <!-- <mat-checkbox [(ngModel)]="cart" (ngModelChange)="updateAllComplete(cart)">
                 </mat-checkbox> -->
-                <!-- <mat-checkbox  value="cart" [value]="cart" [(ngModel)]="selectItem"
+      <!-- <mat-checkbox  value="cart" [value]="cart" [(ngModel)]="selectItem"
                   [inputId]="cart.retail_price">
                 </mat-checkbox> -->
-<!--     
+      <!--     
                 <div class="cart-item-brand">{{cart.product_name}}</div>
                 <div class="cart-item-title">{{cart.product_quantity}}</div>
               </div>
             </div>
             <div class="cart-item-cell cart-item-quantity"> -->
-              <!-- <quantity-control [quantity]="cart.product_quantity">
+      <!-- <quantity-control [quantity]="cart.product_quantity">
               </quantity-control> -->
-    
-              <!-- <div class="wrapper">
+
+      <!-- <div class="wrapper">
                 <button class="plusminus" (click)="handleMinus(cart)">-</button>
                 <input type="number" class="num" id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" />
                 <button class="plusminus" (click)="handlePlus(cart)">+</button>
               </div> -->
 
-              <!-- <button mat-stroked-button (click)="handleMinus(cart)">
+      <!-- <button mat-stroked-button (click)="handleMinus(cart)">
                 <span class="material-icons">
                   remove
                 </span>
@@ -125,9 +137,9 @@
                   add
                 </span>
               </button> -->
-    
-    
-              <!-- <a (click)="minusOne(productInOrder)"><i class="fa fa-minus"></i></a>
+
+
+      <!-- <a (click)="minusOne(productInOrder)"><i class="fa fa-minus"></i></a>
                   <input min="1" id="{{productInOrder.productId}}"
                         [max]=productInOrder.productStock
                         [(ngModel)]="productInOrder.count"
@@ -137,14 +149,14 @@
                         required
                         name='count'>
                   <a (click)="addOne(productInOrder)"> <i class="fa fa-plus"></i></a> -->
-    
-              <!-- <quantity-control [quantity]="cart.product_quantity" (onChange)="changeQuantity(cart,$event)">
+
+      <!-- <quantity-control [quantity]="cart.product_quantity" (onChange)="changeQuantity(cart,$event)">
               </quantity-control> -->
-            <!-- </div>
+      <!-- </div>
             <div class="cart-item-cell cart-item-total">
               <div class="item-price"> -->
-                <!-- {{cart.retail_price | currency :'USD':true }} -->
-                <!-- {{cart.retail_price}} ฿
+      <!-- {{cart.retail_price | currency :'USD':true }} -->
+      <!-- {{cart.retail_price}} ฿
               </div>
             </div>
             <div class="cart-item-cell cart-item-action">
@@ -153,13 +165,13 @@
           </div>
           <div class="row cart-total">
             <div class="col-lg-offset-6"> -->
-              <!-- <div class="cart-total-row row">
+      <!-- <div class="cart-total-row row">
                 <div class="col-md-6 cart-total-label">
                   Cart overview
                 </div>
                 <div class="col-md-6 cart-total-value"></div>
               </div> -->
-              <!-- <div class="cart-total-row row">
+      <!-- <div class="cart-total-row row">
                 <div class="col-md-6 cart-total-label">
                   ราคารวม
                 </div>
@@ -186,8 +198,8 @@
                 </div>
                 <div class="col-md-6 cart-total-value cart-total-price">
                   {{cartTotal | currency :'฿':true}} -->
-                  <!-- {{totalPrice | currency :'USD':true}} AUD -->
-                <!-- </div>
+      <!-- {{totalPrice | currency :'USD':true}} AUD -->
+      <!-- </div>
               </div>
             </div>
           </div>
@@ -217,7 +229,7 @@
 
 
 
-<!-- <div class="row">
+      <!-- <div class="row">
     <div class="col-md-12">
       <div class="mat-elevation-z8">
         <table mat-table class="full-width-table" matSort aria-label="Elements">
