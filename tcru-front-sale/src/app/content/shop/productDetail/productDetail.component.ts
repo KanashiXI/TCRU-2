@@ -66,6 +66,7 @@ export class ProductDetailComponent implements OnInit {
       }
       if (this.productInCart.length == 0) {
         this.editProductQuantityForm.patchValue({
+          price_per_piece: Number(curPrice),
           product_quantity: curQuantity + 0,
           retail_price: Number(curPrice) + Number(0),
         })
@@ -76,6 +77,7 @@ export class ProductDetailComponent implements OnInit {
         this.editProductQuantityForm.patchValue({
           product_quantity: curQuantity + oldQuantity,
           retail_price: Number(curPrice) + Number(oldPrice),
+          price_per_piece: Number(curPrice),
         })
         this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe()
       }
@@ -89,6 +91,7 @@ export class ProductDetailComponent implements OnInit {
       product_id: [''],
       product_quantity: [''],
       product_description: [''],
+      price_per_piece: [''],
       weight: [''],
       unit: [''],
       user_id: [''],

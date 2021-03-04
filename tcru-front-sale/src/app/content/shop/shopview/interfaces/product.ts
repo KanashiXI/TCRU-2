@@ -10,10 +10,11 @@ export interface Product {
     unit?: string;
     product_quantity?: number;
     retail_price?: number;
+    price_per_piece?: number;
     stock?: number;
     product_type?: string;
     count?: number;
-    product_description?: string; 
+    product_description?: string;
     // product_id: number;
     // product_name: string;
     // retail_price: string;

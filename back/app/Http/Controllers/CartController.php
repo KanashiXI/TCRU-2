@@ -20,6 +20,7 @@ class CartController extends Controller
         $new->product_name = $request->input('product_name');
         $new->user_id = $request->input('user_id');  
         $new->retail_price = $request->input('retail_price');      
+        $new->price_per_piece = $request->input('price_per_piece');      
         $new->save();
         return response()->json(['newitem'=>$new],201);
     }
