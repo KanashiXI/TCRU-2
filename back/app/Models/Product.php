@@ -27,15 +27,15 @@ class Product
     }
     function deleteProduct($id)
     {
-        DB::table("product")->where("product_id",$id)->delete();
+        DB::table("product")->where("id",$id)->delete();
     }
     function updateProduct($id,$data)
     {
-        DB::table("product")->where("product_id",$id)->update($data);
+        DB::table("product")->where("id",$id)->update($data);
     }
     function getOneProduct($id)
     {
-        $data = DB::table("product")->where("product_id",$id)->get()->first();
+        $data = DB::table("product")->where("id",$id)->get()->first();
         return $data;
     }
     

@@ -74,20 +74,31 @@ Route::group([
     Route::get('cartpromotion','PromotionController@getCartPromotion'); //promotion in cart
     
 
-    //Product managemant
     Route::post('/material','MaterialController@addMaterial');
     Route::post('/material1','MaterialController@getMaterial1');
-    // Route::gat('/material','MaterialController@getMaterial');
     Route::delete('/delete/{material_id}','MaterialController@destroy');
     Route::PATCH('/update/{material_id}','MaterialController@updateMaterial');
     Route::get('/getMaterial/{material_id}','MaterialController@getOneMaterial');
-
+    Route::get('getByname/{material_name}','nameController@getByname');
+    
+    Route::get('/categoryp', 'CategorypController@getcategory');
     Route::post('/product','ProductController@addProduct');
+    Route::get('/product','ProductController@getProduct');
     Route::post('/product1','ProductController@getProduct1');
-    // Route::get('/product','ProductController@getProduct');
-    Route::delete('/delete1/{product_id}','ProductController@destroyp');
-    Route::PATCH('/update1/{product_id}','ProductController@updateProduct');
-    Route::get('/getproduct1/{product_id}','ProductController@getOneProduct');
+    Route::delete('/delete1/{id}','ProductController@destroyp');
+    Route::PATCH('/update1/{id}','ProductController@updateProduct');
+    Route::get('/getproduct1/{id}','ProductController@getOneProduct');
+
+
+    Route::get('/supplier11','supplierController@getsupplier1');
+    Route::post('/supplier','supplierController@addsupplier');
+    Route::post('/supplier1','supplierController@getsupplier');
+    Route::delete('/delete1/{id}','SupplierController@destroys');
+    Route::PATCH('/update1/{id}','supplierController@updatesupplier');
+    Route::get('/getsupplier1/{id}','supplierController@getOnesupplier');
+
+    Route::get('/lotp','lotpControlle@getlotp');
+    Route::post('/lotp','lotpControlle@addlotp');
 
 
     Route::post('/Customers2','CustomerController2@getcustomer1');
@@ -98,8 +109,6 @@ Route::group([
 
     Route::get('/Customers', 'CustomerController@getCustomers');
     Route::post('/Customers', 'CustomerController@create');
-
-    Route::get('/category', 'CategoryController@getcategory');
 });
 
 
