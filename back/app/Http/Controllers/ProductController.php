@@ -46,9 +46,11 @@ class ProductController extends Controller
         foreach ($groupwithcount  as $key => $value) {
             $res[] = $value;
         }
+        return response()->json($res ,200); 
+    }
+}
 
-          
-        // Collection::macro('toAssoc', function () {
+                // Collection::macro('toAssoc', function () {
         //     return $this->reduce(function ($assoc, $keyValuePair) {
         //         list($key, $value) = $keyValuePair;
         //         $assoc[$key] = $value;
@@ -59,17 +61,6 @@ class ProductController extends Controller
         // $collection = $groupwithcount->map(function ($item) {
         //     return $item->only(['product_name', 'count']);
         // });
-
-
-
-        return response()->json($res ,200); 
-
-
-    }
-
-}
-
-
 
         // $grouped = $getall->groupBy('product_name')->map(function ($item) {
         //     return  [
