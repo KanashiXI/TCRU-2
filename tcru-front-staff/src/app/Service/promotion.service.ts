@@ -1,38 +1,32 @@
 // import { Promotion } from './../TCRU/promotion/interfaces/promotion';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Promotion} from '../Models/Promotion.model'
+import { Observable, BehaviorSubject } from 'rxjs';
+import { ApiConstants } from './../constants/ApiConstants';
+import { PromotionInteface } from './../TCRU/promotion/interfaces/promotioninterface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromotionService {
 
-  apiBaseURL = 'http://127.0.0.1:5000/api/'
-  noAuthHeader = { header: new HttpHeaders({ NoAuth: 'True' }) };
-  selectedPromotion: Promotion = new Promotion();
-  promotion: Promotion[];
+  private message = new BehaviorSubject('');
+  sharedMessage = this.message.asObservable();
 
   constructor(
     private http: HttpClient
   ) { }
 
   getPromotion() {
-    let httpParams = new HttpParams();
-
-    const observable = this.http.get<any[]>('Promotion', { params: httpParams })
-    return observable;
-
-    // return this.http.get<Promotion[]>(`${ApiConstants.baseURl}${ApiConstants.getPromotionURL}`)
+    return this.http.get<PromotionInteface[]>(`${ApiConstants.baseURl}${ApiConstants.getPromotionURL}`)
   }
 
-  // getData() {
-  //   return this.http.get('http://localhost:5000/api/promotion');
-  // }
+  addPromotion(data) {
+    return this.http.post<PromotionInteface[]>(`${ApiConstants.baseURl}${ApiConstants.addPromotionURL}`, data);
+  }
 
-  public getData(): Observable<Promotion[]> {
-    return this.http.get<Promotion[]>(`http://localhost:5000/api/promotion`);
-}
+  deletePromotion(data) {
+    return this.http.delete(`${ApiConstants.baseURl}${ApiConstants.deletePromotionURL}/${data}`);
+  }
 
 }

@@ -1,4 +1,4 @@
-export interface Promotion {
+export interface PromotionInteface {
     promotion_id: number;
     promotion_name: string;
     detail: string;

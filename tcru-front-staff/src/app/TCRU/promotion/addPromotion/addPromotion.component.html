@@ -1,0 +1,65 @@
+<div class="content-wrapper" style="min-height: 121212.06px;">
+  <!-- Content Header (Page header) -->
+
+
+  <!-- Main content -->
+  <section class="content-header">
+    <h5 class="card-title">เพิ่มโปรโมชัน</h5>
+    <!-- /.card-header -->
+      <div class="card-body">
+        <form [formGroup]=reactiveForm>
+
+            <div class="col-sm-12">
+              <!-- text input -->
+              <div class="form-group">
+                <label>ชื่อโปรโมชัน</label>
+                <input name="promotion_name" type="text" class="form-control" [formControl]="promotion_name">
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <!-- text input -->
+              <div class="form-group">
+                <label>รายละเอียดโปรโมชัน</label>
+                <input name="detail" type="text" class="form-control" [formControl]="detail">
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>จำนวน</label>
+                <input name="unit" type="text" class="form-control" [formControl]="unit">
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label>สถานะ</label>
+                <input name="status" type="text" class="form-control" [formControl]="status">
+              </div>
+            </div>
+  
+          <div class="col-sm-12">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>เงื่อนไขการซื้อ(บาท)</label>
+                <input name="cost_condidtion" type="text" class="form-control" [formControl]="cost_condidtion">
+              </div>
+            </div>
+        
+          <div class="form-group">
+            <td>
+              <button class="btn btn-block btn-success" type="submit" (click)="onClickSubmit()">ยืนยัน</button>
+            </td>
+            <td>
+              <button class="btn btn-block  " routerLink="/showp"> กลับ</button>
+            </td>
+          </div>
+
+
+
+
+        </form>
+      </div>
+      <!-- /.card-body -->
+    
+  </section>
+</div>
+}

@@ -2,7 +2,7 @@
   <div class="row">
       <div class="col-sm-8">
           <div class="example-button-row">
-              <button mat-stroked-button>เพิ่มโปรโมชัน</button>
+              <button mat-stroked-button routerLink="/addPromotion">เพิ่มโปรโมชัน</button>
           </div>
       </div>
       <div class="col-sm-3">
@@ -24,16 +24,23 @@
                       <th>รายละเอียด</th>
                       <th>status</th>
                       <th>update_at</th>
+                      <th></th>
                   </tr>
               </thead>
 
               <tbody>
                   <tr *ngFor="let item of dataSource; let i = index">
-                      <td>{{item.index}}</td>
-                      <td>{{item.promotion_name}}</td>
-                      <td>{{item.detail}}</td>
-                      <td>{{item.status}}</td>
-                      <td>{{item.update_at}}</td>
+                        <td>{{item.promotion_name}}</td>
+                        <td>{{item.promotion_name}}</td>
+                        <td>{{item.detail}}</td>
+                        <td>{{item.status}}</td>
+                        <td>{{item.update_at}}</td>
+                        
+                        <td>
+                            <button mat-raised-button color="warn" (click)="onClickDelete(item.promotion_id)">
+                                <span class="material-icons">delete</span>
+                            </button>
+                        </td>
                   </tr>
               </tbody>
           </table>

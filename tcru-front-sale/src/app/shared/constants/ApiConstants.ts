@@ -71,10 +71,4 @@ export class ApiConstants {
         return '/api/promotion';
     }
 
-
-
-
-
-
-
 }
