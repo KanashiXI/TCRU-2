@@ -22,6 +22,12 @@ class PromotionController extends Controller
         return response()->json($getall,200); 
     }
 
+    public function getOnePromotion($request)
+    {
+        $getall = promotion::where('promotion_id', $request)->get();  
+        return response()->json($getall,200); 
+    }
+
     public function addPromotion(Request $request)
     {
         $new = new promotion;

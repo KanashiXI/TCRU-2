@@ -30,13 +30,15 @@
 
               <tbody>
                   <tr *ngFor="let item of dataSource; let i = index">
-                        <td>{{item.promotion_name}}</td>
+                        <td>{{item.promotion_id}}</td>
                         <td>{{item.promotion_name}}</td>
                         <td>{{item.detail}}</td>
                         <td>{{item.status}}</td>
                         <td>{{item.update_at}}</td>
-                        
                         <td>
+                            <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.promotion_id)" routerLink="/editpromotion">
+                                <span class="material-icons">create</span>
+                            </button>
                             <button mat-raised-button color="warn" (click)="onClickDelete(item.promotion_id)">
                                 <span class="material-icons">delete</span>
                             </button>
