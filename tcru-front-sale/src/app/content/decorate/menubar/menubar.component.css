@@ -34,12 +34,18 @@ mat-toolbar a {
   margin: 0 10px;
   color: #495057;
   text-decoration: none;
+  /* height: 100px; */
 }
 
-.material-icons {
-  margin-top: 15px;
+.icon {
+  font-size:36px;
+  line-height:24px;
 }
 
-.text{
-  margin-bottom: 10px;
+.material-icons{
+  display: inline-flex;
+  vertical-align: top;
+  font-size:36px;
+  line-height:24px;
 }
+
