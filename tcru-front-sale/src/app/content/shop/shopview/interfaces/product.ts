@@ -16,6 +16,7 @@ export interface Product {
     count?: number;
     product_description?: string;
     order_id?: string;
+    check?: boolean;
     // product_id: number;
     // product_name: string;
     // retail_price: string;

@@ -136,11 +136,13 @@ export class CartComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
+
     this.cartTotal = 0;
     this.selectItem.map((obj) => {
       this.cartTotal += Number(obj.retail_price);
     });
     this.totalPrice = this.cartTotal;
+    console.log('after' + this.totalPrice)
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
       this.isGotPromotion = true;
       this.discount = (this.cartTotal * (this.promotionNumber / 100))
@@ -154,6 +156,7 @@ export class CartComponent implements OnInit {
       })
 
     } else {
+      console.log(this.isGotPromotion)
       this.isGotPromotion = false;
       this.reactiveForm.patchValue({
         discount: this.discount,
