@@ -91,7 +91,10 @@ export class CartComponent implements OnInit {
   }
 
   remove(id: string) {
-    this.cartService.remove(id).subscribe(
+    this.cartService.remove(id).subscribe(res => {
+      this.ngOnInit()
+      //dialog ลบสำเร็จ
+    }
     );
   }
 
