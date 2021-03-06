@@ -107,7 +107,7 @@ export class CartComponent implements OnInit {
 
   fetchSelectedItems() {
     this.selectItem = this.productInCart.filter((value, index) => {
-      return value.product_id;
+      return value.cart_id;
     });
   }
 
