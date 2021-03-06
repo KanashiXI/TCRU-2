@@ -24,7 +24,7 @@ const routes: Routes = [
     component: ShopviewComponent,
   },
   {
-    path: 'productdetail/:product_id',
+    path: 'productdetail/:product_id/:price',
     component: ProductDetailComponent,
   },
   {

@@ -46,6 +46,11 @@ export class CartService {
   }
 
 
+  // checkoutCart(data, data2) {
+  //   return this.http.post<Product>(`${ApiConstants.baseURl}${ApiConstants.checkoutCartURL}`, {"":data,"":data2} )
+  // }
+
+
 
 
 

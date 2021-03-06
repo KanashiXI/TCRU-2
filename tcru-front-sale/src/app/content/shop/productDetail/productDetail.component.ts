@@ -51,10 +51,14 @@ export class ProductDetailComponent implements OnInit {
     const requestData = {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
+
     }
     console.log('กดเพิ่ม')
     this.calPrice()
+
     const productId = this.route.snapshot.paramMap.get('product_id');
+
+
     this.cartService.searchProduct(productId, requestData.customerUsername).subscribe(res => {
       this.productInCart = res;
       if (this.productInCart.length == 0) {
@@ -65,21 +69,26 @@ export class ProductDetailComponent implements OnInit {
         var oldPrice = this.productInCart[0].retail_price;
       }
       if (this.productInCart.length == 0) {
-        this.editProductQuantityForm.patchValue({
-          price_per_piece: Number(curPrice),
+        const productPrice = this.route.snapshot.paramMap.get('price');
+        console.log('pp is' + productPrice)
+        var curQuantity = this.reactiveForm.get('product_quantity').value
+        var curPrice = this.reactiveForm.get('retail_price').value
+        this.reactiveForm.patchValue({
+          price_per_piece: productPrice,
           product_quantity: curQuantity + 0,
           retail_price: Number(curPrice) + Number(0),
         })
         this.cartService.addToCart(this.reactiveForm.getRawValue()).subscribe()
       } else {
-        var curQuantity = this.reactiveForm.get('product_quantity').value
-        var curPrice = this.reactiveForm.get('retail_price').value
+        var curQuantity = this.reactiveForm.get('product_quantity').value;
+        var curPrice = this.reactiveForm.get('retail_price').value;
         this.editProductQuantityForm.patchValue({
           product_quantity: curQuantity + oldQuantity,
           retail_price: Number(curPrice) + Number(oldPrice),
-          price_per_piece: Number(curPrice),
+
         })
-        this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe()
+
+        this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe();
       }
     });
   }
@@ -155,7 +164,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   calPrice() {
-    const totalPrice = this.productPrice = this.reactiveForm.get('retail_price').value
+    const totalPrice = this.reactiveForm.get('retail_price').value
     this.reactiveForm.patchValue({
       product_quantity: this.counter,
       retail_price: totalPrice * this.counter
