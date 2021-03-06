@@ -31,7 +31,7 @@ export class EditPromotionComponent implements OnInit {
       ...Subject,
       promotion_id: localStorage.getItem('promotion_id'),
     }
-    
+
     this.createForm();
     this.getEditForm(requestData.promotion_id);
   }
@@ -75,7 +75,7 @@ export class EditPromotionComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
-        this.router.navigateByUrl('profile');
+        // this.router.navigateByUrl('profile');
 
       },
       error => {
