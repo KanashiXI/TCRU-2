@@ -70,7 +70,8 @@ Route::group([
     Route::get('promotion','PromotionController@getPromotion'); // all promotion
     Route::post('addpromotion','PromotionController@addPromotion'); 
     Route::delete('deletepromotion/{promotion_id}','PromotionController@deletePromotion'); 
-    Route::post('editpromotion','PromotionController@editPromotion'); 
+    Route::post('editpromotion','PromotionController@editPromotion');
+    Route::get('onePromotion/{promotion_id}', 'PromotionController@getOnePromotion');
     Route::get('cartpromotion','PromotionController@getCartPromotion'); //promotion in cart
     
 

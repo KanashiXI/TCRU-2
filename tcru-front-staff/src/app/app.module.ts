@@ -81,6 +81,7 @@ import { ShowOrderMaterialsComponent } from './OrderMaterials/show-order-materia
 import { EditStatusMaterialsComponent } from './OrderMaterials/edit-status-materials/edit-status-materials.component';
 import { ShowPromotionComponent } from './TCRU/promotion/showPromotion/showPromotion.component';
 import { AddPromotionComponent } from './TCRU/promotion/addPromotion/addPromotion.component';
+import { EditPromotionComponent } from './TCRU/promotion/editPromotion/editPromotion.component';
 
 const appRoutes: Routes = [
   {
@@ -152,6 +153,10 @@ const appRoutes: Routes = [
     path: 'addPromotion',
     component: AddPromotionComponent
   },
+  {
+    path: 'editpromotion',
+    component: EditPromotionComponent
+  },
 ];
 
 @NgModule({
@@ -181,7 +186,8 @@ const appRoutes: Routes = [
     ShowOrderMaterialsComponent,
     EditStatusMaterialsComponent,
     ShowPromotionComponent,
-    AddPromotionComponent
+    AddPromotionComponent,
+    EditPromotionComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [

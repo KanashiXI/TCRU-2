@@ -17,6 +17,10 @@ export class PromotionService {
     private http: HttpClient
   ) { }
 
+  nextMessage(message: string) {
+    this.message.next(message)
+  }
+
   getPromotion() {
     return this.http.get<PromotionInteface[]>(`${ApiConstants.baseURl}${ApiConstants.getPromotionURL}`)
   }
@@ -27,6 +31,14 @@ export class PromotionService {
 
   deletePromotion(data) {
     return this.http.delete(`${ApiConstants.baseURl}${ApiConstants.deletePromotionURL}/${data}`);
+  }
+
+  editPromotion(data) {
+    return this.http.post<PromotionInteface[]>(`${ApiConstants.baseURl}${ApiConstants.editPromotionURl}`, data);
+  }
+
+  getOnePromotion(data) {
+    return this.http.get<PromotionInteface>(`${ApiConstants.baseURl}${ApiConstants.getOnePromotionURL}/${data}`);
   }
 
 }

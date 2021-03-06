@@ -14,6 +14,8 @@ export class ShowPromotionComponent implements OnInit {
 
   dataSource: PromotionInteface[];
   errorMessage: String;
+  dataForm: PromotionInteface;
+
 
   constructor(
     private PromotionService: PromotionService,
@@ -47,6 +49,11 @@ export class ShowPromotionComponent implements OnInit {
         this.ngOnInit() 
       } else if (result.dismiss === Swal.DismissReason.cancel) { }
     }) 
+  }
+
+  onClickSubmit(data) {
+    this.PromotionService.nextMessage(data);
+    localStorage.setItem("promotion_id", data);
   }
 
 

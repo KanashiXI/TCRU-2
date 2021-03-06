@@ -13,4 +13,12 @@ export class ApiConstants {
     public static get deletePromotionURL(): string {
         return '/api/deletepromotion';
     }
+
+    public static get editPromotionURl(): string {
+        return '/api/editpromotion';
+    }
+
+    public static get getOnePromotionURL(): string {
+        return '/api/onePromotion';
+    }
 }
