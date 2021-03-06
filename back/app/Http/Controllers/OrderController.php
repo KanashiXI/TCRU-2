@@ -28,7 +28,8 @@ class OrderController extends Controller
                 $orderdetail['product_quantity']=$item['product_quantity']; 
                 $orderdetail['retail_price']=$item['retail_price']; 
                 $orderdetail->save();
-            }            
+            } 
+
             DB::commit();
             return response()->json($lastid,201);
         } catch (\Exception $e) {
@@ -45,7 +46,23 @@ class OrderController extends Controller
         $edit->net_amount=$request->net_amount;
         $edit->request_tax=$request->request_tax;
         $edit->user_id=$request->user_id; 
-        $result = $edit->save();  
+        $result = $edit->save(); 
+        return response()->json(true,200);
+    }
+
+    public function deleteFromCart(Request $request){
+
+        try {
+            $ids_to_delete = array_map(function($item){ return $item['cart_id']; }, $request->all());
+            DB::table('cart')->whereIn('cart_id', $ids_to_delete)->delete(); 
+        }
+        catch(\Exception $e){
+            
+        }
+
+        
+
+        
     }
 
 

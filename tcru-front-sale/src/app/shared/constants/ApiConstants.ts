@@ -73,5 +73,8 @@ export class ApiConstants {
     public static get orderURL(): string {
         return '/api/order';
     }
+    public static get deleteFromCartURL(): string {
+        return '/api/deletefromcart';
+    }
 
 }

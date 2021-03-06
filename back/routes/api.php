@@ -67,6 +67,7 @@ Route::group([
     // ออเดอร์
     Route::post('cartcheckout','OrderController@createOrder');
     Route::post('order','OrderController@fillOrder');
+    Route::post('deletefromcart','OrderController@deleteFromCart');
 
         // โปรโมชัน
     Route::get('promotion','PromotionController@getPromotion'); // all promotion

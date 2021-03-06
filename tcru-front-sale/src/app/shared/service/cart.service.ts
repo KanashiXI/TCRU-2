@@ -48,6 +48,9 @@ export class CartService {
   addOrder(data) {
     return this.http.post<Product>(`${ApiConstants.baseURl}${ApiConstants.orderURL}`, data)
   }
+  deleteFromCart(data) {
+    return this.http.post(`${ApiConstants.baseURl}${ApiConstants.deleteFromCartURL}`, data)
+  }
 
 
   // checkoutCart(data, data2) {

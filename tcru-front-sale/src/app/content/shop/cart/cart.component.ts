@@ -43,6 +43,7 @@ export class CartComponent implements OnInit {
   condition: number;
   gun: string;
   selectItem: Product[] = [];
+  selectItemForDelete: Product[] = [];
   arr: any[] = [];
   value = 0;
   reactiveForm: FormGroup;
@@ -90,7 +91,12 @@ export class CartComponent implements OnInit {
         this.reactiveForm.patchValue({
           order_id: this.dataForm,
         });
-        this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe();
+        this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
+          res => {
+
+          }
+        );
+        this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
       },
       error => {
 
@@ -108,6 +114,10 @@ export class CartComponent implements OnInit {
   fetchSelectedItems() {
     this.selectItem = this.productInCart.filter((value, index) => {
       return value.cart_id;
+    });
+
+    this.selectItemForDelete = this.productInCart.filter((value, index) => {
+      return value.product_id;
     });
   }
 
