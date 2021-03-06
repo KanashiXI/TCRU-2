@@ -10,6 +10,7 @@ import { CartService } from 'src/app/shared/service/cart.service';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -34,6 +35,8 @@ export class CartComponent implements OnInit {
   promotionData: Promotion[] = [];
   promotionNumber: number;
   discribePromotion: String;
+  promotionId: number;
+
   isGotPromotion: boolean = false;
   totalPrice: number;
   discount: number;
@@ -42,10 +45,13 @@ export class CartComponent implements OnInit {
   selectItem: Product[] = [];
   arr: any[] = [];
   value = 0;
+  reactiveForm: FormGroup;
+  dataForm: Product;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
-    private cartService: CartService
+    private cartService: CartService,
+    private fb: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -54,13 +60,43 @@ export class CartComponent implements OnInit {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
     }
+    // customerUsername: localStorage.getItem('user_id'),
+    this.createForm(requestData.customerUsername);
     this.queryCartProduct(requestData.customerUsername);
     this.getCartPromotion();
   }
 
+  createForm(uId) {
+    this.reactiveForm = this.fb.group({
+      order_id: ['',],
+      user_id: ['',],
+      net_amount: ['',],
+      total_price: ['',],
+      promotion_id: ['',],
+      discount: ['',],
+      request_tax: ['',],
+    })
+    this.reactiveForm.patchValue({
+      user_id: uId,
+    })
+  }
+
   checkoutCart() {
+
     // const jsonValue = JSON.stringify(this.selectItem);
-    this.cartService.checkoutCart(this.selectItem).subscribe();
+    this.cartService.checkoutCart(this.selectItem).subscribe(
+      res => {
+        this.dataForm = res;
+        this.reactiveForm.patchValue({
+          order_id: this.dataForm,
+        });
+        this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe();
+      },
+      error => {
+
+      }
+
+    );
     // console.log('okfoekrfokrofk' + this.selectItem);
   }
 
@@ -81,6 +117,7 @@ export class CartComponent implements OnInit {
       this.promotionNumber = this.promotionData[0].unit;
       this.discribePromotion = this.promotionData[0].detail;
       this.condition = this.promotionData[0].cost_condidtion;
+      this.promotionId = this.promotionData[0].promotion_id;
     })
   }
 
@@ -99,10 +136,8 @@ export class CartComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-    // console.log('after content checked');
     this.cartTotal = 0;
     this.selectItem.map((obj) => {
-      // console.log(obj.retail_price)
       this.cartTotal += Number(obj.retail_price);
     });
     this.totalPrice = this.cartTotal;
@@ -110,9 +145,27 @@ export class CartComponent implements OnInit {
       this.isGotPromotion = true;
       this.discount = (this.cartTotal * (this.promotionNumber / 100))
       this.cartTotal = this.cartTotal - this.discount;
+
+      this.reactiveForm.patchValue({
+        discount: this.discount,
+        net_amount: this.cartTotal,
+        promotion_id: this.promotionId,
+        total_price: this.totalPrice,
+      })
+
     } else {
       this.isGotPromotion = false;
+      this.reactiveForm.patchValue({
+        discount: this.discount,
+        net_amount: this.cartTotal,
+        promotion_id: 0,
+        total_price: this.totalPrice
+      })
     }
+
+
+
+
 
   }
 

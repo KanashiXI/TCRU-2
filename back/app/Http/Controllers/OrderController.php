@@ -9,24 +9,17 @@ use DB;
 class OrderController extends Controller
 {
     public function createOrder(Request $request)
-    {      
-
-        // return response()->json(['newitem'=>$request->all()],201);
-        // $data = new order;
-        // $data->save();
-        // $data->id;
+    {     
+        // $result = $edit->save();
+        $ldate = date('Y-m-d H:i:s');
+        $data = new order;
+        $data->order_date = $ldate;
+        $data->status = 0;
+        $data->save(); 
         DB::beginTransaction();
         try {
-            $ldate = date('Y-m-d H:i:s');
-
-            $data = new order;
-            $data->order_date = $ldate;
-            $data->status = 0;
-            $data->save();
-            $lastid = $data->id;
-
+            $lastid = $data->order_id;
             // ["data1"=>[],"data"=>122]
-
             foreach($request->all() as $key => $item){
                 $orderdetail = new orderDetail();
                 $orderdetail['order_id']=$lastid;
@@ -35,21 +28,29 @@ class OrderController extends Controller
                 $orderdetail['product_quantity']=$item['product_quantity']; 
                 $orderdetail['retail_price']=$item['retail_price']; 
                 $orderdetail->save();
-            }
-            
+            }            
             DB::commit();
-            return response()->json(['newitem'=>true],201);
-
+            return response()->json($lastid,201);
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json(['error'=>$e->getMessage()],500);
-        }
-
-        
-        
-
-        
+        }              
     }
+
+    public function fillOrder(Request $request, order $order){       
+        $edit = order::where('order_id', $request->order_id)->first();   
+        $edit->total_price=$request->net_amount;
+        $edit->promotion_id=$request->promotion_id;
+        $edit->discount=$request->discount;
+        $edit->net_amount=$request->net_amount;
+        $edit->request_tax=$request->request_tax;
+        $edit->user_id=$request->user_id; 
+        $result = $edit->save();  
+    }
+
+
+
+
 }
 
 

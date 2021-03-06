@@ -45,6 +45,10 @@ export class CartService {
     return this.http.post<Product>(`${ApiConstants.baseURl}${ApiConstants.checkoutCartURL}`, data)
   }
 
+  addOrder(data) {
+    return this.http.post<Product>(`${ApiConstants.baseURl}${ApiConstants.orderURL}`, data)
+  }
+
 
   // checkoutCart(data, data2) {
   //   return this.http.post<Product>(`${ApiConstants.baseURl}${ApiConstants.checkoutCartURL}`, {"":data,"":data2} )
