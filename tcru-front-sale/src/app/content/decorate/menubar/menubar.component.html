@@ -7,7 +7,9 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="profile" *ngIf="loggedIn">บัญชีผู้ใช้</a>
-      <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">ตะกร้าสินค้า</a>
+      <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">
+        <span class="material-icons">shopping_cart</span>ตะกร้าสินค้า
+      </a>
       <a mat-list-item routerLink="/register" *ngIf="!loggedIn">ลงทะเบียน</a>
       <a mat-list-item routerLink="/login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
       <a mat-list-item  routerLink="" (click)="logout($event)" *ngIf="loggedIn">ออกจากระบบ</a>
@@ -36,7 +38,7 @@
 
       <span class="spacer"></span>
         <a mat-list-item routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">บัญชีผู้ใช้</a>
-        <a mat-list-item  routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)">ตะกร้าสินค้า</a>
+        <a mat-list-item  routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)"><span class="material-icons">shopping_cart</span><label class="text">ตะกร้าสินค้า</label></a>
         <a routerLink="/register" *ngIf="!loggedIn && !(isHandset$ | async)">ลงทะเบียน</a>
         <a routerLink="/login" *ngIf="!loggedIn && !(isHandset$ | async)">เข้าสู่ระบบ</a>
         <a routerLink="" (click)="logout($event)" *ngIf="loggedIn && !(isHandset$ | async)">ออกจากระบบ</a>

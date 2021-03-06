@@ -68,22 +68,47 @@
           </div>
         </div>
       </mat-card>
-
-
-      <!-- <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button> -->
     </div>
   </div>
   <br>
   <div class="row">
     <div class="col-md-12">
       <mat-card>
-        <p>{{totalPrice | currency :'฿':true}}</p>
-        <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} ส่วนลด ||| {{discount | currency :'฿':true}}</p>
-        <p>ยอดสุทธิ : {{cartTotal | currency :'฿':true}}</p>
-        <div style="text-align: right;">
-          <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
-          <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
-        </div>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-8">
+                <p>ราคารวม</p>
+              </div>
+              <div class="col-md-4 rightside">
+                <p>{{totalPrice | currency :'฿':true}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label> </p>
+              </div>
+              <div class="col-md-4 rightside">
+                <p style="color: red;">-{{discount | currency :'฿':true}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <p><strong>ยอดสุทธิ</strong></p>
+              </div>
+              <div class="col-md-4 rightside">
+                <p><strong>{{cartTotal | currency :'฿':true}}</strong></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 rightside">
+                <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
+                <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
+              </div>
+            </div>
+          </div>
+        </div>  
       </mat-card>
     </div>
   </div>

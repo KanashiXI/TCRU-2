@@ -35,3 +35,11 @@ mat-toolbar a {
   color: #495057;
   text-decoration: none;
 }
+
+.material-icons {
+  margin-top: 15px;
+}
+
+.text{
+  margin-bottom: 10px;
+}
