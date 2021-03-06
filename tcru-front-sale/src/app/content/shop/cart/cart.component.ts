@@ -93,10 +93,12 @@ export class CartComponent implements OnInit {
         });
         this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
           res => {
-
+            this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
           }
+
         );
         this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
+
       },
       error => {
 
