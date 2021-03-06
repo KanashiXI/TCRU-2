@@ -28,15 +28,16 @@
         <br>
         <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
           <div class="col-md-1" style="text-align: center; padding: 15px;" *ngIf="!(isHandset$ | async)">
-            <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()">
+            <input type="checkbox" (change)="changeSelection()">
+            <!-- [checked]="cart.checked" [(ngModel)]="cart.product_id" -->
           </div>
           <div class="col-md-2">
             <img mat-card-image src="http://www.clinictech.ops.go.th/online/cmo/fileuser/340/images/05.jpg">
           </div>
           <div class="col-md-4">
             <mat-card-title>
-              <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()"
-                *ngIf="(isHandset$ | async)">
+              <!-- [(ngModel)]="cart.product_id" -->
+              <input type="checkbox" (change)="changeSelection()" *ngIf="(isHandset$ | async)">
               &nbsp;&nbsp;{{cart.product_name}}
             </mat-card-title>
             <mat-card-subtitle>{{cart.product_description}}</mat-card-subtitle>
@@ -67,7 +68,7 @@
       </mat-card>
 
 
-
+      <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button>
 
 
 
