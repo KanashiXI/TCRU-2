@@ -79,6 +79,8 @@ import { DialogCustomerComponent } from './TCRU/dialog-customer/dialog-customer.
 import { PurchaseOrderComponent } from './OrderMaterials/purchase-order/purchase-order.component';
 import { ShowOrderMaterialsComponent } from './OrderMaterials/show-order-materials/show-order-materials.component';
 import { EditStatusMaterialsComponent } from './OrderMaterials/edit-status-materials/edit-status-materials.component';
+import { ShowPromotionComponent } from './TCRU/promotion/showPromotion/showPromotion.component';
+import { AddPromotionComponent } from './TCRU/promotion/addPromotion/addPromotion.component';
 
 const appRoutes: Routes = [
   {
@@ -141,8 +143,15 @@ const appRoutes: Routes = [
   {
     path: 'addOrderMaterials',
     component: PurchaseOrderComponent
-  }
-
+  },
+  {
+    path: 'promotion',
+    component: ShowPromotionComponent
+  },
+  {
+    path: 'addPromotion',
+    component: AddPromotionComponent
+  },
 ];
 
 @NgModule({
@@ -170,7 +179,9 @@ const appRoutes: Routes = [
     DialogCustomerComponent,
     PurchaseOrderComponent,
     ShowOrderMaterialsComponent,
-    EditStatusMaterialsComponent
+    EditStatusMaterialsComponent,
+    ShowPromotionComponent,
+    AddPromotionComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
