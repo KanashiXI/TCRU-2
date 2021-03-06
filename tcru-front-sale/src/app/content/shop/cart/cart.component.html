@@ -62,17 +62,37 @@
           </div>
           <div class="col-md-1" style="text-align: center;">
             <button mat-raised-button color="warn" class="btn-block" type="submit"
-              (click)="remove(cart.cart_id)">ลบ</button>
+              (click)="remove(cart.cart_id)">
+              <span class="material-icons">delete</span>
+            </button>
           </div>
         </div>
       </mat-card>
 
 
-      <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button>
+      <!-- <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button> -->
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-card>
+        <p>{{totalPrice | currency :'฿':true}}</p>
+        <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} ส่วนลด ||| {{discount | currency :'฿':true}}</p>
+        <p>ยอดสุทธิ : {{cartTotal | currency :'฿':true}}</p>
+        <div style="text-align: right;">
+          <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
+          <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
 
-
-
-
+<div class="cart-page-content" *ngIf="productInCart.length == 0">
+  <h4>Your cart is empty.</h4>
+  <a routerLink="/">Go shopping</a>
+</div>
 
 
 
@@ -164,6 +184,12 @@
               <div class="item-remove" (click)="remove(cart.cart_id)">X</div>
             </div>
           </div>
+
+
+
+
+
+          
           <div class="row cart-total">
             <div class="col-lg-offset-6"> -->
       <!-- <div class="cart-total-row row">
