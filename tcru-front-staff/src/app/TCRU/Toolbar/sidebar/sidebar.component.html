@@ -47,5 +47,9 @@
             <mat-icon class="icon" [@iconAnimation]="sidebarState">request_page</mat-icon>
             <a class="label" [@labelAnimation]="sidebarState">โปรโมชัน</a>
         </mat-list-item>
+        <mat-list-item routerLinkActive="active-list-item" routerLink="/deliveryStatus" title="promotion">
+            <mat-icon class="icon" [@iconAnimation]="sidebarState">local_shipping</mat-icon>
+            <a class="label" [@labelAnimation]="sidebarState">สถานะการจัดส่ง</a>
+        </mat-list-item>
     </mat-nav-list>
 </div>
