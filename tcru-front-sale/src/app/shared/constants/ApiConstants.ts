@@ -70,5 +70,8 @@ export class ApiConstants {
     public static get getPromotionURL(): string {
         return '/api/promotion';
     }
+    public static get orderURL(): string {
+        return '/api/order';
+    }
 
 }

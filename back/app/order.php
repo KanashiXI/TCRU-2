@@ -5,4 +5,5 @@ use Illuminate\Database\Eloquent\Model;
 class order extends Model
 {
     protected $table  = 'order';
+    protected $primaryKey = 'order_id';
 }
