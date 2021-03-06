@@ -86,24 +86,13 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-8" *ngIf="isGotPromotion == true">
-                <div class="col-md-6 cart-total-label">
-                  <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
+              <div class="col-md-6" *ngIf="isGotPromotion == true">
+                <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
                   </p>
-
-                  <div class="col-md-4 rightside">
-                    <p style="color: red;">-{{discount | currency :'฿':true}}</p>
-                  </div>
-                </div>
               </div>
-
-              <!-- <div class="col-md-8">
-                <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label> </p>
-              </div>
-              <div class="col-md-4 rightside">
+              <div class="col-md-6 rightside">
                 <p style="color: red;">-{{discount | currency :'฿':true}}</p>
-              </div> -->
-
+              </div>
             </div>
             <div class="row">
               <div class="col-md-8">
