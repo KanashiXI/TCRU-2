@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/service/auth.service';
 import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
 import Swal from 'sweetalert2';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -109,7 +109,7 @@ export class LoginComponent implements OnInit {
         });
       }
     );
-    
+
   }
 
   handleError(error) {
@@ -126,7 +126,7 @@ export class LoginComponent implements OnInit {
     } else {
       this.Token.handle(data.access_token);
       this.Auth.changeAuthStatus(true);
-      this.router.navigateByUrl('profile');
+      this.router.navigateByUrl('');
     }
   }
 
