@@ -48,7 +48,7 @@ export class CartComponent implements OnInit {
   value = 0;
   reactiveForm: FormGroup;
   dataForm: Product;
-
+  step: Number = 1;
   constructor(
     private breakpointObserver: BreakpointObserver,
     private cartService: CartService,
@@ -98,26 +98,23 @@ export class CartComponent implements OnInit {
 
         );
         this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
-
+        this.ngOnInit()
       },
       error => {
 
       }
 
     );
-    // console.log('okfoekrfokrofk' + this.selectItem);
   }
 
   changeSelection() {
     this.fetchSelectedItems();
-
   }
 
   fetchSelectedItems() {
     this.selectItem = this.productInCart.filter((value, index) => {
       return value.cart_id;
     });
-
     this.selectItemForDelete = this.productInCart.filter((value, index) => {
       return value.product_id;
     });
@@ -154,7 +151,7 @@ export class CartComponent implements OnInit {
       this.cartTotal += Number(obj.retail_price);
     });
     this.totalPrice = this.cartTotal;
-    console.log('after' + this.totalPrice)
+    // console.log('after' + this.totalPrice)
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
       this.isGotPromotion = true;
       this.discount = (this.cartTotal * (this.promotionNumber / 100))
@@ -168,7 +165,7 @@ export class CartComponent implements OnInit {
       })
 
     } else {
-      console.log(this.isGotPromotion)
+      // console.log(this.isGotPromotion)
       this.isGotPromotion = false;
       this.reactiveForm.patchValue({
         discount: this.discount,
@@ -178,24 +175,21 @@ export class CartComponent implements OnInit {
       })
     }
 
-
-
-
-
   }
 
+
   handleMinus(cart) {
-    const cost = cart.retail_price / cart.product_quantity;
-    console.log(cost)
-    cart.product_quantity--;
-    // cart.retail_price -= cost;
+    if (cart.product_quantity > 1) {
+      cart.product_quantity--;
+    }
+    cart.retail_price -= cart.price_per_piece;
   }
 
   handlePlus(cart) {
-    const cost = cart.retail_price / cart.product_quantity;
-    console.log(cost)
     cart.product_quantity++;
-    // cart.retail_price = 10000;
+    const oddRetail = Number(cart.retail_price);
+    const sumRetail = Number(cart.price_per_piece) + oddRetail;
+    cart.retail_price = sumRetail;
   }
 
 
