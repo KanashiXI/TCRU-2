@@ -1,62 +1,59 @@
 
-    <!-- <div class="container">
-      <div class="row" style="background-color: #495057;">
-          <div class="col-md-12">
-              hdfhdrhdr
-          </div>
-      </div>
-  </div> -->
-
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav"
-      fixedInViewport="false"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)!.matches === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="profile" *ngIf="loggedIn">บัญชีผู้ใช้</a>
-      <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">
-        <span class="material-icons">shopping_cart</span>ตะกร้าสินค้า
-      </a>
-      <a mat-list-item routerLink="/register" *ngIf="!loggedIn">ลงทะเบียน</a>
-      <a mat-list-item routerLink="/login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
-      <a mat-list-item  routerLink="" (click)="logout($event)" *ngIf="loggedIn">ออกจากระบบ</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  
-  <mat-sidenav-content>
-    <mat-toolbar color="primary"
-      fixedInViewport="false"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="!(isHandset$ | async)!.matches === false">
-
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <a class="navbar-brand" routerLink="/">
-        <img src="../../../assets/tcru-crop-removebg.png" height="47" style="margin-left: 30px;">
+<div class="bar">
+  <div class="row" *ngIf="!(isHandset$ | async)">
+    <div class="col-md-11">
+      <a routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">บัญชีของฉัน</a>
+      <a routerLink="/register" *ngIf="!loggedIn && !(isHandset$ | async)">ลงทะเบียน</a>
+      <a routerLink="/login" *ngIf="!loggedIn && !(isHandset$ | async)">เข้าสู่ระบบ</a>
+      <a routerLink="" (click)="logout($event)" *ngIf="loggedIn && !(isHandset$ | async)">ออกจากระบบ</a>
+      <!-- <a class="navbar-brand" routerLink="/" style="margin-left: 60px;">
         <label style="font-size: 16px;">&nbsp;&nbsp;หน้าหลัก</label>
-      </a>  
-
-      <span class="spacer"></span>
-        <a mat-list-item routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">
-          <span class="material-icons">
-            account_circle
-          </span>
+      </a>   -->
+    </div>
+  </div>
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav"
+        fixedInViewport="false"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)!.matches === false">
+      <mat-toolbar>Menu</mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item routerLink="profile" *ngIf="loggedIn">บัญชีผู้ใช้</a>
+        <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">
+          <span class="material-icons">shopping_cart</span>ตะกร้าสินค้า
         </a>
-        <a mat-list-item routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)" id="cart"><span class="material-icons">shopping_cart</span></a>
-        <a routerLink="/register" *ngIf="!loggedIn && !(isHandset$ | async)">ลงทะเบียน</a>
-        <a routerLink="/login" *ngIf="!loggedIn && !(isHandset$ | async)">เข้าสู่ระบบ</a>
-        <a routerLink="" (click)="logout($event)" *ngIf="loggedIn && !(isHandset$ | async)">ออกจากระบบ</a>
-    </mat-toolbar>
-    <!-- Add Content Here -->
-    <ng-content></ng-content>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+        <a mat-list-item routerLink="/register" *ngIf="!loggedIn">ลงทะเบียน</a>
+        <a mat-list-item routerLink="/login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
+        <a mat-list-item  routerLink="" (click)="logout($event)" *ngIf="loggedIn">ออกจากระบบ</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar color="primary"
+        fixedInViewport="false"
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="!(isHandset$ | async)!.matches === false">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+        <p *ngIf="!(isHandset$ | async)" class="hide">ออกจากระบบ</p>
+        <a class="navbar-brand" routerLink="/">
+          <img src="../../../assets/tcru-crop-removebg.png" height="47">
+          <label style="font-size: 16px;">&nbsp;&nbsp;หน้าหลัก</label>
+        </a>  
+        <span class="spacer"></span>
+          <a mat-list-item routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)" id="cart"><span class="material-icons">shopping_cart</span></a>
+          <p *ngIf="!(isHandset$ | async)" class="hide">ออกจากระบบ</p>
+        
+      </mat-toolbar>
+      <!-- Add Content Here -->
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -10,14 +10,39 @@
   background: inherit;
 }
 
-.mat-toolbar.mat-primary {
-  position: fixed;
+.bar{
+  /* position: fixed; */
   top: 0;
+  z-index: 10000;
+  overflow: hidden;
+  background: #f8f9fa;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  width: 100%;
+  height: 100%;
+  text-align: right;
+}
+
+.hide{
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.bar a {
+  padding: 10px;
+  color: #495057;
+}
+
+.mat-toolbar.mat-primary{
+  position: fixed;
+  /* top: 0; */
   z-index: 10000;
   overflow: visible;
   background: #f8f9fa;
   color: #495057;
-  border: 1px solid #dee2e6;
+  border: 2px solid #dee2e6;
   border-radius: 3px;
 }
 
@@ -34,7 +59,6 @@ mat-toolbar a {
   margin: 0 10px;
   color: #495057;
   text-decoration: none;
-  /* height: 100px; */
 }
 
 .icon {
@@ -49,3 +73,34 @@ mat-toolbar a {
   line-height:24px;
 }
 
+.example-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-is-mobile .example-toolbar {
+  position: fixed;
+  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+  z-index: 2;
+}
+
+h1.example-app-name {
+  margin-left: 8px;
+}
+
+.example-sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+.example-is-mobile .example-sidenav-container {
+  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+     `<body>` to be our scrolling element for mobile layouts. */
+  flex: 1 0 auto;
+}
