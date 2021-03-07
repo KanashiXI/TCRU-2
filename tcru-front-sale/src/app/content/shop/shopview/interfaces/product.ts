@@ -1,6 +1,7 @@
 export interface Product {
     // isChecked: unknown;
-    product_id: number;
+    checked: boolean;
+    product_id: Number;
     product_name: string;
     whale_price: string;
     capacity_id: number;
@@ -15,9 +16,9 @@ export interface Product {
     product_type?: string;
     count?: number;
     product_description?: string;
-    order_id?: string;
+    order_id?: Number;
     check?: boolean;
-    cart_id?: boolean;
+    cart_id?: Number;
     // product_id: number;
     // product_name: string;
     // retail_price: string;

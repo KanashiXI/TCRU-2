@@ -43,6 +43,7 @@ export class CartComponent implements OnInit {
   condition: number;
   gun: string;
   selectItem: Product[] = [];
+  tempSelect: Product[] = [];
   selectItemForDelete: Product[] = [];
   arr: any[] = [];
   value = 0;
@@ -93,12 +94,12 @@ export class CartComponent implements OnInit {
         });
         this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
           res => {
-            this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
+            this.cartService.deleteFromCart(this.selectItem).subscribe();
           }
 
         );
-        this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
-        this.ngOnInit()
+        // this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
+
       },
       error => {
 
@@ -112,12 +113,18 @@ export class CartComponent implements OnInit {
   }
 
   fetchSelectedItems() {
+    console.log()
     this.selectItem = this.productInCart.filter((value, index) => {
-      return value.cart_id;
+      return value.checked;
     });
-    this.selectItemForDelete = this.productInCart.filter((value, index) => {
-      return value.product_id;
-    });
+    // this.selectItemForDelete = this.productInCart.filter((value, index) => {
+    //   return value.product_id;
+    // });
+
+
+    // this.productInCart.map((obj) => {
+    //   this.selectItemForDelete.product_id;
+    // });
   }
 
   getCartPromotion() {

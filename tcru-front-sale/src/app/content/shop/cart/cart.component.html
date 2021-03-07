@@ -28,7 +28,7 @@
         <br>
         <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
           <div class="col-md-1" style="text-align: center; padding: 15px;" *ngIf="!(isHandset$ | async)">
-            <input type="checkbox" [(ngModel)]="cart.cart_id" (change)="changeSelection()">
+            <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()">
             <!-- [checked]="cart.checked" [(ngModel)]="cart.product_id" -->
           </div>
           <div class="col-md-2">
@@ -37,7 +37,7 @@
           <div class="col-md-4">
             <mat-card-title>
               <!-- [(ngModel)]="cart.product_id" -->
-              <input type="checkbox" [(ngModel)]="cart.cart_id" (change)="changeSelection()"
+              <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()"
                 *ngIf="(isHandset$ | async)">
               &nbsp;&nbsp;{{cart.product_name}}
             </mat-card-title>
@@ -88,7 +88,7 @@
             <div class="row">
               <div class="col-md-6" *ngIf="isGotPromotion == true">
                 <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
-                  </p>
+                </p>
               </div>
               <div class="col-md-6 rightside">
                 <p style="color: red;">-{{discount | currency :'฿':true}}</p>
