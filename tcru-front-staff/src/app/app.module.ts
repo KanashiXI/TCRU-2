@@ -82,6 +82,7 @@ import { EditStatusMaterialsComponent } from './OrderMaterials/edit-status-mater
 import { ShowPromotionComponent } from './TCRU/promotion/showPromotion/showPromotion.component';
 import { AddPromotionComponent } from './TCRU/promotion/addPromotion/addPromotion.component';
 import { EditPromotionComponent } from './TCRU/promotion/editPromotion/editPromotion.component';
+import { DeliveryStatusComponent } from './TCRU/deliveryStatus/deliveryStatus.component';
 
 const appRoutes: Routes = [
   {
@@ -157,6 +158,11 @@ const appRoutes: Routes = [
     path: 'editpromotion',
     component: EditPromotionComponent
   },
+  {
+    path: 'deliveryStatus',
+    component: DeliveryStatusComponent
+  },
+  
 ];
 
 @NgModule({
@@ -187,7 +193,8 @@ const appRoutes: Routes = [
     EditStatusMaterialsComponent,
     ShowPromotionComponent,
     AddPromotionComponent,
-    EditPromotionComponent
+    EditPromotionComponent,
+    DeliveryStatusComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
