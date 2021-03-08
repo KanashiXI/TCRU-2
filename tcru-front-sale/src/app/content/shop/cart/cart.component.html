@@ -1,77 +1,83 @@
-<br><br>
+<br>
 <div class="container">
-  <div class="row">
-    <!-- <div class="col-md-1"></div> -->
-    <div class="col-md-12">
-      <mat-card>
-        <div *ngIf="!(isHandset$ | async)">
-          <div class="row">
-            <div class="col-md-1" style="text-align: center;">
-              <p>เลือก</p>
+
+  <div [@fadeInOut] *ngIf="cartStatus == false && productInCart.length != 0">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-card>
+          <div *ngIf="!(isHandset$ | async)">
+            <div class="row">
+              <div class="col-md-1" style="text-align: center;">
+                <p>เลือก</p>
+              </div>
+              <div class="col-md-6">
+                <p>สินค้า</p>
+              </div>
+              <div class="col-md-3">
+                <p>จำนวนสินค้า(ชิ้น)</p>
+              </div>
+              <div class="col-md-2">
+                <p>ราคารวม(บาท)</p>
+              </div>
             </div>
-            <div class="col-md-6">
-              <p>สินค้า</p>
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+              </div>
             </div>
-            <div class="col-md-3">
-              <p>จำนวนสินค้า(ชิ้น)</p>
+          </div>
+          <br>
+          <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
+            <div class="col-md-1" style="text-align: center; padding: 15px;" *ngIf="!(isHandset$ | async)">
+              <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()">
+              <!-- [checked]="cart.checked" [(ngModel)]="cart.product_id" -->
             </div>
             <div class="col-md-2">
-              <p>ราคารวม(บาท)</p>
+              <img mat-card-image src="http://www.clinictech.ops.go.th/online/cmo/fileuser/340/images/05.jpg">
+            </div>
+            <div class="col-md-4">
+              <mat-card-title>
+                <!-- [(ngModel)]="cart.product_id" -->
+                <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()"
+                  *ngIf="(isHandset$ | async)">
+                &nbsp;&nbsp;{{cart.product_name}}
+              </mat-card-title>
+              <mat-card-subtitle>{{cart.product_description}}</mat-card-subtitle>
+            </div>
+            <div class="col-md-3">
+              <button mat-stroked-button (click)="handleMinus(cart)">
+                <span class="material-icons">
+                  remove
+                </span>
+              </button>
+              <mat-form-field appearance="outline">
+                <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" min="1">
+              </mat-form-field>
+              <button mat-stroked-button (click)="handlePlus(cart)">
+                <span class="material-icons">
+                  add
+                </span>
+              </button>
+            </div>
+            <div class="col-md-1">
+              <p>{{cart.retail_price}} ฿</p>
+            </div>
+            <div class="col-md-1" style="text-align: center;">
+              <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="remove(cart.cart_id)">
+                <span class="material-icons">delete</span>
+              </button>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <hr>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
-          <div class="col-md-1" style="text-align: center; padding: 15px;" *ngIf="!(isHandset$ | async)">
-            <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()">
-            <!-- [checked]="cart.checked" [(ngModel)]="cart.product_id" -->
-          </div>
-          <div class="col-md-2">
-            <img mat-card-image src="http://www.clinictech.ops.go.th/online/cmo/fileuser/340/images/05.jpg">
-          </div>
-          <div class="col-md-4">
-            <mat-card-title>
-              <!-- [(ngModel)]="cart.product_id" -->
-              <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()"
-                *ngIf="(isHandset$ | async)">
-              &nbsp;&nbsp;{{cart.product_name}}
-            </mat-card-title>
-            <mat-card-subtitle>{{cart.product_description}}</mat-card-subtitle>
-          </div>
-          <div class="col-md-3">
-            <button mat-stroked-button (click)="handleMinus(cart)">
-              <span class="material-icons">
-                remove
-              </span>
-            </button>
-            <mat-form-field appearance="outline">
-              <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" min="1">
-            </mat-form-field>
-            <button mat-stroked-button (click)="handlePlus(cart)">
-              <span class="material-icons">
-                add
-              </span>
-            </button>
-          </div>
-          <div class="col-md-1">
-            <p>{{cart.retail_price}} ฿</p>
-          </div>
-          <div class="col-md-1" style="text-align: center;">
-            <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="remove(cart.cart_id)">
-              <span class="material-icons">delete</span>
-            </button>
-          </div>
-        </div>
-      </mat-card>
+        </mat-card>
+      </div>
     </div>
   </div>
+
+
+
+
   <br>
-  <div class="row">
+  <div class="row" [@fadeInOut] *ngIf="cartStatus == false">
     <div class="col-md-12">
       <mat-card>
         <div class="row">
@@ -106,6 +112,7 @@
               <div class="col-md-12 rightside">
                 <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
                 <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
+                <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button>
               </div>
             </div>
           </div>
@@ -113,12 +120,68 @@
       </mat-card>
     </div>
   </div>
+
+  <br>
+  <div class="row" [@fadeInOut] *ngIf="cartStatus == true">
+    <div class="col-md-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-7">
+            <div class="row">
+              <div class="col-md-8">
+                <p>เลือกที่อยู่จัดส่งสินค้า</p>
+              </div>
+              <div class="col-md-4 rightside">
+                <p>{{totalPrice | currency :'฿':true}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6" *ngIf="isGotPromotion == true">
+                <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
+                </p>
+              </div>
+              <div class="col-md-6 rightside">
+                <p style="color: red;">-{{discount | currency :'฿':true}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <p><strong>ยอดสุทธิ</strong></p>
+              </div>
+              <div class="col-md-4 rightside">
+                <p><strong>{{cartTotal | currency :'฿':true}}</strong></p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 rightside">
+                <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
+                <button mat-raised-button color="primary" (click)="backstatusCart()">ยกเลิก</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
 </div>
 
-<div class="cart-page-content" *ngIf="productInCart.length == 0">
+
+
+
+<!-- <div class="cart-page-content" *ngIf="productInCart.length == 0">
   <h4>Your cart is empty.</h4>
   <a routerLink="/">Go shopping</a>
-</div>
+</div> -->
 
 
 

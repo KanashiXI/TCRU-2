@@ -76,5 +76,8 @@ export class ApiConstants {
     public static get deleteFromCartURL(): string {
         return '/api/deletefromcart';
     }
+    public static get editAddStatusURL(): string {
+        return '/api/editAddStatus';
+    }
 
 }

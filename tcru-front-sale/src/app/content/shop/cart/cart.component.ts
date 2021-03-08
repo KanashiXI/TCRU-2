@@ -11,12 +11,23 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import { style, state, animate, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({ opacity: 0 }),
+        animate(500, style({ opacity: 1 }))
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(500, style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class CartComponent implements OnInit {
   // dataSource: CartDataSource;
@@ -26,6 +37,8 @@ export class CartComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
+
+  cartStatus: boolean = false;
 
   checked: boolean = false;
   counter: number = 0;
@@ -66,6 +79,12 @@ export class CartComponent implements OnInit {
     this.createForm(requestData.customerUsername);
     this.queryCartProduct(requestData.customerUsername);
     this.getCartPromotion();
+  }
+  changestatusCart() {
+    this.cartStatus = true;
+  }
+  backstatusCart() {
+    this.cartStatus = false;
   }
 
   createForm(uId) {

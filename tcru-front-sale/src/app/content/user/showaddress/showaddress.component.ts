@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output  } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
 import { CustomerService } from 'src/app/shared/service/customer.service';
@@ -15,13 +15,29 @@ export class ShowaddressComponent implements OnInit {
 
   dataForm: Emloyeeinterface;
   errorMessage: String;
-  dataSource: Address[];
+  dataSource: Address[] = [];
   shippingAddressList: Address[];
+  radioSelected: number;
 
   constructor(
     private addressService: AddressService,
     private customerService: CustomerService,
   ) { }
+
+  handleRadio(i): void {
+    this.dataSource.forEach((item) => {
+      item.status = 0;
+    });
+    var x = i
+    this.dataSource[x].status = 1;
+    this.addressService.editStatusAddress(this.dataSource).subscribe();
+    // this.addressService.getShippingAddress(this.dataSource).subscribe()
+  }
+
+  // editAddressStatus() {
+  //   this.customerService.editStatusAddress().subscribe();
+  // }
+
 
   ngOnInit() {
     const requestData = {
@@ -38,6 +54,9 @@ export class ShowaddressComponent implements OnInit {
       error => this.errorMessage = <any>error
     )
   }
+
+
+
 
   getUserAddress(user_id) {
     this.addressService.getShippingAddress(user_id).subscribe(data => {
@@ -60,11 +79,11 @@ export class ShowaddressComponent implements OnInit {
           '',
           'success',
         )
-        this.ngOnInit() 
+        this.ngOnInit()
       } else if (result.dismiss === Swal.DismissReason.cancel) { }
-    }) 
+    })
   }
-  
+
   onClickSubmit(data) {
     this.addressService.nextMessage(data);
     localStorage.setItem("address_id", data);

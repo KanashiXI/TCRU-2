@@ -10,22 +10,36 @@
     </div>
   </div>
   <br><br> -->
+
   <div class="row" *ngFor="let item of dataSource; let i = index">
     <div class="col-md-12">
       <mat-card>
         <div class="row">
-          <div class="col-md-10 address-padding">
-            {{item.firstname}} {{item.lastname}}: {{item.address}} {{item.district_name}} {{item.amphure_name}}  {{item.province_name}}  {{item.postal_code}}     
+          <div class="col-md-1 address-padding">
+            <!-- <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+              [(ngModel)]="selectStatus"> -->
+            <input type="radio" value="{{i}}" [checked]="item.status == 1" (change)="handleRadio(i)">
+            {{item.status == 1 | json }}
+            <!-- </mat-radio-group> -->
+          </div>
+          <div class="col-md-9 address-padding">
+            ชื่อ: {{item.firstname}} {{item.lastname}} ที่อยู่: {{item.address}} {{item.district_name}}
+            {{item.amphure_name}}
+            {{item.province_name}} {{item.postal_code}}
           </div>
           <div class="col-md-1 btn-padding">
-            <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button>
+            <button mat-raised-button color="accent" class="btn-block" type="submit"
+              (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button>
           </div>
           <div class="col-md-1 btn-padding">
-            <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="onClickDelete(item.address_id)">ลบ</button>
+            <button mat-raised-button color="warn" class="btn-block" type="submit"
+              (click)="onClickDelete(item.address_id)">ลบ</button>
           </div>
         </div>
+
       </mat-card>
       <br>
+
     </div>
   </div>
 </div>

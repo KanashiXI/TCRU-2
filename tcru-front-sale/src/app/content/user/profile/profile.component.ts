@@ -21,12 +21,12 @@ export class ProfileComponent implements OnInit {
   setEmail: String;
   errorMessage: String;
   test: String;
-  ShowName_title: String
-  ShowFirstname: String
-  ShowLastname: String
-  ShowTelephone: String
-
+  ShowName_title: String;
+  ShowFirstname: String;
+  ShowLastname: String;
+  ShowTelephone: String;
   panelOpenState = false;
+
 
   constructor(
 
@@ -40,6 +40,10 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.checkCustomer();
+  }
+
+  openDialog() {
+
   }
 
   checkCustomer() {

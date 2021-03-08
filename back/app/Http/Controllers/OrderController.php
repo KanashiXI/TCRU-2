@@ -51,18 +51,12 @@ class OrderController extends Controller
     }
 
     public function deleteFromCart(Request $request){
-
         try {
             $ids_to_delete = array_map(function($item){ return $item['cart_id']; }, $request->all());
             DB::table('cart')->whereIn('cart_id', $ids_to_delete)->delete(); 
         }
         catch(\Exception $e){
-            
         }
-
-        
-
-        
     }
 
 
