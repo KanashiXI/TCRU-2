@@ -46,6 +46,7 @@ class OrderController extends Controller
         $edit->net_amount=$request->net_amount;
         $edit->request_tax=$request->request_tax;
         $edit->user_id=$request->user_id; 
+        $edit->address_id=$request->address_id; 
         $result = $edit->save(); 
         return response()->json(true,200);
     }
