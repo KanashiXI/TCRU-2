@@ -186,6 +186,9 @@ export class CartComponent implements OnInit {
   }
 
   handlePlus(cart) {
+    // if(cart.product_quantity < cart.stock){
+    //   กดเพิ่มได้
+    // }
     cart.product_quantity++;
     const oddRetail = Number(cart.retail_price);
     const sumRetail = Number(cart.price_per_piece) + oddRetail;

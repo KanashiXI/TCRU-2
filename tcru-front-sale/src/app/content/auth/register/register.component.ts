@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   dataForm: Emloyeeinterface;
 
-  constructor(    
+  constructor(
     private customerService: CustomerService,
     private http: HttpClient,
     private fb: FormBuilder,
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     private Jarwis: JarwisService,
     private Token: TokenService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.createForm();
@@ -66,18 +66,30 @@ export class RegisterComponent implements OnInit {
     } else {
       // const customer = this.reactiveForm.getRawValue();
       // this.customerService.postCustomer(customer).subscribe();
-
       this.Jarwis.signup(this.reactiveForm.getRawValue()).subscribe(
-        data => this.handleResponse(data),
+        data => {
+          this.handleResponse(data),
+            Swal.fire({
+              icon: 'success',
+              title: 'ลงทะเบียนเสร็จสิ้้น',
+              showConfirmButton: false,
+              timer: 2000
+            });
+          this.router.navigateByUrl('/login');
+
+        },
+        error => {
+          Swal.fire({
+            icon: 'error',
+            title: 'ลงทะเบียนไม่สำเร็จ',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
         // error => this.handleError(error)
       );
 
-      Swal.fire({
-        icon: 'success',
-        title: 'ลงทะเบียนเสร็จสิ้้น',
-        showConfirmButton: false,
-        timer: 2000
-      });
+
     }
     // console.log(this.reactiveForm.get('telephone').value)
 
@@ -98,7 +110,7 @@ export class RegisterComponent implements OnInit {
     // this.Jarwis.setRole(this.roleForm.getRawValue()).subscribe()
 
   }
-  
+
   get name_title() {
     return this.reactiveForm.get('name_title')
   }
