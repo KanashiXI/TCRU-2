@@ -1,1 +1,65 @@
-<p>showlot works!</p>
+<div class="content-wrapper" style="min-height: 1244.06px;">
+    <section class="content-header">
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row ">
+
+            <div class="form-group col-sm-4 ">
+            </div>
+            
+          </div>
+        </div><!-- /.container-fluid -->
+        
+      </section>
+
+      <div class="card card-success">
+        
+              <div class="card-header">
+                <h3 class="card-title">ล็อตวัตถุดิบ</h3>
+  
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+                </div>
+              </div>
+  
+            
+  
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <!-- <th>รหัสวัตถุดิบ</th> -->
+                      <th >Lot No.</th>
+                      <th >ชื่อสินค้า</th>
+                      <th >ชื่อพนักงาน</th>
+                      <th >นามสกุลพนักงาน</th>
+                      <th >วันที่ผลิต</th>
+                      <th >วันที่หมดอายุ</th>
+                      <th >จำนวนคงเหลือ</th>
+
+                      
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <!-- <li *ngFor="let mat of materialList"> -->
+  
+                  <tbody>
+                    <tr *ngFor="let mat of lotp  ">
+                      <td>{{mat.final_amount}}</td>
+                      <td>{{mat.name}}</td>
+                      <td class="text-right py-0 align-middle">
+                       
+                      </td>
+                    </tr>
+                  </tbody>
+                   
+  
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page"  aria-label="Default pagination" (pageChange)="getProduct()"></ngb-pagination>
+   -->
+          </section>
+    </div>

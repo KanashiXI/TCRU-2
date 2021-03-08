@@ -113,6 +113,10 @@ const appRoutes: Routes = [
     component: AddstockComponent 
   },
   { 
+    path: 'stockp', 
+    component: StockComponent 
+  },
+  { 
     path: 'addm', 
     component: AddmComponent 
   },
@@ -171,6 +175,10 @@ const appRoutes: Routes = [
   { 
     path: 'edits/:id', 
     component: EditsComponent 
+  },
+  { 
+    path: 'showlotp/:id', 
+    component: ShowlotComponent 
   },
 
   
