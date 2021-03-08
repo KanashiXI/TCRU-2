@@ -9,7 +9,8 @@ class material
 
     function getMaterial1($skip,$limit)
     {
-        $data=DB::table('material')->skip($skip)->take($limit)->get();
+        $data = DB::table('categorym')
+        ->rightJoin('material', 'categorym.id', '=', 'material.category_id')->skip($skip)->take($limit)->get();
         return $data;
     }
     function getTotalMaterial(){

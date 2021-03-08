@@ -2,14 +2,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\categoryP;
 
-use App\Models\category;
-class CategoryController extends Controller
+class CategorypController extends Controller
 {
     public function getcategory()
     {
          
-          $categoryModel=new category();
+          $categoryModel=new categoryP();
           $data=$categoryModel->getcategory();
           return response()->json($data);
     }

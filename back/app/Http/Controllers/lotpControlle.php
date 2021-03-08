@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\product;
 use App\Models\lotp;
 class lotpControlle extends Controller
 {
@@ -13,6 +13,13 @@ class lotpControlle extends Controller
             $data=$lotpModel->getlotp($product_id);
             return response()->json($data);
         
+    }
+    public function getlotp11(Request $request)
+    {
+        $product_id = $request->product_id;
+        $lotpModel=new lotp();
+        $data=$lotpModel->getlotp11($product_id);
+        return response()->json($data);
     }
     public function getlotp1()
     {
@@ -26,27 +33,13 @@ class lotpControlle extends Controller
         $lotpModel = new lotp();
         $data =  $lotpModel->addlotp($request->all());
     }
-    // public function getOnesupplier(Request $request)
-    // {
-    //     $id=$request->id;
-    //     $lotpModel = new lotp();
-    //     $data =  $lotpModel->getOnesupplier($id);
-    //     return response()->json($data); 
-    // }
-    // public function updatesupplier(Request $request, $id)
-    // {
-    //     $id=$request->id;
-    //     $lotpModel = new lotp();
-    //     $lotpModel->updatesupplier($id,$request->all());
-    //     return response()->json([ 'id' => $id]);
-    // }
-    // public function destroys(Request $request)
-    // {
-    //     $id=$request->id;
-    //     $lotpModel = new lotp();
-    //     $lotpModel->deletesupplier($id);
-    //     return response()->json([ 'id' => $id]);
-    // }
+    public function getOnelotp(Request $request)
+    {
+        $id=$request->product_id;
+        $productModel = new lotp();
+        $data =  $productModel->getOnelotp($id);
+        return response()->json($data); 
+    }
 
     
 

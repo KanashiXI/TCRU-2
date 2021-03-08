@@ -1,31 +1,27 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\categoryP;
 use Illuminate\Http\Request;
+
 use App\Models\product;
-use App\productType;
-use DB;
-class ProductController extends Controller
+class Product1Controller extends Controller
 {
 
-    function getProduct1(Request $request)
-    {
-         
-         
-          $skip = $request->skip;
-          $limit = $request->limit;
-          $productModel = new product();
-          $data =  $productModel->getProduct1($skip,$limit);
-          $totalCount = $productModel->getTotalProduct();
-          $response["data"] = $data;
-          $response["totalRecord"] = $totalCount;
-          return response()->json($response);
-    }
 
-    public function getProduct()
+    public function getProduct(Request $request)
     {
+        $skip = $request->skip;
+        $limit = $request->limit;
         $productModel = new product();
-        $data =  $productModel->getProduct();
-        return response()->json($data); 
+        $data =  $productModel->getProduct($skip,$limit);
+        $totalCount = $productModel->getTotalProduct();
+        $response["data"] = $data;
+        $response["totalRecord"] = $totalCount;
+        return response()->json($response);
+
+        // $productModel = new product();
+        // $data =  $productModel->getProduct();
+        // return response()->json($data); 
     }
 
     public function addProduct(Request $request)
