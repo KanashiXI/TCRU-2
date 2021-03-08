@@ -44,3 +44,8 @@ table {
 button {
     margin: 5px;
 }
+
+.panel-custom-width {
+    width: 100px !important;
+    max-width: unset !important;
+}

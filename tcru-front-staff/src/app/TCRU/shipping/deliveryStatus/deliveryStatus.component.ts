@@ -4,7 +4,7 @@ import { ShippingInterface } from './../../../interfaces/shippingInterface';
 import { ShippingService } from './../../../Service/shippingService.service';
 
 //dropdown status
-interface Status {
+interface status {
   value: string;
   viewValue: string;
 }
@@ -26,7 +26,7 @@ export class DeliveryStatusComponent implements OnInit {
   selectedStatus: string;
   // ------------
 
-  cars: Status[] = [
+  status: status[] = [
     {value: '1', viewValue: '---'},
     {value: '2', viewValue: 'รอจัดส่ง'},
     {value: '3', viewValue: 'จัดส่งเรียบร้อย'}

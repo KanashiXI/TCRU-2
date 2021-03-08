@@ -20,7 +20,6 @@ class ShippingController extends Controller {
             ->where('shipping.shipping_id', $request)
             ->groupBy('shipping.shipping_id')
             ->get(); 
-        // return response()->json($getall->toSql(),200); 
         return response()->json($getall,200); 
     }
 

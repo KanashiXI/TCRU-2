@@ -37,15 +37,24 @@
                         <td>{{item.estimate}}</td>
                         <td>{{item.price}}</td>
                         <td>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Favorite car</mat-label>
+                            <!-- <mat-form-field appearance="fill">
+                                <mat-label>สถานะจัดส่ง</mat-label>
                                 <select matNativeControl [(ngModel)]="selectedStatus" name="status">
                                     <option value="" selected></option>
-                                    <option *ngFor="let car of cars" [value]="car.value">
-                                        {{car.viewValue}}
+                                    <option *ngFor="let status of status" [value]="status.value">
+                                        {{status.viewValue}}
                                     </option>
                                 </select>
-                            </mat-form-field>
+                            </mat-form-field> -->
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>สถานะจัดส่ง</mat-label>
+                                <mat-select [(ngModel)]="selectedStatus" name="status" panelClass="panel-custom-width">
+                                  <mat-option *ngFor="let status of status" [value]="status.value">
+                                    {{status.viewValue}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
                         </td>
                         <td>
                             <button mat-raised-button type="submit" (click)="onClickDetail(item.shipping_id)" routerLink="/descriptionShipping">
