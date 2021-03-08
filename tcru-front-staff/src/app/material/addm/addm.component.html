@@ -5,9 +5,7 @@
         <div class="row ">
           <div class="col-sm-4 ">
             <a href="#" class="btn btn-success " [routerLink]="['/formm']"
-              routerLinkActive="router-link-active">เพิ่มวัตถุดิบ <i class="fas fa-arrow-circle "></i></a>
-          </div>
-          <div class="form-group col-sm-4 ">
+              routerLinkActive="router-link-active">เพิ่มวัตถุดิบ <mat-icon>add_circle_outline</mat-icon></a>
           </div>
           <div class="form-group col-sm-4 ">
             <input type="text" class="form-control" placeholder="ค้นหา..." [(ngModel)]="Search">
@@ -22,12 +20,8 @@
           <tr>
             <!-- <th>รหัสวัตถุดิบ</th> -->
             <th>รูปวัตถุดิบ</th>
-            <th>รหัสวัตถุดิบ</th>
             <th>ชื่อวัตถุดิบ</th>
-            <th>น้ำหนัก/หน่วย</th>
-            <th>ราคา/หน่วย</th>
             <th>ประเภทวัตถุดิบ</th>
-            <th></th>
           </tr>
         </thead>
         <!-- <li *ngFor="let mat of materialList"> -->
@@ -35,18 +29,14 @@
           <tr *ngFor="let mat of dataArr ">
             <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="100px">
             </td>
-            <td>{{mat.material_id}}</td>
             <td>{{mat.material_name}}</td>
-            <td>{{mat.weight}}</td>
-            <!-- <td>{{mat.price}}</td>
-            <td >{{mat.category_id}}</td> -->
+            <td>{{mat.name}}</td>
             <td class="text-right py-0 align-middle">
               <div class="btn-group btn-group-sm">
-                <button class="btn btn-info" routerLink="/editm/{{mat.material_id}}">
-                  <mat-icon class="mode_edit"></mat-icon>
+                <button class="btn btn-warning" routerLink="/editm/{{mat.material_id}}">
+                  <mat-icon>edit</mat-icon>
                 </button>
-                <button class="btn btn-danger" (click)="deleteMaterial(mat.material_id)"><i
-                    class="fas fa-trash"></i></button>
+                <button class="btn btn-danger" (click)="deleteMaterial(mat.material_id)"><mat-icon>delete_sweep</mat-icon></button>
                 <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
               </div>
             </td>

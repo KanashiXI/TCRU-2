@@ -1,31 +1,27 @@
 <?php
 namespace App\Http\Controllers;
+use App\Models\categoryP;
 use Illuminate\Http\Request;
+
 use App\Models\product;
-use App\productType;
-use DB;
-class ProductController extends Controller
+class Product1Controller extends Controller
 {
 
-    function getProduct1(Request $request)
-    {
-         
-         
-          $skip = $request->skip;
-          $limit = $request->limit;
-          $productModel = new product();
-          $data =  $productModel->getProduct1($skip,$limit);
-          $totalCount = $productModel->getTotalProduct();
-          $response["data"] = $data;
-          $response["totalRecord"] = $totalCount;
-          return response()->json($response);
-    }
 
-    public function getProduct()
+    public function getProduct(Request $request)
     {
+        $skip = $request->skip;
+        $limit = $request->limit;
         $productModel = new product();
-        $data =  $productModel->getProduct();
-        return response()->json($data); 
+        $data =  $productModel->getProduct($skip,$limit);
+        $totalCount = $productModel->getTotalProduct();
+        $response["data"] = $data;
+        $response["totalRecord"] = $totalCount;
+        return response()->json($response);
+
+        // $productModel = new product();
+        // $data =  $productModel->getProduct();
+        // return response()->json($data); 
     }
 
     public function addProduct(Request $request)
@@ -43,7 +39,7 @@ class ProductController extends Controller
 
     public function getOneProduct(Request $request)
     {
-        $id=$request->product_id;
+        $id=$request->id;
         $productModel = new product();
         $data =  $productModel->getOneProduct($id);
         return response()->json($data); 
@@ -51,7 +47,7 @@ class ProductController extends Controller
 
     public function updateProduct(Request $request, $id)
     {
-        $id=$request->product_id;
+        $id=$request->id;
         $productModel = new product();
         $productModel->updateProduct($id,$request->all());
         return response()->json([ 'id' => $id]);
@@ -59,7 +55,7 @@ class ProductController extends Controller
 
     public function destroyp(Request $request)
     {
-        $id=$request->product_id;
+        $id=$request->id;
         $productModel = new product();
         $productModel->deleteProduct($id);
         return response()->json([ 'id' => $id]);

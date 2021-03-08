@@ -44,11 +44,11 @@ export class ShowmaterialComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
-      material_id: ['', [Validators.required]],
+      // material_id: ['', [Validators.required]],
       material_name: ['', [Validators.required], uniquematerial_nameValidator(this.MeterialService)],
       weight: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      img: ['', [Validators.required]],
+      category_id: ['', [Validators.required]],
+      image: ['', [Validators.required]],
     });
   }
   getMeterial() {
@@ -75,9 +75,7 @@ export class ShowmaterialComponent implements OnInit {
   }
   insertData() {
     if (confirm('คุณต้องการเพิ่มข้อมูลหรือไม่ ?') === true) {
-      if (this.form.invalid) {
-        return;
-      } else {
+       {
         let formdata = new FormData();
         formdata.append("file", this.files, this.files.name);
         formdata.append("data", JSON.stringify(this.Materials));
@@ -103,7 +101,6 @@ export class ShowmaterialComponent implements OnInit {
 
   imageUpload(event) {
     this.files = event.target.files[0];
-    console.log(this.files)
   }
   get material_name() {
     return this.form.get('material_name')
@@ -114,11 +111,11 @@ export class ShowmaterialComponent implements OnInit {
   get material_id() {
     return this.form.get('material_id')
   }
-  get price() {
-    return this.form.get('price')
+  get category_id() {
+    return this.form.get('category_id')
   }
-  get img() {
-    return this.form.get('img')
+  get image() {
+    return this.form.get('image')
   }
 
 

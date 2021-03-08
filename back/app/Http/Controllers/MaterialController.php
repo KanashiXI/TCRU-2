@@ -20,8 +20,6 @@ class MaterialController extends Controller
           $response["totalRecord"] = $totalCount;
           return response()->json($response);
     }
-
-
     public function getMaterial()
     {
         $materialModel = new material();
@@ -51,6 +49,7 @@ class MaterialController extends Controller
 
     public function updateMaterial(Request $request, $id)
     {
+        
         $id=$request->material_id;
         $materialModel = new material();
         $materialModel->updateMaterial($id,$request->all());
@@ -63,6 +62,12 @@ class MaterialController extends Controller
         $materialModel = new material();
         $materialModel->deleteMaterial($id);
         return response()->json([ 'id' => $id]);
+    }
+    public function getByname($request)
+    { 
+        $materialModel = new material();
+        $data =  $materialModel->getByname();
+        return response()->json($data); 
     }
 
 }

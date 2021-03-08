@@ -30,7 +30,7 @@ export class AddsComponent implements OnInit {
     this.form = this.fb.group({
       // id: ['', [Validators.required]],
       supplier_name: ['', [Validators.required]],
-      supplier_surname: ['', [Validators.required]],
+      // supplier_surname: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required]],
       address: ['', [Validators.required]],
@@ -65,9 +65,9 @@ export class AddsComponent implements OnInit {
   get supplier_name() {
     return this.form.get('supplier_name')
   }
-  get supplier_surname() {
-    return this.form.get('supplier_surname')
-  }
+  // get supplier_surname() {
+  //   return this.form.get('supplier_surname')
+  // }
   get phone() {
     return this.form.get('phone')
   }

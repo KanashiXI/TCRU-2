@@ -1,0 +1,78 @@
+<div class="main-container" style=" height:90vh;">
+  <div class="row">
+      <div class="col-sm-8">
+          <div class="example-button-row">
+              <button mat-stroked-button routerLink="/">เพิ่มรายการจัดส่ง</button>
+          </div>
+      </div>
+      <div class="col-sm-3">
+          <input type="text" class="form-control" placeholder="Search...">
+      </div>
+
+  </div>
+
+  <div class="card card-success" style="margin-top: 50px; margin-right: 90px;">
+      <div class="card-header">
+          <h3 class="card-title">รายการจัดส่งสินค้า</h3>
+      </div>
+      <div class="card-body">
+          <table class="table" id="excel-table">
+              <thead>
+                  <tr>
+                        <th>number</th>
+                        <th>order_id</th>
+                        <th>send_date</th>
+                        <th>estimate</th>
+                        <th>price</th>
+                        <th>status</th>
+                        <th></th>
+                  </tr>
+              </thead>
+
+              <tbody>
+                  <tr *ngFor="let item of dataSource; let i = index">
+                        <td>{{item.number}}</td>
+                        <td>{{item.order_id}}</td>
+                        <td>{{item.send_date}}</td>
+                        <td>{{item.estimate}}</td>
+                        <td>{{item.price}}</td>
+                        <td>
+                            <!-- <mat-form-field appearance="fill">
+                                <mat-label>สถานะจัดส่ง</mat-label>
+                                <select matNativeControl [(ngModel)]="selectedStatus" name="status">
+                                    <option value="" selected></option>
+                                    <option *ngFor="let status of status" [value]="status.value">
+                                        {{status.viewValue}}
+                                    </option>
+                                </select>
+                            </mat-form-field> -->
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>สถานะจัดส่ง</mat-label>
+                                <mat-select [(ngModel)]="selectedStatus" name="status" panelClass="panel-custom-width">
+                                  <mat-option *ngFor="let status of status" [value]="status.value">
+                                    {{status.viewValue}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                        </td>
+                        <td>
+                            <button mat-raised-button type="submit" (click)="onClickDetail(item.shipping_id)" routerLink="/descriptionShipping">
+                                <span class="material-icons">description</span>
+                            </button>
+                            <!-- <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.promotion_id)" routerLink="/editpromotion">
+                                <span class="material-icons">create</span>
+                            </button> -->
+                            <!-- <button mat-raised-button color="warn" (click)="onClickDelete(item.promotion_id)">
+                                <span class="material-icons">delete</span>
+                            </button> -->
+                        </td>
+                  </tr>
+              </tbody>
+          </table>
+
+      </div>
+
+  </div>
+  <!-- <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination" (pageChange)="getCustomers()"></ngb-pagination> -->
+</div>

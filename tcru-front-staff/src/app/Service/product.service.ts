@@ -15,7 +15,7 @@ export class ProductService {
    return this.httpClient.post('http://localhost:5000/api/product1',data);
   }
   getcategory(){
-    return this.httpClient.get('http://localhost:5000/api/category');
+    return this.httpClient.get('http://localhost:5000/api/categoryp');
    }
 
   addProductData(data)

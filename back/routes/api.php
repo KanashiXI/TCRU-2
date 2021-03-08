@@ -70,6 +70,13 @@ Route::group([
     Route::post('cartcheckout','OrderController@createOrder');
     Route::post('order','OrderController@fillOrder');
     Route::post('deletefromcart','OrderController@deleteFromCart');
+    Route::get('getOrder','OrderController@getOrder');
+
+    //จัดส่งสินค้า
+    Route::get('getShippingOrder','ShippingController@getShippingOrder');
+    Route::get('getOneShipping/{shipping_id}', 'ShippingController@getOneShipping');
+    Route::get('getShipping/{a}', 'ShippingController@getDetailShipping');
+
 
         // โปรโมชัน
     Route::get('promotion','PromotionController@getPromotion'); // all promotion
@@ -80,28 +87,33 @@ Route::group([
     Route::get('cartpromotion','PromotionController@getCartPromotion'); //promotion in cart
     
 
-    Route::post('/material','MaterialController@addMaterial');
-    Route::post('/material1','MaterialController@getMaterial1');
-    Route::delete('/delete/{material_id}','MaterialController@destroy');
-    Route::PATCH('/update/{material_id}','MaterialController@updateMaterial');
-    Route::get('/getMaterial/{material_id}','MaterialController@getOneMaterial');
-    Route::get('getByname/{material_name}','nameController@getByname');
+        // วัตถุดิบ
+        Route::post('/material','MaterialController@addMaterial');
+        // แสดงวัตถุดิบ+ประเภท
+        Route::post('/material1','MaterialController@getMaterial1');
+        Route::delete('/delete/{material_id}','MaterialController@destroy');
+        Route::PATCH('/update/{material_id}','MaterialController@updateMaterial');
+        Route::get('/getMaterial/{material_id}','MaterialController@getOneMaterial');
+        Route::get('getByname/{material_name}','nameController@getByname');
+        // แสดงประเภทไว้เพิ่มข้อมูลวัตถุดิบ
+        Route::get('/categorym','CategoryController@getcategory');
+        
+        Route::get('/categoryp', 'CategorypController@getcategory');
+        Route::post('/product','Product1Controller@addProduct');
+        Route::get('/product','Product1Controller@getProduct');
+        Route::post('/product1','Product1Controller@getProduct');
+        Route::delete('/delete1/{id}','Product1Controller@destroyp');
+        Route::PATCH('/update1/{id}','Product1Controller@updateProduct');
+        Route::get('/getproduct1/{id}','Product1Controller@getOneProduct');
     
-    Route::get('/categoryp', 'CategorypController@getcategory');
-    Route::post('/product','ProductController@addProduct');
-    Route::get('/product','ProductController@getProduct');
-    Route::post('/product1','ProductController@getProduct1');
-    Route::delete('/delete1/{id}','ProductController@destroyp');
-    Route::PATCH('/update1/{id}','ProductController@updateProduct');
-    Route::get('/getproduct1/{id}','ProductController@getOneProduct');
-
-
-    Route::get('/supplier11','supplierController@getsupplier1');
-    Route::post('/supplier','supplierController@addsupplier');
-    Route::post('/supplier1','supplierController@getsupplier');
-    Route::delete('/delete1/{id}','SupplierController@destroys');
-    Route::PATCH('/update1/{id}','supplierController@updatesupplier');
-    Route::get('/getsupplier1/{id}','supplierController@getOnesupplier');
+    
+        Route::get('/supplier11','supplierController@getsupplier1');
+        Route::post('/supplier','supplierController@addsupplier');
+        Route::post('/supplier1','supplierController@getsupplier');
+        Route::delete('/delete1/{id}','SupplierController@destroys');
+        Route::PATCH('/supplierupdate1/{id}','supplierController@updatesupplier');
+        Route::get('/getsupplier1/{id}','supplierController@getOnesupplier');
+    
 
     Route::get('/lotp','lotpControlle@getlotp');
     Route::post('/lotp','lotpControlle@addlotp');

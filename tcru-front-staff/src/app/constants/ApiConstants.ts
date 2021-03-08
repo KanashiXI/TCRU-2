@@ -21,4 +21,12 @@ export class ApiConstants {
     public static get getOnePromotionURL(): string {
         return '/api/onePromotion';
     }
+
+    public static get getShippingOrderURL(): string {
+        return '/api/getShippingOrder';
+    }
+
+    public static get getOneShippingURL(): string {
+        return '/api/getOneShipping';
+    }
 }

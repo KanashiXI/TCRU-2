@@ -59,7 +59,7 @@ class AddressController extends Controller
             ->where('address.user_id', $request)
             ->groupBy('address.address_id')
             ->get(); 
-        return response()->json($getall,200); 
+            return response()->json($getall,200); 
     }
 
     public function getOneShippingAddress($request)

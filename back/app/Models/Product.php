@@ -16,10 +16,19 @@ class Product
         $data=DB::table('product')->get()->count();
         return $data;
     }
-    function getProduct()
+    function getProduct($skip,$limit)
     {
-        $data = DB::table("product")->get();
-        return $data;
+        // $data = DB::table("product")->crossJoin('categoryp')->get();
+        //     return $data;
+
+            $data = DB::table('categoryp')
+            ->rightJoin('product', 'categoryp.id', '=', 'product.category_id')->skip($skip)->take($limit)->get();
+            return $data;
+
+            // $users = DB::table('categoryp')
+            // ->join('product', 'categoryp.id', '=', 'product.category_id')
+            // ->select('product.*', 'categoryp.name')
+            // ->get();
     }
     function addProduct($data)
     {

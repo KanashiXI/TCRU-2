@@ -1,8 +1,9 @@
 export class Material {
     material_id: string;
     material_name: string;
+    name: string;
     weight: number;
     price: number;
-    img: string;
+    image: string;
     category_id: any="";
 }

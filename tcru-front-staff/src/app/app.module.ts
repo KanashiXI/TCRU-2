@@ -68,6 +68,7 @@ import { CustomersComponent } from './TCRU/customers/customers.component';
 import { ReportComponent } from './TCRU/report/report.component';
 import { ShowsComponent } from './supplier/shows/shows.component';
 import { AddsComponent } from './supplier/adds/adds.component';
+import { EditsComponent } from './supplier/edits/edits.component';
 import { AddstockComponent } from './stockm/addstock/addstock.component';
 import { AddmComponent } from './material/addm/addm.component';
 import { ShowmaterialComponent } from './material/showmaterial/showmaterial.component';
@@ -82,7 +83,8 @@ import { EditStatusMaterialsComponent } from './OrderMaterials/edit-status-mater
 import { ShowPromotionComponent } from './TCRU/promotion/showPromotion/showPromotion.component';
 import { AddPromotionComponent } from './TCRU/promotion/addPromotion/addPromotion.component';
 import { EditPromotionComponent } from './TCRU/promotion/editPromotion/editPromotion.component';
-import { DeliveryStatusComponent } from './TCRU/deliveryStatus/deliveryStatus.component';
+import { DeliveryStatusComponent } from './TCRU/shipping/deliveryStatus/deliveryStatus.component';
+import { DescriptionShippingComponent } from './TCRU/shipping/descriptionShipping/descriptionShipping.component';
 
 const appRoutes: Routes = [
   {
@@ -162,6 +164,15 @@ const appRoutes: Routes = [
     path: 'deliveryStatus',
     component: DeliveryStatusComponent
   },
+  {
+    path: 'descriptionShipping',
+    component: DescriptionShippingComponent
+  },
+  { 
+    path: 'edits/:id', 
+    component: EditsComponent 
+  },
+
   
 ];
 
@@ -194,7 +205,9 @@ const appRoutes: Routes = [
     ShowPromotionComponent,
     AddPromotionComponent,
     EditPromotionComponent,
-    DeliveryStatusComponent
+    DeliveryStatusComponent,
+    DescriptionShippingComponent,
+    EditsComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
