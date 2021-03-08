@@ -49,8 +49,7 @@ export class AddmComponent {
     }
     var requestObj = {
            'limit': this.limit,
-           'skip':  this.skip
-           
+           'skip':  this.skip  
     }
     this.MeterialService.getData1(requestObj).subscribe((res:any)=>{
       this.spinner.hide();

@@ -1,43 +1,35 @@
-<div class="content-wrapper" style="min-height: 1244.04px;">
-    
-      
+<div class="main-container" style=" height:200vh;">
+    <h5 class="card-title">แก้ไขข้อมูลวัตถุดิบ</h5>
+      <div class="card card-warning">
     <section class="content-header">
-        <div class="card card-warning">
-            <div class="card-header">
-                <h3 class="card-title">แก้ไขข้อมูลวัตถุดิบ</h3>
-            </div>
+        
+              
+           
             <!-- /.card-header -->
             <div class="card-body">
-                <form (ngSubmit)="editMaterial()">
+                <form [formGroup]=form (ngSubmit)="editMaterial()">
                     <div class="row">
 
-                    
-                        <div class="col-sm-4">
+                        <div class="col-sm-6">
                             <!-- text input -->
                             <div class="form-group">
                                 <label>ชื่อวัตถุดิบ</label>
-                                <input name="material_name" type="text" class="form-control"[(ngModel)] ="Materials.material_name"  >
+                                <input formControlName="material_name" type="text" class="form-control"[(ngModel)] ="Materials.material_name"  >
                             </div>
                         </div>
-                        <!-- <div class="col-sm-4">
+                      <div class="col-sm-6">
+                        <div class="form-group">
                           <div class="form-group">
-                              <label>ชื่อวัตถุดิบ</label>
-                              <input name="category_id" type="text" class="form-control"[(ngModel)] ="Materials.category_id"  >
+                            <label>ประเภทวัตถุดิบ</label>
+                            <select class="form-control" formControlName="category_id" [(ngModel)]="Materials.category_id">
+                              <option value="">ประเภทวัตถุดิบ</option>
+                              <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+                            </select>
+              
                           </div>
-                      </div> -->
-                        <div class="col-sm-4">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>น้ำหนัก</label>
-                                <input name="weight" type="text" class="form-control"[(ngModel)] ="Materials.weight" >
-                            </div>
                         </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>ราคา/หน่วย</label>
-                                <input name="price" type="text" class="form-control"[(ngModel)] ="Materials.price"  >
-                            </div>
-                        </div>
+                      </div>
+                
                         
                     </div>
                     <div class="form-group">
@@ -58,6 +50,6 @@
                 </form>
             </div>
             <!-- /.card-body -->
-        </div>
-    </section>
+        
+    </section></div>
 </div>

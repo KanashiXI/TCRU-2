@@ -24,9 +24,8 @@ export class MeterialserviceService {
    return this.httpClient.post('http://localhost:5000/api/material1',data);
   }
   getcategory(){
-    return this.httpClient.get('http://localhost:5000/api/category');
+    return this.httpClient.get('http://localhost:5000/api/categorym');
    }
-
   addMaterialtData(data)
   {
    return this.httpClient.post('http://localhost:5000/api/material',data);

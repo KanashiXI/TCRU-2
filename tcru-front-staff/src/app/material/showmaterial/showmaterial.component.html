@@ -8,8 +8,8 @@
       <form [formGroup]=form (ngSubmit)="insertData()">
         <!-- <form [FormGroup]="form" > -->
           <div class="row">
-        <div class="col-sm-4">
-          <!-- text input -->
+        <!-- <div class="col-sm-4">
+          
           <div class="form-group">
             <label>รหัสวัตถุดิบ</label>
             <input type="text" class="form-control" formControlName="material_id" [(ngModel)]="Materials.material_id">
@@ -27,7 +27,7 @@
 
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="col-sm-4">
           <!-- text input -->
           <div class="form-group">
@@ -63,6 +63,21 @@
           </div>
         </div>
         <div class="col-sm-4">
+          <!-- text input -->
+          <div class="form-group">
+            <label>รูปวัตถุดิบ</label>
+            <input type="file" class="form-control" formControlName="image" (change)="imageUpload($event)">
+            <div *ngIf="image.invalid && (image.dirty || image.touched)" class="text-error">
+
+              <div *ngIf="image.errors.required">
+                กรุณาใส่รูปภาพ
+              </div>
+             
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-4">
           <div class="form-group">
             <label>น้ำหนัก</label>
             <input formControlName="weight" type="text" class="form-control"pattern="[0-9]" [(ngModel)]="Materials.weight">
@@ -77,8 +92,8 @@
 
             </div>
           </div>
-        </div>
-        <div class="col-sm-4">
+        </div> -->
+        <!-- <div class="col-sm-4">
           <div class="form-group">
             <label>ราคา/หน่วย</label>
             <input formControlName="price" type="text" class="form-control"pattern="[0-9]" [(ngModel)]="Materials.price">
@@ -93,8 +108,8 @@
 
             </div>
           </div>
-        </div>
-        <div class="col-sm-4">
+        </div> -->
+        <!-- <div class="col-sm-4">
           <div class="form-group">
             <div class="form-group">
               <label>หน่วยนับ</label>
@@ -105,7 +120,7 @@
 
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- <div class="col-sm-4">
           <div class="form-group">
@@ -118,23 +133,7 @@
               </div>
           </div>
         </div> -->
-        <div class="col-sm-4">
-          <!-- text input -->
-          <div class="form-group">
-            <label>รูปวัตถุดิบ</label>
-            <input type="file" class="form-control" formControlName="img" (change)="imageUpload($event)">
-            <div *ngIf="img.invalid && (img.dirty || img.touched)" class="text-error">
 
-              <div *ngIf="img.errors.required">
-                กรุณาใส่รูปภาพ
-              </div>
-              <div *ngIf="img.errors.pattern">
-                กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
-              </div>
-
-            </div>
-          </div>
-        </div>
 
         <div class="form-group">
 
