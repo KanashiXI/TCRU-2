@@ -1,3 +1,4 @@
+
 export class product {
     product_id: string;
     product_name: string;
@@ -6,4 +7,6 @@ export class product {
     weight: number;
     Detail:Text;
     category_id:string;
+    expire: number;
+    price:String;
 }

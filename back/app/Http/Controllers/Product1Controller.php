@@ -39,7 +39,7 @@ class Product1Controller extends Controller
 
     public function getOneProduct(Request $request)
     {
-        $id=$request->product_id;
+        $id=$request->id;
         $productModel = new product();
         $data =  $productModel->getOneProduct($id);
         return response()->json($data); 
@@ -47,7 +47,7 @@ class Product1Controller extends Controller
 
     public function updateProduct(Request $request, $id)
     {
-        $id=$request->product_id;
+        $id=$request->id;
         $productModel = new product();
         $productModel->updateProduct($id,$request->all());
         return response()->json([ 'id' => $id]);
@@ -55,7 +55,7 @@ class Product1Controller extends Controller
 
     public function destroyp(Request $request)
     {
-        $id=$request->product_id;
+        $id=$request->id;
         $productModel = new product();
         $productModel->deleteProduct($id);
         return response()->json([ 'id' => $id]);

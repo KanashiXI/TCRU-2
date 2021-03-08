@@ -1,80 +1,107 @@
 <div class="content-wrapper" style="min-height: 1244.06px;">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>แก้ไขข้อมูลสินค้า</h1>
-          </div>
-          <div class="col-sm-6">
-  
-          </div>
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>แก้ไขข้อมูลสินค้า</h1>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-  
-    <!-- Main content -->
-    <section class="content-header">
-      <div class="card card-success">
-        <div class="card-header">
-          <h3 class="card-title">แก้ไขข้อมูลสินค้า</h3>
+        <div class="col-sm-6">
+
         </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-          <form (ngSubmit)="editProduct()">
-            <div class="row">
-  
-              <div class="col-sm-4">
-                <!-- text input -->
-                <div class="form-group">
-                  <label>ชื่อสินค้า</label>
-                  <input name="product_name" type="text" class="form-control" [(ngModel)]="product.product_name">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <!-- text input -->
-                <div class="form-group">
-                  <label>ราคาขายปลีก</label>
-                  <input name="retail" type="text" class="form-control" [(ngModel)]="product.retail">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label>ราคาขายส่ง</label>
-                  <input name="wholesale" type="text" class="form-control" [(ngModel)]="product.wholesale">
-                </div>
-              </div>
-              <div class="col-sm-4">
-                <div class="form-group">
-                  <label>น้ำหนักสินค้า</label>
-                  <input name="weight" type="text" class="form-control" [(ngModel)]="product.weight">
-                </div>
-              </div>
-    
-            <div class="col-sm-4">
-                <!-- textarea -->
-                <div class="form-group">
-                  <label>รายละเอียดของสินค้า</label>
-                  <textarea class="form-control" rows="3"name="Detail"  [(ngModel)]="product.Detail"></textarea>
-                </div>
-              </div>
-          </div>
-            <div class="form-group">
-              <td>
-                <button class="btn btn-block btn-success ">ยืนยัน</button>
-              </td>
-              <td>
-                <button class="btn btn-block  " routerLink="/showp"> กลับ</button>
-              </td>
-            </div>
-  
-  
-  
-  
-          </form>
-        </div>
-        <!-- /.card-body -->
       </div>
-    </section>
-  </div>
-  }
+    </div><!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content-header">
+    <div class="card card-success">
+      <div class="card-header">
+        <h3 class="card-title">แก้ไขข้อมูลสินค้า</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <form [formGroup]=form (ngSubmit)="editProduct()">
+          <div class="row">
+
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <label>ชื่อสินค้า :</label>
+                <input formControlName="product_name" type="text" class="form-control"
+                  [(ngModel)]="product.product_name">
+                <div *ngIf="product_name.invalid && (product_name.dirty || product_name.touched)" class="text-error">
+
+                  <div *ngIf="product_name.errors.required">
+                    กรุณากรอกชื่อสินค้า
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>ราคาสินค้า :</label>
+                <input formControlName="weight" type="text" class="form-control" [(ngModel)]="product.price">
+              </div>
+            </div>
+         
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>น้ำหนักสินค้า :</label>
+                <input formControlName="weight" type="text" class="form-control" [(ngModel)]="product.weight">
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="form-group">
+                  <label>ประเภทสินค้า :</label>
+                  <select class="form-control" formControlName="category_id" [(ngModel)]="product.category_id">
+                    <option value="">ประเภทสินค้า</option>
+                    <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+                  </select>
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>รายละเอียดของสินค้า :</label>
+                <textarea class="form-control" rows="3" formControlName="Detail" [(ngModel)]="product.Detail"
+                  placeholder="Enter ..."></textarea>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label>จำนวนวันที่เก็บรักษา :</label>
+                <input formControlName="expire" type="number" class="form-control"[(ngModel)]="product.expire" >
+              </div>
+            </div>
+            
+            
+
+           
+
+
+          </div>
+          <div class="form-group">
+            <td>
+              <button class="btn btn-block btn-success ">ยืนยัน</button>
+            </td>
+            <td>
+              <button class="btn btn-block  " routerLink="/showp"> กลับ</button>
+            </td>
+          </div>
+
+
+
+
+        </form>
+      </div>
+      <!-- /.card-body -->
+    </div>
+  </section>
+</div>
+}
