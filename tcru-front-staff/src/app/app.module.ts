@@ -68,6 +68,7 @@ import { CustomersComponent } from './TCRU/customers/customers.component';
 import { ReportComponent } from './TCRU/report/report.component';
 import { ShowsComponent } from './supplier/shows/shows.component';
 import { AddsComponent } from './supplier/adds/adds.component';
+import { EditsComponent } from './supplier/edits/edits.component';
 import { AddstockComponent } from './stockm/addstock/addstock.component';
 import { AddmComponent } from './material/addm/addm.component';
 import { ShowmaterialComponent } from './material/showmaterial/showmaterial.component';
@@ -167,6 +168,11 @@ const appRoutes: Routes = [
     path: 'descriptionShipping',
     component: DescriptionShippingComponent
   },
+  { 
+    path: 'edits/:id', 
+    component: EditsComponent 
+  },
+
   
 ];
 
@@ -200,7 +206,8 @@ const appRoutes: Routes = [
     AddPromotionComponent,
     EditPromotionComponent,
     DeliveryStatusComponent,
-    DescriptionShippingComponent
+    DescriptionShippingComponent,
+    EditsComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [

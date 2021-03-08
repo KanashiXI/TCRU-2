@@ -15,9 +15,6 @@ export class SupplierService {
   {
    return this.httpClient.post('http://localhost:5000/api/supplier',data);
   }
-  // getcategory(){
-  //   return this.httpClient.get('http://localhost:5000/api/category');
-  //  }
 
   addsupplier(data)
   {
@@ -33,6 +30,6 @@ export class SupplierService {
 
    editsupplier(id,data)
    {
-    return this.httpClient.patch('http://localhost:5000/api/update1/'+id,data);
+    return this.httpClient.patch('http://localhost:5000/api/supplierupdate1/'+id,data);
    }
 }

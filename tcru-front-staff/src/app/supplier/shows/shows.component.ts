@@ -1,61 +1,59 @@
-
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import { SupplierService } from '../../service/supplier.service';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { supplier } from 'src/app/models/supplier.model';
+import { ToastrService } from 'ngx-toastr';
+import { SupplierService } from 'src/app/service/supplier.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
-}
-
-/**
- * @title Data table with sorting, pagination, and filtering.
- */
 @Component({
   selector: 'app-shows',
   templateUrl: './shows.component.html',
   styleUrls: ['./shows.component.css']
 })
-export class ShowsComponent implements AfterViewInit {
+export class ShowsComponent implements OnInit {
 
   dataArr: any;
+  files: any;
+  id: any;
+  supplier=new supplier();
+  date: any;
+  categoryArr:any;
+  page:any = 1;
+  limit: any = 5;
+  skip: any;
+  totalCount: any;
+  constructor(private fb: FormBuilder, 
+              private http: HttpClient, 
+              private toastr: ToastrService,
+              private SupplierService: SupplierService,
+              private route:ActivatedRoute,
+              private spinner: NgxSpinnerService,
+              ) { }
 
-  constructor(private http: HttpClient,
-    private SupplierService: SupplierService,) {
-
-  }
-  displayedColumns: string[] = ['id', 'supplier_name', 'supplier_surname', 'store_name', 'email', 'phone', 'address'];
-  dataSource: MatTableDataSource<UserData>;
-
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  getMeterial()
-  {
-
-    this.SupplierService.getData().subscribe(res=>{
-      this.dataArr=res;
-
-    })
-  }
-}
+              ngOnInit(): void {
+                this.getData();
+              }
+              getData()
+              {
+                this.SupplierService.getData().subscribe(res=>{
+                  this.spinner.hide();
+                  this.dataArr=res;
+                })
+              }
+            
+              deletesupplier(id){
+                if (confirm('คุณต้องการลบหรือไม่ ?') === true)
+                this.SupplierService.deletesupplier(id).subscribe(result => {
+                  this.getData();
+                  this.spinner.show();
+                  this.toastr.success('ลบข้อมูลร้านค้าสำเร็จ!'); 
+                },
+                err => {
+                this.toastr.error('ลบล้มข้อมูลร้านค้าล้มเหลว!');
+                this.spinner.show();
+                console.log(err);
+                });
+            }   
+            }
