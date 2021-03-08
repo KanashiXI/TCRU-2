@@ -92,12 +92,14 @@
               </div>
             </div>
             <div class="row">
-              <div class="col-md-6" *ngIf="isGotPromotion == true">
-                <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
-                </p>
-              </div>
-              <div class="col-md-6 rightside">
-                <p style="color: red;">-{{discount | currency :'฿':true}}</p>
+              <div *ngIf="isGotPromotion == true">
+                <div class="col-md-6">
+                  <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
+                  </p>
+                </div>
+                <div class="col-md-6 rightside">
+                  <p style="color: red;">-{{discount | currency :'฿':true}}</p>
+                </div>
               </div>
             </div>
             <div class="row">
@@ -121,46 +123,23 @@
     </div>
   </div>
 
+
+
+
+
   <br>
-  <div class="row" [@fadeInOut] *ngIf="cartStatus == true">
+  <!-- *ngIf="cartStatus == true" -->
+  <div class="row" [@fadeInOut]>
     <div class="col-md-12">
       <mat-card>
         <div class="row">
           <div class="col-md-3"></div>
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-8">
-                <p>เลือกที่อยู่จัดส่งสินค้า</p>
-              </div>
-              <div class="col-md-4 rightside">
-                <p>{{totalPrice | currency :'฿':true}}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6" *ngIf="isGotPromotion == true">
-                <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
-                </p>
-              </div>
-              <div class="col-md-6 rightside">
-                <p style="color: red;">-{{discount | currency :'฿':true}}</p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-8">
-                <p><strong>ยอดสุทธิ</strong></p>
-              </div>
-              <div class="col-md-4 rightside">
-                <p><strong>{{cartTotal | currency :'฿':true}}</strong></p>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 rightside">
-                <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
-                <button mat-raised-button color="primary" (click)="backstatusCart()">ยกเลิก</button>
 
-              </div>
-            </div>
+          <div class="col-md-7">
+            ที่อยู่จัดส่ง: {{dataSource | json}}
+            <button mat-raised-button color="primary" (click)="backstatusCart()">แก้ไข</button>
           </div>
+
         </div>
       </mat-card>
     </div>

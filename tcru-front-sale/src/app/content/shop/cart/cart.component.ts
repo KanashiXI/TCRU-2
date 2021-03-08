@@ -12,6 +12,9 @@ import { map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { style, state, animate, transition, trigger } from '@angular/animations';
+import { Address } from '../../user/addaddress/interfaces/address';
+import { AddressService } from '../../user/addaddress/services/address.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -63,7 +66,12 @@ export class CartComponent implements OnInit {
   reactiveForm: FormGroup;
   dataForm: Product;
   step: Number = 1;
+  shippingAddressList: Address[] = [];
+  dataSource: Address[] = [];
+
   constructor(
+    private router: Router,
+    private addressService: AddressService,
     private breakpointObserver: BreakpointObserver,
     private cartService: CartService,
     private fb: FormBuilder,
@@ -75,16 +83,37 @@ export class CartComponent implements OnInit {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
     }
+    this.getUserAddress(requestData.customerUsername)
     // customerUsername: localStorage.getItem('user_id'),
     this.createForm(requestData.customerUsername);
     this.queryCartProduct(requestData.customerUsername);
     this.getCartPromotion();
   }
+
+  getUserAddress(user_id) {
+    this.addressService.getShippingAddress(user_id).subscribe(data => {
+      this.shippingAddressList = data;
+      this.filterAdd();
+    });
+  }
+
+  filterAdd() {
+    this.dataSource = this.shippingAddressList.filter((value, index) => {
+      return value.status == 1;
+    });
+
+    this.reactiveForm.patchValue({
+      address_id: this.dataSource[0].address_id,
+    })
+
+  }
+
   changestatusCart() {
     this.cartStatus = true;
   }
   backstatusCart() {
-    this.cartStatus = false;
+    // this.cartStatus = false;
+    // this.router.navigateByUrl('');
   }
 
   createForm(uId) {
@@ -96,6 +125,7 @@ export class CartComponent implements OnInit {
       promotion_id: ['',],
       discount: ['',],
       request_tax: ['',],
+      address_id: [''],
     })
     this.reactiveForm.patchValue({
       user_id: uId,
@@ -110,6 +140,7 @@ export class CartComponent implements OnInit {
         this.dataForm = res;
         this.reactiveForm.patchValue({
           order_id: this.dataForm,
+
         });
         this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
           res => {
