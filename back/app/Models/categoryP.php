@@ -8,7 +8,7 @@ class categoryP
 {
     function getcategory()
     {
-        $data = DB::table("categorymaterial")->get();
+        $data = DB::table("categoryp")->get();
         return $data;
     }
     
