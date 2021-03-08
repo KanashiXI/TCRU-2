@@ -1,6 +1,6 @@
 
 import { HttpClient } from '@angular/common/http';
-import { Materialinterface } from '../../interface/materialinterface';
+import { Materialinterface } from '../../interfaces/materialinterface';
 import { MeterialserviceService } from '../../service/meterialservice.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';

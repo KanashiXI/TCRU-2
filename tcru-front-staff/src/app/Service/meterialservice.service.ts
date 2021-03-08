@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams , HttpHeaders } from '@angular/common/http';
-import { Materialinterface } from 'src/app/interface/materialinterface';
+import { Materialinterface } from 'src/app/interfaces/materialinterface';
 import { Observable, Subject } from 'rxjs';
 
 

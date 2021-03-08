@@ -68,6 +68,13 @@ Route::group([
     Route::post('cartcheckout','OrderController@createOrder');
     Route::post('order','OrderController@fillOrder');
     Route::post('deletefromcart','OrderController@deleteFromCart');
+    Route::get('getOrder','OrderController@getOrder');
+
+    //จัดส่งสินค้า
+    Route::get('getShippingOrder','ShippingController@getShippingOrder');
+    Route::get('getOneShipping/{shipping_id}', 'ShippingController@getOneShipping');
+    Route::get('getShipping/{a}', 'ShippingController@getDetailShipping');
+
 
         // โปรโมชัน
     Route::get('promotion','PromotionController@getPromotion'); // all promotion
