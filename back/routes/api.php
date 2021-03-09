@@ -99,8 +99,8 @@ Route::group([
         Route::get('/categorym','CategoryController@getcategory');
         
         Route::get('/categoryp', 'CategorypController@getcategory');
-        Route::post('/product','Product1Controller@addProduct');
-        Route::get('/product','Product1Controller@getProduct');
+        Route::post('/producttcru','Product1Controller@addProduct');
+        // Route::get('/product','Product1Controller@getProduct');
         Route::post('/product1','Product1Controller@getProduct');
         Route::delete('/delete1/{id}','Product1Controller@destroyp');
         Route::PATCH('/update1/{id}','Product1Controller@updateProduct');

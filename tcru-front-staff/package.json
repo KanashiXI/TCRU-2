@@ -30,6 +30,7 @@
         "lodash": "^4.17.21",
         "ngx-spinner": "^10.0.1",
         "ngx-toastr": "^13.2.0",
+        "node-modules": "^1.0.1",
         "rxjs": "~6.5.4",
         "sweetalert2": "^10.15.5",
         "tslib": "^1.10.0",
