@@ -29,7 +29,7 @@ export class StockComponent implements OnInit {
   }
   getData()
   {
-    this.LotpService.getstock_product().subscribe(res=>{
+    this.LotpService.getlotp11().subscribe(res=>{
       this.dataArr=res;
       console.log(this.dataArr)
     })

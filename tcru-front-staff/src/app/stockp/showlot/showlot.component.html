@@ -9,19 +9,19 @@
             
           </div>
         </div><!-- /.container-fluid -->
-        
+        <h5 class="card-title">ล็อตวัตถุดิบ</h5>
       </section>
 
       <div class="card card-success">
         
-              <div class="card-header">
-                <h3 class="card-title">ล็อตวัตถุดิบ</h3>
-  
+              
+                
+<!--   
                 <div class="card-tools">
                   <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fas fa-minus"></i></button>
-                </div>
-              </div>
+                </div> -->
+             
   
             
   
@@ -30,10 +30,9 @@
                   <thead>
                     <tr>
                       <!-- <th>รหัสวัตถุดิบ</th> -->
-                      <th >Lot No.</th>
+                      <!-- <th >Lot No.</th> -->
                       <th >ชื่อสินค้า</th>
-                      <th >ชื่อพนักงาน</th>
-                      <th >นามสกุลพนักงาน</th>
+                      <th >ชื่อเจ้าหน้าที่</th>
                       <th >วันที่ผลิต</th>
                       <th >วันที่หมดอายุ</th>
                       <th >จำนวนคงเหลือ</th>
@@ -46,8 +45,11 @@
   
                   <tbody>
                     <tr *ngFor="let mat of lotp  ">
-                      <td>{{mat.final_amount}}</td>
+                      <td>{{mat.product_name}}</td>
                       <td>{{mat.name}}</td>
+                      <td>{{mat.MFG}}</td>
+                      <td>{{mat.EXP}}</td>
+                      <td>{{mat.final_amount}}</td>
                       <td class="text-right py-0 align-middle">
                        
                       </td>

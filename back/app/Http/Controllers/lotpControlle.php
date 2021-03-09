@@ -14,17 +14,23 @@ class lotpControlle extends Controller
             return response()->json($data);
         
     }
-    public function getlotp11(Request $request)
+    public function getlotp11()
     {
-        $product_id = $request->product_id;
+        // $product_id = $request->product_id;
         $lotpModel=new lotp();
-        $data=$lotpModel->getlotp11($product_id);
+        $data=$lotpModel->getlotp11();
         return response()->json($data);
     }
     public function getlotp1()
     {
         $lotpModel = new lotp();
         $data =  $lotpModel->getsupplier();
+        return response()->json($data); 
+    }
+    public function getstock_product()
+    {
+        $lotpModel = new lotp();
+        $data =  $lotpModel->getstock_product();
         return response()->json($data); 
     }
     public function addlotp(Request $request)

@@ -113,10 +113,15 @@ Route::group([
         Route::delete('/delete1/{id}','SupplierController@destroys');
         Route::PATCH('/supplierupdate1/{id}','supplierController@updatesupplier');
         Route::get('/getsupplier1/{id}','supplierController@getOnesupplier');
+
+        Route::get('/lotp/{product_id}','lotpControlle@getlotp');
+        Route::post('/lotp','lotpControlle@addlotp');
+        Route::get('/lotp1/{product_id}','lotpControlle@getOnelotp');
+        Route::get('/lotp111','lotpControlle@getlotp11');
+        Route::get('/stock_product','lotpControlle@getstock_product');
     
 
-    Route::get('/lotp','lotpControlle@getlotp');
-    Route::post('/lotp','lotpControlle@addlotp');
+    
 
 
     Route::post('/Customers2','CustomerController2@getcustomer1');
