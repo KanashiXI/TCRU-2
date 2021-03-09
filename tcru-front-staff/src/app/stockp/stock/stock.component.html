@@ -1,1 +1,48 @@
-<p>stock works!</p>
+<div class="main-container" style=" height:200vh;">
+    <div class="card-body">
+        <h5 class="card-title">สต๊อกสินค้า</h5>
+
+        <br>
+        <div class="card card-success">
+            
+            <div class="card-body p-0 ">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th>รหัสวัตถุดิบ</th> -->
+                            <th>ชื่อสินค้า</th>
+                            <th>สินค้าคงเหลือ</th>
+                            <th>หน่วยนับ</th>
+                            <th>รายละเอียด</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <!-- <li *ngFor="let mat of materialList"> -->
+                    <tbody>
+                        <tr *ngFor="let mat of dataArr ">
+
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td class="text-right py-0 align-middle">
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-info" routerLink="/showlotp/{{mat.product_id}}">
+                                      <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <!-- <button  class="btn btn-danger"(click)="deletesupplier(mat.id)"><mat-icon>delete_sweep</mat-icon></button> -->
+                                  </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+    </div>
+    <!-- /.card-body -->
+
+</div>
+
+

@@ -54,6 +54,7 @@ export class ShowpComponent implements OnInit {
       this.spinner.hide();
       this.dataArr=res.data;
       this.totalCount = res.totalRecord;
+      console.log(this.dataArr);
     })
   }
   // getcategory() {

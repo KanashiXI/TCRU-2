@@ -17,8 +17,7 @@
         <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="showSubmenu && (isShowing || isExpanded)">
             <a class="list" mat-list-item routerLink="/addm">ข้อมูลวัตถุดิบ</a>
             <a class="list" mat-list-item routerLink="/terminal" routerLinkActive="active">สต๊อกวัตถุดิบ</a>
-            <a class="list" mat-list-item routerLink="/terminal" routerLinkActive="active">แสดงวัตถุดิบในสต็อก</a>
-            <a class="list" mat-list-item routerLink="/showOrderMaterials" routerLinkActive="active">สั่งซื้อวัตถุดิบ</a>
+            <a class="list" mat-list-item routerLink="/showOrderM" routerLinkActive="active">สั่งซื้อวัตถุดิบ</a>
         </div>
 
         <mat-list-item (click)="showSubSubMenu = !showSubSubMenu">
@@ -28,7 +27,7 @@
 
         <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="showSubSubMenu && (isShowing || isExpanded)">
             <a class="list" mat-list-item routerLink="/showp">ข้อมูลสินค้า</a>
-            <a class="list" mat-list-item routerLink="/terminal" routerLinkActive="active">สต๊อกสินค้า</a>
+            <a class="list" mat-list-item routerLink="/stockp" routerLinkActive="active">สต๊อกสินค้า</a>
             <a class="list" mat-list-item routerLink="/terminal" routerLinkActive="active">เบิกสินค้า</a>
         </div>
 

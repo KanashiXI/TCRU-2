@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
@@ -77,15 +77,13 @@ import { AddpComponent } from './product/addp/addp.component';
 import { ShowpComponent } from './product/showp/showp.component';
 import { EditpComponent } from './product/editp/editp.component';
 import { DialogCustomerComponent } from './TCRU/dialog-customer/dialog-customer.component';
-import { PurchaseOrderComponent } from './OrderMaterials/purchase-order/purchase-order.component';
-import { ShowOrderMaterialsComponent } from './OrderMaterials/show-order-materials/show-order-materials.component';
-import { EditStatusMaterialsComponent } from './OrderMaterials/edit-status-materials/edit-status-materials.component';
 import { ShowPromotionComponent } from './TCRU/promotion/showPromotion/showPromotion.component';
 import { AddPromotionComponent } from './TCRU/promotion/addPromotion/addPromotion.component';
 import { EditPromotionComponent } from './TCRU/promotion/editPromotion/editPromotion.component';
 import { DeliveryStatusComponent } from './TCRU/shipping/deliveryStatus/deliveryStatus.component';
 import { DescriptionShippingComponent } from './TCRU/shipping/descriptionShipping/descriptionShipping.component';
-
+import { ShowOrderComponent } from './OrderMaterials/show-order/show-order.component';
+import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 const appRoutes: Routes = [
   {
     path: '', 
@@ -111,6 +109,10 @@ const appRoutes: Routes = [
   { 
     path: 'addstock', 
     component: AddstockComponent 
+  },
+  { 
+    path: 'stockp', 
+    component: StockComponent 
   },
   { 
     path: 'addm', 
@@ -141,14 +143,6 @@ const appRoutes: Routes = [
     component: AddstockComponent 
   },
   {
-    path: 'showOrderMaterials',
-    component: ShowOrderMaterialsComponent
-  },
-  {
-    path: 'addOrderMaterials',
-    component: PurchaseOrderComponent
-  },
-  {
     path: 'promotion',
     component: ShowPromotionComponent
   },
@@ -172,6 +166,18 @@ const appRoutes: Routes = [
     path: 'edits/:id', 
     component: EditsComponent 
   },
+  { 
+    path: 'showlotp/:id', 
+    component: ShowlotComponent 
+  },
+  {
+    path: 'showOrderM',
+    component: ShowOrderComponent
+  },
+  {
+    path: 'addOrder',
+    component: AddOrderComponent
+  }
 
   
 ];
@@ -199,17 +205,17 @@ const appRoutes: Routes = [
     ShowlotComponent,
     AddlotComponent,
     DialogCustomerComponent,
-    PurchaseOrderComponent,
-    ShowOrderMaterialsComponent,
-    EditStatusMaterialsComponent,
     ShowPromotionComponent,
     AddPromotionComponent,
     EditPromotionComponent,
     DeliveryStatusComponent,
     DescriptionShippingComponent,
-    EditsComponent
+    EditsComponent,
+    ShowOrderComponent,
+    AddOrderComponent
   ],
-  entryComponents:[DialogCustomerComponent],
+  entryComponents:[DialogCustomerComponent,
+    AddOrderComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -289,6 +295,8 @@ const appRoutes: Routes = [
     ToggleSidebarComponent,
     SidebarComponent
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+    NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
