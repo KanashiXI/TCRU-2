@@ -68,7 +68,7 @@ export class CartComponent implements OnInit {
   step: Number = 1;
   shippingAddressList: Address[] = [];
   dataSource: Address[] = [];
-
+  statusAddIsNull: boolean;
   constructor(
     private router: Router,
     private addressService: AddressService,
@@ -94,6 +94,11 @@ export class CartComponent implements OnInit {
     this.addressService.getShippingAddress(user_id).subscribe(data => {
       this.shippingAddressList = data;
       this.filterAdd();
+      if (this.shippingAddressList.length == 0) {
+        this.statusAddIsNull = true;
+      } else {
+        this.statusAddIsNull = false;
+      }
     });
   }
 

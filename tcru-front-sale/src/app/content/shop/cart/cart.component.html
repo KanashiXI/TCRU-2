@@ -33,7 +33,8 @@
               <!-- [checked]="cart.checked" [(ngModel)]="cart.product_id" -->
             </div>
             <div class="col-md-2">
-              <img mat-card-image src="http://www.clinictech.ops.go.th/online/cmo/fileuser/340/images/05.jpg">
+              <img mat-card-image
+                src="https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.0-9/129588012_402571967825241_463572854217696817_n.jpg?_nc_cat=109&ccb=1-3&_nc_sid=8bfeb9&_nc_eui2=AeEWwk4Z5ObPpRrxWXCIt7qOgQZ1DarrINKBBnUNqusg0usIVZfKaFjOQARmOmxEPBTLzFO2ezrxTCt4c8Y6YRd5&_nc_ohc=8QeI_NBmNaUAX-07r0E&_nc_ht=scontent.fbkk10-1.fna&oh=d0ec4aa6d3b27cd35daf6ec03ba96835&oe=606BEB73">
             </div>
             <div class="col-md-4">
               <mat-card-title>
@@ -113,8 +114,8 @@
             <div class="row">
               <div class="col-md-12 rightside">
                 <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
-                <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
-                <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button>
+                <!-- <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button> -->
+                <!-- <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button> -->
               </div>
             </div>
           </div>
@@ -136,8 +137,16 @@
           <div class="col-md-3"></div>
 
           <div class="col-md-7">
-            ที่อยู่จัดส่ง: {{dataSource | json}}
-            <button mat-raised-button color="primary" (click)="backstatusCart()">แก้ไข</button>
+            <div *ngIf="statusAddIsNull == true">
+              คุณยังไม่เลือกที่อยู่จัดส่ง
+            </div>
+            จัดส่งที่: {{dataSource[0].firstname}}
+            {{dataSource[0].lastname}} ที่อยู่ {{dataSource[0].address}} จังหวัด
+            {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
+            รหัสไปรษณีย์ {{dataSource[0].postal_code}}
+            <!-- ที่อยู่จัดส่ง: {{dataSource | json}} -->
+            <!-- <button mat-raised-button color="primary" (click)="backstatusCart()">แก้ไข</button> -->
+            <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
           </div>
 
         </div>
