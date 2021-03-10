@@ -15,36 +15,34 @@
             <h2 class="card-title" style="text-align: center;">ใบสั่งซื้อวัตถุดิบ</h2>
         </div>
 
-        <!-- หัวเรื่องผู้ขาย -->
+        <!-- หัวเรื่องผู้ขาย/วันที่ -->
         <div class="card-header">
-            <h3 class="card-title">ผู้ขาย</h3>
-        </div>
-
-        <!-- เลือกร้านค้า -->
-        <div class="card-body">
             <div class="row">
-                <div class="col-sm-12">
-                    <div class="form-group">
-                        <label>ชื่อร้านค้า / บริษัท / บุคคล</label>
-                        <select class="ui dropdown">
-                            <option value="">ร้านข้าวสาร</option>
-                            <option value="1">ร้านสติกเกอร์</option>
-                            <option value="0">ร้านทั่วไป</option>
-                        </select>
-                    </div>
+                <!-- ผู้ขาย -->
+                <div class="col-sm-6">
+                    <h3 class="card-title">ผู้ขาย</h3>
+                </div>
+                <!-- วันที่ -->
+                <div class="col-sm-6">
+                    <h3 class="card-title">วันที่</h3>
                 </div>
             </div>
         </div>
 
-        <!-- หัวเรื่องวันที่ -->
-        <div class="card-header">
-            <h3 class="card-title">วันที่</h3>
-        </div>
-
-        <!-- เลือกวันที่ -->
+        <!-- เลือกร้านค้า/วันที่ -->
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-12">
+                <!-- เลือกร้านค้า -->
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>ชื่อร้านค้า / บริษัท / บุคคล</label><br />
+                        <input type="checkbox" name="shop1"> ร้านข้าวสาร <br />
+                        <input type="checkbox" name="shop2"> ร้านสติกเกอร์ <br />
+                        <input type="checkbox" name="shop3"> ร้านทั่วไป
+                    </div>
+                </div>
+                <!-- เลือกวันที่ -->
+                <div class="col-sm-6">
                     <mat-form-field color="accent" appearance="fill">
                         <mat-label>วันที่สั่งวัตถุดิบ</mat-label>
                         <input matInput [matDatepicker]="picker2">
@@ -126,19 +124,22 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-8">
                     <div class="form-group">
                         <textarea formControlName="Note" type="text" class="form-control" placeholder="หมายเหตุ"></textarea>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">ยอดรวมสินค้า</div>
-                <div class="col-sm-3">...</div>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">รวมเงินทั้งสิ้น</div>
-                <div class="col-sm-3">...</div>
+
+                <div class="col-sm-4">
+                    <div class="row">
+                        <div class="col-sm-6">ยอดรวมสินค้า</div>
+                        <div class="col-sm-6">...</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">รวมเงินทั้งสิ้น</div>
+                        <div class="col-sm-6">...</div>
+                    </div>
+                </div>
             </div>
         </div>
 
