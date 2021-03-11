@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\product;
+use App\Models\Producttcru;
 use App\Models\lotp;
 class lotpControlle extends Controller
 {

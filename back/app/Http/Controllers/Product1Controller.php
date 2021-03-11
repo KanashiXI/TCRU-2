@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\categoryP;
 use Illuminate\Http\Request;
 
-use App\Models\product;
+use App\Models\Producttcru;
 class Product1Controller extends Controller
 {
 
@@ -12,7 +12,7 @@ class Product1Controller extends Controller
     {
         $skip = $request->skip;
         $limit = $request->limit;
-        $productModel = new product();
+        $productModel = new Producttcru();
         $data =  $productModel->getProduct($skip,$limit);
         $totalCount = $productModel->getTotalProduct();
         $response["data"] = $data;
@@ -33,14 +33,14 @@ class Product1Controller extends Controller
         $productData = json_decode($request->data,true);
         $productData["image"] =  $originalImage;
        
-        $productModel = new product();
+        $productModel = new Producttcru();
         $data =  $productModel->addProduct($productData);
     }
 
     public function getOneProduct(Request $request)
     {
         $id=$request->id;
-        $productModel = new product();
+        $productModel = new Producttcru();
         $data =  $productModel->getOneProduct($id);
         return response()->json($data); 
     }
@@ -48,7 +48,7 @@ class Product1Controller extends Controller
     public function updateProduct(Request $request, $id)
     {
         $id=$request->id;
-        $productModel = new product();
+        $productModel = new Producttcru();
         $productModel->updateProduct($id,$request->all());
         return response()->json([ 'id' => $id]);
     }
@@ -56,7 +56,7 @@ class Product1Controller extends Controller
     public function destroyp(Request $request)
     {
         $id=$request->id;
-        $productModel = new product();
+        $productModel = new Producttcru();
         $productModel->deleteProduct($id);
         return response()->json([ 'id' => $id]);
     }

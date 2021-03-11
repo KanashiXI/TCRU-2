@@ -9,7 +9,7 @@ class lotp
     function getlotp($product_id)
     {
         $data=DB::table('lot_product')->where('product_id',$product_id)
-        ->Join('product','product.id', '=', 'lot_product.product_id')
+        ->Join('producttcru','producttcru.id', '=', 'lot_product.product_id')
         ->Join('employee','employee.id', '=', 'lot_product.employee_id')
         ->get();
                 return $data;
@@ -43,9 +43,9 @@ class lotp
         //         return $data;
 
                 $data = DB::table('lot_product')
-                ->Join('product','product.id', '=', 'lot_product.product_id')
-                ->select('lot_product.product_id','product.product_name', DB::raw('SUM(final_amount) as sumproduct'))
-                ->groupBy('lot_product.product_id','product.product_name')
+                ->Join('producttcru','producttcru.id', '=', 'lot_product.product_id')
+                ->select('lot_product.product_id','producttcru.product_name', DB::raw('SUM(final_amount) as sumproduct'))
+                ->groupBy('lot_product.product_id','producttcru.product_name')
                 // ->havingRaw('SUM(final_amount) > ?', [2500])
                 ->get();
                 return $data;
