@@ -1,10 +1,10 @@
 .form-control.ng-invalid.ng-touched{
     border-color:#ff0000 ;
 }
-.form-group {
+/* .form-group {
     margin-bottom: 1rem;
     align-items: center;
-}
+} */
 .text-error{
     font-size: 0.85rem;
     margin: 4px;
@@ -14,26 +14,29 @@
     font-family: 'Kanit', cursive;
     font-weight: bold;
 }
-input[type=text], select, textarea{
+/* input[type=text], select, textarea{
     width: 100%;
     padding: 12px;
     border: 1px solid #c5bfbf;
     border-radius: 4px;
     box-sizing: border-box;
     resize: vertical;
-  }
+  } */
   
   /* Style the label to display next to the inputs */
   label {
-
     display: block;
     font-family: 'Kanit', cursive;
     color: #3f3f3f;
     font-weight: bold;
+    margin-top: 5px;
+  }
+  .endContent{
+    padding: 10%;
   }
   
   /* Style the submit button */
-  input[type=submit] {
+  /* input[type=submit] {
     background-color: #4CAF50;
     color: white;
     padding: 12px 20px;
@@ -41,16 +44,10 @@ input[type=text], select, textarea{
     border-radius: 4px;
     cursor: pointer;
     float: right;
-  }
+  } */
   
   /* Style the container */
-  .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    align-items: center;
-  }
-  
+
   /* Floating column for labels: 25% width */
 
   
@@ -61,12 +58,13 @@ input[type=text], select, textarea{
     display: flex;
     align-items: center;
     flex-direction: column;
+    height:100vh;
   }
   h5 {
     display: block;
     font-size: 1.5em;
-    margin-block-start: 1.67em;
-    margin-block-end: 1.67em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;

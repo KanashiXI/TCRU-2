@@ -36,7 +36,7 @@ export class AddPromotionComponent implements OnInit {
       promotion_name: ['', [Validators.required]],
       detail: ['', [Validators.required]],
       unit: ['', [Validators.required]],
-      status: ['', [Validators.required]],
+      // status: ['', [Validators.required]],
       cost_condidtion: ['', [Validators.required]],
     })
   }
@@ -51,7 +51,7 @@ export class AddPromotionComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
-        // this.router.navigateByUrl('profile');
+        this.router.navigateByUrl('promotion');
 
       },
       error => {
@@ -85,9 +85,9 @@ export class AddPromotionComponent implements OnInit {
     return this.reactiveForm.get('unit')
   }
 
-  get status() {
-    return this.reactiveForm.get('status')
-  }
+  // get status() {
+  //   return this.reactiveForm.get('status')
+  // }
 
   get cost_condidtion() {
     return this.reactiveForm.get('cost_condidtion')

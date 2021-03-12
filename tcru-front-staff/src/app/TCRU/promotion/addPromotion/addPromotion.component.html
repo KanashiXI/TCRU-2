@@ -1,61 +1,67 @@
-<div class="content-wrapper" style="min-height: 121212.06px;">
-  <!-- Content Header (Page header) -->
-
-
-  <!-- Main content -->
-  <section class="content-header">
-    <h5 class="card-title">เพิ่มโปรโมชัน</h5>
-    <!-- /.card-header -->
-      <div class="card-body">
-        <form [formGroup]=reactiveForm>
-
-            <div class="col-sm-12">
-              <!-- text input -->
-              <div class="form-group">
-                <label>ชื่อโปรโมชัน</label>
-                <input name="promotion_name" type="text" class="form-control" [formControl]="promotion_name">
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h5>เพิ่มโปรโมชัน</h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]=reactiveForm>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="promotion_name">ชื่อโปรโมชัน</label>
+                <input formControlName="promotion_name" id="promotion_name" type="text" class="form-control" [formControl]="promotion_name" required>
+                <div *ngIf="promotion_name.invalid && (promotion_name.dirty || promotion_name.touched)" class="text-error">
+                  <div *ngIf="promotion_name.hasError('required')">
+                    ปรดกรอกชื่อโปรโมชัน
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-12">
-              <!-- text input -->
-              <div class="form-group">
+              <div class="col-md-6">
                 <label>รายละเอียดโปรโมชัน</label>
-                <input name="detail" type="text" class="form-control" [formControl]="detail">
+                <input name="detail" type="text" class="form-control" [formControl]="detail" required>
+                <div *ngIf="detail.invalid && (detail.dirty || detail.touched)" class="text-error">
+                  <div *ngIf="detail.hasError('required')">
+                    โปรดกรอกรายละเอียดโปรโมชัน
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label>จำนวน</label>
+            <div class="row">
+              <div class="col-md-6">
+                <label>เงื่อนไขการลด (%)</label>
                 <input name="unit" type="text" class="form-control" [formControl]="unit">
+                <div *ngIf="unit.invalid && (unit.dirty || unit.touched)" class="text-error">
+                  <div *ngIf="unit.hasError('required')">
+                      โปรดกรอกเงื่อนไขการลด
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="col-sm-12">
-              <div class="form-group">
-                <label>สถานะ</label>
-                <input name="status" type="text" class="form-control" [formControl]="status">
-              </div>
-            </div>
-  
-          <div class="col-sm-12">
-              <!-- textarea -->
-              <div class="form-group">
+              <div class="col-md-6">
                 <label>เงื่อนไขการซื้อ(บาท)</label>
                 <input name="cost_condidtion" type="text" class="form-control" [formControl]="cost_condidtion">
+                <div *ngIf="cost_condidtion.invalid && (cost_condidtion.dirty || cost_condidtion.touched)" class="text-error">
+                  <div *ngIf="cost_condidtion.hasError('required')">
+                      โปรดกรอกเงื่อนไขการซื้อ
+                  </div>
+                </div>  
               </div>
             </div>
-        
-          <div class="form-group">
-            <td>
-              <button class="btn btn-block btn-success" type="submit" (click)="onClickSubmit()">ยืนยัน</button>
-            </td>
-            <td>
-              <button class="btn btn-block  " routerLink="/showp"> กลับ</button>
-            </td>
-          </div>
-
-        </form>
+            <br>
+            <div class="row justify-content-end">
+              <div class="col-md-2">
+                <button class="btn btn-block btn-outline-secondary" routerLink="/promotion"> กลับ</button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-block btn-success" type="submit" (click)="onClickSubmit()">ยืนยัน</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <!-- /.card-body -->
-    
-  </section>
+    </div>
+  </div>
 </div>
+<div class="endContent"></div>
+<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br> -->
