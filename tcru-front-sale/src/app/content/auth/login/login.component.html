@@ -5,9 +5,6 @@
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
     <br>
-
-
-
     <form class="example-form" [formGroup]=reactiveForm>
       <mat-card-content>
         <mat-form-field class="example-full-width">
@@ -26,9 +23,11 @@
         <mat-form-field class="example-full-width">
           <input matInput type="password"  formControlName="password" placeholder="Password">
         </mat-form-field>
+        <a href="" class="forgetPassword">ลืมรหัสผ่าน</a>
       </mat-card-content>
-      <br>
       <button mat-stroked-button color="primary" class="btn-block" (click)="onClickSubmit()">Log in</button>
+      <br><br>
+      <button mat-stroked-button class="btn-block" routerLink="/register">ลงทะเบียน</button>
     </form>
   </mat-card>
 

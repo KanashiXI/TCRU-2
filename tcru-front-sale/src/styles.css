@@ -110,6 +110,10 @@ body { margin: 0; }
   color: #336335;
 }
 
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button{
+  color: #495057;
+}
+
 .mat-raised-button.mat-primary{
   color: #fff;
   background-color: #336335;
