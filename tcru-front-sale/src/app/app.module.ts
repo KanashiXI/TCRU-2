@@ -35,6 +35,8 @@ import { CartComponent } from './content/shop/cart/cart.component';
 import { ShowPromotionComponent } from './content/promotion/showPromotion/showPromotion.component';
 import { AddPromotionComponent } from './content/promotion/addPromotion/addPromotion.component';
 import { ConfirmDialogComponent } from './content/decorate/confirm-dialog/confirm-dialog.component';
+import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
+import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { ConfirmDialogComponent } from './content/decorate/confirm-dialog/confir
     ShowPromotionComponent,
     AddPromotionComponent,
     ConfirmDialogComponent,
+    RequestResetComponent,
+    ResponseResetComponent,
   ],
   imports: [
     BrowserModule,

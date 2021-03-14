@@ -17,6 +17,8 @@ import { EditTaxAddressComponent } from './content/user/taxinvoice/editTaxAddres
 import { CartComponent } from './content/shop/cart/cart.component';
 import { ShowPromotionComponent } from './content/promotion/showPromotion/showPromotion.component';
 import { AddPromotionComponent } from './content/promotion/addPromotion/addPromotion.component';
+import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
+import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
 
 const routes: Routes = [
   {
@@ -80,9 +82,18 @@ const routes: Routes = [
     component: AddPromotionComponent,
   },
   {
-    path: '**',
-    component: PageNotFoundComponent
+    path: 'response-password-reset',
+    component: ResponseResetComponent,
   },
+  {
+    path: 'forgotmail',
+    component: RequestResetComponent,
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  },
+
 ];
 
 @NgModule({

@@ -1,12 +1,12 @@
 @component('mail::message')
-# Change password Request
+# คำขอเปลี่ยนรหัสผ่าน
 
-Click on the button below to change password
+กดที่นี่เพื่อเปลี่ยนรหัสผ่านของคุณ
 
 @component('mail::button', ['url' => 'http://localhost:4200/response-password-reset?token='.$token])
-Reset Password
+เปลี่ยนรหัสผ่าน
 @endcomponent
 
-Thanks,<br>
+ขอบคุณ,<br>
 {{ config('app.name') }}
 @endcomponent

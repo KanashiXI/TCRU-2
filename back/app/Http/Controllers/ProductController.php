@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
         $getall = DB::table('product')
             ->join('product_in_order', 'product.product_id', '=', 'product_in_order.product_id')
-            ->select('product.product_name', 'product_in_order.count', 'product.product_description', 
+            ->select('product.product_id', 'product.product_name', 'product_in_order.count', 'product.product_description', 
                     'product.retail_price', 'product.weight', 'product.unit'
                     )
             ->get();
@@ -37,7 +37,8 @@ class ProductController extends Controller
             return [
                     $key =>
                         [
-                            'product_name' => $key, 
+                            'product_name' => $key,
+  
                             'count' => $group->sum('count'),
                         ]
             ];
@@ -49,3 +50,4 @@ class ProductController extends Controller
         return response()->json($res ,200); 
     }
 }
+

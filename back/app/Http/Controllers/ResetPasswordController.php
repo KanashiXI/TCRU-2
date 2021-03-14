@@ -20,6 +20,7 @@ class ResetPasswordController extends Controller
 
         $this->send($request->email);
         return $this->successResponse();
+    
     }
 
     public function send($email)
