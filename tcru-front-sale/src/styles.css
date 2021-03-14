@@ -88,9 +88,9 @@ body { margin: 0; }
   }
   
   .login-wrapper .mat-stroked-button {
-    border: 1px solid currentColor;
+    /* border: 1px solid currentColor; */
     line-height: 54px;
-    background: #FFF7FA;
+    background: #3aaf9f;
   }
   
   .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
@@ -107,7 +107,7 @@ body { margin: 0; }
 }
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
-  color: #336335;
+  color: #FDFEFE;
 }
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button{
