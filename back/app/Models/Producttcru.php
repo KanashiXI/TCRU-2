@@ -4,16 +4,16 @@ namespace App\Models;
 
 use DB;
 
-class Product 
+class Producttcru 
 {
 
     function getProduct1($skip,$limit)
     {
-        $data=DB::table('product')->skip($skip)->take($limit)->get();
+        $data=DB::table('producttcru')->skip($skip)->take($limit)->get();
         return $data;
     }
     function getTotalProduct(){
-        $data=DB::table('product')->get()->count();
+        $data=DB::table('producttcru')->get()->count();
         return $data;
     }
     function getProduct($skip,$limit)
@@ -22,7 +22,7 @@ class Product
         //     return $data;
 
             $data = DB::table('categoryp')
-            ->rightJoin('product', 'categoryp.id', '=', 'product.category_id')->skip($skip)->take($limit)->get();
+            ->rightJoin('producttcru', 'categoryp.id', '=', 'producttcru.category_id')->skip($skip)->take($limit)->get();
             return $data;
 
             // $users = DB::table('categoryp')
@@ -32,19 +32,19 @@ class Product
     }
     function addProduct($data)
     {
-        DB::table("product")->insert($data);
+        DB::table("producttcru")->insert($data);
     }
     function deleteProduct($id)
     {
-        DB::table("product")->where("id",$id)->delete();
+        DB::table("producttcru")->where("id",$id)->delete();
     }
     function updateProduct($id,$data)
     {
-        DB::table("product")->where("id",$id)->update($data);
+        DB::table("producttcru")->where("id",$id)->update($data);
     }
     function getOneProduct($id)
     {
-        $data = DB::table("product")->where("id",$id)->get()->first();
+        $data = DB::table("producttcru")->where("id",$id)->get()->first();
         return $data;
     }
     

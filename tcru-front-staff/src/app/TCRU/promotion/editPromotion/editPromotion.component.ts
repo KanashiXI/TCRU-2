@@ -71,18 +71,18 @@ export class EditPromotionComponent implements OnInit {
       res => {
         Swal.fire({
           icon: 'success',
-          title: 'เพิ่มข้อมูลสำเร็จ',
+          title: 'แก้ไขข้อมูลสำเร็จ',
           showConfirmButton: false,
           timer: 2000
         });
-        // this.router.navigateByUrl('profile');
+        this.router.navigateByUrl('promotion');
 
       },
       error => {
 
         Swal.fire({
           icon: 'error',
-          title: 'เพิ่มข้อมูลไม่สำเร็จ',
+          title: 'แก้ไขข้อมูลไม่สำเร็จ',
           showConfirmButton: false,
           timer: 2000
         });

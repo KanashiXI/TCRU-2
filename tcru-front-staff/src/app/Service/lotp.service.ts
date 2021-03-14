@@ -34,9 +34,9 @@ export class LotpService {
    {
     return this.httpClient.get('http://localhost:5000/api/lotp/'+id);
    }
-   getlotp11(id)
+   getlotp11()
    {
-    return this.httpClient.get('http://localhost:5000/api/lotp111/'+id);
+    return this.httpClient.get('http://localhost:5000/api/lotp111/');
    }
 
 

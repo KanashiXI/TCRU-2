@@ -15,13 +15,18 @@
               <div class="col-md-3">
                 <mat-form-field>
                   <mat-label>ชื่อผู้ใช้ (Email)</mat-label>
-                  <input type="emai" matInput [formControl]="email" placeholder="Ex. example@mail.com" name="email">
-                  <!-- <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-                    <small> Please enter a valid email address</small>
+                  <input type="emai" matInput [formControl]="email" placeholder="Ex. example@mail.com" name="email"
+                    pattern="email">
+                  <mat-hint align="start"><small>โปรดกรอกชื่อผู้ใช้เป็นอีเมล์</small></mat-hint>
+                  <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    <small>โปรกรอกชื่อบัญชีผู้ใช้</small>
                   </mat-error>
                   <mat-error *ngIf="email.hasError('required')">
-                    <small>Email is <strong>required</strong></small>
-                  </mat-error> -->
+                    <small>โปรกรอกชื่อบัญชีผู้ใช้</small>
+                  </mat-error>
+                  <mat-error *ngIf="email.hasError('pattern')">
+                    <small>โปรกรอกชื่อบัญชีผู้ใช้เป็นอีเมล์</small>
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
