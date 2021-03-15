@@ -19,3 +19,7 @@ mat-grid-tile {
 .wrapper {
   text-align: center;
 }
+
+mat-card{
+  border-radius: 15px;
+}
