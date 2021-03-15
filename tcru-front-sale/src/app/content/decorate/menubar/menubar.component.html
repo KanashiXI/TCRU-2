@@ -42,14 +42,14 @@
           *ngIf="isHandset$ | async">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
-        <p *ngIf="!(isHandset$ | async)" class="hide">ออกจากระบบ</p>
+        <!-- <p *ngIf="!(isHandset$ | async)" class="hide">ออกจากระบบ</p> -->
         <a class="navbar-brand" routerLink="/">
           <img src="../../../assets/tcru-crop-removebg.png" height="47">
           <label style="font-size: 16px;">&nbsp;&nbsp;หน้าหลัก</label>
         </a>  
         <span class="spacer"></span>
           <a mat-list-item routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)" id="cart"><span class="material-icons">shopping_cart</span></a>
-          <p *ngIf="!(isHandset$ | async)" class="hide">ออกจากระบบ</p>
+          <!-- <p *ngIf="!(isHandset$ | async)" class="hide">ออกจากระบบ</p> -->
         
       </mat-toolbar>
       <!-- Add Content Here -->

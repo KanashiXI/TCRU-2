@@ -3,9 +3,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url('https://css.gg/log-out.css');
 
-html, body { height: 100%;}
-body { margin: 0; }
-* { font-family: 'Kanit', sans-serif; font-size: 16px;}
+html, body { height: 100%; background-color: lightblue;}
+body { margin: 0;}
+* { font-family: 'Kanit', sans-serif; font-size: 16px; }
 
 .login-wrapper {
     height: 67%;
