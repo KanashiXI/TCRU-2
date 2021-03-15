@@ -22,4 +22,5 @@ mat-grid-tile {
 
 mat-card{
   border-radius: 15px;
+  text-align: left;
 }

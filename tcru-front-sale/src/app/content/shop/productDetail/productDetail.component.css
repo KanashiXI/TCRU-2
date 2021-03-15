@@ -9,3 +9,7 @@ mat-grid-tile {
   width: 60px;
   text-align: center;
 }
+
+mat-card{
+  text-align: left;
+}
