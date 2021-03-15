@@ -107,20 +107,21 @@ body { margin: 0; }
 }
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary{
-  color: #FDFEFE;
+  color: #f8f9fa;
+  background-color: #4cbf9a;
 }
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button{
-  color: #495057;
+  color: #f8f9fa;
 }
 
 .mat-raised-button.mat-primary{
-  color: #fff;
+  color: #f8f9fa;
   background-color: #336335;
 } 
 
 .mat-card-title{
-  color: #61cf96;
+  color: #336335;
 }
 
 

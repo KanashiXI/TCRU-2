@@ -8,7 +8,7 @@
     <form class="example-form" [formGroup]=reactiveForm>
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <mat-label>อีเมล</mat-label>
+          <mat-label>ชื่อผู้ใช้ (E-mail)</mat-label>
           <input type="email" matInput [formControl]="email" [errorStateMatcher]="matcher"
             placeholder="Ex. pat@example.com">
           <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
@@ -16,19 +16,19 @@
             Please enter a valid email address
           </mat-error>
           <mat-error *ngIf="email.hasError('required')">
-            Email is <strong>required</strong>
+            โปรดกรอกชื่อผู้ใช้
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <input matInput type="password" formControlName="password" placeholder="รหัสผ่าน">
         </mat-form-field>
-        <a href="register" class="forgetPassword">สมัครสมาชิก</a>
-        <a href="forgotmail" class="forgetPassword">ลืมรหัสผ่าน</a>
+        <label href="register" class="forgetPassword" style="text-align: left;">สมัครสมาชิก</label>
+        <label href="forgotmail" class="forgetPassword" style="text-align: left;">ลืมรหัสผ่าน</label>
 
       </mat-card-content>
       <button mat-stroked-button color="primary" class="btn-block" (click)="onClickSubmit()">เข้าสู่ระบบ</button>
-      <br><br>
+      <!-- <br><br> -->
       <!-- <button mat-stroked-button class="btn-block" routerLink="/register">ลงทะเบียน</button> -->
     </form>
   </mat-card>

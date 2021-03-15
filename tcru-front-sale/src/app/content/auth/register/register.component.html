@@ -15,8 +15,7 @@
               <div class="col-md-3">
                 <mat-form-field>
                   <mat-label>ชื่อผู้ใช้ (Email)</mat-label>
-                  <input type="emai" matInput [formControl]="email" placeholder="Ex. example@mail.com" name="email"
-                    pattern="email">
+                  <input type="emai" matInput [formControl]="email" placeholder="Ex. example@mail.com" name="email">
                   <mat-hint align="start"><small>โปรดกรอกชื่อผู้ใช้เป็นอีเมล์</small></mat-hint>
                   <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                     <small>โปรกรอกชื่อบัญชีผู้ใช้</small>
@@ -24,9 +23,9 @@
                   <mat-error *ngIf="email.hasError('required')">
                     <small>โปรกรอกชื่อบัญชีผู้ใช้</small>
                   </mat-error>
-                  <mat-error *ngIf="email.hasError('pattern')">
+                  <!-- <mat-error *ngIf="email.hasError('type')">
                     <small>โปรกรอกชื่อบัญชีผู้ใช้เป็นอีเมล์</small>
-                  </mat-error>
+                  </mat-error> -->
                 </mat-form-field>
               </div>
               <div class="col-md-4">
@@ -116,7 +115,7 @@
           <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-2">
-              <button mat-stroked-button color="primary" class="btn-block" routerLink="">ยกเลิก</button>
+              <button mat-stroked-button class="btn-block" routerLink="">ยกเลิก</button>
             </div>
             <div class="col-md-2">
               <button mat-raised-button color="primary" class="btn-block" [disabled]="reactiveForm.invalid"
