@@ -1,21 +1,83 @@
-<!-- <div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="space-around center" fxLayoutGap="25px">
-  <mat-card *ngFor="let member of members" fxFlex="calc(33%-25px)" fxFlex.sm="calc(50%-25px)" >
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{member.title}}</mat-card-title>
-      <mat-card-subtitle>{{member.subtitle}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image [src]="member.url" alt="Photo of {{member.title}}">
-    <mat-card-content>
-      <p>
-        {{member.content}}
-      </p>
-    </mat-card-content>
-  </mat-card>
-</div> -->
-
 <div class="container">
-  <div class="row">
+
+
+
+
+
+
+
+  <div class="row" *ngIf="!productDetailLoad">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <mat-card>
+        <div class="row">
+          <div class="col-md-6 align-self-center">
+            <app-skeleton-loader Cwidth="220" Cheight="220"></app-skeleton-loader>
+          </div>
+          <div class="col-md-6">
+            <mat-card-title>
+              <app-skeleton-loader></app-skeleton-loader>
+            </mat-card-title>
+            <br>
+            <p>
+              <app-skeleton-loader></app-skeleton-loader>
+            </p>
+            <p>จำนวนต่อหน่วย: <app-skeleton-loader></app-skeleton-loader>
+            </p><br>
+            <label style="font-size: 25px; padding-right: 15px; color: orange;">ราคา: <app-skeleton-loader>
+              </app-skeleton-loader> บาท</label>
+            <br>
+            <div *ngIf="!checkStock ;"> สินค้าหมด </div>
+
+            <div *ngIf="loggedIn">
+              <p style="padding-top: 15px; ">จำนวน</p>
+              <button mat-stroked-button (click)="decrese()">
+                <span class="material-icons">
+                  remove
+                </span>
+              </button>
+              <mat-form-field appearance="outline">
+                <input matInput [value]="counter">
+              </mat-form-field>
+              <button mat-stroked-button (click)="increse()">
+                <span class="material-icons">
+                  add
+                </span>
+              </button>
+              <br>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="loggedIn"
+                (click)="handleAddToCart()">
+                <span class="material-icons">
+                  add
+                </span>
+                เพิ่มลงในตะกร้า
+              </button>
+
+            </div>
+
+            <br>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="!loggedIn"
+              routerLink="/login">
+              <span class="material-icons">
+                login
+              </span>
+              เข้าสู่ระบบ
+            </button>
+            <p *ngIf="loggedIn">กรุณาเข้าสู่ระบบก่อนทำรายการ</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+  <div class="row" *ngIf="productDetailLoad">
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <mat-card>
@@ -58,7 +120,6 @@
 
             </div>
 
-
             <br>
             <button mat-raised-button color="primary" type="submit" [disabled]="!checkStock" *ngIf="!loggedIn"
               routerLink="/login">
@@ -73,4 +134,10 @@
       </mat-card>
     </div>
   </div>
+
+
+
+
+
+
 </div>

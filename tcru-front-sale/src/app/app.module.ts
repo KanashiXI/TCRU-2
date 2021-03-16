@@ -37,6 +37,7 @@ import { AddPromotionComponent } from './content/promotion/addPromotion/addPromo
 import { ConfirmDialogComponent } from './content/decorate/confirm-dialog/confirm-dialog.component';
 import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
+import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/skeleton-loder/skeleton-loader.component';
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { ResponseResetComponent } from './content/auth/password/response-reset/r
     ConfirmDialogComponent,
     RequestResetComponent,
     ResponseResetComponent,
+    SkeletonLoaderComponent,
   ],
   imports: [
     BrowserModule,

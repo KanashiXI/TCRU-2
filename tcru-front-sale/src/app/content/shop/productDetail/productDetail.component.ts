@@ -31,6 +31,7 @@ export class ProductDetailComponent implements OnInit {
   productCapacity: string;
   breakpoint: number;
   productInCart: Product[] = [];
+  productDetailLoad: boolean = false;
 
   constructor(
     private Auth: AuthService,
@@ -148,6 +149,7 @@ export class ProductDetailComponent implements OnInit {
         if (this.stock === 0) {
           this.checkStock = false;
         }
+        this.productDetailLoad = true;
       }
     )
   }
