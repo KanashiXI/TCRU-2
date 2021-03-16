@@ -6,4 +6,6 @@ export class Material {
     price: number;
     image: string;
     category_id: any="";
+    unit_count_id: any="";
+    
 }

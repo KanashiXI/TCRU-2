@@ -16,9 +16,11 @@ export class EditsComponent implements OnInit {
 
   id: any;
   supplier=new supplier();
+  selectedMaterials:any = [];
   date: any;
   files: any;
   form: FormGroup;
+  MaterialsList: any;
 
 
   constructor(private fb: FormBuilder,private http: HttpClient,
@@ -32,6 +34,7 @@ export class EditsComponent implements OnInit {
     this.id=this.route.snapshot.params.id;
     this.getData();
     this.createForm();
+    this.getDatamaterial();
   }
   createForm() {
     this.form = this.fb.group({
@@ -44,12 +47,34 @@ export class EditsComponent implements OnInit {
     });
   }
 
+// getData(){
+//   this.SupplierService.geteditsupplier(this.id).subscribe(res=>{
+//     this.date = res;
+//     this.supplier = this.date;
+//     //  console.log(this.supplier);
+//   })
+// }
 getData(){
   this.SupplierService.geteditsupplier(this.id).subscribe(res=>{
-    this.date = res;
-    this.supplier = this.date;
-    //  console.log(this.supplier);
+      this.date=res;
+      this.supplier=this.date;
+      this.selectedMaterials = this.supplier.material_name.split(",");
   })
+
+}
+getDatamaterial() {
+  this.SupplierService.getDatamaterial().subscribe(res => {
+    this.MaterialsList = res;
+  })
+}
+MaterialsChange(event){
+  let index = this.selectedMaterials.indexOf(event.target.value);
+  if(index == -1){
+    this.selectedMaterials.push(event.target.value);
+  } else{
+    this.selectedMaterials.splice(index,1);
+  }
+  console.log(this.selectedMaterials)
 }
 imageUpload(event){
   this.files = event.target.files[0];
@@ -61,6 +86,7 @@ editsupplier(){
     if (this.form.invalid) {
       return;
     } else {
+      this.supplier.material_name = this.selectedMaterials.toString();
   this.SupplierService.editsupplier(this.id,this.supplier).subscribe(res=>{
     this.toastr.success('แก้ไขสำเร็จ!');
   },

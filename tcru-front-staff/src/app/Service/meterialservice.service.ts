@@ -37,6 +37,9 @@ export class MeterialserviceService {
   geteditmaterial(id){
     return this.httpClient.get('http://localhost:5000/api/getMaterial/'+id);
    }
+   getunit_count(){
+    return this.httpClient.get('http://localhost:5000/api/unit_count');
+   }
 
    editMaterial(id,data)
    {

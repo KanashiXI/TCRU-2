@@ -17,6 +17,9 @@ export class ProductService {
   getcategory(){
     return this.httpClient.get('http://localhost:5000/api/categoryp');
    }
+   getunit_count(){
+    return this.httpClient.get('http://localhost:5000/api/unit_count');
+   }
 
   addProductData(data)
   {

@@ -21,7 +21,7 @@ export class ShowpComponent implements OnInit {
   dataArr: any;
   material_name:any;
   page:any = 1;
-  limit: any = 5;
+  limit: any = 10;
   skip: any;
   categoryArr:any;
   totalCount: any;
@@ -54,7 +54,7 @@ export class ShowpComponent implements OnInit {
       this.spinner.hide();
       this.dataArr=res.data;
       this.totalCount = res.totalRecord;
-      console.log(this.dataArr);
+      // console.log(this.dataArr);
     })
   }
   // getcategory() {
@@ -76,14 +76,15 @@ export class ShowpComponent implements OnInit {
     this.ProductService.deleteProduct(id).subscribe(result => {
       this.getProduct();
       this.spinner.show();
-      this.toastr.success('ลบข้อมูลสินค้าสำเร็จ!'); 
+      this.toastr.success('ลบข้อมูลวัตถุดิบสำเร็จ!'); 
     },
     err => {
-    this.toastr.error('ลบล้มข้อมูลสินค้าเหลว!');
+    this.toastr.error('ลบล้มข้อมูลวัตถุดิบเหลว!');
     this.spinner.show();
     console.log(err);
     });
 }
+
 
 // Search(){
 //   if(this.material_name == ""){
