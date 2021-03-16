@@ -11,6 +11,9 @@ export class SupplierService {
   getData() {
     return this.httpClient.get('http://localhost:5000/api/supplier11');
   }
+  getDatamaterial() {
+    return this.httpClient.get('http://localhost:5000/api/material');
+  }
   getData1(data)
   {
    return this.httpClient.post('http://localhost:5000/api/supplier',data);

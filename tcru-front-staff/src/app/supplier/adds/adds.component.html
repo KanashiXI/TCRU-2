@@ -4,14 +4,12 @@
   <div class="card card-primary">
     <!-- Main content -->
     <section class="content-header">
-
-
-
       <!-- /.card-header -->
       <div class="card-body">
         <form [formGroup]=form (ngSubmit)="insertData()">
           <!-- <form [FormGroup]="form" > -->
           <div class="row">
+
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
@@ -22,42 +20,42 @@
                   <div *ngIf="store_name.errors.required">
                     กรุณากรอกชื่อร้านค้า
                   </div>
-                  <div *ngIf="store_name.errors.pattern">
+                  <!-- <div *ngIf="store_name.errors.pattern">
                     กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
-                  </div>
+                  </div> -->
 
                 </div>
               </div>
             </div>
             <div class="col-sm-4">
-              <!-- text input -->
               <div class="form-group">
-                <label>ชื่อเจ้าของร้าน :</label>
+                <label>ชื่อผู้ติดต่อ :</label>
                 <input type="text" class="form-control" formControlName="supplier_name"
-                  [(ngModel)]="supplier.supplier_name">
+                  [(ngModel)]="supplier.supplier_name"
+                  pattern="^[ A-Za-zๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$">
                 <div *ngIf="supplier_name.invalid && (supplier_name.dirty || supplier_name.touched)" class="text-error">
                   <div *ngIf="supplier_name.errors.required">
-                    กรุณากรอกชื่อเจ้าของร้าน
+                    กรุณากรอกชื่อผู้ติดต่อ
                   </div>
                   <div *ngIf="supplier_name.errors.pattern">
-                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                    กรุณากรอกชื่อผู้ติดต่อเป็นภาษาไทยหรือภาษาอังกฤษ
                   </div>
                 </div>
               </div>
             </div>
-            
+
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
-                <label>เบอร์โทรศัพท์ :</label>
-                <input type="text" class="form-control" formControlName="phone" 
-                  [(ngModel)]="supplier.phone">
+                <label>เบอร์ติดต่อ :</label>
+                <input type="text" class="form-control" formControlName="phone" [(ngModel)]="supplier.phone"
+                  pattern="^((\\+91-?)|0)?[0-9]{10}$">
                 <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-error">
                   <div *ngIf="phone.errors.required">
-                    กรุณากรอกเบอร์โทรศัพท์
+                    กรุณากรอกเบอร์ติดต่อ
                   </div>
                   <div *ngIf="phone.errors.pattern">
-                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                    กรุณากรอกเบอร์โทรศัพท์เป็นตัวเลขจำนวน 10 หลัก
                   </div>
                 </div>
               </div>
@@ -66,15 +64,15 @@
               <!-- text input -->
               <div class="form-group">
                 <label>อีเมล :</label>
-                <input type="text" class="form-control" formControlName="email"pattern="[a-zA-Z0-9][A-Za-z0-9._-]+@[a-z0-9.-]*"  [(ngModel)]="supplier.email">
+                <input type="email" class="form-control" formControlName="email"
+                  pattern="[a-zA-Z0-9][A-Za-z0-9._-]+@[a-z0-9.-]*" [(ngModel)]="supplier.email">
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-error">
                   <div *ngIf="email.errors.required">
                     กรุณากรอกอีเมล
-                  </div>ฃ
-                  <div *ngIf="email.errors.pattern">
-                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
                   </div>
-
+                  <div *ngIf="email.errors.pattern">
+                    กรุณากรอกอีเมลที่ถูกต้อง
+                  </div>
                 </div>
               </div>
             </div>
@@ -88,11 +86,19 @@
                   <div *ngIf="address.errors.required">
                     กรุณากรอกที่ตั้ง
                   </div>
-                  <div *ngIf="address.errors.pattern">
+                  <!-- <div *ngIf="address.errors.pattern">
                     กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
-                  </div>
+                  </div> -->
                 </div>
               </div>
+            </div>
+            <div class="form-group">
+              <label>วัตถุดิบที่จำหน่าย</label>
+              <div *ngFor="let obj of MaterialsList">
+                <input type="checkbox" value="{{obj.material_name}}" (change)="MaterialsChange($event)">
+                {{obj.material_name}}
+              </div>
+
             </div>
           </div>
           <div class="form-group">

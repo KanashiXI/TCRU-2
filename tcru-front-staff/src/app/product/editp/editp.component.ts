@@ -21,6 +21,7 @@ export class EditpComponent implements OnInit {
   date: any;
   files: any;
   categoryArr: any;
+  unit_countArr: any;
 
 
   constructor(private fb: FormBuilder,private http: HttpClient,
@@ -33,6 +34,7 @@ export class EditpComponent implements OnInit {
     this.getData();
     this.getcategory();
     this.createForm();
+    this.getunit_count();
   }
   createForm() {
     this.form = this.fb.group({
@@ -44,6 +46,7 @@ export class EditpComponent implements OnInit {
       Detail: ['', [Validators.required]],
       expire: ['', [Validators.required]],
       category_id: ['', [Validators.required]],
+      unit_count_id: ['', [Validators.required]],
     });
   }
 getData(){
@@ -55,6 +58,11 @@ getData(){
 getcategory() {
   this.ProductService.getcategory().subscribe(res => {
     this.categoryArr = res;
+  })
+}
+getunit_count() {
+  this.ProductService.getunit_count().subscribe(res => {
+    this.unit_countArr = res;
   })
 }
 editProduct(){
@@ -88,5 +96,8 @@ get expire() {
 }
 get category_id() {
   return this.form.get('category_id')
+}
+get unit_count_id() {
+  return this.form.get('unit_count_id')
 }
 }

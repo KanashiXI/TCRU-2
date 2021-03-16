@@ -4,7 +4,8 @@
       <div class="container-fluid">
         <div class="row ">
           <div class="col-sm-4 ">
-            <a  href="#" class="btn btn-success " [routerLink]="['/addp']" routerLinkActive="router-link-active" >เพิ่มข้อมูลสินค้า <i class="fas fa-arrow-circle "></i></a>
+            <a  href="#" class="btn btn-success " [routerLink]="['/addp']" routerLinkActive="router-link-active" >เพิ่มข้อมูลสินค้า <i class="fas fa-arrow-circle "></i></a>&nbsp;&nbsp;
+            <a  href="#" class="btn btn-success " [routerLink]="['/']"formula routerLinkActive="router-link-active" >รายละเอียดการผลิต <i class="fas fa-arrow-circle "></i></a>
           </div> 
           <div class="form-group col-sm-4 ">
           </div>
@@ -20,10 +21,7 @@
       
               <h5 class="card-title">ข้อมูลสินค้า</h5>
 
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                  <i class="fas fa-minus"></i></button>
-              </div>
+              
               <div class="card card-success">
 
             <div class="card-body p-0">
@@ -34,29 +32,30 @@
                     <th >รูปสินค้า</th>
                     <th>ชื่อสินค้า</th>
                     <th>ราคา</th>
-                    <th>น้ำหนัก</th>
+                    <th>น้ำหนัก/กรัม</th>
                     <th>จำนวนวันที่เก็บรักษา</th>
-                    <th>รายละเอียด</th>
+                    <!-- <th>รายละเอียด</th> -->
                     <th>ประเภทสินค้า</th>
 
                     <th></th>
                   </tr>
                 </thead>
                 <!-- <li *ngFor="let mat of materialList"> -->
-
+      
                 <tbody>
                   <tr *ngFor="let mat of dataArr ">
                     <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px"></td>
                     <td>{{mat.product_name}}</td>
                     <td>{{mat.price}}</td>
                     <td>{{mat.weight}}</td>
-                    <td>{{mat.expire}}</td>
-                    <td>{{mat.Detail}}</td>
+                    <td>{{mat.expire}}&nbsp;วัน</td>
+                    <!-- <td>{{mat.Detail}}</td> -->
                     <td>{{mat.name}}</td>
                     <td class="text-right py-0 align-middle">
                       <div class="btn-group btn-group-sm">
+                        <button class="btn btn-info" routerLink="/formula(mat.id)" ><mat-icon>add</mat-icon></button>
                         <button class="btn btn-warning" routerLink="/editp/{{mat.id}}" ><mat-icon>edit</mat-icon></button>
-                        <button  class="btn btn-danger"(click)="deleteProduct(mat.product_id)"><mat-icon>delete_sweep</mat-icon></button>
+                        <button  class="btn btn-default"routerLink="/addstock" ><mat-icon>add_shopping_cart</mat-icon></button>
                         <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
                       </div>
                     </td>

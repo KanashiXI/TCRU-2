@@ -29,6 +29,18 @@
                           </div>
                         </div>
                       </div>
+                      <div class="col-sm-4">
+                        <div class="form-group">
+                          <div class="form-group">
+                            <label>หน่วยนับ</label>
+                            <select class="form-control" formControlName="unit_count_id" [(ngModel)]="Materials.unit_count_id">
+                              <option value="">หน่วยนับ</option>
+                              <option *ngFor="let mat of unit_countArr" value="{{mat.id}}">{{mat.name}}</option>
+                            </select>
+              
+                          </div>
+                        </div>
+                      </div>
                 
                         
                     </div>

@@ -21,6 +21,7 @@ export class AddpComponent implements OnInit {
   product = new product();
   date: any;
   categoryArr: any;
+  unit_countArr: any;
   page: any = 1;
   limit: any = 5;
   skip: any;
@@ -37,18 +38,20 @@ export class AddpComponent implements OnInit {
   ngOnInit(): void {
     this.getProduct();
     this.getcategory();
+    this.getunit_count();
     this.createForm();
   }
   createForm() {
     this.form = this.fb.group({
       // genid: ['', [Validators.required]],
       product_name: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      price: ['', [Validators.required,Validators.minLength(0),]],
       image: ['', [Validators.required]],
-      weight: ['', [Validators.required]],
+      weight: ['', [Validators.required,Validators.minLength(3),]],
       Detail: ['', [Validators.required]],
-      expire: ['', [Validators.required]],
+      expire: ['', [Validators.required,Validators.minLength(3),]],
       category_id: ['', [Validators.required]],
+      unit_count_id: ['', [Validators.required]],
     });
   }
   getProduct() {
@@ -92,6 +95,11 @@ export class AddpComponent implements OnInit {
       this.categoryArr = res;
     })
   }
+  getunit_count() {
+    this.ProductService.getunit_count().subscribe(res => {
+      this.unit_countArr = res;
+    })
+  }
   imageUpload(event) {
     this.files = event.target.files[0];
     console.log(this.files)
@@ -116,6 +124,9 @@ export class AddpComponent implements OnInit {
   }
   get category_id() {
     return this.form.get('category_id')
+  }
+  get unit_count_id() {
+    return this.form.get('unit_count_id')
   }
 
 }

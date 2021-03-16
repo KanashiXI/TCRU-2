@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule }  from '@angular/common';
 import { Uniquematerial_nameValidatorDirective } from 'src/app/Service/unique-material-name-validator.directive';
-
+// import { QRCodeModule } from 'angularx-qrcode';
+import { NgxQRCodeModule } from 'ngx-qrcode2';
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -52,12 +53,11 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
-
+import { IonicModule } from '@ionic/angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { ToastrModule } from 'ngx-toastr';
 import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { StockComponent } from './stockp/stock/stock.component';
 import { ShowlotComponent } from './stockp/showlot/showlot.component';
 import { AddlotComponent } from './stockp/addlot/addlot.component';
@@ -84,6 +84,8 @@ import { DeliveryStatusComponent } from './TCRU/shipping/deliveryStatus/delivery
 import { DescriptionShippingComponent } from './TCRU/shipping/descriptionShipping/descriptionShipping.component';
 import { ShowOrderComponent } from './OrderMaterials/show-order/show-order.component';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
+import { FormulaComponent } from './TCRU/formula/formula.component';
+// import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 const appRoutes: Routes = [
   {
     path: '', 
@@ -177,7 +179,16 @@ const appRoutes: Routes = [
   {
     path: 'addOrder',
     component: AddOrderComponent
+  },
+  {
+    path: 'addlotp',
+    component: AddlotComponent
+  },
+  {
+    path: 'formula',
+    component: FormulaComponent
   }
+
 
   
 ];
@@ -212,11 +223,13 @@ const appRoutes: Routes = [
     DescriptionShippingComponent,
     EditsComponent,
     ShowOrderComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    FormulaComponent
   ],
   entryComponents:[DialogCustomerComponent,
     AddOrderComponent],
   imports: [
+
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -285,7 +298,11 @@ const appRoutes: Routes = [
     NgbPaginationModule,
     NgbAlertModule,
     ToastrModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    // QRCodeModule,
+    IonicModule.forRoot(),
+    NgxQRCodeModule,
+    // BarcodeScanner
   ],
   providers: [
   ],

@@ -15,9 +15,10 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class AddsComponent implements OnInit {
   form: FormGroup;
   supplier = new supplier();
+  selectedMaterials:any = [];
   files: any;
   dataArr: any;
-  // files: any;
+  MaterialsList: any;
   constructor(private fb: FormBuilder, private http: HttpClient,
     private SupplierService: SupplierService,
     private route: ActivatedRoute,) { }
@@ -25,6 +26,7 @@ export class AddsComponent implements OnInit {
   ngOnInit(): void {
     this.createForm();
     this.getData();
+    this.getDatamaterial();
   }
   createForm() {
     this.form = this.fb.group({
@@ -46,6 +48,7 @@ export class AddsComponent implements OnInit {
       if (this.form.invalid) {
         return;
       } else {
+        this.supplier.material_name = this.selectedMaterials.toString();
         this.SupplierService.addsupplier(this.supplier).subscribe(res => {
           this.getData();
           // this.toastr.success('เพิ่มข้อมูลวัตถุดิบสำเร็จ!');
@@ -56,8 +59,21 @@ export class AddsComponent implements OnInit {
             console.log(err);
           });
       }
-
     }
+  }
+  getDatamaterial() {
+    this.SupplierService.getDatamaterial().subscribe(res => {
+      this.MaterialsList = res;
+    })
+  }
+  MaterialsChange(event){
+    let index = this.selectedMaterials.indexOf(event.target.value);
+    if(index == -1){
+      this.selectedMaterials.push(event.target.value);
+    } else{
+      this.selectedMaterials.splice(index,1);
+    }
+    console.log(this.selectedMaterials)
   }
   // get id() {
   //   return this.form.get('id')
@@ -80,5 +96,6 @@ export class AddsComponent implements OnInit {
   get store_name() {
     return this.form.get('store_name')
   }
+
 
 }
