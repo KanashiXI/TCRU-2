@@ -29,8 +29,9 @@
           <br>
           <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
             <div class="col-md-1" style="text-align: center; padding: 15px;" *ngIf="!(isHandset$ | async)">
+
               <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()">
-              <!-- [checked]="cart.checked" [(ngModel)]="cart.product_id" -->
+
             </div>
             <div class="col-md-2">
               <img mat-card-image
@@ -38,9 +39,10 @@
             </div>
             <div class="col-md-4">
               <mat-card-title>
-                <!-- [(ngModel)]="cart.product_id" -->
+
                 <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()"
                   *ngIf="(isHandset$ | async)">
+
                 &nbsp;&nbsp;{{cart.product_name}}
               </mat-card-title>
               <mat-card-subtitle>{{cart.product_description}}</mat-card-subtitle>
@@ -73,9 +75,6 @@
       </div>
     </div>
   </div>
-
-
-
 
   <br>
   <div class="row" [@fadeInOut] *ngIf="cartStatus == false">
@@ -116,6 +115,7 @@
                 <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
                 <!-- <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button> -->
                 <!-- <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button> -->
+
               </div>
             </div>
           </div>
@@ -124,10 +124,6 @@
     </div>
   </div>
 
-
-
-
-
   <br>
   <!-- *ngIf="cartStatus == true" -->
   <div class="row" [@fadeInOut]>
@@ -135,13 +131,12 @@
       <mat-card>
         <div class="row">
           <div class="col-md-3"></div>
-
           <div class="col-md-7">
             <div *ngIf="statusAddIsNull == true">
               คุณยังไม่เลือกที่อยู่จัดส่ง
             </div>
-            จัดส่งที่: {{dataSource[0].firstname}}
-            {{dataSource[0].lastname}} ที่อยู่ {{dataSource[0].address}} จังหวัด
+            จัดส่งที่:
+            {{dataSource[0].address}} จังหวัด
             {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
             รหัสไปรษณีย์ {{dataSource[0].postal_code}}
             <!-- ที่อยู่จัดส่ง: {{dataSource | json}} -->

@@ -11,8 +11,7 @@ class AddressController extends Controller
     {
         try {
             foreach ($request->all() as $key => $data ) {                
-                $input = [   
-                    // 'address_id' => $data['address_id'][$key],             
+                $input = [               
                     'status' => $data['status'],
                 ];
                 DB::table('address')->where('address_id',$data['address_id'])->update($input);
@@ -23,14 +22,7 @@ class AddressController extends Controller
             return response()->json($e,500); 
         }
     }
-
-
-
-
-
-    // $edit = address::where('address_id', $data['address_id'][$key])->first();
-    //             $edit['status']=$data['status'];
-    //             $result = $edit->save();
+    
     
     public function editShippingAddress(Request $request, address $address)
     {       
@@ -74,12 +66,9 @@ class AddressController extends Controller
         $new->address = $request->input('address');
         $new->user_id = $request->input('user_id');
         $new->amphures_id = $request->input('amphures_id');
-        // $new->amphures_name = $request->input('amphures_name');
         $new->districts_id = $request->input('districts_id');
-        // $new->districts_name = $request->input('districts_name');
         $new->postal_code = $request->input('postal_code');
         $new->province_id = $request->input('province_id');
-        // $new->province_name = $request->input('province_name');
         $new->geographic_id = $request->input('geographic_id');
         $new->status = $request->input('status');            
         $new->telephone = $request->input('telephone');

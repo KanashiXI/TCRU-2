@@ -20,13 +20,10 @@ export class AddaddressComponent implements OnInit {
 
   errorMessage: String;
   submitted = false;
-
   shippingAddress: Address;
-
   provinceArr: Province[] = [];
   aumphureArr: Amphure[] = [];
   districtArr: District[] = [];
-
   provinceValue: number;
   provinceName: string;
   aumphureValue: number;
@@ -35,7 +32,6 @@ export class AddaddressComponent implements OnInit {
   districtName: string;
   geographieValue: number;
   dataForm: Emloyeeinterface;
-
   reactiveForm: FormGroup;
 
   constructor(
@@ -45,7 +41,7 @@ export class AddaddressComponent implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit( ) {    
+  ngOnInit() {
     this.getPro();
     this.createForm();
     this.checkCustomer();
@@ -60,7 +56,6 @@ export class AddaddressComponent implements OnInit {
       res => {
         this.dataForm = res;
         this.reactiveForm.patchValue({
-          // name_title: this.dataForm[0].name_title,
           firstname: this.dataForm[0].firstname,
           lastname: this.dataForm[0].lastname,
           telephone: this.dataForm[0].telephone,
@@ -69,7 +64,6 @@ export class AddaddressComponent implements OnInit {
           amphures_id: this.dataForm[0].name_th,
           district: this.dataForm[0].name_th,
           postal_code: this.dataForm[0].postal_code,
-          // jwefoifoie:this.dataForm[0].postal_code,
         })
       },
       error => this.errorMessage = <any>error
@@ -90,7 +84,7 @@ export class AddaddressComponent implements OnInit {
       geographic_id: ['', [Validators.required]],
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      telephone: ['',[Validators.required]],
+      telephone: ['', [Validators.required]],
     })
   }
 
@@ -121,13 +115,6 @@ export class AddaddressComponent implements OnInit {
         });
       }
     );
-    // Swal.fire({
-    //   icon: 'success',
-    //   title: 'บันทึกที่อยู่จัดส่งเรียบร้อย',
-    //   showConfirmButton: false,
-    //   timer: 2000
-    // });
-
   }
 
   getPro() {
@@ -143,7 +130,6 @@ export class AddaddressComponent implements OnInit {
       name_th: event.value,
       geography_id: event.value
     }
-    // this.reactiveForm.get('province_id').value
     console.log(event.value)
     this.provinceValue = this.reactiveForm.get('province_id').value
     console.log(this.provinceValue)

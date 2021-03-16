@@ -33,7 +33,6 @@ import { Router } from '@angular/router';
   ]
 })
 export class CartComponent implements OnInit {
-  // dataSource: CartDataSource;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -42,7 +41,6 @@ export class CartComponent implements OnInit {
     );
 
   cartStatus: boolean = false;
-
   checked: boolean = false;
   counter: number = 0;
   cartItem = [];
@@ -52,7 +50,6 @@ export class CartComponent implements OnInit {
   promotionNumber: number;
   discribePromotion: String;
   promotionId: number;
-
   isGotPromotion: boolean = false;
   totalPrice: number;
   discount: number;
@@ -69,6 +66,9 @@ export class CartComponent implements OnInit {
   shippingAddressList: Address[] = [];
   dataSource: Address[] = [];
   statusAddIsNull: boolean;
+  editProductQuantityForm: FormGroup;
+
+
   constructor(
     private router: Router,
     private addressService: AddressService,
@@ -116,6 +116,7 @@ export class CartComponent implements OnInit {
   changestatusCart() {
     this.cartStatus = true;
   }
+
   backstatusCart() {
     // this.cartStatus = false;
     // this.router.navigateByUrl('');
@@ -138,30 +139,25 @@ export class CartComponent implements OnInit {
   }
 
   checkoutCart() {
-
-    // const jsonValue = JSON.stringify(this.selectItem);
     this.cartService.checkoutCart(this.selectItem).subscribe(
       res => {
         this.dataForm = res;
         this.reactiveForm.patchValue({
           order_id: this.dataForm,
-
         });
         this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
           res => {
             this.cartService.deleteFromCart(this.selectItem).subscribe();
           }
-
         );
-        // this.cartService.deleteFromCart(this.selectItemForDelete).subscribe();
-
       },
       error => {
 
       }
-
     );
   }
+
+
 
   changeSelection() {
     this.fetchSelectedItems();
@@ -172,14 +168,6 @@ export class CartComponent implements OnInit {
     this.selectItem = this.productInCart.filter((value, index) => {
       return value.checked;
     });
-    // this.selectItemForDelete = this.productInCart.filter((value, index) => {
-    //   return value.product_id;
-    // });
-
-
-    // this.productInCart.map((obj) => {
-    //   this.selectItemForDelete.product_id;
-    // });
   }
 
   getCartPromotion() {
@@ -207,27 +195,22 @@ export class CartComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-
     this.cartTotal = 0;
     this.selectItem.map((obj) => {
       this.cartTotal += Number(obj.retail_price);
     });
     this.totalPrice = this.cartTotal;
-    // console.log('after' + this.totalPrice)
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
       this.isGotPromotion = true;
       this.discount = (this.cartTotal * (this.promotionNumber / 100))
       this.cartTotal = this.cartTotal - this.discount;
-
       this.reactiveForm.patchValue({
         discount: this.discount,
         net_amount: this.cartTotal,
         promotion_id: this.promotionId,
         total_price: this.totalPrice,
       })
-
     } else {
-      // console.log(this.isGotPromotion)
       this.isGotPromotion = false;
       this.reactiveForm.patchValue({
         discount: this.discount,
@@ -236,26 +219,26 @@ export class CartComponent implements OnInit {
         total_price: this.totalPrice
       })
     }
-
   }
 
+  // updateCart() {
+  //   this.cartService.editQuantityProductInCart().subscribe();
+  // }
 
   handleMinus(cart) {
     if (cart.product_quantity > 1) {
       cart.product_quantity--;
     }
     cart.retail_price -= cart.price_per_piece;
+    // this.updateCart();
   }
 
   handlePlus(cart) {
-    // if(cart.product_quantity < cart.stock){
-    //   กดเพิ่มได้
-    // }
     cart.product_quantity++;
     const oddRetail = Number(cart.retail_price);
     const sumRetail = Number(cart.price_per_piece) + oddRetail;
     cart.retail_price = sumRetail;
+    // this.updateCart();
   }
-
 
 }

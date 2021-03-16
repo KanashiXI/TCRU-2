@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\cart;
+use DB;
 
 class CartController extends Controller
 {
@@ -11,6 +12,7 @@ class CartController extends Controller
         $getall = cart::where('user_id', $request)->get();  
         return response()->json($getall,200); 
     }
+
     public function addtoCart(Request $request)
     {       
         $new = new cart;
@@ -34,6 +36,24 @@ class CartController extends Controller
             return response()->json(['prod not found']);
         return response()->json(['deleted']); 
     }
+
+
+    // public function updateProductInCart(Request $request, cart $cart)
+    // {     
+    //     try {
+    //         foreach ($request->all() as $key => $data ) {                
+    //             $input = [               
+    //                 'checked' => $data['checked'],
+    //             ];
+    //             DB::table('cart')->where('cart_id',$data['cart_id'])->update($input);
+    //         }             
+    //         return response()->json(true,200); 
+    //     }
+    //     catch(\Exception $e){
+    //         return response()->json($e,500); 
+    //     }  
+    // }
+
     public function editCartByProductId(Request $request, cart $cart)
     {       
         $edit = cart::where('product_id', $request->product_id)->first();   
