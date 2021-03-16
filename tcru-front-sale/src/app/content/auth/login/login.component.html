@@ -1,36 +1,92 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+<br><br>
+<div class="container">
+  <!-- <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center"> -->
+    <div class="row align-items-center">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <mat-card>
+          <br><br>
+          <mat-card-header>
+            <mat-card-title>เข้าสู่ระบบ</mat-card-title>
+          </mat-card-header>
+          <br><br>
+          <form [formGroup]=reactiveForm>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>ชื่อผู้ใช้ (E-mail)</mat-label>
+                    <input type="email" matInput [formControl]="email" [errorStateMatcher]="matcher"
+                      placeholder="Ex. pat@example.com">
+                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                    <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                      Please enter a valid email address
+                    </mat-error>
+                    <mat-error *ngIf="email.hasError('required')">
+                      โปรดกรอกชื่อผู้ใช้
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="password" formControlName="password" placeholder="รหัสผ่าน">
+                  </mat-form-field>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-6">
+                  <p href="register" class="register">สมัครสมาชิก</p>
+                </div>
+                <div class="col-md-6">
+                  <p routerLink="/forgotmail" class="forgetPassword">ลืมรหัสผ่าน</p>
+                </div>
+              </div>
+            </mat-card-content>
+            <button mat-stroked-button color="primary" class="btn-block" (click)="onClickSubmit()">เข้าสู่ระบบ</button>
+            <!-- <br><br> -->
+            <!-- <button mat-stroked-button class="btn-block" routerLink="/register">ลงทะเบียน</button> -->
+          </form>
+        </mat-card>
+      </div>
+    </div>
+    <!-- <mat-card class="box">
+      <mat-card-header>
+        <mat-card-title>เข้าสู่ระบบ</mat-card-title>
+      </mat-card-header>
+      <br>
+      <form class="example-form" [formGroup]=reactiveForm>
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <mat-label>ชื่อผู้ใช้ (E-mail)</mat-label>
+            <input type="email" matInput [formControl]="email" [errorStateMatcher]="matcher"
+              placeholder="Ex. pat@example.com"> -->
+            <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+            <!-- <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="email.hasError('required')">
+              โปรดกรอกชื่อผู้ใช้
+            </mat-error>
+          </mat-form-field>
 
-  <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title>เข้าสู่ระบบ</mat-card-title>
-    </mat-card-header>
-    <br>
-    <form class="example-form" [formGroup]=reactiveForm>
-      <mat-card-content>
-        <mat-form-field class="example-full-width">
-          <mat-label>ชื่อผู้ใช้ (E-mail)</mat-label>
-          <input type="email" matInput [formControl]="email" [errorStateMatcher]="matcher"
-            placeholder="Ex. pat@example.com">
-          <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
-          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="email.hasError('required')">
-            โปรดกรอกชื่อผู้ใช้
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="password" formControlName="password" placeholder="รหัสผ่าน">
+          </mat-form-field>
+          <label href="register" class="forgetPassword" style="text-align: left;">สมัครสมาชิก</label>
+          <a href="forgotmail" class="forgetPassword">ลืมรหัสผ่าน</a>
 
-        <mat-form-field class="example-full-width">
-          <input matInput type="password" formControlName="password" placeholder="รหัสผ่าน">
-        </mat-form-field>
-        <label href="register" class="forgetPassword" style="text-align: left;">สมัครสมาชิก</label>
-        <a href="forgotmail" class="forgetPassword" style="text-align: left;">ลืมรหัสผ่าน</a>
 
-      </mat-card-content>
-      <button mat-stroked-button color="primary" class="btn-block" (click)="onClickSubmit()">เข้าสู่ระบบ</button>
-      <!-- <br><br> -->
-      <!-- <button mat-stroked-button class="btn-block" routerLink="/register">ลงทะเบียน</button> -->
-    </form>
-  </mat-card>
+        </mat-card-content>
+        <button mat-stroked-button color="primary" class="btn-block" (click)="onClickSubmit()">เข้าสู่ระบบ</button> -->
+        <!-- <br><br> -->
+        <!-- <button mat-stroked-button class="btn-block" routerLink="/register">ลงทะเบียน</button> -->
+      <!-- </form>
+    </mat-card> -->
 
+  <!-- </div> -->
 </div>
+<br><br>

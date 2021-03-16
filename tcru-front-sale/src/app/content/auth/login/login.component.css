@@ -32,7 +32,7 @@ body {
 }
 
 :ng-deep .box {
-  position: relative;
+  position: absolute;
   top: 0;
   opacity: 1;
   float: left;
@@ -71,38 +71,38 @@ body {
   z-index: -1;
 }
 
-.login-wrapper .example-form {
+/* .login-wrapper .example-form {
   min-width: 100%;
   max-width: 300px;
   width: 100%;
-}
+} */
 
-.login-wrapper .example-full-width,
+.example-full-width,
 .login-wrapper .btn-block {
   width: 100%;
 }
 
-.login-wrapper mat-card-header {
+mat-card-header {
   text-align: center;
   width: 100%;
   display: block;
   font-weight: 700;
 }
 
-.login-wrapper mat-card-header mat-card-title {
+mat-card-header mat-card-title {
   font-size: 30px;
   margin: 0;
 }
 
-.login-wrapper .mat-card {
+.mat-card {
   padding: 40px 70px 50px;
 }
 
-/* .login-wrapper .mat-stroked-button {
+.mat-stroked-button {
   border: 1px solid currentColor;
   line-height: 54px;
   background: #9FE2BF;
-}  */
+} 
 
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em;
@@ -112,5 +112,11 @@ body {
   text-align: right;
   color: #495057;
   text-decoration: underline;
-  padding-left: 10px;
+  /* padding-left: 10px; */
+}
+
+.register{
+  text-align: left;
+  color: #495057;
+  text-decoration: underline;
 }

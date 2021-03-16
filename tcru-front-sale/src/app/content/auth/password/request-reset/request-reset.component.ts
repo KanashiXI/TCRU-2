@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JarwisService } from 'src/app/shared/service/jarwis.service';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-request-reset',
@@ -14,6 +16,7 @@ export class RequestResetComponent implements OnInit {
 
   constructor(
     private jarwish: JarwisService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -22,8 +25,24 @@ export class RequestResetComponent implements OnInit {
   onSubmit() {
 
     this.jarwish.sendPasswordResetLink(this.form).subscribe(
-      data => this.handleResponse(data),
-
+      data => {
+        this.handleResponse(data);
+        Swal.fire({
+          icon: 'success',
+          title: 'ส่งอีเมล์สำเร็จ<br>กรุณาตรวจสอบอีเมล์',
+          showConfirmButton: false,
+          timer: 3000
+        });
+        this.router.navigateByUrl('/');
+      },error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'เพิ่มข้อมูลไม่สำเร็จ',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
+      
     );
   }
 
