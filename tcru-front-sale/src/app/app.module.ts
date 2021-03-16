@@ -65,6 +65,7 @@ import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/ske
     ResponseResetComponent,
     SkeletonLoaderComponent,
   ],
+  entryComponents: [ProductDetailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
