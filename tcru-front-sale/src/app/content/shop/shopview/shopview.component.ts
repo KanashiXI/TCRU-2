@@ -36,6 +36,7 @@ export class ShopviewComponent implements OnInit {
   loader: boolean = false;
   allProduct: boolean = false;
   typeLoader: boolean = false;
+  listHotProduct: Product[] = [];
   slides = [
     { 'image': 'https://scontent.fbkk10-1.fna.fbcdn.net/v/t1.0-9/121696353_362570668492038_6055031406605674534_n.jpg?_nc_cat=102&ccb=3&_nc_sid=8bfeb9&_nc_eui2=AeF2JYLURa1oWtecXTh9sZtG1yuZ3hF5J4bXK5neEXknhtT1Hld1Jfn9HPFLuPFX86iJR5d5B6zvXEHLo67mGu4N&_nc_ohc=zkz5pjXOd3kAX9aqMlb&_nc_ht=scontent.fbkk10-1.fna&oh=8e86b318d0c52806ff209d36d4fb1996&oe=60644B25' },
     { 'image': 'https://scontent.fbkk14-1.fna.fbcdn.net/v/t1.0-9/121576561_361953951887043_4380031649996676986_n.jpg?_nc_cat=104&ccb=3&_nc_sid=8bfeb9&_nc_eui2=AeG6Tuh8ubarUyTpOHKPebe8IC4-OI9EXZEgLj44j0RdkXLm2UwuPQz6jD1SKkz4V6TZArVH89_g5B2y-PYf2r4D&_nc_ohc=narQFWrDQ7MAX9VUerS&_nc_oc=AQln8gkeeTrf5En89x_foSdfnyuyTrNOPkcHeFVtRxtECfkfMOEVasinhJx7mn69bg0&_nc_ht=scontent.fbkk14-1.fna&oh=076170196e675e4453f1165fcb228fff&oe=6066221D' },
@@ -64,6 +65,7 @@ export class ShopviewComponent implements OnInit {
         this.productViewService.getProduct().subscribe(
           res => {
             this.productList = res;
+            this.listHotProduct = res;
             this.onClickSelectType(0);
             this.allProduct = true;
           },
@@ -79,11 +81,47 @@ export class ShopviewComponent implements OnInit {
           return b.count - a.count;
         });
         this.hotProductList = this.hotProduct;
-        // this.sortProduct();
+
+
+        // this.hotProductList.forEach((element) => {
+        //   this.productList = this.productList.filter((element1) => {
+        //     return element1 == element;
+        //   })
+        // })
+        this.listHotProduct.forEach((element) => {
+          this.hotProductList = this.hotProductList.filter((element1) => {
+            return element1 == element;
+          })
+        })
+        // var newList = this.productList.filter(function (word) {
+        //   // console.log(this.productList, this.hotProductList)
+        //   return this.hotProductList.includes(word);
+        // })
+        // console.log(newList);
+
+        // for (let index = 0; index < this.productList.length; index++) {
+        //   for (let indexH = 0; indexH < this.hotProductList.length; indexH++) {
+        //     if (this.productList[index].product_id == this.hotProductList[indexH].product_id) {
+        //       console.log(this.productList[index].product_id, '---', this.productList[index].product_id)
+        //     }
+        //   }
+        // }
+
+        // this.sortProduct();       
+        // this.listHotProduct = this.productList.filter((value) => {
+        //   return value.product_id == this.hotProductList[].product_id;
+
+        //   console.log(this.listHotProduct)
+        // });
+        // this.hotProductList.map((obj) => {
+        //   this.cartTotal == Number(obj.product_id);
+        // });
+
         this.loader = true;
       }
     )
   }
+
 
 
 

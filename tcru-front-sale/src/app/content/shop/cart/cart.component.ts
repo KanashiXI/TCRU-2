@@ -210,6 +210,7 @@ export class CartComponent implements OnInit {
     this.selectItem.map((obj) => {
       this.cartTotal += Number(obj.retail_price);
     });
+
     this.totalPrice = this.cartTotal;
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
       this.isGotPromotion = true;

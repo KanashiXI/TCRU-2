@@ -60,7 +60,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-3" *ngFor="let item of hotProductList; let i = index">
+    <div class="col-md-3" *ngFor="let item of listHotProduct; let i = index">
       <br>
       <mat-card routerLink="/productdetail/{{item.product_id}}" class="pointer">
         <div class="row">
@@ -88,7 +88,7 @@
           </div>
           <div class="col-md-7">
             <button mat-stroked-button color="primary" class="btn-block"
-              routerLink="/productdetail/{{item.product_id}}">รายละเอียด</button>
+              routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}">รายละเอียด</button>
           </div>
         </div>
       </mat-card>
@@ -177,7 +177,7 @@
           </div>
           <div class="col-md-7">
             <button mat-stroked-button color="primary" class="btn-block"
-              routerLink="/productdetail/{{item.product_id}}">รายละเอียด</button>
+              routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}">รายละเอียด</button>
           </div>
         </div>
       </mat-card>

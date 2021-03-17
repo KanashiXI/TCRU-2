@@ -32,14 +32,16 @@ class ProductController extends Controller
                     'product.retail_price', 'product.weight', 'product.unit'
                     )
             ->get();
-        $groups = $getall->groupBy('product_name'); 
+        $groups = $getall->groupBy('product_id'); 
         $groupwithcount = $groups->mapWithKeys(function ($group, $key) {
             return [
                     $key =>
                         [
-                            'product_name' => $key,
+                            'product_id' => $key,
                             'count' => $group->sum('count'),
-                            
+                            // 'product_id' => $group->where('product_id')
+                            // 'id' => $group['product_id']
+
                         ]
             ];
         });
