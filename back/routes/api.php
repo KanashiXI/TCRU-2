@@ -68,6 +68,8 @@ Route::group([
     // 
     Route::post('updateProductCart','CartController@updateProductInCart');
 
+    // coupon
+    Route::get('coupon/{user_id}','CouponController@checkCoupon');
 
     // ออเดอร์
     Route::post('cartcheckout','OrderController@createOrder');

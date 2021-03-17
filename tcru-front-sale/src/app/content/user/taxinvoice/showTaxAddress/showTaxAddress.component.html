@@ -1,27 +1,20 @@
 <br><br>
 <div class="container">
-  <!-- <div class="row">
-    <div class="col-md-2">
-        <p class="tittle">ที่อยู่ใบกำกับภาษี</p>
-    </div>
-    <div class="col-md-8"></div>
-    <div class="col-md-2">
-      <button mat-raised-button color="primary" class="btn-block" routerLink="/addtaxaddress">เพิ่มที่อยู่ใบกำกับภาษี</button>
-    </div>
-  </div> -->
-  <!-- <br><br> -->
   <div class="row" *ngFor="let item of dataSource; let i = index">
     <div class="col-md-12">
       <mat-card>
         <div class="row">
           <div class="col-md-10 address-padding">
-            {{item.company_name}}: {{item.address}} {{item.districts_name}} {{item.amphure_name}} {{item.province_name}}  {{item.postal_code}}     
+            {{item.company_name}}: {{item.address}} {{item.districts_name}} {{item.amphure_name}} {{item.province_name}}
+            {{item.postal_code}}
           </div>
           <div class="col-md-1 btn-padding">
-            <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickEdit(item.tax_id)" routerLink="/edittaxaddress">แก้ไข</button>
+            <button mat-raised-button color="accent" class="btn-block" type="submit" (click)="onClickEdit(item.tax_id)"
+              routerLink="/edittaxaddress">แก้ไข</button>
           </div>
           <div class="col-md-1 btn-padding">
-            <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="onClickDelete(item.tax_id)">ลบ</button>
+            <button mat-raised-button color="warn" class="btn-block" type="submit"
+              (click)="onClickDelete(item.tax_id)">ลบ</button>
           </div>
         </div>
       </mat-card>

@@ -16,7 +16,7 @@ export class ShowTaxAddressComponent implements OnInit {
   dataForm: Emloyeeinterface;
   dataSource: Tax[];
   errorMessage: String;
-  
+
   constructor(
     private taxService: TaxService,
     private customerService: CustomerService,

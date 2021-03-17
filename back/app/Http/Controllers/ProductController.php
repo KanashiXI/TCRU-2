@@ -38,8 +38,8 @@ class ProductController extends Controller
                     $key =>
                         [
                             'product_name' => $key,
-  
                             'count' => $group->sum('count'),
+                            
                         ]
             ];
         });

@@ -82,7 +82,10 @@
     <div class="col-md-12">
       <mat-card>
         <div class="row">
-          <div class="col-md-3"></div>
+          <div class="col-md-3"> จัดส่งที่:
+            {{dataSource[0].address}} จังหวัด
+            {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
+            รหัสไปรษณีย์ {{dataSource[0].postal_code}}</div>
           <div class="col-md-7">
             <div class="row">
               <div class="col-md-8">
@@ -114,9 +117,9 @@
             <div class="row">
               <div class="col-md-12 rightside">
                 <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
+                <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
                 <!-- <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button> -->
                 <!-- <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button> -->
-
               </div>
             </div>
           </div>
@@ -125,8 +128,8 @@
     </div>
   </div>
 
-  <br>
-  <!-- *ngIf="cartStatus == true" -->
+  <!-- <br>
+
   <div class="row" [@fadeInOut]>
     <div class="col-md-12">
       <mat-card>
@@ -136,19 +139,11 @@
             <div *ngIf="statusAddIsNull == true">
               คุณยังไม่เลือกที่อยู่จัดส่ง
             </div>
-            จัดส่งที่:
-            {{dataSource[0].address}} จังหวัด
-            {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
-            รหัสไปรษณีย์ {{dataSource[0].postal_code}}
-            <!-- ที่อยู่จัดส่ง: {{dataSource | json}} -->
-            <!-- <button mat-raised-button color="primary" (click)="backstatusCart()">แก้ไข</button> -->
-            <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
           </div>
-
         </div>
       </mat-card>
     </div>
-  </div>
+  </div> -->
 
 
 

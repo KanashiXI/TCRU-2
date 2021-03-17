@@ -71,6 +71,7 @@ export class ShopviewComponent implements OnInit {
         )
       }
     )
+
     this.productViewService.getHotProducte().subscribe(
       res => {
         this.hotProduct = res;
