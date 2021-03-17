@@ -100,6 +100,10 @@ Route::group([
     Route::get('getByname/{material_name}','nameController@getByname');
         // แสดงประเภทไว้เพิ่มข้อมูลวัตถุดิบ
     Route::get('/categorym','CategoryController@getcategory');
+    
+        //หน่วยนับ
+        Route::get('/unit_count', 'CategorypController@getunit_count');
+
         
     Route::get('/categoryp', 'CategorypController@getcategory');
     Route::post('/producttcru','Product1Controller@addProduct');

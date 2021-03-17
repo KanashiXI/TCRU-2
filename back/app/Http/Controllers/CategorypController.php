@@ -13,4 +13,11 @@ class CategorypController extends Controller
           $data=$categoryModel->getcategory();
           return response()->json($data);
     }
+    public function getunit_count()
+    {
+         
+          $categoryModel=new categoryP();
+          $data=$categoryModel->getunit_count();
+          return response()->json($data);
+    }
 }
