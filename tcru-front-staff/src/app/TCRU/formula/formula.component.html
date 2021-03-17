@@ -3,115 +3,77 @@
   <div class="card card-primary">
   
                 <div class="card-body">
-                  <form>
+                  <form [formGroup]=form (ngSubmit)="insertData()">
                       <div class="row">
                          
-                          <div class="form-group col-sm-5 ">
-                            <label>วัตถุดิบ</label>
-                            <select class="form-control"name="">
-                              <option value="">เลือก</option>
-                              <option ></option>
-                            </select>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <label>วัตถุดิบ :</label>
+                              <select class="form-control" formControlName="material_id" [(ngModel)]="formula.material_id">
+                                <option value="">เลือก</option>
+                                <option *ngFor="let mat of MaterialsList" value="{{mat.material_id}}">{{mat.material_name}}</option>
+                              </select>
+            
+                            </div>
                           </div>
+                        </div>
                           <div class="col-sm-5">
                             <!-- text input -->
                             <div class="form-group">
                                 <label>จำนวน</label>
-                                <input formControlName="material_id" type="text" class="form-control"
-                                    placeholder="">
+                                <input type="number" class="form-control" formControlName="quantity" [(ngModel)]="formula.quantity">
                             </div>
                         </div>
-                        <div class="form-group col-sm-5 ">
-                            <label>วัตถุดิบ</label>
-                            <select class="form-control"name="">
-                              <option value="">เลือก</option>
-                              <option ></option>
-                            </select>
+
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <label>วัตถุดิบ :</label>
+                              <select class="form-control" formControlName="material_id" [(ngModel)]="formula.material_id">
+                                <option value="">เลือก</option>
+                                <option *ngFor="let mat of MaterialsList" value="{{mat.material_id}}">{{mat.material_name}}</option>
+                              </select>
+            
+                            </div>
                           </div>
+                        </div>
                           <div class="col-sm-5">
                             <!-- text input -->
                             <div class="form-group">
                                 <label>จำนวน</label>
-                                <input formControlName="material_id" type="text" class="form-control"
-                                    placeholder="">
+                                <input type="number" class="form-control" formControlName="quantity" [(ngModel)]="formula.quantity">
                             </div>
                         </div>
-                        <div class="form-group col-sm-5 ">
-                            <label>วัตถุดิบ</label>
-                            <select class="form-control"name="">
-                              <option value="">เลือก</option>
-                              <option ></option>
-                            </select>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <label>วัตถุดิบ :</label>
+                              <select class="form-control" formControlName="material_id" [(ngModel)]="formula.material_id">
+                                <option value="">เลือก</option>
+                                <option *ngFor="let mat of MaterialsList" value="{{mat.material_id}}">{{mat.material_name}}</option>
+                              </select>
+            
+                            </div>
                           </div>
+                        </div>
                           <div class="col-sm-5">
                             <!-- text input -->
                             <div class="form-group">
                                 <label>จำนวน</label>
-                                <input formControlName="material_id" type="text" class="form-control"
-                                    placeholder="">
+                                <input type="number" class="form-control" formControlName="quantity" [(ngModel)]="formula.quantity">
                             </div>
                         </div>
-                        <div class="form-group col-sm-5 ">
-                            <label>วัตถุดิบ</label>
-                            <select class="form-control"name="">
-                              <option value="">เลือก</option>
-                              <option ></option>
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>จำนวน</label>
-                                <input formControlName="material_id" type="text" class="form-control"
-                                    placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-5 ">
-                            <label>วัตถุดิบ</label>
-                            <select class="form-control"name="">
-                              <option value="">เลือก</option>
-                              <option ></option>
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>จำนวน</label>
-                                <input formControlName="material_id" type="text" class="form-control"
-                                    placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-5 ">
-                            <label>วัตถุดิบ</label>
-                            <select class="form-control"name="">
-                              <option value="">เลือก</option>
-                              <option ></option>
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>จำนวน</label>
-                                <input formControlName="material_id" type="text" class="form-control"
-                                    placeholder="">
-                            </div>
-                        </div>
-                        <div class="form-group col-sm-5 ">
-                            <label>วัตถุดิบ</label>
-                            <select class="form-control"name="">
-                              <option value="">เลือก</option>
-                              <option ></option>
-                            </select>
-                          </div>
-                          <div class="col-sm-5">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>จำนวน</label>
-                                <input formControlName="material_id" type="text" class="form-control"
-                                    placeholder="">
-                            </div>
-                        </div>
-                          
+
+                      </div>
+                      <div class="form-group">
+
+                        <td>
+                          <button class="btn btn-block btn-success ">ยืนยัน</button>
+                        </td>
+                        <td>
+                          <button class="btn btn-block  " routerLink="/shows"> กลับ</button>
+                        </td>
                       </div>
                   </form>
                   <br>

@@ -1,54 +1,36 @@
-.example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+.form-control.ng-invalid.ng-touched{
+    border-color:#ff0000 ;
 }
-
-.example-full-width {
-    width: 100%;
+.text-error{
+    font-size: 0.85rem;
+    margin: 4px;
+    text-align: right;
+    color: #ff0000;
+    opacity: 0.9;
+    font-family: 'Kanit', cursive;
+    font-weight: bold;
 }
+  /* Style the label to display next to the inputs */
+  label {
 
-.content-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+    display: block;
+    font-family: 'Kanit', cursive;
+
+  }
+  .btn-block{
+    background-color:#79994a;
+    color: #ffffff;
+
+  }
+  h5 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-family: 'Kanit', cursive;
 }
-
-.example-full-width {
-    margin: 0;
-    font-family: 'Kanit', sans-serif;
-    font-size: 100;
-}
-
-section {
-    display: table;
-}
-
-.example-label {
-    display: table-cell;
-    font-size: 14px;
-    margin-left: 8px;
-    min-width: 120px;
-}
-
-.example-button-row {
-    display: table-cell;
-    width: 490px;
-}
-
-.example-button-row .mat-button-base {
-    margin: 8px 8px 8px 0;
-    font-family: 'Kanit', sans-serif;
-}
-
-.example-flex-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.example-button-container {
-    display: flex;
-    justify-content: center;
-    width: 120px;
+.card-header{
+  background-color: #79994aa6;
 }

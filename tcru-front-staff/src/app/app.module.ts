@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule }  from '@angular/common';
 import { Uniquematerial_nameValidatorDirective } from 'src/app/Service/unique-material-name-validator.directive';
-// import { QRCodeModule } from 'angularx-qrcode';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import {A11yModule} from '@angular/cdk/a11y';
 import {ClipboardModule} from '@angular/cdk/clipboard';
@@ -302,7 +302,8 @@ const appRoutes: Routes = [
     // QRCodeModule,
     IonicModule.forRoot(),
     NgxQRCodeModule,
-    // BarcodeScanner
+    // BarcodeScanner, 
+    Ng2SearchPipeModule
   ],
   providers: [
   ],
