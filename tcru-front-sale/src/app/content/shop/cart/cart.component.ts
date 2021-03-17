@@ -67,7 +67,7 @@ export class CartComponent implements OnInit {
   dataSource: Address[] = [];
   statusAddIsNull: boolean;
   editProductQuantityForm: FormGroup;
-
+  loadUpdateCart: boolean = false;
 
   constructor(
     private router: Router,
@@ -133,8 +133,16 @@ export class CartComponent implements OnInit {
       request_tax: ['',],
       address_id: [''],
     })
+
     this.reactiveForm.patchValue({
       user_id: uId,
+    })
+
+    this.editProductQuantityForm = this.fb.group({
+      retail_price: [''],
+      product_id: [''],
+      product_quantity: [''],
+      user_id: [''],
     })
   }
 
@@ -183,6 +191,9 @@ export class CartComponent implements OnInit {
   queryCartProduct(user_id) {
     this.cartService.getCartItemList(user_id).subscribe(res => {
       this.productInCart = res;
+      this.editProductQuantityForm.patchValue({
+        user_id: user_id,
+      })
     })
   }
 
@@ -221,16 +232,25 @@ export class CartComponent implements OnInit {
     }
   }
 
-  // updateCart() {
-  //   this.cartService.editQuantityProductInCart().subscribe();
-  // }
+  updateCart() {
+    this.loadUpdateCart = true;
+    this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe(res => {
+      this.loadUpdateCart = false;
+    });
+
+  }
 
   handleMinus(cart) {
     if (cart.product_quantity > 1) {
       cart.product_quantity--;
     }
     cart.retail_price -= cart.price_per_piece;
-    // this.updateCart();
+    this.editProductQuantityForm.patchValue({
+      retail_price: cart.retail_price,
+      product_id: cart.product_id,
+      product_quantity: cart.product_quantity,
+    })
+    this.updateCart();
   }
 
   handlePlus(cart) {
@@ -238,7 +258,12 @@ export class CartComponent implements OnInit {
     const oddRetail = Number(cart.retail_price);
     const sumRetail = Number(cart.price_per_piece) + oddRetail;
     cart.retail_price = sumRetail;
-    // this.updateCart();
+    this.editProductQuantityForm.patchValue({
+      retail_price: cart.retail_price,
+      product_id: cart.product_id,
+      product_quantity: cart.product_quantity,
+    })
+    this.updateCart();
   }
 
 }

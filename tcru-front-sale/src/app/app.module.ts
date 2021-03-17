@@ -38,7 +38,8 @@ import { ConfirmDialogComponent } from './content/decorate/confirm-dialog/confir
 import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
 import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/skeleton-loder/skeleton-loader.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,8 @@ import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/ske
     FormsModule,
     ReactiveFormsModule,
     MatCarouselModule.forRoot(),
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [
     JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService

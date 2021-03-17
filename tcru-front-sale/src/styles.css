@@ -11,6 +11,20 @@ body { margin: 0;}
     height: 67%;
   } */
   
+
+  .mat-progress-bar-fill::after {
+    background-color: #7fdaab ;
+}
+
+.mat-progress-bar-buffer {
+    background: #E4E8EB ;
+}
+
+.mat-progress-bar {
+    border-radius: 2px;
+
+}
+
   .positronx {
     text-decoration: none;
     color: #ffffff;

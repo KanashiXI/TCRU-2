@@ -56,7 +56,7 @@ class CartController extends Controller
 
     public function editCartByProductId(Request $request, cart $cart)
     {       
-        $edit = cart::where('product_id', $request->product_id)->first();   
+        $edit = cart::where('user_id', $request->user_id)->where('product_id', $request->product_id)->first();   
         $edit->product_quantity=$request->product_quantity;
         $edit->retail_price=$request->retail_price;
         $result = $edit->save();

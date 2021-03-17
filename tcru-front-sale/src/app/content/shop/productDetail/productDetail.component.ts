@@ -45,21 +45,16 @@ export class ProductDetailComponent implements OnInit {
     this.Auth.authStatus.subscribe(value => this.loggedIn = value);
     this.createForm();
     this.getProduct();
-
   }
 
   handleAddToCart() {
     const requestData = {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
-
     }
     console.log('กดเพิ่ม')
     this.calPrice()
-
     const productId = this.route.snapshot.paramMap.get('product_id');
-
-
     this.cartService.searchProduct(productId, requestData.customerUsername).subscribe(res => {
       this.productInCart = res;
       if (this.productInCart.length == 0) {
@@ -86,9 +81,7 @@ export class ProductDetailComponent implements OnInit {
         this.editProductQuantityForm.patchValue({
           product_quantity: curQuantity + oldQuantity,
           retail_price: Number(curPrice) + Number(oldPrice),
-
         })
-
         this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe();
       }
     });
