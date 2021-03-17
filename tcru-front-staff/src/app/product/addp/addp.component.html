@@ -27,15 +27,27 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label>ราคาสินค้า :</label>
-                <input formControlName="weight" type="text" class="form-control" [(ngModel)]="product.price">
+                <input formControlName="price" type="text" class="form-control" [(ngModel)]="product.price" minlength=2 min =40>
+                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-error">
+
+                  <div *ngIf="price.errors.min">
+                    กรุณากรอกน้ำหนักสินค้า
+                  </div>
+
+                </div>
               </div>
             </div>
-         
-
             <div class="col-sm-4">
               <div class="form-group">
-                <label>น้ำหนักสินค้า :</label>
+                <label>น้ำหนักสินค้า/กรัม :</label>
                 <input formControlName="weight" type="text" class="form-control" [(ngModel)]="product.weight">
+                <div *ngIf="weight.invalid && (weight.dirty || weight.touched)" class="text-error">
+
+                  <div *ngIf="weight.errors.required">
+                    กรุณากรอกน้ำหนักสินค้า
+                  </div>
+
+                </div>
               </div>
             </div>
             <div class="col-sm-4">
@@ -51,20 +63,32 @@
               </div>
             </div>
             <div class="col-sm-4">
-              <!-- textarea -->
               <div class="form-group">
-                <label>รายละเอียดของสินค้า :</label>
-                <textarea class="form-control" rows="3" formControlName="Detail" [(ngModel)]="product.Detail"
-                  placeholder="Enter ..."></textarea>
+                <div class="form-group">
+                  <label>หน่วยนับ :</label>
+                  <select class="form-control" formControlName="unit_count_id" [(ngModel)]="product.unit_count_id">
+                    <option value="">หน่วยนับ</option>
+                    <option *ngFor="let mat of unit_countArr" value="{{mat.id}}">{{mat.name}}</option>
+                  </select>
+
+                </div>
               </div>
             </div>
+
             <div class="col-sm-4">
               <div class="form-group">
                 <label>จำนวนวันที่เก็บรักษา :</label>
-                <input formControlName="expire" type="number" class="form-control"[(ngModel)]="product.expire" >
+                <input formControlName="expire" type="number" class="form-control"[(ngModel)]="product.expire" min= "1">
+                <div *ngIf="expire.invalid && (expire.dirty || expire.touched)" class="text-error">
+                  <div *ngIf="expire.errors.required">
+                    กรุณาจำนวนวันที่เก็บรักษา
+                  </div>
+                  <div *ngIf="expire.errors.min">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+                </div>
               </div>
             </div>
-            
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
@@ -72,6 +96,15 @@
                 <input type="file" class="form-control" (change)="imageUpload($event)">
               </div>
             </div>
+            <div class="col-sm-4">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>รายละเอียดของสินค้า :</label>
+                <textarea class="form-control" rows="3" formControlName="Detail" [(ngModel)]="product.Detail"
+                  placeholder="Enter ..."></textarea>
+              </div>
+            </div>
+
 
            
 

@@ -66,6 +66,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     ResponseResetComponent,
     SkeletonLoaderComponent,
   ],
+  entryComponents: [ProductDetailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

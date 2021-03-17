@@ -1,6 +1,8 @@
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { JarwisService } from 'src/app/shared/service/jarwis.service';
+import { compareValidator } from 'src/app/shared/service/compare-validator.directive';
 
 @Component({
   selector: 'app-response-reset',
@@ -10,26 +12,44 @@ import { JarwisService } from 'src/app/shared/service/jarwis.service';
 export class ResponseResetComponent implements OnInit {
 
   public error = [];
+  reactiveForm: FormGroup;
+  // public form = {
+  //   email: new FormControl('', [Validators.required, Validators.email,]),
+  //   password: new FormControl('', Validators.required),
+  //   password_confirmation: new FormControl('', [Validators.required, compareValidator('password')]),
+  //   resetToken: null
+  // };
+  createForm(token) {
+    this.reactiveForm = this.fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      password_confirmation: ['', [Validators.required, compareValidator('password')]],
+      resetToken: [],
 
-  public form = {
-    email: null,
-    password: null,
-    password_confirmation: null,
-    resetToken: null
-  };
+    })
+
+    this.reactiveForm.patchValue({
+      resetToken: token,
+
+    })
+  }
 
   constructor(
     private route: ActivatedRoute,
     private jarwish: JarwisService,
     private router: Router,
+    private fb: FormBuilder,
   ) {
     route.queryParams.subscribe(params => {
-      this.form.resetToken = params['token'];
+      const token = params['token'];
+      
+      this.createForm(token)
     });
+    
   }
-
+  
   onSubmit() {
-    this.jarwish.changePassword(this.form).subscribe(
+    this.jarwish.changePassword(this.reactiveForm.getRawValue()).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
@@ -56,6 +76,17 @@ export class ResponseResetComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
+  get email() {
+    return this.reactiveForm.get('email')
+  }
+  get password() {
+    return this.reactiveForm.get('password')
+  }
+
+  get password_confirmation() {
+    return this.reactiveForm.get('password_confirmation')
+  }
 }

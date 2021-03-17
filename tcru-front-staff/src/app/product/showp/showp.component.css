@@ -37,3 +37,6 @@
     margin-inline-end: 0px;
     font-family: 'Kanit', cursive;
 }
+.mat-sort-header-container {
+  align-items: center;
+}

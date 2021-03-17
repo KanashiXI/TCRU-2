@@ -9,4 +9,6 @@ export class product {
     category_id:string;
     expire: number;
     price:String;
+    unit_count_id: string;
+    
 }

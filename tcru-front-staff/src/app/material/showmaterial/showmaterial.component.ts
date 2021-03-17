@@ -27,6 +27,7 @@ export class ShowmaterialComponent implements OnInit {
   limit: any = 5;
   skip: any;
   totalCount: any;
+  unit_countArr: any;
   constructor(private fb: FormBuilder, private http: HttpClient,
     private MeterialService: MeterialserviceService,
     private route: ActivatedRoute,
@@ -40,6 +41,7 @@ export class ShowmaterialComponent implements OnInit {
     this.getMeterial();
     this.getcategory();
     this.createForm();
+    this.getunit_count();
   }
 
   createForm() {
@@ -49,6 +51,7 @@ export class ShowmaterialComponent implements OnInit {
       weight: ['', [Validators.required]],
       category_id: ['', [Validators.required]],
       image: ['', [Validators.required]],
+      unit_count_id: ['', [Validators.required]],
     });
   }
   getMeterial() {
@@ -66,6 +69,11 @@ export class ShowmaterialComponent implements OnInit {
       this.spinner.hide();
       this.dataArr = res.data;
       this.totalCount = res.totalRecord;
+    })
+  }
+  getunit_count() {
+    this.MeterialService.getunit_count().subscribe(res => {
+      this.unit_countArr = res;
     })
   }
   getcategory() {
@@ -116,6 +124,9 @@ export class ShowmaterialComponent implements OnInit {
   }
   get image() {
     return this.form.get('image')
+  }
+  get unit_count_id() {
+    return this.form.get('unit_count_id')
   }
 
 

@@ -2,3 +2,14 @@ mat-form-field, mat-card-title{
   display: block;
   padding-top: 25px;
 }
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #7fdaab !important;
+ }
+
+
+::ng-deep .mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: #7fdaab !important;
+}

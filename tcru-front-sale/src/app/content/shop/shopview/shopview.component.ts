@@ -1,7 +1,9 @@
+import { ProductDetailComponent } from './../productDetail/productDetail.component';
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Product } from './interfaces/product';
 import { ProductviewService } from './services/productview.service';
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
+import { MatDialog } from '@angular/material/dialog';
 
 
 interface Food {
@@ -49,7 +51,8 @@ export class ShopviewComponent implements OnInit {
   // ];
 
   constructor(
-    private productViewService: ProductviewService
+    private productViewService: ProductviewService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -111,6 +114,10 @@ export class ShopviewComponent implements OnInit {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  openDialog() {
+    this.dialog.open(ProductDetailComponent);
   }
 
 }

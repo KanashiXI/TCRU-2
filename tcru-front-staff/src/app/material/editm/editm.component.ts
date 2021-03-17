@@ -21,6 +21,8 @@ export class EditmComponent implements OnInit {
   categoryArr: any;
   files: any;
   form: FormGroup;
+  unit_countArr: any;
+
   constructor(private fb: FormBuilder,private http: HttpClient,
     private MeterialService: MeterialserviceService,
     private toastr: ToastrService,
@@ -33,6 +35,7 @@ export class EditmComponent implements OnInit {
       weight: ['', [Validators.required]],
       category_id: ['', [Validators.required]],
       image: ['', [Validators.required]],
+      unit_count_id: ['', [Validators.required]],
     });
   }
 
@@ -41,6 +44,7 @@ export class EditmComponent implements OnInit {
     this.getData();
     this.getcategory();
     this.createForm();
+    this.getunit_count();
   }
   getcategory() {
     this.MeterialService.getcategory().subscribe(res => {
@@ -57,7 +61,11 @@ getData(){
 imageUpload(event){
   this.files = event.target.files[0];
 }
-
+getunit_count() {
+  this.MeterialService.getunit_count().subscribe(res => {
+    this.unit_countArr = res;
+  })
+}
 editMaterial(){
   if (confirm('คุณต้องการแก้ไขหรือไม่ ?') === true) {
   this.MeterialService.editMaterial(this.id,this.Materials).subscribe(res=>{
@@ -85,4 +93,8 @@ get category_id() {
 get image() {
   return this.form.get('image')
 }
+get unit_count_id() {
+  return this.form.get('unit_count_id')
+}
+
 }

@@ -1,42 +1,68 @@
-<div class="mt-4 col-8 offset-2">
-    <div class="card">
-        <div class="card-header">
-            Login Here
-        </div>
-        <div class="card-body">
-            <form #ResetPasswordForm=ngForm (ngSubmit)="onSubmit()">
-                <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" name="email" [(ngModel)]="form.email" class="form-control" id="inputEmail3"
-                            placeholder="Email" required>
-                        <!-- <span class="text-danger" [hidden]="!error.email">{{ error.email }}</span> -->
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" name="password" [(ngModel)]="form.password" class="form-control"
-                            id="inputPassword3" placeholder="Password" required>
-                        <!-- <span class="text-danger" [hidden]="!error.password">{{ error.password }}</span> -->
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputConfirmPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" name="password_confirmation" [(ngModel)]="form.password_confirmation"
-                            class="form-control" id="inputConfirmPassword3" placeholder="Password" required>
-                        <!-- <span class="text-danger" [hidden]="!error.password_confirmation">{{ error.password_confirmation
-                            }}</span> -->
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-10 offset-2">
-                        <button type="submit" class="btn btn-primary" [disabled]="!ResetPasswordForm.valid">Change
-                            Password</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+<div class="row align-items-center">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <mat-card>
+      <br><br>
+      <mat-card-header>
+        <mat-card-title>ตั้งรหัสผ่านใหม่</mat-card-title>
+      </mat-card-header>
+      <br><br>
+      <form [formGroup]=reactiveForm>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <mat-label>ชื่อผู้ใช้ (E-mail)</mat-label>
+                <input type="email" matInput [formControl]="email" placeholder="Ex. pat@example.com">
+                <mat-error *ngIf="email.hasError('required')">
+                  โปรดกรอกชื่อผู้ใช้
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput type="password" formControlName="password" #message placeholder="รหัสผ่าน" minlength="6" maxlength="16">
+                <mat-hint align="end"><small> {{message.value.length}} / 16</small></mat-hint>
+                <mat-error *ngIf="password.hasError('required')">
+                  โปรดกรอกรหัสผ่าน
+                </mat-error>
+                <mat-error *ngIf="password.hasError('minlength')">
+                  โปรดกรอกรหัสผ่านมากกว่า 6 ตัวอักษร
+                </mat-error>
+                <mat-error *ngIf="password.hasError('maxlength')">
+                  โปรดกรอกรหัสผ่านน้อยกว่า 16 ตัวอักษร
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput type="password" name="password_confirmation" #message formControlName="password_confirmation" placeholder="รหัสผ่านอีกครั้ง">
+                <mat-hint align="end"><small> {{message.value.length}} / 16</small></mat-hint>
+                <mat-error *ngIf="password_confirmation.hasError('required')">
+                  โปรดกรอกรหัสผ่านอีกครั้ง
+                </mat-error>
+                <mat-error *ngIf="password_confirmation.hasError('minlength')">
+                  โปรดกรอกรหัสผ่านมากกว่า 6 ตัวอักษร
+                </mat-error>
+                <mat-error *ngIf="password_confirmation.hasError('maxlength')">
+                  โปรดกรอกรหัสผ่านน้อยกว่า 16 ตัวอักษร
+                </mat-error>
+                <mat-error *ngIf="password_confirmation.hasError('compare')">
+                  โปรดกรอกรหัสผ่านให้เหมือนกัน
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <br>
+        </mat-card-content>
+        <button mat-stroked-button color="primary" class="btn-block" (click)="onSubmit()">เปลี่ยนรหัสผ่าน</button>
+      </form>
+    </mat-card>
+  </div>
 </div>
