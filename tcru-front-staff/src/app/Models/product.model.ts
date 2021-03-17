@@ -10,5 +10,6 @@ export class product {
     expire: number;
     price:String;
     unit_count_id: string;
-    
+    searchText:any="";
+    unit: string;
 }

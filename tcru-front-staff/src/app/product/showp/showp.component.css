@@ -12,22 +12,6 @@
     cursor: pointer;
     float: right;
   }
-  
-  /* Style the container */
-  .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    align-items: center;
-  }
-  /* Floating column for labels: 25% width */
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-
-.content-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
   h5 {
     display: block;
     font-size: 1.5em;
@@ -39,4 +23,26 @@
 }
 .mat-sort-header-container {
   align-items: center;
+}
+ngb-pagination ::ng-deep a {
+  color: black !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border-color: #79994a;
+  background-color: #79994a;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}
+.btn-success{
+  background-color: #79994a;
+}
+.form-control{
+  border: 1px solid #ffffff;
 }

@@ -14,6 +14,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class ShowpComponent implements OnInit {
 
   materialList: any[]=[];
+  searchText: string;
   imageDirectoyPath:any = 'http://127.0.0.1:5000/public/image/';
   material_id: string;
   Search: string;

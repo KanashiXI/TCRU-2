@@ -1,35 +1,39 @@
 <div class="main-container" style=" height:200vh;">
-  <!-- Content Header (Page header) -->
   <h3 class="card-title">เพิ่มข้อมูลร้านค้า</h3>
-  <div class="card card-primary">
-    <!-- Main content -->
-    <section class="content-header">
-      <!-- /.card-header -->
-      <div class="card-body">
-        <form [formGroup]=form (ngSubmit)="insertData()">
-          <!-- <form [FormGroup]="form" > -->
+  <section class="content-header">
+    <form [formGroup]=form (ngSubmit)="insertData()">
+      <div class="card-header">
+        <div class="col-sm-12">
+          <label>ข้อมูลร้านค้า</label>
+        </div>
+      </div>
+      <div class="card card-primary">
+        <div class="card-body">
           <div class="row">
-
-            <div class="col-sm-4">
-              <!-- text input -->
-              <div class="form-group">
-                <label>ชื่อร้านค้า :</label>
-                <input type="text" class="form-control" formControlName="store_name" [(ngModel)]="supplier.store_name">
-                <div *ngIf="store_name.invalid && (store_name.dirty || store_name.touched)" class="text-error">
-
-                  <div *ngIf="store_name.errors.required">
-                    กรุณากรอกชื่อร้านค้า
-                  </div>
-                  <!-- <div *ngIf="store_name.errors.pattern">
-                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
-                  </div> -->
-
-                </div>
-              </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>ชื่อร้านค้า :</label>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label>ชื่อผู้ติดต่อ :</label>
+                <input type="text" class="form-control" formControlName="store_name" [(ngModel)]="supplier.store_name">
+                <div *ngIf="store_name.invalid && (store_name.dirty || store_name.touched)" class="text-error">
+                  <div *ngIf="store_name.errors.required">
+                    กรุณากรอกชื่อร้านค้า
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>ชื่อผู้ติดต่อ :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
                 <input type="text" class="form-control" formControlName="supplier_name"
                   [(ngModel)]="supplier.supplier_name"
                   pattern="^[ A-Za-zๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$">
@@ -43,11 +47,16 @@
                 </div>
               </div>
             </div>
-
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>เบอร์ติดต่อ :</label>
+            </div>
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
-                <label>เบอร์ติดต่อ :</label>
                 <input type="text" class="form-control" formControlName="phone" [(ngModel)]="supplier.phone"
                   pattern="^((\\+91-?)|0)?[0-9]{10}$">
                 <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-error">
@@ -60,10 +69,16 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>อีเมล :</label>
+            </div>
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
-                <label>อีเมล :</label>
                 <input type="email" class="form-control" formControlName="email"
                   pattern="[a-zA-Z0-9][A-Za-z0-9._-]+@[a-z0-9.-]*" [(ngModel)]="supplier.email">
                 <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-error">
@@ -76,45 +91,61 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>ที่ตั้ง :</label>
+            </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <label>ที่ตั้ง</label>
                 <textarea class="form-control" formControlName="address" [(ngModel)]="supplier.address" rows="3"
                   placeholder=""></textarea>
                 <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-error">
-
                   <div *ngIf="address.errors.required">
                     กรุณากรอกที่ตั้ง
                   </div>
-                  <!-- <div *ngIf="address.errors.pattern">
-                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
-                  </div> -->
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card-header">
+        <div class="col-sm-12">
+          <label>วัตถุดิบที่จำหน่าย</label>
+        </div>
+      </div>
+      <div class="card card-primary">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>วัตถุดิบที่จำหน่าย :</label>
+            </div>
             <div class="form-group">
-              <label>วัตถุดิบที่จำหน่าย</label>
               <div *ngFor="let obj of MaterialsList">
                 <input type="checkbox" value="{{obj.material_name}}" (change)="MaterialsChange($event)">
                 {{obj.material_name}}
               </div>
-
             </div>
           </div>
-          <div class="form-group">
-
-            <td>
-              <button class="btn btn-block btn-success ">ยืนยัน</button>
-            </td>
-            <td>
-              <button class="btn btn-block  " routerLink="/shows"> กลับ</button>
-            </td>
-          </div>
-
-        </form>
+        </div>
       </div>
-      <!-- /.card-body -->
-
-    </section>
-  </div>
+      <br>
+      <div class="row">
+        <div class="form-group">
+          <td>
+            <button class="btn btn-block ">ยืนยัน</button>
+          </td>
+          <td>
+            &nbsp;<button class="btn btn-secondary  " routerLink="/shows"> กลับ</button>
+          </td>
+        </div>
+      </div>
+    </form>
+  </section>
 </div>
