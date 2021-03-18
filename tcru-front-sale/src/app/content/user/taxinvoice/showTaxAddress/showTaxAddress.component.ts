@@ -37,6 +37,15 @@ export class ShowTaxAddressComponent implements OnInit {
     )
   }
 
+  handleRadio(i): void {
+    this.dataSource.forEach((item) => {
+      item.status = 0;
+    });
+    var x = i
+    this.dataSource[x].status = 1;
+    // this.taxService.editStatusAddress(this.dataSource).subscribe();
+  }
+
   getUserTax(user_id) {
     this.taxService.getTax(user_id).subscribe(data => {
       this.dataSource = data;

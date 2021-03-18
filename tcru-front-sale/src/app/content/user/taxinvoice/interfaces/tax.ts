@@ -13,4 +13,5 @@ export interface Tax {
     amphure_id?: any;
     firstname?: any;
     lastname?: any;
+    status?: any;
 }

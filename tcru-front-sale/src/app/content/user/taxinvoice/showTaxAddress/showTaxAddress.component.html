@@ -4,7 +4,14 @@
     <div class="col-md-12">
       <mat-card>
         <div class="row">
-          <div class="col-md-10 address-padding">
+
+          <div class="col-md-1 address-padding">
+            <input type="radio" value="{{i}}" [checked]="item.status == 1" (change)="handleRadio(i)">
+            {{item.status == 1 | json }}
+          </div>
+          <!-- ยังไม่ทำ -->
+
+          <div class="col-md-19 address-padding">
             {{item.company_name}}: {{item.address}} {{item.districts_name}} {{item.amphure_name}} {{item.province_name}}
             {{item.postal_code}}
           </div>

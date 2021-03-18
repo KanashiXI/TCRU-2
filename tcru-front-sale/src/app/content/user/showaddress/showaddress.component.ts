@@ -31,12 +31,8 @@ export class ShowaddressComponent implements OnInit {
     var x = i
     this.dataSource[x].status = 1;
     this.addressService.editStatusAddress(this.dataSource).subscribe();
-    // this.addressService.getShippingAddress(this.dataSource).subscribe()
   }
 
-  // editAddressStatus() {
-  //   this.customerService.editStatusAddress().subscribe();
-  // }
 
 
   ngOnInit() {
