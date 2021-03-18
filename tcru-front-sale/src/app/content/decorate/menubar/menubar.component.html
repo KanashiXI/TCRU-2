@@ -48,7 +48,7 @@
           <label style="font-size: 16px;">&nbsp;&nbsp;หน้าหลัก</label>
         </a>  
         <span class="spacer"></span>
-          <a mat-list-item routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)" id="cart"><span class="material-icons">shopping_cart</span></a>
+          <a mat-list-item routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)" id="cart"><span class="material-icons" matBadge="{{cartTotal}}" matBadgeColor="warn">shopping_cart</span></a>
           <!-- <p *ngIf="!(isHandset$ | async)" class="hide">ออกจากระบบ</p> -->
         
       </mat-toolbar>
