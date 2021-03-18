@@ -16,6 +16,7 @@
     -ms-transform: scale(1);
     z-index: 5;
     max-width: 1000px;
+    text-align: left;
 }
 
 ::ng-deep .dropdown{

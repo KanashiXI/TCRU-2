@@ -41,7 +41,7 @@
             <div class="col-md-12">
               <mat-panel-description>
                 <div class="col-md-6">
-                  <button mat-raised-button color="primary" green routerLink="/addaddress">เพิ่มที่อยู่จัดส่ง</button>
+                  <button mat-raised-button color="primary" green (click)="openDialogAddress()">เพิ่มที่อยู่จัดส่ง</button>
                 </div>
               </mat-panel-description>
             </div>
@@ -65,7 +65,7 @@
             <div class="col-md-12">
               <mat-panel-description>
                 <div class="col-md-6">
-                  <button mat-raised-button color="primary" routerLink="/addtaxaddress">เพิ่มที่อยู่ใบกำกับภาษี</button>
+                  <button mat-raised-button color="primary" (click)="openDialogTax()">เพิ่มที่อยู่ใบกำกับภาษี</button>
                 </div>
               </mat-panel-description>
             </div>

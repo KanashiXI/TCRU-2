@@ -24,6 +24,7 @@ const routes: Routes = [
   {
     path: '',
     component: ShopviewComponent,
+    // data: { breadcrumb: 'Home'}
   },
   {
     path: 'productdetail/:product_id/:price',

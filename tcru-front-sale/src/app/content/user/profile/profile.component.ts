@@ -1,3 +1,5 @@
+import { AddTaxAddressComponent } from './../taxinvoice/addTaxAddress/addTaxAddress.component';
+import { AddaddressComponent } from './../addaddress/addaddress.component';
 import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -5,6 +7,8 @@ import { CustomerService } from 'src/app/shared/service/customer.service';
 import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
 import { Subject, Subscription } from 'rxjs';
 import { JarwisService } from 'src/app/shared/service/jarwis.service';
+import { MatDialog } from '@angular/material/dialog';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-profile',
@@ -34,6 +38,8 @@ export class ProfileComponent implements OnInit {
     private http: HttpClient,
     private fb: FormBuilder,
     private Jarwis: JarwisService,
+    public dialog: MatDialog,
+    private overlay: Overlay
 
   ) { }
 
@@ -80,6 +86,24 @@ export class ProfileComponent implements OnInit {
       telephone: ['', [Validators.required]],
     })
 
+  }
+
+  openDialogAddress() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(AddaddressComponent,{
+      autoFocus: false, 
+      scrollStrategy, 
+      maxHeight: '90vh'
+    });
+  }
+
+  openDialogTax() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    this.dialog.open(AddTaxAddressComponent,{
+      autoFocus: false, 
+      scrollStrategy, 
+      maxHeight: '90vh'
+    });
   }
 
   get lastname() {
