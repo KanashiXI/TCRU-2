@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
@@ -16,8 +16,6 @@ import { Address } from '../../user/addaddress/interfaces/address';
 import { AddressService } from '../../user/addaddress/services/address.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-cart',
@@ -72,45 +70,7 @@ export class CartComponent implements OnInit {
   editProductQuantityForm: FormGroup;
   loadUpdateCart: boolean = false;
   isSelectProduct: boolean = false;
-  @ViewChild('htmlData') htmlData: ElementRef;
-  USERS = [
-    {
-      "id": 1,
-      "name": "Leanne Graham",
-      "email": "sincere@april.biz",
-      "phone": "1-770-736-8031 x56442"
-    },
-    {
-      "id": 2,
-      "name": "Ervin Howell",
-      "email": "shanna@melissa.tv",
-      "phone": "010-692-6593 x09125"
-    },
-    {
-      "id": 3,
-      "name": "Clementine Bauch",
-      "email": "nathan@yesenia.net",
-      "phone": "1-463-123-4447",
-    },
-    {
-      "id": 4,
-      "name": "Patricia Lebsack",
-      "email": "julianne@kory.org",
-      "phone": "493-170-9623 x156"
-    },
-    {
-      "id": 5,
-      "name": "Chelsey Dietrich",
-      "email": "lucio@annie.ca",
-      "phone": "(254)954-1289"
-    },
-    {
-      "id": 6,
-      "name": "Mrs. Dennis",
-      "email": "karley@jasper.info",
-      "phone": "1-477-935-8478 x6430"
-    }
-  ];
+
   constructor(
     private router: Router,
     private addressService: AddressService,
@@ -118,23 +78,6 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private fb: FormBuilder,
   ) { }
-
-  public openPDF(): void {
-    let DATA = document.getElementById('htmlData');
-
-    html2canvas(DATA).then(canvas => {
-
-      let fileWidth = 208;
-      let fileHeight = canvas.height * fileWidth / canvas.width;
-
-      const FILEURI = canvas.toDataURL('image/png')
-      let PDF = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
-      PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
-
-      PDF.save('angular-demo.pdf');
-    });
-  }
 
   ngOnInit() {
     console.log(this.selectItem.values())
@@ -257,7 +200,7 @@ export class CartComponent implements OnInit {
   }
 
   remove(id: string) {
-
+ 
     Swal.fire({
       title: 'คุณต้องการลบข้อมูลนี้ ใช่ หรือ ไม่?',
       icon: 'warning',
@@ -268,16 +211,16 @@ export class CartComponent implements OnInit {
       if (result.value) {
         this.cartService.remove(id).subscribe(res => {
 
-          Swal.fire(
-            'ลบข้อมูลเรียบร้อย',
-            '',
-            'success',
-          )
-          this.ngOnInit()
+        Swal.fire(
+          'ลบข้อมูลเรียบร้อย',
+          '',
+          'success',
+        )
+        this.ngOnInit()
 
           //dialog ลบสำเร็จ
         });
-
+        
 
       } else if (result.dismiss === Swal.DismissReason.cancel) { }
     })

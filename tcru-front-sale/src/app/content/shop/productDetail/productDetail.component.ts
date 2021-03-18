@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -46,28 +46,6 @@ export class ProductDetailComponent implements OnInit {
     this.createForm();
     this.getProduct();
   }
-
-
-
-
-  // @ViewChild('content') content: ElementRef;
-  // public downloadPDF() {
-  //   let doc = new jsPDF();
-  //   let specialElementHandlers = {
-  //     '#editor': function (element, renderer) {
-  //       return true;
-  //     }
-  //   };
-
-  //   let content = this.content.nativeElement;
-  //   doc.text("content.innerHTML", 10, 10,);
-  //   doc.save('test.pdf')
-  // }
-
-
-
-
-
 
   handleAddToCart() {
     const requestData = {

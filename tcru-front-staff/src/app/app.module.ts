@@ -83,9 +83,13 @@ import { EditPromotionComponent } from './TCRU/promotion/editPromotion/editPromo
 import { DeliveryStatusComponent } from './TCRU/shipping/deliveryStatus/deliveryStatus.component';
 import { DescriptionShippingComponent } from './TCRU/shipping/descriptionShipping/descriptionShipping.component';
 import { ShowOrderComponent } from './OrderMaterials/show-order/show-order.component';
-import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 import { FormulaComponent } from './TCRU/formula/formula.component';
 // import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { NgMultiSelectDropDownModule  } from 'ng-multiselect-dropdown';
+import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
+
 const appRoutes: Routes = [
   {
     path: '', 
@@ -177,20 +181,17 @@ const appRoutes: Routes = [
     component: ShowOrderComponent
   },
   {
-    path: 'addOrder',
-    component: AddOrderComponent
-  },
-  {
     path: 'addlotp',
     component: AddlotComponent
   },
   {
     path: 'formula',
     component: FormulaComponent
-  }
-
-
-  
+  },
+  {
+    path: 'addOrder',
+    component: AddOrderComponent
+  }  
 ];
 
 @NgModule({
@@ -223,13 +224,11 @@ const appRoutes: Routes = [
     DescriptionShippingComponent,
     EditsComponent,
     ShowOrderComponent,
-    AddOrderComponent,
-    FormulaComponent
+    FormulaComponent,
+    AddOrderComponent
   ],
-  entryComponents:[DialogCustomerComponent,
-    AddOrderComponent],
+  entryComponents:[DialogCustomerComponent],
   imports: [
-
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -303,7 +302,10 @@ const appRoutes: Routes = [
     IonicModule.forRoot(),
     NgxQRCodeModule,
     // BarcodeScanner, 
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgMultiSelectDropDownModule.forRoot(),
+    NgxDatePickerModule,
+    NgSelectModule
   ],
   providers: [
   ],

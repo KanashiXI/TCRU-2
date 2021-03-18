@@ -141,6 +141,10 @@ Route::group([
 
     Route::get('/Customers', 'CustomerController@getCustomers');
     Route::post('/Customers', 'CustomerController@create');
+
+    //ใบสั่งซื้อวัตถุดิบ
+    Route::get('/orderMaterials', 'OrderMaterialController@getorderMaterialsall');
+    Route::post('/addorderM', 'OrderMaterialController@postorderMaterials');
 });
 
 
