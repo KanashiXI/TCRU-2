@@ -76,11 +76,7 @@ import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/ske
     FormsModule,
     ReactiveFormsModule,
     MatCarouselModule.forRoot(),
-<<<<<<< HEAD
-
-=======
     // BreadcrumbModule
->>>>>>> f480f628c1ad0c5b424c3300fe823c0f29b4129e
   ],
   providers: [
     JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService
