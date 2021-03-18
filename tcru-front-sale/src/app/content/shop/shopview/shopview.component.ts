@@ -77,10 +77,17 @@ export class ShopviewComponent implements OnInit {
     this.productViewService.getHotProducte().subscribe(
       res => {
         this.hotProduct = res;
-        this.hotProduct.sort(function (a, b) {
-          return b.count - a.count;
-        });
-        this.hotProductList = this.hotProduct;
+        // this.hotProduct.sort(function (a, b) {
+        //   return b.count - a.count;
+        // });
+        this.hotProductList = res;
+
+        this.listHotProduct.forEach((element) => {
+          this.hotProductList = this.hotProductList.filter((element1) => {
+            return element1 == element;
+          })
+        })
+        this.loader = true;
 
 
         // this.hotProductList.forEach((element) => {
@@ -88,11 +95,7 @@ export class ShopviewComponent implements OnInit {
         //     return element1 == element;
         //   })
         // })
-        this.listHotProduct.forEach((element) => {
-          this.hotProductList = this.hotProductList.filter((element1) => {
-            return element1 == element;
-          })
-        })
+
         // var newList = this.productList.filter(function (word) {
         //   // console.log(this.productList, this.hotProductList)
         //   return this.hotProductList.includes(word);
@@ -117,7 +120,7 @@ export class ShopviewComponent implements OnInit {
         //   this.cartTotal == Number(obj.product_id);
         // });
 
-        this.loader = true;
+
       }
     )
   }

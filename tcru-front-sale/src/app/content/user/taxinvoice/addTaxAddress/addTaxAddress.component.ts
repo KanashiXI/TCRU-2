@@ -37,15 +37,15 @@ export class AddTaxAddressComponent implements OnInit {
   constructor(
     private taxService: TaxService,
     private fb: FormBuilder,
-    private customerService: CustomerService,  
+    private customerService: CustomerService,
     private addressService: AddressService,
     private router: Router,
   ) { }
 
   ngOnInit() {
     this.getTaxForm(),
-    this.createForm(),
-    this.getPro();
+      this.createForm(),
+      this.getPro();
   }
 
   createForm() {
@@ -95,6 +95,7 @@ export class AddTaxAddressComponent implements OnInit {
     this.addressService.getProvince().subscribe(
       res => {
         this.provinceArr = res;
+        this.provinceArr.sort((a, b) => a.name_th.localeCompare(b.name_th));
       })
   }
 
@@ -111,6 +112,7 @@ export class AddTaxAddressComponent implements OnInit {
     })
     this.addressService.getAumphure(obj).subscribe(res => {
       this.aumphureArr = res;
+      this.aumphureArr.sort((a, b) => a.name_th.localeCompare(b.name_th));
     });
   }
 
@@ -124,6 +126,7 @@ export class AddTaxAddressComponent implements OnInit {
     });
     this.addressService.getDistrict(obj).subscribe(res => {
       this.districtArr = res;
+      this.districtArr.sort((a, b) => a.name_th.localeCompare(b.name_th));
     });
   }
 
@@ -161,9 +164,9 @@ export class AddTaxAddressComponent implements OnInit {
 
 
     )
-    
-  
-   
+
+
+
     // Swal.fire({
     //   icon: 'success',
     //   title: 'บันทึกใบกำกับภาษีเรียบร้อย',

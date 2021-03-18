@@ -39,17 +39,19 @@ class ProductController extends Controller
                         [
                             'product_id' => $key,
                             'count' => $group->sum('count'),
-                            // 'product_id' => $group->where('product_id')
+                        
+                            'product_value' => $group
                             // 'id' => $group['product_id']
-
                         ]
             ];
         });
+        $sorted = $groupwithcount->sortByDesc('count');
         $res = [];
-        foreach ($groupwithcount  as $key => $value) {
+        foreach ($sorted  as $key => $value) {
             $res[] = $value;
         }
-        return response()->json($res ,200); 
+        $items = array_slice($res, 0,3);
+        return response()->json($groupwithcount, 200); 
     }
 }
 
