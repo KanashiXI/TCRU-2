@@ -13,10 +13,10 @@
               <div class="col-md-6">
                 <p>สินค้า</p>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <p>จำนวนสินค้า(ชิ้น)</p>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-2" style="text-align: center;">
                 <p>ราคารวม(บาท)</p>
               </div>
             </div>
@@ -28,7 +28,7 @@
           </div>
           <br>
           <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
-            <div class="col-md-1" style="text-align: center; padding: 15px;" *ngIf="!(isHandset$ | async)">
+            <div class="col-md-1" style="text-align: left; padding: 15px;" *ngIf="!(isHandset$ | async)">
 
               <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()">
 
@@ -48,7 +48,7 @@
               <mat-card-subtitle>{{cart.product_description}}</mat-card-subtitle>
             </div>
             <div class="col-md-3">
-              <button mat-stroked-button (click)="handleMinus(cart)">
+              <button mat-stroked-button class="number" (click)="handleMinus(cart)">
                 <span class="material-icons">
                   remove
                 </span>
@@ -56,7 +56,7 @@
               <mat-form-field appearance="outline">
                 <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" min="1">
               </mat-form-field>
-              <button mat-stroked-button (click)="handlePlus(cart)">
+              <button mat-stroked-button class="number" (click)="handlePlus(cart)">
                 <span class="material-icons">
                   add
                 </span>
@@ -81,45 +81,57 @@
   <div class="row" [@fadeInOut] *ngIf="cartStatus == false">
     <div class="col-md-12">
       <mat-card>
+        <br>
         <div class="row">
-          <div class="col-md-3"> จัดส่งที่:
+          <div class="col-md-1"></div>
+          <div class="col-md-10">
+            <span class="material-icons">local_shipping</span>
+            &nbsp;&nbsp; จัดส่งที่:
             {{dataSource[0].address}} จังหวัด
             {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
-            รหัสไปรษณีย์ {{dataSource[0].postal_code}}</div>
+            รหัสไปรษณีย์ {{dataSource[0].postal_code}}
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="row">
+          <div class="col-md-4"></div>
           <div class="col-md-7">
             <div class="row">
               <div class="col-md-8">
                 <p>ราคารวม</p>
               </div>
-              <div class="col-md-4 rightside">
+              <div class="col-md-4">
                 <p>{{totalPrice | currency :'฿':true}}</p>
               </div>
             </div>
-            <div class="row">
-              <div *ngIf="isGotPromotion == true">
-                <div class="col-md-6">
-                  <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label>
-                  </p>
-                </div>
-                <div class="col-md-6 rightside">
-                  <p style="color: red;">-{{discount | currency :'฿':true}}</p>
-                </div>
+            <div class="row" *ngIf="isGotPromotion == true">
+              <div class="col-md-8">
+                <p>คุณได้รับโปรโมชันเมื่อ {{discribePromotion}} <label style="color: red;">คุณได้รับส่วนลด</label></p>
+              </div>
+              <div class="col-md-4">
+                <p style="color: red;">-{{discount | currency :'฿':true}}</p>
               </div>
             </div>
             <div class="row">
               <div class="col-md-8">
                 <p><strong>ยอดสุทธิ</strong></p>
               </div>
-              <div class="col-md-4 rightside">
+              <div class="col-md-4">
                 <p><strong>{{cartTotal | currency :'฿':true}}</strong></p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-12 rightside">
-                <button mat-flat-button routerLink="/">เลือกสินค้าเพิ่ม</button>
-                <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button>
+            <br>
+            <div class="row rightside">
+              <div class="col-md-4"></div>
+              <div class="col-md-3">
+                <button mat-stroked-button routerLink="/" class="btn-block">เลือกสินค้าเพิ่ม</button>
                 <!-- <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button> -->
                 <!-- <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button> -->
+              </div>
+              <div class="col-md-3">
+                <button mat-raised-button color="primary" class="btn-block" (click)="checkoutCart()">ซื้อสินค้า</button>
               </div>
             </div>
           </div>
@@ -144,13 +156,6 @@
       </mat-card>
     </div>
   </div> -->
-
-
-
-
-
-
-
 
 </div>
 
