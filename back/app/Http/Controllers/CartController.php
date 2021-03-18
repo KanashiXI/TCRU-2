@@ -9,7 +9,23 @@ class CartController extends Controller
 {
     public function getCartByUserId($request)
     {       
-        $getall = cart::where('user_id', $request)->get();  
+        // $getall = DB::table('address')
+        //     ->join('provinces', 'provinces.id', '=', 'address.province_id')
+        //     ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
+        //     ->join('districts', 'districts.id', '=', 'address.districts_id')
+        //     ->join('users', 'users.id', '=', 'address.user_id')
+        //     ->select('address.status','address.postal_code', 'address.user_id', 'address.firstname', 'address.lastname', 'address.address_id', 'address.address' , 'provinces.name_th as province_name', 'amphures.name_th as amphure_name', 'districts.name_th as district_name')
+        //     ->where('address.user_id', $request)
+        //     ->groupBy('address.address_id')
+        //     ->get(); 
+        $getall = DB::table('cart')
+            ->join('product', 'product.product_id', '=', 'cart.product_id')
+            ->select('*')
+            ->where('cart.user_id', $request)
+            ->get();
+
+            
+        // $getall = cart::where('user_id', $request)->get();  
         return response()->json($getall,200); 
     }
 

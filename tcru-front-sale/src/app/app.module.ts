@@ -39,6 +39,8 @@ import { RequestResetComponent } from './content/auth/password/request-reset/req
 import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
 import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/skeleton-loder/skeleton-loader.component';
 // import { BreadcrumbModule } from 'angular-crumbs';
+import { BillComponent } from './content/shop/bill/bill.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +65,7 @@ import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/ske
     RequestResetComponent,
     ResponseResetComponent,
     SkeletonLoaderComponent,
+    BillComponent
   ],
   entryComponents: [ProductDetailComponent],
   imports: [

@@ -19,6 +19,7 @@ export interface Product {
     order_id?: Number;
     check?: boolean;
     cart_id?: Number;
+    image?: string;
     // product_id: number;
     // product_name: string;
     // retail_price: string;
