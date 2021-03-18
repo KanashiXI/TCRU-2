@@ -1,6 +1,6 @@
 <div class="main-container" style=" height:200vh;">
     <h5 class="card-title">แก้ไขข้อมูลวัตถุดิบ</h5>
-      <div class="card card-warning">
+
     <section class="content-header">
         
               
@@ -8,42 +8,95 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <form [formGroup]=form (ngSubmit)="editMaterial()">
-                    <div class="row">
-
-                        <div class="col-sm-6">
-                            <!-- text input -->
-                            <div class="form-group">
-                                <label>ชื่อวัตถุดิบ</label>
-                                <input formControlName="material_name" type="text" class="form-control"[(ngModel)] ="Materials.material_name"  >
-                            </div>
-                        </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <div class="form-group">
-                            <label>ประเภทวัตถุดิบ</label>
-                            <select class="form-control" formControlName="category_id" [(ngModel)]="Materials.category_id">
-                              <option value="">ประเภทวัตถุดิบ</option>
-                              <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
-                            </select>
-              
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-4">
-                        <div class="form-group">
-                          <div class="form-group">
-                            <label>หน่วยนับ</label>
-                            <select class="form-control" formControlName="unit_count_id" [(ngModel)]="Materials.unit_count_id">
-                              <option value="">หน่วยนับ</option>
-                              <option *ngFor="let mat of unit_countArr" value="{{mat.id}}">{{mat.name}}</option>
-                            </select>
-              
-                          </div>
-                        </div>
-                      </div>
-                
-                        
+                  <div class="card-header">
+                    <div class="col-sm-12">
+                      <label>ประเภท</label>
                     </div>
+                  </div>
+                  <div class="card card-primary">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-2">
+                          <label>ประเภทวัตถุดิบ :</label>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <select class="form-control" formControlName="category_id" [(ngModel)]="Materials.category_id">
+                                <option value="">ประเภทวัตถุดิบ</option>
+                                <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+                              </select>
+                              <div *ngIf="category_id.invalid && (category_id.dirty || category_id.touched)" class="text-error">
+                                <div *ngIf="category_id.errors.required">
+                                  กรุณาเลือกประเภทวัตถุดิบ
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="card-header">
+                    <div class="col-sm-12">
+                      <label>ประเภท</label>
+                    </div>
+                  </div>
+                  <div class="card card-primary">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-2">
+                          <label>ชื่อวัตถุดิบ :</label>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="material_name" type="text" class="form-control"
+                              pattern="^[A-Za-zๅภถุึคตจขชๆไำพะัีรนยบลฃฟหกดเ้่าสวงผปแอิืทมใฝ๑๒๓๔ู฿๕๖๗๘๙๐ฎฑธํ๊ณฯญฐฅฤฆฏโฌ็๋ษศซฉฮฺ์ฒฬฦ]+$"
+                              [(ngModel)]="Materials.material_name">
+                            <div *ngIf="material_name.invalid && (material_name.dirty || material_name.touched)"
+                              class="text-error">
+                              <div *ngIf="material_name.errors.required">
+                                กรุณากรอกชื่อวัตถุดิบ
+                              </div>
+                              <div *ngIf="material_name.errors.uniquematerial_name">
+                                มีวัตถุดิบนี้อยู่ในระบบแล้ว
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-2">
+                          <label>หน่วยนับ :</label>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <div class="form-group">
+                              <select class="form-control" formControlName="unit_count_id" [(ngModel)]="Materials.unit_count_id">
+                                <option value="">หน่วยนับ</option>
+                                <option *ngFor="let mat of unit_countArr" value="{{mat.unit_count_id}}">{{mat.unit}}</option>
+                              </select>
+                              <div *ngIf="unit_count_id.invalid && (unit_count_id.dirty || unit_count_id.touched)"
+                                class="text-error">
+                                <div *ngIf="unit_count_id.errors.required">
+                                  กรุณาเลือกหน่วยนับ
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+
                     <div class="form-group">
 
                       
@@ -63,5 +116,5 @@
             </div>
             <!-- /.card-body -->
         
-    </section></div>
+    </section>
 </div>

@@ -69,7 +69,7 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <input formControlName="price" type="number" class="form-control" [(ngModel)]="product.price"
-                  minlength=2 min=40>
+                   >
                 <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-error">
                   <div *ngIf="price.errors.required">
                     กรุณากรอกราคาสินค้า
@@ -154,6 +154,29 @@
                     กรุณากรอกรายละเอียดของสินค้า
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card-header">
+        <div class="col-sm-12">
+          <label>วัตถุดิบที่ใช้ในการผลิต</label>
+        </div>
+      </div>
+      <div class="card card-primary">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>วัตถุดิบ :</label>
+            </div>
+            <div class="form-group">
+              <div *ngFor="let obj of MaterialsList">
+                <input type="checkbox" value="{{obj.material_name}}" (change)="MaterialsChange($event)">
+                &nbsp;&nbsp;&nbsp;{{obj.material_name}}
               </div>
             </div>
           </div>

@@ -17,7 +17,6 @@
       </div>
     </section>
     <h5 class="card-title">ข้อมูลสินค้า</h5>
-
     <div class="card card-success">
       <div class="card-body p-0">
         <div class="search-hero">
@@ -26,28 +25,29 @@
         <table class="table">
           <thead>
             <tr>
-              <!-- <th>รหัสวัตถุดิบ</th> -->
-              <th>รูปสินค้า</th>
-              <th>ชื่อสินค้า</th>
+              <th >รูปสินค้า</th>
+              <th (click)="sort('product_name')">ชื่อสินค้า<mat-icon>sort_by_alpha</mat-icon></th>
               <th>ราคา</th>
               <th>น้ำหนัก/กรัม</th>
               <th>จำนวนวันที่เก็บรักษา</th>
-              <!-- <th>รายละเอียด</th> -->
-              <th>ประเภทสินค้า</th>
+              <th (click)="sort('name')">ประเภทสินค้า<mat-icon>sort_by_alpha</mat-icon></th>
+              <th>รายละเอียดวัตถุดิบ</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let mat of dataArr | filter:searchText ">
+            <tr *ngFor="let mat of dataArr | filter:searchText  | orderBy:key:reverse">
               <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px"></td>
               <td>{{mat.product_name}}</td>
               <td>{{mat.price}}</td>
               <td>{{mat.weight}}</td>
               <td>{{mat.expire}}&nbsp;&nbsp;&nbsp;วัน</td>
               <td>{{mat.name}}</td>
+              <td>{{mat.material_name}}</td>
+              <!-- <td *ngFor="let friend of dataArr">{{friend.material_name}}</td> -->
               <td class="text-right py-0 align-middle">
                 <div class="btn-group btn-group-sm">
-                  <button class="btn btn-info" routerLink="/formula(mat.id)">
+                  <button class="btn btn-info" routerLink="/showformula/{{mat.id}}">
                     <mat-icon>add</mat-icon>
                   </button>
                   <button class="btn btn-warning" routerLink="/editp/{{mat.id}}">
@@ -56,7 +56,6 @@
                   <button class="btn btn-default" routerLink="/addstock">
                     <mat-icon>add_shopping_cart</mat-icon>
                   </button>
-                  <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
                 </div>
               </td>
             </tr>

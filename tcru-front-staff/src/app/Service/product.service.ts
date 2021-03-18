@@ -10,6 +10,9 @@ export class ProductService {
   getData() {
     return this.httpClient.get('http://localhost:5000/api/product');
   }
+  getDatamaterial() {
+    return this.httpClient.get('http://localhost:5000/api/material');
+  }
   getData1(data)
   {
    return this.httpClient.post('http://localhost:5000/api/product1',data);

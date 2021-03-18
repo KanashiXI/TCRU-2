@@ -26,6 +26,8 @@ export class AddpComponent implements OnInit {
   limit: any = 5;
   skip: any;
   totalCount: any;
+  selectedMaterials:any = [];
+  MaterialsList: any;
   constructor(private fb: FormBuilder,
     private http: HttpClient,
     private toastr: ToastrService,
@@ -40,16 +42,17 @@ export class AddpComponent implements OnInit {
     this.getcategory();
     this.getunit_count();
     this.createForm();
+    this.getDatamaterial();
   }
   createForm() {
     this.form = this.fb.group({
       // genid: ['', [Validators.required]],
       product_name: ['', [Validators.required]],
-      price: ['', [Validators.required,Validators.minLength(0),]],
+      price: ['', [Validators.required]],
       image: ['', [Validators.required]],
-      weight: ['', [Validators.required,Validators.minLength(3),]],
+      weight: ['', [Validators.required]],
       Detail: ['', [Validators.required]],
-      expire: ['', [Validators.required,Validators.minLength(3),]],
+      expire: ['', [Validators.required]],
       category_id: ['', [Validators.required]],
       unit_count_id: ['', [Validators.required]],
     });
@@ -76,6 +79,7 @@ export class AddpComponent implements OnInit {
     
     if (confirm('คุณต้องการเพิ่มข้อมูลสินค้าหรือไม่ ?') === true) {
        {
+        this.product.material_name = this.selectedMaterials.toString();
         let formdata = new FormData();
         formdata.append("file", this.files, this.files.name);
         formdata.append("data", JSON.stringify(this.product));
@@ -89,6 +93,20 @@ export class AddpComponent implements OnInit {
           });
       }
     }
+  }
+  getDatamaterial() {
+    this.ProductService.getDatamaterial().subscribe(res => {
+      this.MaterialsList = res;
+    })
+  }
+  MaterialsChange(event){
+    let index = this.selectedMaterials.indexOf(event.target.value);
+    if(index == -1){
+      this.selectedMaterials.push(event.target.value);
+    } else{
+      this.selectedMaterials.splice(index,1);
+    }
+    console.log(this.selectedMaterials)
   }
   getcategory() {
     this.ProductService.getcategory().subscribe(res => {

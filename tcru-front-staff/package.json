@@ -34,7 +34,7 @@
         "date-fns": "^2.19.0",
         "form-group": "^3.0.8",
         "lodash": "^4.17.21",
-        "ng-multiselect-dropdown": "^0.2.14",
+        "ng2-order-pipe": "^0.1.5",
         "ng2-search-filter": "^0.5.1",
         "ngx-date-fns": "^8.0.0",
         "ngx-qrcode2": "^9.0.0",

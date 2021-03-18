@@ -18,6 +18,7 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import {CdkStepperModule} from '@angular/cdk/stepper';
 import {CdkTableModule} from '@angular/cdk/table';
 import {CdkTreeModule} from '@angular/cdk/tree';
+import { Ng2OrderModule } from 'ng2-order-pipe';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
@@ -84,7 +85,8 @@ import { DeliveryStatusComponent } from './TCRU/shipping/deliveryStatus/delivery
 import { DescriptionShippingComponent } from './TCRU/shipping/descriptionShipping/descriptionShipping.component';
 import { ShowOrderComponent } from './OrderMaterials/show-order/show-order.component';
 import { FormulaComponent } from './TCRU/formula/formula.component';
-// import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { ShowformulaComponent } from './product/showformula/showformula.component';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgMultiSelectDropDownModule  } from 'ng-multiselect-dropdown';
 import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -189,9 +191,13 @@ const appRoutes: Routes = [
     component: FormulaComponent
   },
   {
-    path: 'addOrder',
-    component: AddOrderComponent
-  }  
+    path: 'showformula/:id',
+    component: ShowformulaComponent
+  }
+
+
+
+  
 ];
 
 @NgModule({
@@ -224,8 +230,9 @@ const appRoutes: Routes = [
     DescriptionShippingComponent,
     EditsComponent,
     ShowOrderComponent,
+    AddOrderComponent,
     FormulaComponent,
-    AddOrderComponent
+    ShowformulaComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
@@ -256,6 +263,7 @@ const appRoutes: Routes = [
     MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
+    Ng2OrderModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -303,9 +311,9 @@ const appRoutes: Routes = [
     NgxQRCodeModule,
     // BarcodeScanner, 
     Ng2SearchPipeModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    NgxDatePickerModule,
-    NgSelectModule
+    // NgMultiSelectDropDownModule.forRoot(),
+    // NgxDatePickerModule,
+    // NgSelectModule
   ],
   providers: [
   ],

@@ -18,7 +18,6 @@ export class SupplierService {
   {
    return this.httpClient.post('http://localhost:5000/api/supplier',data);
   }
-
   addsupplier(data)
   {
    return this.httpClient.post('http://localhost:5000/api/supplier',data);

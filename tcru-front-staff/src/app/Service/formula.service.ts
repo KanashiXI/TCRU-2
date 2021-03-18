@@ -17,4 +17,12 @@ export class FormulaService {
    getDatamaterial() {
     return this.httpClient.get('http://localhost:5000/api/material');
   }
+  getDataproduct(){
+    return this.httpClient.get('http://localhost:5000/api/getProduct');
+  }
+  getformulaid(id)
+  {
+   return this.httpClient.get('http://localhost:5000/api/formula1/'+id);
+  }
+
 }

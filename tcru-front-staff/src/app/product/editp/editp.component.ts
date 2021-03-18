@@ -22,6 +22,8 @@ export class EditpComponent implements OnInit {
   files: any;
   categoryArr: any;
   unit_countArr: any;
+  selectedMaterials:any = [];
+  MaterialsList: any;
 
 
   constructor(private fb: FormBuilder,private http: HttpClient,
@@ -35,6 +37,7 @@ export class EditpComponent implements OnInit {
     this.getcategory();
     this.createForm();
     this.getunit_count();
+    this.getDatamaterial();
   }
   createForm() {
     this.form = this.fb.group({
@@ -49,10 +52,18 @@ export class EditpComponent implements OnInit {
       unit_count_id: ['', [Validators.required]],
     });
   }
+  getDatamaterial() {
+    this.ProductService.getDatamaterial().subscribe(res => {
+      this.MaterialsList = res;
+      this.selectedMaterials = this.product.material_name.split(",");
+    })
+  }
 getData(){
   this.ProductService.geteditProduct(this.id).subscribe(res=>{
     this.date = res;
     this.product = this.date;
+    
+
   })
 }
 getcategory() {
@@ -67,6 +78,7 @@ getunit_count() {
 }
 editProduct(){
   if (confirm('คุณต้องการแก้ไขหรือไม่ ?') === true) {
+    this.product.material_name = this.selectedMaterials.toString();
   this.ProductService.editProduct(this.id,this.product).subscribe(res=>{
     this.toastr.success('แก้ไขสำเร็จ!');
   },
@@ -75,6 +87,15 @@ editProduct(){
     console.log(err);
   });
 }
+}
+MaterialsChange(event){
+  let index = this.selectedMaterials.indexOf(event.target.value);
+  if(index == -1){
+    this.selectedMaterials.push(event.target.value);
+  } else{
+    this.selectedMaterials.splice(index,1);
+  }
+  console.log(this.selectedMaterials)
 }
 get product_name() {
   return this.form.get('product_name')

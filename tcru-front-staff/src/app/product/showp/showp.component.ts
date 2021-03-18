@@ -1,3 +1,4 @@
+import { reverse } from 'dns';
 import { HttpClient } from '@angular/common/http';
 import { product } from '../../models/product.model';
 import { ProductService } from '../../service/product.service';
@@ -51,10 +52,13 @@ export class ShowpComponent implements OnInit {
            'skip':  this.skip
            
     }
+
     this.ProductService.getData1(requestObj).subscribe((res:any)=>{
       this.spinner.hide();
       this.dataArr=res.data;
       this.totalCount = res.totalRecord;
+
+      console.log(this.dataArr)
       // console.log(this.dataArr);
     })
   }
@@ -71,6 +75,12 @@ export class ShowpComponent implements OnInit {
   //     this.dataArr=res;
   //   })
   // }
+  key:string='id';
+  reverse:boolean=false;
+  sort(key){
+    this.key=key;
+    this.reverse=!this.reverse;
+  }
 
   deleteProduct(id){
     if (confirm('คุณต้องการลบหรือไม่ ?') === true)

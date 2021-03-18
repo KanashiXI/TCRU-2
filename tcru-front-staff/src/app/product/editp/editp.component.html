@@ -107,7 +107,7 @@
                 <div class="form-group">
                   <select class="form-control" formControlName="unit_count_id" [(ngModel)]="product.unit_count_id">
                     <option value="">หน่วยนับสินค้า</option>
-                    <option *ngFor="let mat of unit_countArr" value="{{mat.id}}">{{mat.name}}</option>
+                    <option *ngFor="let mat of unit_countArr" value="{{mat.unit_count_id}}">{{mat.unit}}</option>
                   </select>
                   <div *ngIf="unit_count_id.invalid && (unit_count_id.dirty || unit_count_id.touched)"
                     class="text-error">
@@ -155,6 +155,29 @@
                     กรุณากรอกรายละเอียดของสินค้า
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="card-header">
+        <div class="col-sm-12">
+          <label>วัตถุดิบที่ใช้ในการผลิต</label>
+        </div>
+      </div>
+      <div class="card card-primary">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>วัตถุดิบ :</label>
+            </div>
+            <div class="form-group">
+              <div *ngFor="let obj of MaterialsList">
+                <input type="checkbox" value="{{obj.material_name}}" (change)="MaterialsChange($event)" [checked]="selectedMaterials.indexOf(obj.material_name) != -1">
+                &nbsp;&nbsp;&nbsp;{{obj.material_name}}
               </div>
             </div>
           </div>

@@ -19,6 +19,7 @@ export class AddmComponent {
   materialList: any[]=[];
   imageDirectoyPath:any = 'http://127.0.0.1:5000/public/image/';
   material_id: string;
+  searchText: string;
   Search: string;
   materialMessage: string;
   dataArr: any;
