@@ -15,6 +15,7 @@ import { style, state, animate, transition, trigger } from '@angular/animations'
 import { Address } from '../../user/addaddress/interfaces/address';
 import { AddressService } from '../../user/addaddress/services/address.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-cart',
@@ -198,11 +199,32 @@ export class CartComponent implements OnInit {
   }
 
   remove(id: string) {
-    this.cartService.remove(id).subscribe(res => {
-      this.ngOnInit()
-      //dialog ลบสำเร็จ
-    }
-    );
+ 
+    Swal.fire({
+      title: 'คุณต้องการลบข้อมูลนี้ ใช่ หรือ ไม่?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'ใช่',
+      cancelButtonText: 'ไม่'
+    }).then((result) => {
+      if (result.value) {
+        this.cartService.remove(id).subscribe(res => {
+
+        Swal.fire(
+          'ลบข้อมูลเรียบร้อย',
+          '',
+          'success',
+        )
+        this.ngOnInit()
+
+          //dialog ลบสำเร็จ
+        });
+        
+
+      } else if (result.dismiss === Swal.DismissReason.cancel) { }
+    })
+
+
   }
 
   ngAfterContentChecked() {
