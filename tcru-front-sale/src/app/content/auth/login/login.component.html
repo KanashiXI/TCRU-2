@@ -18,12 +18,15 @@
                     <mat-label>ชื่อผู้ใช้ (E-mail)</mat-label>
                     <input type="email" matInput [formControl]="email" [errorStateMatcher]="matcher"
                       placeholder="Ex. pat@example.com">
-                    <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
-                    <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                    <mat-hint><small>เข้าสู่ระบบด้วยอีเมล์</small></mat-hint>
+                    <!-- <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                       Please enter a valid email address
-                    </mat-error>
+                    </mat-error> -->
                     <mat-error *ngIf="email.hasError('required')">
-                      โปรดกรอกชื่อผู้ใช้
+                      <small>โปรดกรอกชื่อผู้ใช้</small>
+                    </mat-error>
+                    <mat-error *ngIf="email.hasError('email')">
+                      <small>โปรดกรอกชื่อผู้ใช้เป็นอีเมล์</small>
                     </mat-error>
                   </mat-form-field>
                 </div>
@@ -33,7 +36,10 @@
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
                     <input matInput type="password" formControlName="password" placeholder="รหัสผ่าน">
-                  </mat-form-field>
+                    <mat-error *ngIf="password.hasError('required')">
+                      <small>โปรดกรอกรหัสผ่าน</small>
+                    </mat-error>
+                  </mat-form-field>  
                 </div>
               </div>
               <br>

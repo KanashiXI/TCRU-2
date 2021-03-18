@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
   createForm() {
     this.reactiveForm = this.fb.group({
       // username: ['', null, uniqueUsernameValidator(this.customerService), [Validators.required]],
-      email: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       // role_id: [2, [Validators.required]],
       role: [],
@@ -103,7 +103,7 @@ export class LoginComponent implements OnInit {
         this.handleError(error);
         Swal.fire({
           icon: 'error',
-          title: 'เข้าสู่ระบบไม่สำเร็จ',
+          title: 'เข้าสู่ระบบไม่สำเร็จ<br>โปรดตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน',
           showConfirmButton: false,
           timer: 2000
         });
