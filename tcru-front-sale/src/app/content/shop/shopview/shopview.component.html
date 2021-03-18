@@ -63,7 +63,7 @@
   <div class="row">
     <div class="col-md-3" *ngFor="let item of hotProduct; let i = index">
       <br>
-      <mat-card routerLink="/productdetail/{{item.product_id}}" class="pointer">
+      <mat-card (click)="onClickSubmit(item.product_id,item.retail_price)" class="pointer">
         <div class="row">
           <div class="col-md-12">
             <span class="material-icons">label</span>
@@ -85,11 +85,10 @@
         <br>
         <div class="row">
           <div class="col-md-5">
-            จำนวน {{item.count}}
+            ราคา {{item.retail_price}}
           </div>
           <div class="col-md-7">
-            <button mat-stroked-button color="primary" class="btn-block"
-              routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}">รายละเอียด</button>
+            <button mat-stroked-button color="primary" class="btn-block">รายละเอียด</button>
           </div>
         </div>
       </mat-card>
@@ -152,7 +151,7 @@
   <div class="row">
     <div class="col-md-3" *ngFor="let item of productOnfilter; let i = index">
       <br>
-      <mat-card routerLink="/productdetail/{{item.product_id}}" class="pointer">
+      <mat-card (click)="onClickSubmit(item.product_id,item.retail_price)" class="pointer">
         <div class="row">
           <div class="col-md-12">
             <span class="material-icons">label</span>
@@ -174,11 +173,15 @@
         <br>
         <div class="row">
           <div class="col-md-5">
-            {{item.retail_price}} ฿
+            {{item.retail_price}} ฿22
           </div>
           <div class="col-md-7">
-            <button mat-stroked-button color="primary" class="btn-block"
-              routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}">รายละเอียด</button>
+            <!-- <button mat-stroked-button color="primary" class="btn-block"
+              routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}">รายละเอียด</button> -->
+
+            <button mat-stroked-button color="primary" class="btn-block">รายละเอียด</button>
+
+
           </div>
         </div>
       </mat-card>
@@ -237,7 +240,8 @@
   <div class="row">
     <div class="col-md-3" *ngFor="let item of productList; let i = index">
       <br>
-      <mat-card routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}">
+      <!-- routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}" -->
+      <mat-card (click)="onClickSubmit(item.product_id,item.retail_price)">
         <div class="row">
           <div class="col-md-12">
             <span class="material-icons">label</span>
@@ -262,15 +266,14 @@
             {{item.retail_price}} ฿
           </div>
           <div class="col-md-7">
-            <button mat-stroked-button color="primary" class="btn-block"
-              routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}">รายละเอียด</button>
+            <button mat-stroked-button color="primary" class="btn-block">รายละเอียด</button>
           </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-12">
             <button mat-stroked-button color="primary" class="btn-block" (click)="openDialog()">TestDialog</button>
           </div>
-        </div>
+        </div> -->
       </mat-card>
     </div>
   </div>

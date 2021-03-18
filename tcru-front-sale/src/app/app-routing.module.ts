@@ -27,7 +27,7 @@ const routes: Routes = [
     // data: { breadcrumb: 'Home'}
   },
   {
-    path: 'productdetail/:product_id/:price',
+    path: 'productdetail',
     component: ProductDetailComponent,
   },
   {

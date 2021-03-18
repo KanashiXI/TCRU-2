@@ -17,8 +17,9 @@
             {{item.province_name}} {{item.postal_code}}
           </div>
           <div class="col-md-1 btn-padding">
-            <button mat-raised-button color="accent" class="btn-block" type="submit"
-              (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button>
+            <!-- <button mat-raised-button color="accent" class="btn-block" type="submit"
+              (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button> -->
+            <button mat-raised-button color="accent" (click)="onClickSubmit(item.address_id)">แก้ไข</button>
           </div>
           <div class="col-md-1 btn-padding">
             <button mat-raised-button color="warn" class="btn-block" type="submit"

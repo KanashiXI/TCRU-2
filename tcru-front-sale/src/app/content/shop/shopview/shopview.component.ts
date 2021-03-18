@@ -4,6 +4,7 @@ import { Product } from './interfaces/product';
 import { ProductviewService } from './services/productview.service';
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import { MatDialog } from '@angular/material/dialog';
+import { Overlay } from '@angular/cdk/overlay';
 
 
 interface Food {
@@ -53,7 +54,8 @@ export class ShopviewComponent implements OnInit {
 
   constructor(
     private productViewService: ProductviewService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private overlay: Overlay,
   ) { }
 
   ngOnInit() {
@@ -135,7 +137,23 @@ export class ShopviewComponent implements OnInit {
   //   this.hotProductList = this.productList;
   // }
 
+  onClickSubmit(product_id, retail_price) {
+    localStorage.setItem("product_id", product_id);
+    localStorage.setItem("retail_price", retail_price);
+    this.openDialogAddress();
 
+  }
+
+  openDialogAddress() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(ProductDetailComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+
+    });
+  }
 
   onClickSelectType(index) {
     this.productOnfilter = this.productList.filter((element) => this.filterByType(element, index));

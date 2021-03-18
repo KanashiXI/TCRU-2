@@ -21,8 +21,10 @@
         <div class="row">
           <div class="col-md-8"></div>
           <div class="col-md-4">
-            <button mat-stroked-button color="primary" class="btn-block"
-              routerLink="/editprofile">แก้ไขข้อมูลส่วนตัว</button>
+            <!-- <button mat-stroked-button color="primary" class="btn-block"
+              routerLink="/editprofile">แก้ไขข้อมูลส่วนตัว</button> -->
+            <button mat-raised-button color="primary" (click)="onClickSubmit()">แก้ไขข้อมูลส่วนตัว</button>
+
           </div>
         </div>
       </form>
@@ -41,7 +43,8 @@
             <div class="col-md-12">
               <mat-panel-description>
                 <div class="col-md-6">
-                  <button mat-raised-button color="primary" green (click)="openDialogAddress()">เพิ่มที่อยู่จัดส่ง</button>
+                  <button mat-raised-button color="primary" green
+                    (click)="openDialogAddress()">เพิ่มที่อยู่จัดส่ง</button>
                 </div>
               </mat-panel-description>
             </div>

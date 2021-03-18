@@ -9,6 +9,7 @@ import { Subject, Subscription } from 'rxjs';
 import { JarwisService } from 'src/app/shared/service/jarwis.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
+import { EditprofileComponent } from '../editprofile/editprofile.component';
 
 @Component({
   selector: 'app-profile',
@@ -48,9 +49,16 @@ export class ProfileComponent implements OnInit {
     this.checkCustomer();
   }
 
-  openDialog() {
-
+  onClickSubmit() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(EditprofileComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+    });
   }
+
 
   checkCustomer() {
     const requestData = {
@@ -90,19 +98,21 @@ export class ProfileComponent implements OnInit {
 
   openDialogAddress() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
-    const dialogRef = this.dialog.open(AddaddressComponent,{
-      autoFocus: false, 
-      scrollStrategy, 
-      maxHeight: '90vh'
+    const dialogRef = this.dialog.open(AddaddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
     });
   }
 
   openDialogTax() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
-    this.dialog.open(AddTaxAddressComponent,{
-      autoFocus: false, 
-      scrollStrategy, 
-      maxHeight: '90vh'
+    this.dialog.open(AddTaxAddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
     });
   }
 

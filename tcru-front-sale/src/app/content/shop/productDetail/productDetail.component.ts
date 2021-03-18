@@ -51,10 +51,14 @@ export class ProductDetailComponent implements OnInit {
     const requestData = {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
+      product_id: localStorage.getItem('product_id'),
+      retail_price: localStorage.getItem('retail_price'),
     }
     console.log('กดเพิ่ม')
     this.calPrice()
-    const productId = this.route.snapshot.paramMap.get('product_id');
+    /////////////////////////////////////////////////////////////////
+
+    const productId = requestData.product_id;
     this.cartService.searchProduct(productId, requestData.customerUsername).subscribe(res => {
       this.productInCart = res;
       if (this.productInCart.length == 0) {
@@ -65,7 +69,8 @@ export class ProductDetailComponent implements OnInit {
         var oldPrice = this.productInCart[0].retail_price;
       }
       if (this.productInCart.length == 0) {
-        const productPrice = this.route.snapshot.paramMap.get('price');
+        ////////////////////////////////////////////////////////////
+        const productPrice = requestData.product_id;
         console.log('pp is' + productPrice)
         var curQuantity = this.reactiveForm.get('product_quantity').value
         var curPrice = this.reactiveForm.get('retail_price').value
@@ -114,8 +119,10 @@ export class ProductDetailComponent implements OnInit {
     const requestData = {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
+      product_id: localStorage.getItem('product_id'),
     }
-    const productId = this.route.snapshot.paramMap.get('product_id');
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    const productId = requestData.product_id;
     this.productService.getDetail(productId).subscribe(
       prod => {
         this.productInfo = prod;
@@ -152,6 +159,7 @@ export class ProductDetailComponent implements OnInit {
       this.counter--;
     }
   }
+
   increse() {
     if (this.counter + 1 < 100) {
       this.counter++;

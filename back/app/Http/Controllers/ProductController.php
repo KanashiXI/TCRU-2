@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
         $getall = DB::table('product')
             ->join('order_detail', 'product.product_id', '=', 'order_detail.product_id')
-            ->select('product.product_id', 'product.product_name', 'order_detail.product_quantity', 'product.product_description', 
+            ->select('product.product_id', 'product.product_name', 'order_detail.product_quantity', 'product.product_description', 'product.product_type',
                     'product.retail_price', 'product.weight', 'product.unit'
                     )
             ->get();
@@ -44,6 +44,7 @@ class ProductController extends Controller
                             'retail_price'=>$group->pluck('retail_price')->first(),
                             'weight'=>$group->pluck('weight')->first(),
                             'unit'=>$group->pluck('unit')->first(),
+                            'product_type'=>$group->pluck('product_type')->first(),
                             // 'product_value' => $group
                             // 'id' => $group['product_id']
                         ]
@@ -54,8 +55,8 @@ class ProductController extends Controller
         foreach ($sorted  as $key => $value) {
             $res[] = $value;
         }
-        $items = array_slice($res, 0,3);
-        return response()->json($res, 200); 
+        $items = array_slice($res, 0,5);
+        return response()->json($items, 200); 
     }
 }
 

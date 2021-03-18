@@ -5,6 +5,9 @@ import { CustomerService } from 'src/app/shared/service/customer.service';
 import { Tax } from '../interfaces/tax';
 import { TaxService } from '../services/tax.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Overlay } from '@angular/cdk/overlay';
+import { MatDialog } from '@angular/material/dialog';
+import { EditTaxAddressComponent } from '../editTaxAddress/editTaxAddress.component';
 
 @Component({
   selector: 'app-showTaxAddress',
@@ -20,6 +23,8 @@ export class ShowTaxAddressComponent implements OnInit {
   constructor(
     private taxService: TaxService,
     private customerService: CustomerService,
+    private overlay: Overlay,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -82,6 +87,17 @@ export class ShowTaxAddressComponent implements OnInit {
 
   onClickEdit(data) {
     localStorage.setItem("local_tax_id", data);
+    this.openDialogTax()
+  }
+
+  openDialogTax() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(EditTaxAddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+    });
   }
 
 }

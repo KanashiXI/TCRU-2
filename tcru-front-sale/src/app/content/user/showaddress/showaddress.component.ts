@@ -5,6 +5,9 @@ import { CustomerService } from 'src/app/shared/service/customer.service';
 import { Address } from '../addaddress/interfaces/address';
 import { AddressService } from '../addaddress/services/address.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
+import { Overlay } from '@angular/cdk/overlay';
+import { MatDialog } from '@angular/material/dialog';
+import { EditaddressComponent } from '../editaddress/editaddress.component';
 
 @Component({
   selector: 'app-showaddress',
@@ -22,6 +25,9 @@ export class ShowaddressComponent implements OnInit {
   constructor(
     private addressService: AddressService,
     private customerService: CustomerService,
+    private overlay: Overlay,
+    public dialog: MatDialog,
+
   ) { }
 
   handleRadio(i): void {
@@ -80,9 +86,23 @@ export class ShowaddressComponent implements OnInit {
     })
   }
 
+
+
   onClickSubmit(data) {
     this.addressService.nextMessage(data);
     localStorage.setItem("address_id", data);
+    this.openDialogAddress();
+  }
+
+  openDialogAddress() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(EditaddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+
+    });
   }
 
 }
