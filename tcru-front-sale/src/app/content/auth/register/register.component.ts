@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
 
   createForm() {
     this.reactiveForm = this.fb.group({
-      email: ['', [Validators.required], uniqueEmailValidator(this.customerService)],
+      email: ['', [Validators.required, Validators.email], uniqueEmailValidator(this.customerService)],
       name: ['user'],
       name_title: ['', [Validators.required]],
       firstname: ['', [Validators.required]],

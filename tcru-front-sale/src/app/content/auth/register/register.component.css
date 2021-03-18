@@ -3,6 +3,10 @@ mat-form-field, mat-card-title{
   padding-top: 25px;
 }
 
+mat-card-title{
+  font-size: large;
+}
+
 ::ng-deep .mat-focused .mat-form-field-label {
   /*change color of label*/
   color: #7fdaab !important;
