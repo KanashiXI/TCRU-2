@@ -27,4 +27,7 @@
 .info{
     padding-left: 14px;
 }
-  
+
+mat-card{
+    text-align: left;
+}  

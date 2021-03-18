@@ -16,8 +16,8 @@
           </mat-card-header> -->
           <mat-card-content>
             <div class="row justify-content-center">
-              <div class="col-md-1"></div>
-              <div class="col-md-5">
+              <!-- <div class="col-md-1"></div> -->
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>ชื่อ</mat-label>
                   <input matInput [formControl]="firstname" placeholder="" name="firstname">
@@ -26,7 +26,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>นามสกุล</mat-label>
                   <input matInput [formControl]="lastname" placeholder="" name="lastname">
@@ -37,8 +37,8 @@
               </div>
             </div>
             <div class="row justify-content-center">
-              <div class="col-md-1"></div>
-              <div class="col-md-5">
+              <!-- <div class="col-md-1"></div> -->
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>เบอร์โทรศัพท์</mat-label>
                   <input matInput [formControl]="telephone" placeholder="" name="telephone" 
@@ -48,7 +48,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>ที่อยู่จัดส่งสินค้า</mat-label>
                   <input matInput [formControl]="address" placeholder="" name="address">
@@ -60,13 +60,13 @@
             </div>
             <br>
             <div class="row justify-content-center">
-              <div class="col-md-1"></div>
-              <div class="col-md-5">
+              <!-- <div class="col-md-1"></div> -->
+              <div class="col-md-6">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>จังหวัด</mat-label>
                   <mat-select formControlName="province_id" (selectionChange)="getAumph($event)" required>
                     <mat-option>--</mat-option>
-                    <mat-option *ngFor="let obj of provinceArr" value="{{obj.id}}}">
+                    <mat-option *ngFor="let obj of provinceArr" value="{{obj.id}}">
                       {{obj.name_th}}
                     </mat-option>
                   </mat-select>
@@ -74,7 +74,7 @@
                 </mat-form-field>
               </div>
 
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>อำเภอ</mat-label>
                   <mat-select formControlName="amphures_id" (selectionChange)="getDistr($event)" required>
@@ -88,8 +88,8 @@
               </div>
             </div>
             <div class="row justify-content-center">
-              <div class="col-md-1"></div>
-              <div class="col-md-5">
+              <!-- <div class="col-md-1"></div> -->
+              <div class="col-md-6">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>ตำบล</mat-label>
                   <mat-select formControlName="districts_id" (selectionChange)="getLast($event)" required>
@@ -101,7 +101,7 @@
                   <mat-error *ngIf="reactiveForm.controls['districts_id'].errors?.required">โปรดเลือกตำบล</mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-md-5">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>รหัสไปรษณีย์</mat-label>
                   <input matInput [formControl]="postal_code" placeholder="" name="postal_code" pattern="[0-9]+" maxlength="5">
@@ -114,12 +114,12 @@
           </mat-card-content>
           <mat-card-actions>
             <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-2">
-                <button mat-stroked-button color="primary" class="btn-block" routerLink="/address">ยกเลิก</button>
+              <!-- <div class="col-md-4"></div> -->
+              <div class="col-md-6">
+                <button mat-stroked-button class="btn-block" routerLink="/address">ยกเลิก</button>
               </div>
               <!-- <div class="col-md-1"></div> -->
-              <div class="col-md-2">
+              <div class="col-md-6">
                 <button mat-raised-button color="primary" type="submit" class="btn-block" [disabled]="reactiveForm.invalid"
                 (click)="onClickSubmit()">บันทึกข้อมูล</button>
               </div>

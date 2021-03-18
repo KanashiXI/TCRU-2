@@ -38,7 +38,7 @@ import { ConfirmDialogComponent } from './content/decorate/confirm-dialog/confir
 import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
 import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/skeleton-loder/skeleton-loader.component';
-
+// import { BreadcrumbModule } from 'angular-crumbs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,7 +76,11 @@ import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/ske
     FormsModule,
     ReactiveFormsModule,
     MatCarouselModule.forRoot(),
+<<<<<<< HEAD
 
+=======
+    // BreadcrumbModule
+>>>>>>> f480f628c1ad0c5b424c3300fe823c0f29b4129e
   ],
   providers: [
     JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService
