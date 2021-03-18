@@ -1,4 +1,4 @@
-<div class="main-container" style="height: 92vh;">
+<div class="main-container" style="height: 92vh;" id="element-to-export">
     <div class="row">
         <div class="col-sm-11"></div>
         <!-- พิมพ์ใบสั่งซื้อ -->
@@ -19,12 +19,8 @@
         <div class="card-header">
             <div class="row">
                 <!-- ผู้ขาย -->
-                <div class="col-sm-6">
-                    <h3 class="card-title">ผู้ขาย</h3>
-                </div>
-                <!-- วันที่ -->
-                <div class="col-sm-6">
-                    <h3 class="card-title">วันที่</h3>
+                <div class="col-sm-3">
+                    <h3 class="card-title">ข้อมูลใบสั่งซื้อ</h3>
                 </div>
             </div>
         </div>
@@ -33,22 +29,55 @@
         <div class="card-body">
             <div class="row">
                 <!-- เลือกร้านค้า -->
-                <div class="col-sm-6">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label>ชื่อร้านค้า / บริษัท / บุคคล</label><br />
-                        <input type="checkbox" name="shop1"> ร้านข้าวสาร <br />
-                        <input type="checkbox" name="shop2"> ร้านสติกเกอร์ <br />
-                        <input type="checkbox" name="shop3"> ร้านทั่วไป
+                        <input type="text" class="form-control" formcontrolName="supplier_name" [(NgModel)]="OrderMaterials.supplier_name" placeholder="Ex: ใจดี ค้าขาย">
+                        <div *ngIf="supplier_name.invalid && (supplier_name.dirty || supplier_name.touched)" class="text-error">
+                            <div *ngIf="supplier_name.errors.required">
+                                กรุณากรอกชื่อสินค้า
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- เลือกวันที่ -->
-                <div class="col-sm-6">
-                    <mat-form-field color="accent" appearance="fill">
-                        <mat-label>วันที่สั่งวัตถุดิบ</mat-label>
-                        <input matInput [matDatepicker]="picker2">
-                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                        <mat-datepicker #picker2 color="primary"></mat-datepicker>
-                    </mat-form-field>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>วันที่สั่งซื้อวัตถุดิบ</label> <br />
+                        <input type="date" [value]="from | date:'yyyy-MM-dd'" (input)="updateFromDate($event)" class="form-control" placeholder="วันที่สั่งซื้อวัตถุดิบ" />
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>วันที่ได้รับวัตถุดิบ</label> <br />
+                        <input type="date" [value]="to | date:'yyyy-MM-dd'" (input)="updateToDate($event)" class="form-control" placeholder="วันที่ได้รับวัตถุดิบ" />
+                    </div>
+                </div>
+
+                <!-- ใบสั่งซื้อ -->
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>ใบสั่งซื้อ</label><br />
+                        <input type="text" class="form-control" formcontrolName="order_name" [(NgModel)]="OrderMaterials.order_name" placeholder="EX: PO-1903">
+                        <div *ngIf="order_name.invalid && (order_name.dirty || order_name.touched)" class="text-error">
+                            <div *ngIf="order_name.errors.required">
+                                กรุณากรอกชื่อสินค้า
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>สถานะสั่งซื้อ</label><br />
+                        <input type="text" class="form-control" formcontrolName="status_order" [(NgModel)]="OrderMaterials.status_order" placeholder="EX: กำลังดำเนินการ หรือ รับวัตถุดิบแล้ว">
+                        <div *ngIf="status_order.invalid && (status_order.dirty || status_order.touched)" class="text-error">
+                            <div *ngIf="status_order.errors.required">
+                                กรุณากรอกชื่อสินค้า
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,7 +97,7 @@
                         <label>สินค้า/บริการ</label>
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-5">
                     <div class="form-group">
                         <label>รายละเอียด</label>
                     </div>
@@ -83,11 +112,6 @@
                         <label>ราคา</label>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <label>ยอดรวม</label>
-                    </div>
-                </div>
             </div>
 
             <!-- เพิ่มรายการที่ล่ะแถว -->
@@ -96,27 +120,22 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="form-group">
-                                <input formControlName="Material" type="text" class="form-control" placeholder="ชื่อวัตถุดิบ">
+                                <input formControlName="material_name" type="text" class="form-control" placeholder="ชื่อวัตถุดิบ">
                             </div>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-5">
                             <div class="form-group">
-                                <textarea formControlName="Detail" type="text" class="form-control" placeholder="รายละเอียด"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group">
-                                <input formControlName="Quantity" type="text" class="form-control" placeholder="จำนวน">
+                                <textarea formControlName="detail" type="text" class="form-control" placeholder="รายละเอียด"></textarea>
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input formControlName="Price" type="text" class="form-control" placeholder="ราคา/ชิ้น">
+                                <input formControlName="quantity" type="text" class="form-control" placeholder="จำนวน">
                             </div>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-group">
-                                <input formControlName="PriceSum" type="text" class="form-control" placeholder="ราคารวม">
+                                <input formControlName="price" type="text" class="form-control" placeholder="ราคา/ชิ้น">
                             </div>
                         </div>
                     </div>
@@ -124,20 +143,9 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <textarea formControlName="Note" type="text" class="form-control" placeholder="หมายเหตุ"></textarea>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="row">
-                        <div class="col-sm-6">ยอดรวมสินค้า</div>
-                        <div class="col-sm-6">...</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">รวมเงินทั้งสิ้น</div>
-                        <div class="col-sm-6">...</div>
                     </div>
                 </div>
             </div>
