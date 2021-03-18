@@ -80,13 +80,13 @@ export class ShopviewComponent implements OnInit {
         // this.hotProduct.sort(function (a, b) {
         //   return b.count - a.count;
         // });
-        this.hotProductList = res;
+        // this.hotProductList = res;
 
-        this.listHotProduct.forEach((element) => {
-          this.hotProductList = this.hotProductList.filter((element1) => {
-            return element1 == element;
-          })
-        })
+        // this.listHotProduct.forEach((element) => {
+        //   this.hotProductList = this.hotProductList.filter((element1) => {
+        //     return element1 == element;
+        //   })
+        // })
         this.loader = true;
 
 

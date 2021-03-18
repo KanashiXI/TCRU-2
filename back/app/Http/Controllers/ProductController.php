@@ -27,8 +27,8 @@ class ProductController extends Controller
     public function bestsalseProduct()
     {
         $getall = DB::table('product')
-            ->join('product_in_order', 'product.product_id', '=', 'product_in_order.product_id')
-            ->select('product.product_id', 'product.product_name', 'product_in_order.count', 'product.product_description', 
+            ->join('order_detail', 'product.product_id', '=', 'order_detail.product_id')
+            ->select('product.product_id', 'product.product_name', 'order_detail.product_quantity', 'product.product_description', 
                     'product.retail_price', 'product.weight', 'product.unit'
                     )
             ->get();
@@ -38,20 +38,24 @@ class ProductController extends Controller
                     $key =>
                         [
                             'product_id' => $key,
-                            'count' => $group->sum('count'),
-                        
-                            'product_value' => $group
+                            'product_quantity' => $group->sum('product_quantity'),
+                            'product_name'=>$group->pluck('product_name')->first(),
+                            'product_description'=>$group->pluck('product_description')->first(),
+                            'retail_price'=>$group->pluck('retail_price')->first(),
+                            'weight'=>$group->pluck('weight')->first(),
+                            'unit'=>$group->pluck('unit')->first(),
+                            // 'product_value' => $group
                             // 'id' => $group['product_id']
                         ]
             ];
         });
-        $sorted = $groupwithcount->sortByDesc('count');
+        $sorted = $groupwithcount->sortByDesc('product_quantity');
         $res = [];
         foreach ($sorted  as $key => $value) {
             $res[] = $value;
         }
         $items = array_slice($res, 0,3);
-        return response()->json($groupwithcount, 200); 
+        return response()->json($res, 200); 
     }
 }
 
