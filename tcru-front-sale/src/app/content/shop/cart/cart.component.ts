@@ -213,6 +213,8 @@ export class CartComponent implements OnInit {
           this.dataForm = res;
           this.reactiveForm.patchValue({
             order_id: this.dataForm,
+            request_tax: this.taxCheck
+            ///////////////////////////////////////////////////////////////////////////////////////////////////
           });
           this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
             res => {
