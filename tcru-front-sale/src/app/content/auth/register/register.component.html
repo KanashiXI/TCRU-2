@@ -17,15 +17,15 @@
                   <mat-label>ชื่อผู้ใช้ (Email)</mat-label>
                   <input type="email" matInput [formControl]="email" placeholder="Ex. example@mail.com" name="email">
                   <mat-hint align="start"><small>โปรดกรอกชื่อผู้ใช้เป็นอีเมล์</small></mat-hint>
-                  <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+                  <!-- <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
                     <small>โปรกรอกชื่อบัญชีผู้ใช้</small>
-                  </mat-error>
+                  </mat-error> -->
                   <mat-error *ngIf="email.hasError('required')">
                     <small>โปรกรอกชื่อบัญชีผู้ใช้</small>
                   </mat-error>
-                  <!-- <mat-error *ngIf="email.hasError('type')">
+                  <mat-error *ngIf="email.hasError('email')">
                     <small>โปรกรอกชื่อบัญชีผู้ใช้เป็นอีเมล์</small>
-                  </mat-error> -->
+                  </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-4">
@@ -57,16 +57,16 @@
                       ตัวอักษร</small> </mat-hint>
                   <mat-hint align="end"><small>{{message.value.length}} / 16</small></mat-hint>
                   <mat-error *ngIf="password.hasError('required')">
-                    โปรดกรอกรหัสผ่าน
+                    <small>โปรดกรอกรหัสผ่าน</small>
                   </mat-error>
                   <mat-error *ngIf="password.errors?.minlength">
-                    รหัสผ่านมากกว่า 6 ตัวอักษร
+                    <small>รหัสผ่านมากกว่า 6 ตัวอักษร</small>
                   </mat-error>
                   <mat-error *ngIf="password.errors?.maxlength">
-                    รหัสผ่านน้อยกว่า 16 ตัวอักษร
+                    <small>รหัสผ่านน้อยกว่า 16 ตัวอักษร</small>
                   </mat-error>
                   <mat-error *ngIf="password_confirmation.hasError('compare')">
-                    โปรดกรอกรหัสผ่านให้เหมือนกัน
+                    <small>โปรดกรอกรหัสผ่านให้เหมือนกัน</small>
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -78,7 +78,7 @@
                   <mat-label>คำนำหน้า</mat-label>
                   <input matInput [formControl]="name_title" placeholder="" name="name_title">
                   <mat-error *ngIf="name_title.hasError('required')">
-                    โปรดกรอก
+                    <small>โปรดกรอกคำนำหน้า</small>
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -87,7 +87,7 @@
                   <mat-label>ชื่อ</mat-label>
                   <input matInput [formControl]="firstname" placeholder="" name="firstname">
                   <mat-error *ngIf="firstname.hasError('required')">
-                    โปรดกรอกชื่อ
+                    <small>โปรดกรอกชื่อ</small>
                   </mat-error>
                 </mat-form-field>
               </div>
@@ -96,17 +96,20 @@
                   <mat-label>นามสกุล</mat-label>
                   <input matInput [formControl]="lastname" placeholder="" name="lastname">
                   <mat-error *ngIf="lastname.hasError('required')">
-                    โปรดกรอกนามสกุล
+                    <small>โปรดกรอกนามสกุล</small>
                   </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-3">
                 <mat-form-field class="example-full-width">
                   <mat-label>เบอร์โทรศัพท์</mat-label>
-                  <input matInput [formControl]="telephone" placeholder="" name="telephone">
-                  <!-- <mat-error *ngIf="telephone.hasError('required')">
-                  โปรดกรอกเบอร์โทรศัพท์
-                </mat-error> -->
+                  <input matInput [formControl]="telephone" placeholder="" name="telephone" maxlength="10" minlength="9">
+                  <mat-error *ngIf="telephone.hasError('required')">
+                    <small>โปรดกรอกเบอร์โทรศัพท์</small>
+                  </mat-error>
+                  <mat-error *ngIf="telephone.hasError('minlength')">
+                    <small>โปรดกรอกเบอร์โทรศัพท์</small>
+                  </mat-error>
                 </mat-form-field>
               </div>
             </div>
