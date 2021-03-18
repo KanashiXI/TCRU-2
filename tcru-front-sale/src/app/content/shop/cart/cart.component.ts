@@ -149,22 +149,38 @@ export class CartComponent implements OnInit {
   }
 
   checkoutCart() {
-    this.cartService.checkoutCart(this.selectItem).subscribe(
-      res => {
-        this.dataForm = res;
-        this.reactiveForm.patchValue({
-          order_id: this.dataForm,
-        });
-        this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
-          res => {
-            this.cartService.deleteFromCart(this.selectItem).subscribe();
-          }
-        );
-      },
-      error => {
-
-      }
-    );
+    if (this.isSelectProduct) {
+      this.cartService.checkoutCart(this.selectItem).subscribe(
+        res => {
+          this.dataForm = res;
+          this.reactiveForm.patchValue({
+            order_id: this.dataForm,
+          });
+          this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
+            res => {
+              this.cartService.deleteFromCart(this.selectItem).subscribe();
+              Swal.fire({
+                icon: 'success',
+                title: 'ทำรายการสำเร็จ',
+                showConfirmButton: false,
+                timer: 2000
+              });
+              this.ngOnInit()
+            }
+          );
+          this.ngOnInit()
+        },
+        error => {
+        }
+      );
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'โปรดเลือกรายการ',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }
   }
 
 
@@ -200,7 +216,7 @@ export class CartComponent implements OnInit {
   }
 
   remove(id: string) {
- 
+
     Swal.fire({
       title: 'คุณต้องการลบข้อมูลนี้ ใช่ หรือ ไม่?',
       icon: 'warning',
@@ -211,16 +227,16 @@ export class CartComponent implements OnInit {
       if (result.value) {
         this.cartService.remove(id).subscribe(res => {
 
-        Swal.fire(
-          'ลบข้อมูลเรียบร้อย',
-          '',
-          'success',
-        )
-        this.ngOnInit()
+          Swal.fire(
+            'ลบข้อมูลเรียบร้อย',
+            '',
+            'success',
+          )
+          this.ngOnInit()
 
           //dialog ลบสำเร็จ
         });
-        
+
 
       } else if (result.dismiss === Swal.DismissReason.cancel) { }
     })
