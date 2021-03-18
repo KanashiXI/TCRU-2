@@ -153,6 +153,14 @@ body { margin: 0;}
  background-color: #7fdaab !important;
 }
 
+mat-card{
+  border-radius: 15px;
+}
+
+mat-expansion-panel{
+  border-radius: 15px;
+}
+
 
 
 
