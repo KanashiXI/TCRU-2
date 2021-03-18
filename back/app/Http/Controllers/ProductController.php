@@ -28,7 +28,7 @@ class ProductController extends Controller
     {
         $getall = DB::table('product')
             ->join('order_detail', 'product.product_id', '=', 'order_detail.product_id')
-            ->select('product.product_id', 'product.product_name', 'order_detail.product_quantity', 'product.product_description', 'product.product_type',
+            ->select('product.product_id', 'product.product_name', 'order_detail.product_quantity', 'product.product_description', 'product.product_type', 'product.image',
                     'product.retail_price', 'product.weight', 'product.unit'
                     )
             ->get();
@@ -45,6 +45,7 @@ class ProductController extends Controller
                             'weight'=>$group->pluck('weight')->first(),
                             'unit'=>$group->pluck('unit')->first(),
                             'product_type'=>$group->pluck('product_type')->first(),
+                            'image'=>$group->pluck('image')->first(),
                             // 'product_value' => $group
                             // 'id' => $group['product_id']
                         ]

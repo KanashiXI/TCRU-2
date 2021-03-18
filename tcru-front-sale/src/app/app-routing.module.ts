@@ -19,6 +19,7 @@ import { ShowPromotionComponent } from './content/promotion/showPromotion/showPr
 import { AddPromotionComponent } from './content/promotion/addPromotion/addPromotion.component';
 import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
 import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
+import { BillComponent } from './content/shop/bill/bill.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,10 @@ const routes: Routes = [
   {
     path: 'forgotmail',
     component: RequestResetComponent,
+  },
+  {
+    path: 'bill',
+    component: BillComponent,
   },
   {
     path: '**',
