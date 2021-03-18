@@ -72,6 +72,7 @@ export class CartComponent implements OnInit {
   editProductQuantityForm: FormGroup;
   loadUpdateCart: boolean = false;
   isSelectProduct: boolean = false;
+  taxCheck: boolean = false;
   @ViewChild('htmlData') htmlData: ElementRef;
   USERS = [
     {
@@ -132,7 +133,7 @@ export class CartComponent implements OnInit {
       let position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
 
-      PDF.save('angular-demo.pdf');
+      PDF.save('product.pdf');
     });
   }
 

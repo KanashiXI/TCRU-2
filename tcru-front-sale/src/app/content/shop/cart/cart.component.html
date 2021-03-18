@@ -94,6 +94,11 @@
             {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
             รหัสไปรษณีย์ {{dataSource[0].postal_code}}
           </div>
+          <div class="col-md-9">
+            <span class="material-icons">local_shipping</span>
+            &nbsp;&nbsp; ต้องการใบกำกับภาษี:
+            <input type="checkbox" [(ngModel)]="taxCheck">{{taxCheck}}
+          </div>
         </div>
         <br>
         <hr>
