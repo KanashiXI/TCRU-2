@@ -83,8 +83,8 @@
       <mat-card>
         <br>
         <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-10">
+          <div class="col-md-2"></div>
+          <div class="col-md-9">
             <span class="material-icons">local_shipping</span>
             &nbsp;&nbsp; จัดส่งที่:
             {{dataSource[0].address}} จังหวัด
@@ -95,23 +95,9 @@
         <br>
         <hr>
         <br>
-
-        <div class="row" [@fadeInOut] *ngIf="isSelectProduct == false">
-          <div class="col-md-4"></div>
-          <div class="col-md-7">
-            <div class="row">
-              <div class="col-md-8">
-                <p>โปรดเลือกสินค้า</p>
-              </div>
-              <div class="col-md-4">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row" [@fadeInOut] *ngIf="isSelectProduct == true">
-          <div class="col-md-4"></div>
-          <div class="col-md-7">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10">
             <div class="row">
               <div class="col-md-8">
                 <p>ราคารวม</p>
