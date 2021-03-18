@@ -206,22 +206,38 @@ export class CartComponent implements OnInit {
   }
 
   checkoutCart() {
-    this.cartService.checkoutCart(this.selectItem).subscribe(
-      res => {
-        this.dataForm = res;
-        this.reactiveForm.patchValue({
-          order_id: this.dataForm,
-        });
-        this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
-          res => {
-            this.cartService.deleteFromCart(this.selectItem).subscribe();
-          }
-        );
-      },
-      error => {
-
-      }
-    );
+    if (this.isSelectProduct) {
+      this.cartService.checkoutCart(this.selectItem).subscribe(
+        res => {
+          this.dataForm = res;
+          this.reactiveForm.patchValue({
+            order_id: this.dataForm,
+          });
+          this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
+            res => {
+              this.cartService.deleteFromCart(this.selectItem).subscribe();
+              Swal.fire({
+                icon: 'success',
+                title: 'ทำรายการสำเร็จ',
+                showConfirmButton: false,
+                timer: 2000
+              });
+              this.ngOnInit()
+            }
+          );
+          this.ngOnInit()
+        },
+        error => {
+        }
+      );
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'โปรดเลือกรายการ',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }
   }
 
 

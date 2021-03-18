@@ -1,5 +1,8 @@
 <br>
 <div class="container">
+  <div *ngIf="productInCart.length == 0">
+    ไม่มีสินค้าในตะกร้า
+  </div>
 
   <div [@fadeInOut] *ngIf="cartStatus == false && productInCart.length != 0">
     <div class="row">
@@ -78,7 +81,7 @@
   </div>
 
   <br>
-  <div class="row" [@fadeInOut] *ngIf="cartStatus == false">
+  <div class="row" [@fadeInOut] *ngIf="cartStatus == false && productInCart.length != 0">
     <div class="col-md-12">
       <mat-card>
         <br>
