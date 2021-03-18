@@ -69,6 +69,7 @@ export class CartComponent implements OnInit {
   statusAddIsNull: boolean;
   editProductQuantityForm: FormGroup;
   loadUpdateCart: boolean = false;
+  isSelectProduct: boolean = false;
 
   constructor(
     private router: Router,
@@ -232,6 +233,12 @@ export class CartComponent implements OnInit {
     this.selectItem.map((obj) => {
       this.cartTotal += Number(obj.retail_price);
     });
+    if (this.cartTotal > 0) {
+      this.isSelectProduct = true;
+    } else {
+      this.isSelectProduct = false;
+    }
+    console.log(this.isSelectProduct)
 
     this.totalPrice = this.cartTotal;
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
