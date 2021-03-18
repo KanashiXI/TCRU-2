@@ -44,8 +44,8 @@ class AddressController extends Controller
     {
         $getall = DB::table('address')
             ->join('provinces', 'provinces.id', '=', 'address.province_id')
-            ->join('amphures', 'amphures.province_id', '=', 'provinces.id')
-            ->join('districts', 'districts.amphure_id', '=', 'amphures.id')
+            ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
+            ->join('districts', 'districts.id', '=', 'address.districts_id')
             ->join('users', 'users.id', '=', 'address.user_id')
             ->select('address.status','address.postal_code', 'address.user_id', 'address.firstname', 'address.lastname', 'address.address_id', 'address.address' , 'provinces.name_th as province_name', 'amphures.name_th as amphure_name', 'districts.name_th as district_name')
             ->where('address.user_id', $request)

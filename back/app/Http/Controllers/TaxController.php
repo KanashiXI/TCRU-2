@@ -18,8 +18,8 @@ class TaxController extends Controller
     
         $getall = DB::table('tax_info')
             ->join('provinces', 'provinces.id', '=', 'tax_info.province_id')
-            ->join('amphures', 'amphures.province_id', '=', 'provinces.id')
-            ->join('districts', 'districts.amphure_id', '=', 'amphures.id')
+            ->join('amphures', 'tax_info.amphures_id', '=', 'amphures.id')
+            ->join('districts', 'tax_info.districts_id', '=', 'districts.id')
             ->join('users', 'users.id', '=', 'tax_info.user_id')
             ->select('tax_info.postal_code', 'tax_info.user_id', 'tax_info.firstname', 'tax_info.lastname', 'tax_info.tax_id', 'tax_info.address' , 'provinces.name_th as province_name', 'amphures.name_th as amphure_name', 'districts.name_th as districts_name', 'tax_info.company_name')
             ->where('tax_info.user_id', $request)
