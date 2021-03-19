@@ -11,6 +11,7 @@ import { OrderService } from 'src/app/shared/service/order.service';
 export class OrderComponent implements OnInit {
 
   dataSource: Order[] = [];
+  orderDetail: Order[] = [];
   constructor(
     private orderService: OrderService
   ) { }
@@ -27,5 +28,10 @@ export class OrderComponent implements OnInit {
       }
     )
   }
+
+  onClickSubmit(id){
+    localStorage.setItem("address_id", id);
+  }
+
 
 }

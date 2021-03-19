@@ -79,6 +79,10 @@ export class ApiConstants {
     public static get editAddStatusURL(): string {
         return '/api/editAddStatus';
     }
+
+    public static get orderDetailURL(): string {
+        return '/api/selectOrder';
+    }
     
 
 }
