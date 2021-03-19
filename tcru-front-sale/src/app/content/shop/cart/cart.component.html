@@ -87,12 +87,55 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-9">
-            <span class="material-icons">local_shipping</span>
-            &nbsp;&nbsp; จัดส่งที่:
+
+            <!-- <div *ngIf="!statusAddIsNull">
+              <span class="material-icons">local_shipping</span> &nbsp;&nbsp; เลือกที่อยู่จัดส่ง
+            </div> -->
+            <!-- <div *ngIf="statusAddIsNull"></div> -->
+            <span class="material-icons">local_shipping</span> &nbsp;&nbsp; จัดส่งที่:
             {{dataSource[0].address}} จังหวัด
             {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
             รหัสไปรษณีย์ {{dataSource[0].postal_code}}
           </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-9">
+            <!-- <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div class="align-self-center">ข้อมูลที่อยู่จัดส่ง</div>
+                </mat-panel-title>
+                <div class="row align-self-center">
+                  <div class="col-md-12">
+                    <mat-panel-description>
+                      <div class="col-md-6">
+                        <button mat-raised-button color="primary" green
+                          (click)="openDialogAddress()">เพิ่มที่อยู่จัดส่ง</button>
+                      </div>
+                    </mat-panel-description>
+                  </div>
+                </div>
+              </mat-expansion-panel-header>
+              <app-showaddress></app-showaddress>
+            </mat-expansion-panel> -->
+
+            <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Self aware panel
+                </mat-panel-title>
+                <mat-panel-description>
+                  Currently I am {{panelOpenState ? 'open' : 'closed'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel> -->
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
           <div class="col-md-9">
             <span class="material-icons">local_shipping</span>
             &nbsp;&nbsp; ต้องการใบกำกับภาษี:

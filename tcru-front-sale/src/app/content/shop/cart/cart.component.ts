@@ -73,6 +73,8 @@ export class CartComponent implements OnInit {
   loadUpdateCart: boolean = false;
   isSelectProduct: boolean = false;
   taxCheck: boolean = false;
+  panelOpenState = false;
+
   @ViewChild('htmlData') htmlData: ElementRef;
   USERS = [
     {
@@ -154,7 +156,7 @@ export class CartComponent implements OnInit {
     this.addressService.getShippingAddress(user_id).subscribe(data => {
       this.shippingAddressList = data;
       this.filterAdd();
-      if (this.shippingAddressList.length == 0) {
+      if (this.shippingAddressList.length < 1) {
         this.statusAddIsNull = true;
       } else {
         this.statusAddIsNull = false;
