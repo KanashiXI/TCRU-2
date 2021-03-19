@@ -115,6 +115,9 @@ export class AddTaxAddressComponent implements OnInit {
       this.aumphureArr.sort((a, b) => a.name_th.localeCompare(b.name_th));
     });
   }
+  onclickRe() {
+    this.ngOnInit();
+  }
 
   getDistr(event) {
     var obj = {

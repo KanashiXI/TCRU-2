@@ -93,8 +93,8 @@
             </div> -->
             <!-- <div *ngIf="statusAddIsNull"></div> -->
             <span class="material-icons">local_shipping</span> &nbsp;&nbsp; จัดส่งที่:
-            {{dataSource[0].address}} 
-            {{dataSource[0].province_name}}  {{dataSource[0].amphure_name}}  {{dataSource[0].district_name}}
+            {{dataSource[0].address}}
+            {{dataSource[0].province_name}} {{dataSource[0].amphure_name}} {{dataSource[0].district_name}}
             รหัสไปรษณีย์ {{dataSource[0].postal_code}}
           </div>
           <div class="col-md-1">
@@ -132,7 +132,8 @@
             <input type="checkbox" [(ngModel)]="taxCheck">&nbsp;&nbsp; ต้องการใบกำกับภาษี
           </div>
           <div *ngIf="taxCheck == true">
-            <div class="col-md-1"><button mat-stroked-button (click)="openDialogTax()"><span class="material-icons">create</span></button></div>
+            <div class="col-md-1"><button mat-stroked-button (click)="openDialogTax()"><span
+                  class="material-icons">create</span></button></div>
           </div>
         </div>
         <br>
@@ -183,7 +184,7 @@
       </mat-card>
     </div>
   </div>
-
+  <!-- 
   <div class="row">
 
     <div class="col-md-8" id="htmlData">
@@ -205,10 +206,10 @@
 
     <div class="col-md-4 text-right">
       <button mat-raised-button color="primary" class="btn-block" (click)="openPDF()">Download PDF</button>
-      <!-- <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button> -->
+      <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
     </div>
 
-  </div>
+  </div> -->
 
 </div>
 <!-- <br>
