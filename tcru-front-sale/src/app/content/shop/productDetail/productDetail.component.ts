@@ -186,7 +186,6 @@ export class ProductDetailComponent implements OnInit {
           this.checkStock = false;
         }
         this.productDetailLoad = true;
-
       }
     )
   }
@@ -198,7 +197,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   increse() {
-    if (this.counter + 1 <= this.stock) {
+    if (this.counter + 1 < 100) {
       this.counter++;
     }
   }
