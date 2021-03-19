@@ -86,6 +86,7 @@ class OrderController extends Controller
     {
         $getall = DB::table('order')
             ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id' )
+            ->join('product', 'product.product_id', '=', 'order_detail.product_id')
             ->select('*')
             ->where('order.order_id', $request)
             // ->groupBy('order.order_id')
