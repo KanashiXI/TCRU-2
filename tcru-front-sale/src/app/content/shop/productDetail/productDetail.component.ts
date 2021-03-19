@@ -101,7 +101,14 @@ export class ProductDetailComponent implements OnInit {
           product_quantity: curQuantity + 0,
           retail_price: Number(curPrice) + Number(0),
         })
-        this.cartService.addToCart(this.reactiveForm.getRawValue()).subscribe()
+        this.cartService.addToCart(this.reactiveForm.getRawValue()).subscribe(res => {
+          Swal.fire({
+            icon: 'success',
+            title: 'เพิ่มสินค้าสำเร็จ',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        })
       } else {
         var curQuantity = this.reactiveForm.get('product_quantity').value;
         var curPrice = this.reactiveForm.get('retail_price').value;
@@ -109,7 +116,14 @@ export class ProductDetailComponent implements OnInit {
           product_quantity: curQuantity + oldQuantity,
           retail_price: Number(curPrice) + Number(oldPrice),
         })
-        this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe();
+        this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe(res => {
+          Swal.fire({
+            icon: 'success',
+            title: 'เพิ่มสินค้าสำเร็จ',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        });
       }
     });
   }
