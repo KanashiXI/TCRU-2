@@ -205,6 +205,7 @@ export class ProductDetailComponent implements OnInit {
 
   calPrice() {
     const totalPrice = this.reactiveForm.get('retail_price').value
+    console.log(totalPrice)
     this.reactiveForm.patchValue({
       product_quantity: this.counter,
       retail_price: totalPrice * this.counter
