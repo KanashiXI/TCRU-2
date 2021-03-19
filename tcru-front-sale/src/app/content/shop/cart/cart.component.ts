@@ -1,3 +1,4 @@
+import { ShowTaxAddressComponent } from './../../user/taxinvoice/showTaxAddress/showTaxAddress.component';
 import { ShowaddressComponent } from './../../user/showaddress/showaddress.component';
 import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -384,6 +385,16 @@ export class CartComponent implements OnInit {
   openDialogAddress() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
     const dialogRef = this.dialog.open(ShowaddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+    });
+  }
+
+  openDialogTax() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(ShowTaxAddressComponent, {
       autoFocus: false,
       scrollStrategy,
       maxHeight: '90vh',
