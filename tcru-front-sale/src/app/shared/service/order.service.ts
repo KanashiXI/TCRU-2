@@ -12,5 +12,10 @@ constructor(private http: HttpClient) { }
   getOreder(id) {
     return this.http.get<Order[]>(`${ApiConstants.baseURl}${ApiConstants.orderURL}/${id}`)
   }
+  getOrederDetail(id) {
+    return this.http.get<Order[]>(`${ApiConstants.baseURl}${ApiConstants.orderDetailURL}/${id}`)
+  }
+
+
 
 }
