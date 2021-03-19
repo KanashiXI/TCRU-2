@@ -56,7 +56,7 @@ class ProductController extends Controller
         foreach ($sorted  as $key => $value) {
             $res[] = $value;
         }
-        $items = array_slice($res, 0,5);
+        $items = array_slice($res, 0,4);
         return response()->json($items, 200); 
     }
 }
