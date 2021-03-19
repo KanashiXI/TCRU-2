@@ -1,3 +1,4 @@
+import { ShowaddressComponent } from './../../user/showaddress/showaddress.component';
 import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -18,6 +19,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { MatDialog } from '@angular/material/dialog';
+import { Overlay } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-cart',
@@ -74,6 +77,7 @@ export class CartComponent implements OnInit {
   isSelectProduct: boolean = false;
   taxCheck: boolean = false;
   panelOpenState = false;
+  
 
   @ViewChild('htmlData') htmlData: ElementRef;
   USERS = [
@@ -120,6 +124,9 @@ export class CartComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
     private cartService: CartService,
     private fb: FormBuilder,
+    public dialog: MatDialog,
+    private overlay: Overlay
+
   ) { }
 
   public openPDF(): void {
@@ -372,6 +379,16 @@ export class CartComponent implements OnInit {
       product_quantity: cart.product_quantity,
     })
     this.updateCart();
+  }
+
+  openDialogAddress() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(ShowaddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+    });
   }
 
 }

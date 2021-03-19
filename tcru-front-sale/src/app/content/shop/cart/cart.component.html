@@ -85,7 +85,7 @@
       <mat-card>
         <br>
         <div class="row">
-          <div class="col-md-2"></div>
+          <div class="col-md-1"></div>
           <div class="col-md-9">
 
             <!-- <div *ngIf="!statusAddIsNull">
@@ -93,9 +93,12 @@
             </div> -->
             <!-- <div *ngIf="statusAddIsNull"></div> -->
             <span class="material-icons">local_shipping</span> &nbsp;&nbsp; จัดส่งที่:
-            {{dataSource[0].address}} จังหวัด
-            {{dataSource[0].province_name}} อำเภอ {{dataSource[0].amphures_name}} ตำบล {{dataSource[0].districts_name}}
+            {{dataSource[0].address}} 
+            {{dataSource[0].province_name}}  {{dataSource[0].amphure_name}}  {{dataSource[0].district_name}}
             รหัสไปรษณีย์ {{dataSource[0].postal_code}}
+          </div>
+          <div class="col-md-1">
+            <button mat-stroked-button (click)="openDialogAddress()"><span class="material-icons">create</span></button>
           </div>
         </div>
         <div class="row">
@@ -119,27 +122,17 @@
               </mat-expansion-panel-header>
               <app-showaddress></app-showaddress>
             </mat-expansion-panel> -->
-
-            <!-- <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  Self aware panel
-                </mat-panel-title>
-                <mat-panel-description>
-                  Currently I am {{panelOpenState ? 'open' : 'closed'}}
-                </mat-panel-description>
-              </mat-expansion-panel-header>
-              <p>I'm visible because I am open</p>
-            </mat-expansion-panel> -->
-
           </div>
         </div>
+        <br>
         <div class="row">
-          <div class="col-md-2"></div>
+          <div class="col-md-1"></div>
           <div class="col-md-9">
-            <span class="material-icons">local_shipping</span>
-            &nbsp;&nbsp; ต้องการใบกำกับภาษี:
-            <input type="checkbox" [(ngModel)]="taxCheck">{{taxCheck}}
+            <span class="material-icons">wysiwyg</span>&nbsp;&nbsp;
+            <input type="checkbox" [(ngModel)]="taxCheck">&nbsp;&nbsp; ต้องการใบกำกับภาษี
+          </div>
+          <div *ngIf="taxCheck == true">
+            <div class="col-md-1"><button mat-stroked-button (click)="openDialogAddress()"><span class="material-icons">create</span></button></div>
           </div>
         </div>
         <br>
