@@ -3,7 +3,7 @@
   <div class="row">
     <!-- <div class="col-md-1"></div> -->
     <div class="col-md-8">
-        <p class="tittle">แก้ไขที่อยู่ใบกำกับภาษี</p>
+      <p class="tittle">แก้ไขที่อยู่ใบกำกับภาษี</p>
     </div>
   </div>
   <br><br>
@@ -37,8 +37,8 @@
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>เลขประจำตัวผู้เสียภาษี</mat-label>
-                  <input matInput [formControl]="vat_identification_number" placeholder="" name="vat_identification_number" 
-                      pattern="[0-9]+" maxlength="13">
+                  <input matInput [formControl]="vat_identification_number" placeholder=""
+                    name="vat_identification_number" pattern="[0-9]+" maxlength="13">
                   <mat-error *ngIf="vat_identification_number.hasError('required')">
                     โปรดกรอกเลขประจำตัวผู้เสียภาษี
                   </mat-error>
@@ -68,8 +68,8 @@
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>เบอร์ติดต่อ</mat-label>
-                  <input matInput [formControl]="telephone" placeholder="" name="telephone" 
-                      pattern="[0-9]+" minlength="9" maxlength="10">
+                  <input matInput [formControl]="telephone" placeholder="" name="telephone" pattern="[0-9]+"
+                    minlength="9" maxlength="10">
                   <mat-error *ngIf="telephone.hasError('required')">
                     โปรดกรอกเบอร์ติดต่อ
                   </mat-error>
@@ -155,11 +155,12 @@
                   </mat-select>
                   <mat-error *ngIf="reactiveForm.controls['districts_id'].errors?.required">โปรดเลือกตำบล</mat-error>
                 </mat-form-field>
-              </div>              
+              </div>
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label>รหัสไปรษณีย์</mat-label>
-                  <input matInput [formControl]="postal_code" placeholder="" name="postal_code" pattern="[0-9]+" maxlength="5">
+                  <input matInput [formControl]="postal_code" placeholder="" name="postal_code" pattern="[0-9]+"
+                    maxlength="5">
                   <mat-error *ngIf="postal_code.hasError('required')">
                     โปรดกรอกรหัสไปรษณีย์
                   </mat-error>
@@ -171,17 +172,17 @@
             <div class="row">
               <div class="col-md-4"></div>
               <div class="col-md-2">
-                <button mat-stroked-button color="primary" class="btn-block" routerLink="/taxaddress">ยกเลิก</button>
+                <button mat-stroked-button color="primary" class="btn-block" routerLink="/profile">ยกเลิก</button>
               </div>
               <div class="col-md-2">
-                <button mat-raised-button color="primary" type="submit" class="btn-block" [disabled]="reactiveForm.invalid"
-                (click)="onClickSubmit()">บันทึกข้อมูล</button>
+                <button mat-raised-button color="primary" type="submit" class="btn-block"
+                  [disabled]="reactiveForm.invalid" (click)="onClickSubmit()">บันทึกข้อมูล</button>
               </div>
             </div>
           </mat-card-actions>
           <br>
         </mat-card>
       </div>
-    </div> 
-  </form> 
-</div>   
+    </div>
+  </form>
+</div>
