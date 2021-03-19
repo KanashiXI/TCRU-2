@@ -1,6 +1,6 @@
 <div class="container">
-  {{orderDetail | json}}
-  <div class="row">
+  <!-- {{orderDetail | json}} -->
+  <div class="row" id="htmlData">
     <div class="col-md-1"></div>
     <div class="col-md-10" id="htmlData">
       <table class="table table-bordered">
@@ -11,21 +11,22 @@
           <th>จำนวน</th>
           <th>จำนวนเงืน (บาท)</th>
         </tr>
-        <tr>
-          <th></th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let item of orderDetail; let i = index">
+          <th>{{item.product_name}}</th>
+          <td>{{item.unit}}</td>
+          <td>{{item.retail_price}}</td>
+          <td>{{item.product_quantity}}</td>
+          <td>{{item.total_price}}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <th>ค่าขนส่ง</th>
           <td></td>
           <td></td>
           <td></td>
           <td></td>
-        </tr>
+        </tr> -->
       </table>
     </div>
+    <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
   </div>
 </div>
