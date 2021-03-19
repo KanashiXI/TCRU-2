@@ -60,7 +60,21 @@ class OrderController extends Controller
         }
     }
 
+    public function getOrder()
+    {
+        $getall = order::all();
+        return response()->json($getall,200); 
+    }
 
+    public function getOrderDetail($request)
+    {
+        $getall = DB::table('order')
+            ->select('*')
+            ->where('order.user_id', $request)
+            // ->groupBy('address.address_id')
+            ->get(); 
+            return response()->json($getall,200); 
+    }    
 
 
 }

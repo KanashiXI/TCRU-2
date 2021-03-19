@@ -76,6 +76,8 @@ Route::group([
     Route::post('order','OrderController@fillOrder');
     Route::post('deletefromcart','OrderController@deleteFromCart');
     Route::get('getOrder','OrderController@getOrder');
+    
+    Route::get('order/{order_id}','OrderController@getOrderDetail');
 
     //จัดส่งสินค้า
     Route::get('getShippingOrder','ShippingController@getShippingOrder');

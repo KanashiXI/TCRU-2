@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { BeforeLoginService } from './shared/service/before-login.service';
+import { AfterLoginService } from './shared/service/after-login.service';
 
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { ShopviewComponent } from './content/shop/shopview/shopview.component';
@@ -20,7 +22,7 @@ import { AddPromotionComponent } from './content/promotion/addPromotion/addPromo
 import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
 import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
 import { BillComponent } from './content/shop/bill/bill.component';
-
+import { OrderComponent } from './content/user/order/order.component';
 const routes: Routes = [
   {
     path: '',
@@ -34,6 +36,8 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate: [BeforeLoginService]
+
   },
   {
     path: 'register',
@@ -42,34 +46,42 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'editprofile',
     component: EditprofileComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'address',
     component: ShowaddressComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'addaddress',
     component: AddaddressComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'editaddress',
     component: EditaddressComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'taxaddress',
     component: ShowTaxAddressComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'addtaxaddress',
     component: AddTaxAddressComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'edittaxaddress',
     component: EditTaxAddressComponent,
+    canActivate: [AfterLoginService]
   },
   {
     path: 'cart',
@@ -94,6 +106,10 @@ const routes: Routes = [
   {
     path: 'bill',
     component: BillComponent,
+  },
+  {
+    path: 'order',
+    component: OrderComponent,
   },
   {
     path: '**',
