@@ -1,13 +1,17 @@
-<br><br>
-<br><br>
-<br><br>
+
 <br><br>
 <div class="container">
   <div class="row" *ngFor="let item of dataSource">
     <div class="col-md-12">
       <mat-card>
-        ออเดอร์เลขที่: {{item.order_id}} วันที่ทำรายการ: {{item.order_date}}
-        <button mat-raised-button color="accent" (click)="onClickSubmit(item.address_id)">รายการ</button>
+        <div class="row">
+          <div class="col-md-10">
+            ออเดอร์เลขที่: {{item.order_id}} วันที่ทำรายการ: {{item.order_date}}
+          </div>
+          <div class="col-md-2">
+            <button mat-raised-button color="accent" (click)="onClickSubmit(item.address_id)">รายการ</button>
+          </div>
+        </div>
       </mat-card>
       <br>
     </div>
