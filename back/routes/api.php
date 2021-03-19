@@ -77,7 +77,10 @@ Route::group([
     Route::post('deletefromcart','OrderController@deleteFromCart');
     Route::get('getOrder','OrderController@getOrder');
     
-    Route::get('order/{order_id}','OrderController@getOrderDetail');
+    Route::get('order/{user_id}','OrderController@getOrderByUser');
+    Route::get('selectOrder/{order_id}','OrderController@getOrderDetail');
+
+
 
     //จัดส่งสินค้า
     Route::get('getShippingOrder','ShippingController@getShippingOrder');

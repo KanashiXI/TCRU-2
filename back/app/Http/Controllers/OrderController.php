@@ -63,17 +63,34 @@ class OrderController extends Controller
     public function getOrder()
     {
         $getall = order::all();
+        // $getall = DB::table('order')
+        //     ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id' )
+        //     ->select('*')
+        //     ->where('order.user_id', $request)
+        //     ->groupBy('order.order_id')
+        //     ->get(); 
         return response()->json($getall,200); 
+        // return response()->json($getall,200); 
     }
 
-    public function getOrderDetail($request)
+    public function getOrderByUser($request)
     {
         $getall = DB::table('order')
             ->select('*')
             ->where('order.user_id', $request)
-            // ->groupBy('address.address_id')
             ->get(); 
-            return response()->json($getall,200); 
+        return response()->json($getall,200);
+    }    
+
+    public function getOrderDetail($request)
+    {
+        $getall = DB::table('order')
+            ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id' )
+            ->select('*')
+            ->where('order.order_id', $request)
+            // ->groupBy('order.order_id')
+            ->get(); 
+        return response()->json($getall,200);
     }    
 
 
