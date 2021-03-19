@@ -92,7 +92,7 @@ export class ProductDetailComponent implements OnInit {
       }
       if (this.productInCart.length == 0) {
         ////////////////////////////////////////////////////////////
-        const productPrice = requestData.product_id;
+        const productPrice = requestData.retail_price;
         console.log('pp is' + productPrice)
         var curQuantity = this.reactiveForm.get('product_quantity').value
         var curPrice = this.reactiveForm.get('retail_price').value
