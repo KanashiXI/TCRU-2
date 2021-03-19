@@ -1,4 +1,6 @@
+import { Overlay } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { Order } from 'src/app/shared/interface/order';
 import { OrderService } from 'src/app/shared/service/order.service';
@@ -13,7 +15,8 @@ export class BillComponent implements OnInit {
   orderDetail: Order[] = [];
   
   constructor(
-    private orderService: OrderService
+    private orderService: OrderService,
+    
   ) { }
 
   ngOnInit() {
@@ -21,6 +24,7 @@ export class BillComponent implements OnInit {
       ...Subject,
       order_id: localStorage.getItem('order_id'),
     }
+    
     this.orderService.getOrederDetail(requestData.order_id).subscribe(
       res => {
         this.orderDetail = res;
@@ -28,7 +32,9 @@ export class BillComponent implements OnInit {
     )
   }
 
-  
+
+
+
 
 
 }
