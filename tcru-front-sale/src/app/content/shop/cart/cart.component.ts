@@ -235,7 +235,15 @@ export class CartComponent implements OnInit {
                 showConfirmButton: false,
                 timer: 2000
               });
-              this.ngOnInit()
+              this.router.navigateByUrl('/order');
+              // this.ngOnInit()
+            },err => {
+              Swal.fire({
+                icon: 'error',
+                title: 'ทำรายการไม่สำเร็จ',
+                showConfirmButton: false,
+                timer: 2000
+              });
             }
           );
           this.ngOnInit()
