@@ -40,6 +40,7 @@ import { ResponseResetComponent } from './content/auth/password/response-reset/r
 import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/skeleton-loder/skeleton-loader.component';
 // import { BreadcrumbModule } from 'angular-crumbs';
 import { BillComponent } from './content/shop/bill/bill.component';
+import { OrderComponent } from './content/user/order/order.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { BillComponent } from './content/shop/bill/bill.component';
     RequestResetComponent,
     ResponseResetComponent,
     SkeletonLoaderComponent,
-    BillComponent
+    BillComponent,
+    OrderComponent
   ],
   entryComponents: [ProductDetailComponent],
   imports: [

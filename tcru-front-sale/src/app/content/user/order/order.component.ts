@@ -10,7 +10,7 @@ import { OrderService } from 'src/app/shared/service/order.service';
 })
 export class OrderComponent implements OnInit {
 
-  dataSource: Order[]; 
+  dataSource: Order[] = [];
   constructor(
     private orderService: OrderService
   ) { }
@@ -24,7 +24,7 @@ export class OrderComponent implements OnInit {
       res => {
         this.dataSource = res;
 
-      }  
+      }
     )
   }
 
