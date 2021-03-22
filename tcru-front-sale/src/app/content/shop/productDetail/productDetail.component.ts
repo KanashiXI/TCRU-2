@@ -186,7 +186,6 @@ export class ProductDetailComponent implements OnInit {
           this.checkStock = false;
         }
         this.productDetailLoad = true;
-
       }
     )
   }
@@ -198,13 +197,14 @@ export class ProductDetailComponent implements OnInit {
   }
 
   increse() {
-    if (this.counter + 1 <= this.stock) {
+    if (this.counter + 1 < 100) {
       this.counter++;
     }
   }
 
   calPrice() {
     const totalPrice = this.reactiveForm.get('retail_price').value
+    console.log(totalPrice)
     this.reactiveForm.patchValue({
       product_quantity: this.counter,
       retail_price: totalPrice * this.counter
