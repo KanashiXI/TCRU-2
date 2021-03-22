@@ -65,7 +65,7 @@
               </button>
             </div>
             <div class="col-md-1">
-              <p>{{cart.retail_price}} ฿</p>
+              <p>{{cart.price_per_piece*cart.product_quantity}} ฿</p>
             </div>
             <div class="col-md-1" style="text-align: center;">
               <button mat-raised-button color="warn" class="btn-block" type="submit" (click)="remove(cart.cart_id)">

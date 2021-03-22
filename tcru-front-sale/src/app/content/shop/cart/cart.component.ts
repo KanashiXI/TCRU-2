@@ -78,7 +78,7 @@ export class CartComponent implements OnInit {
   isSelectProduct: boolean = false;
   taxCheck: boolean = false;
   panelOpenState = false;
-  
+ 
 
   @ViewChild('htmlData') htmlData: ElementRef;
   USERS = [
@@ -367,13 +367,14 @@ export class CartComponent implements OnInit {
   handleMinus(cart) {
     if (cart.product_quantity > 1) {
       cart.product_quantity--;
-    }
-    cart.retail_price -= cart.price_per_piece;
-    this.editProductQuantityForm.patchValue({
+      cart.retail_price -= cart.price_per_piece;
+      this.editProductQuantityForm.patchValue({
       retail_price: cart.retail_price,
       product_id: cart.product_id,
       product_quantity: cart.product_quantity,
     })
+    }
+    
     this.updateCart();
   }
 
