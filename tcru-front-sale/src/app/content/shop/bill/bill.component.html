@@ -1,6 +1,7 @@
 <div class="container">
   <!-- {{orderDetail | json}} -->
-  <div class="row">
+  <div id="htmlData">
+  <div class="row" >
     <div class="col-md-4"></div>
     <div class="col-md-4 center">
       <img src="../../../../assets/ตรามวล.png" style="width: 70px; padding: 10px;">
@@ -22,13 +23,13 @@
 
   <div class="row">
     <div class="col-md-12">
-      <p>ชื่อ - สกุล: </p>
-      <p>ที่อยู่: </p>
-      <p>โทรศัพท์: </p>
+      <p>ชื่อ - สกุล: {{resData[2]}} {{resData[3]}}</p>
+      <p>ที่อยู่: {{resData[0]}} {{resData[5]}} {{resData[6]}} {{resData[7]}} {{resData[8]}}</p>
+      <p>โทรศัพท์: {{resData[1]}}</p>
     </div>
   </div>
 
-  <div class="row" id="htmlData">
+  <div class="row" >
     <!-- <div class="col-md-1"></div> -->
     <div class="col-md-12" id="htmlData">
       <table class="table table-bordered">
@@ -47,15 +48,30 @@
           <td>{{item.product_quantity}}</td>
           <td>{{item.total_price}}</td>
         </tr>
-        <!-- <tr>
-          <th>ค่าขนส่ง</th>
+        <tr>
+          <th>ราคารวม</th>
+          <td></td>
+          <td>{{resData[9]}}</td>
           <td></td>
           <td></td>
+        </tr>
+        <tr>
+          <th style="color: red;">ส่วนลด</th>
+          <td></td>
+          <td>{{resData[10]}}</td>
           <td></td>
           <td></td>
-        </tr> -->
+        </tr>
+        <tr>
+          <th>ราคาสุทธิ</th>
+          <td></td>
+          <td>{{resData[11]}}</td>
+          <td></td>
+          <td></td>
+        </tr>
       </table>
     </div>
-    <!-- <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button> -->
   </div>
+</div>
+  <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
 </div>

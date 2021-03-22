@@ -88,12 +88,25 @@ class OrderController extends Controller
             ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id' )
             ->join('product', 'product.product_id', '=', 'order_detail.product_id')
             ->join('address', 'address.address_id', '=', 'order.address_id')
-            ->select('*')
+            ->join('provinces', 'provinces.id', '=', 'address.province_id')
+            ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
+            ->join('districts', 'districts.id', '=', 'address.districts_id')
+            ->select('order.order_id', 'order.order_date', 'order.require_date', 'order.status', 
+                    'order.user_id', 'order.updated_at', 'order.created_at', 'order.net_amount',
+                    'order.total_price', 'order.promotion_id', 'order.discount as discount', 'order.request_tax',
+                    'order.address_id', 'order_detail.product_quantity', 'order.net_amount', 
+                    'order.discount', 'order.total_price',
+                    'address.address', 'address.firstname', 'address.lastname', 'address.telephone', 
+                    'provinces.name_th as province', 'amphures.name_th as amphures', 
+                    'districts.name_th as districts', 'address.postal_code as postal_code',
+                    'product.product_id', 'product.product_name', 'product.retail_price', 'product.unit')
             ->where('order.order_id', $request)
             // ->groupBy('order.order_id')
             ->get(); 
         return response()->json($getall,200);
-    }    
+    } 
+    
+    
 
 
 }

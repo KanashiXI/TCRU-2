@@ -12,4 +12,12 @@ export interface Order {
     discount?: string;
     request_tax?: number;
     address_id?: number;
+    address?:String;
+    telephone?: String;
+    firstname?: String;
+    lastname?: String;
+    district?: String;
+    amphures?: String;
+    province?: String;
+    postal_code?: String;
 }
