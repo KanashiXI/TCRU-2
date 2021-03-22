@@ -1,15 +1,43 @@
 <div class="container">
   <!-- {{orderDetail | json}} -->
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 center">
+      <img src="../../../../assets/ตรามวล.png" style="width: 70px; padding: 10px;">
+      <img src="../../../../assets/tcru-crop-removebg.png" style="width: 95px;padding: 10px;">
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12 center">
+      <h2>ใบรับบริการวิชาการ</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 center">
+      <h3>ศูนย์ผลิตและบริการชีวินทรีย์เกษตร มหาวิทยาลัยวลัยลักษณ์</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>ชื่อ - สกุล: </p>
+      <p>ที่อยู่: </p>
+      <p>โทรศัพท์: </p>
+    </div>
+  </div>
+
   <div class="row" id="htmlData">
-    <div class="col-md-1"></div>
-    <div class="col-md-10" id="htmlData">
+    <!-- <div class="col-md-1"></div> -->
+    <div class="col-md-12" id="htmlData">
       <table class="table table-bordered">
         <tr class="table-primary">
           <th>รายการ</th>
           <th>หน่วย</th>
           <th>ราคา/หน่วย (บาท)</th>
           <th>จำนวน</th>
-          <th>จำนวนเงืน (บาท)</th>
+          <th>จำนวนเงิน (บาท)</th>
 
         </tr>
         <tr *ngFor="let item of orderDetail; let i = index">
