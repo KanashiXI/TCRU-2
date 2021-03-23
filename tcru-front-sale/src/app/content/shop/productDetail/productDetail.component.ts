@@ -32,7 +32,7 @@ export class ProductDetailComponent implements OnInit {
   breakpoint: number;
   productInCart: Product[] = [];
   productDetailLoad: boolean = false;
-
+  productImg: string;
   constructor(
     private Auth: AuthService,
     private route: ActivatedRoute,
@@ -162,6 +162,7 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getDetail(productId).subscribe(
       prod => {
         this.productInfo = prod;
+        this.productImg = this.productInfo[0].image;
         this.reactiveForm.patchValue({
           product_name: this.productInfo[0].product_name,
           retail_price: this.productInfo[0].retail_price,
