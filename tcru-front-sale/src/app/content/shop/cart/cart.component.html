@@ -1,7 +1,25 @@
 <br>
 <div class="container">
   <div *ngIf="productInCart.length == 0">
-    ไม่มีสินค้าในตะกร้า
+    <!-- <div class="row">
+      <div class="col-md-12">
+        
+      </div>
+    </div> -->
+    <div class="row">
+      <!-- <div class="col-md-4"></div> -->
+      <div class="col-md-12 center">
+        <img src="../../../../assets/f261d222816d01149261d6237bef4e62.png" 
+        alt="Icon made from http://www.onlinewebfonts.com/icon Icon Fonts is licensed by CC BY 3.0"
+        style="width: 120px;">
+        <br><br>
+        <p>ไม่มีสินค้าในตะกร้า</p>
+        <button mat-stroked-button class="number" (click)="handlePlus(cart)">
+        </button>
+      </div>
+      <!-- <div class="col-md-4"></div> -->
+    </div>
+    
   </div>
 
   <div [@fadeInOut] *ngIf="cartStatus == false && productInCart.length != 0">

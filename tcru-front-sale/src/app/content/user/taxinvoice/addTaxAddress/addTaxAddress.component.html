@@ -1,4 +1,8 @@
-<br><br>
+<div style="text-align: right;">
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>highlight_off</mat-icon>
+  </button>
+</div>
 <div class="container">
   <div class="row">
     <!-- <div class="col-md-1"></div> -->
@@ -34,7 +38,7 @@
                   </mat-error>
                 </mat-form-field>
               </div> -->
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>เลขประจำตัวผู้เสียภาษี</mat-label>
                   <input matInput [formControl]="vat_identification_number" placeholder=""
@@ -44,7 +48,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>ชื่อหน่วยงาน</mat-label>
                   <input matInput [formControl]="company_name" placeholder="" name="company_name">
@@ -84,7 +88,7 @@
                   </mat-error>
                 </mat-form-field>
               </div> -->
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>เบอร์ติดต่อ</mat-label>
                   <input matInput [formControl]="telephone" placeholder="" name="telephone" pattern="[0-9]+"
@@ -94,7 +98,7 @@
                   </mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>ที่อยู่หน่วยงาน</mat-label>
                   <input matInput [formControl]="address" placeholder="" name="address">
@@ -106,7 +110,7 @@
             </div>
             <br>
             <div class="row justify-content-center">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>จังหวัด</mat-label>
                   <mat-select formControlName="province_id" (selectionChange)="getAumph($event)" required>
@@ -118,7 +122,7 @@
                   <mat-error *ngIf="reactiveForm.controls['province_id'].errors?.required">โปรดเลือกจังหวัด</mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>อำเภอ</mat-label>
                   <mat-select formControlName="amphures_id" (selectionChange)="getDistr($event)" required>
@@ -144,7 +148,7 @@
               </div> -->
             </div>
             <div class="row justify-content-center">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>ตำบล</mat-label>
                   <mat-select formControlName="districts_id" (selectionChange)="getLast($event)" required>
@@ -156,7 +160,7 @@
                   <mat-error *ngIf="reactiveForm.controls['districts_id'].errors?.required">โปรดเลือกตำบล</mat-error>
                 </mat-form-field>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label>รหัสไปรษณีย์</mat-label>
                   <input matInput [formControl]="postal_code" placeholder="" name="postal_code" pattern="[0-9]+"
@@ -170,11 +174,11 @@
           </mat-card-content>
           <mat-card-actions>
             <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-2">
+              <!-- <div class="col-md-4"></div> -->
+              <div class="col-md-6">
                 <button mat-stroked-button class="btn-block" routerLink="/profile" (click)="onclickRe()">ยกเลิก</button>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-6">
                 <button mat-raised-button color="primary" type="submit" class="btn-block"
                   [disabled]="reactiveForm.invalid" (click)="onClickSubmit()">บันทึกข้อมูล</button>
               </div>

@@ -1,6 +1,17 @@
-<br><br>
+<!-- <div style="text-align: right;">
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>highlight_off</mat-icon>
+  </button>
+</div> -->
 <div class="container">
-
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+      <button mat-raised-button color="primary" green
+          (click)="openDialogAddAddress()">เพิ่มที่อยู่จัดส่ง</button>
+    </div>
+  </div>
+  <br>
   <div class="row" *ngFor="let item of dataSource; let i = index">
     <div class="col-md-12">
       <mat-card>

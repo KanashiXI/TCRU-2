@@ -1,7 +1,9 @@
-<br>
+<div style="text-align: right;">
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>highlight_off</mat-icon>
+  </button>
+</div>
 <div class="container">
-  <a routerLink="/profile"> ย้อนกลับ </a>
-  <br><br>
   <div class="row">
     <!-- <div class="col-md-1"></div> -->
     <div class="col-md-8">
@@ -117,12 +119,12 @@
           </mat-card-content>
           <mat-card-actions>
             <div class="row">
-              <div class="col-md-4"></div>
-              <div class="col-md-4">
-                <button mat-stroked-button color="primary" class="btn-block" routerLink="/profile">ยกเลิก</button>
+              <!-- <div class="col-md-2"></div> -->
+              <div class="col-md-6">
+                <button mat-stroked-button class="btn-block" routerLink="/profile">ยกเลิก</button>
               </div>
               <!-- <div class="col-md-1"></div> -->
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <button mat-raised-button color="primary" type="submit" class="btn-block"
                   [disabled]="reactiveForm.invalid" (click)="onClickSubmit()">บันทึกข้อมูล</button>
               </div>

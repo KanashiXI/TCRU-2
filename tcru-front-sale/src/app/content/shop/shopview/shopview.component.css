@@ -7,11 +7,12 @@
   background-size: cover;
 } */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 p {
   font-family: 'Open Sans', sans-serif;
   font-size: 120%;
-}
+} */
+
 mat-grid-tile {
   background: lightblue;
 }
@@ -24,3 +25,17 @@ mat-card{
   border-radius: 15px;
   text-align: left;
 }
+
+.material-icons {
+  display: inline-flex;
+  vertical-align: top;
+  font-size: 18px;
+  line-height:24px;
+}
+
+kbd {
+  background-color:#7fdaab;
+  color: #495057;
+  border-radius: 30px;
+}
+

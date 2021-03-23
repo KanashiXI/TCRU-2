@@ -58,7 +58,7 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="align-self-center">ข้อมูลที่อยู่จัดส่ง</div>
@@ -68,7 +68,7 @@
               <mat-panel-description>
                 <div class="col-md-6">
                   <button mat-raised-button color="primary" green
-                    (click)="openDialogAddress()">เพิ่มที่อยู่จัดส่ง</button>
+                    (click)="openDialogAddress()" *ngIf="!panelOpenState">เพิ่มที่อยู่จัดส่ง</button>
                 </div>
               </mat-panel-description>
             </div>
@@ -83,7 +83,7 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="align-self-center">ข้อมูลที่อยู่ใบกำกับภาษี</div>
@@ -92,7 +92,7 @@
             <div class="col-md-12">
               <mat-panel-description>
                 <div class="col-md-6">
-                  <button mat-raised-button color="primary" (click)="openDialogTax()">เพิ่มที่อยู่ใบกำกับภาษี</button>
+                  <button mat-raised-button color="primary" (click)="openDialogTax()" *ngIf="!panelOpenState">เพิ่มที่อยู่ใบกำกับภาษี</button>
                 </div>
               </mat-panel-description>
             </div>

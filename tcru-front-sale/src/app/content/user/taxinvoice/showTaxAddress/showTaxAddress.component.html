@@ -1,5 +1,11 @@
-<br><br>
 <div class="container">
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4">
+      <button mat-raised-button color="primary" (click)="openDialogTax()">เพิ่มที่อยู่ใบกำกับภาษี</button>
+    </div>
+  </div>
+  <br>
   <div class="row" *ngFor="let item of dataSource; let i = index">
     <div class="col-md-12">
       <mat-card>
@@ -11,7 +17,7 @@
           </div>
           <!-- ยังไม่ทำ -->
 
-          <div class="col-md-19 address-padding">
+          <div class="col-md-9 address-padding">
             {{item.company_name}}: {{item.address}} {{item.districts_name}} {{item.amphure_name}} {{item.province_name}}
             {{item.postal_code}}
           </div>

@@ -8,6 +8,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Overlay } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material/dialog';
 import { EditTaxAddressComponent } from '../editTaxAddress/editTaxAddress.component';
+import { AddTaxAddressComponent } from '../addTaxAddress/addTaxAddress.component';
 
 @Component({
   selector: 'app-showTaxAddress',
@@ -87,12 +88,22 @@ export class ShowTaxAddressComponent implements OnInit {
 
   onClickEdit(data) {
     localStorage.setItem("local_tax_id", data);
-    this.openDialogTax()
+    this.openDialogEditTax()
+  }
+
+  openDialogEditTax() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(EditTaxAddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+    });
   }
 
   openDialogTax() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
-    const dialogRef = this.dialog.open(EditTaxAddressComponent, {
+    const dialogRef = this.dialog.open(AddTaxAddressComponent, {
       autoFocus: false,
       scrollStrategy,
       maxHeight: '90vh',

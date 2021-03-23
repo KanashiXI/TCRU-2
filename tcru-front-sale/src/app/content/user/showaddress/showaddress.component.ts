@@ -8,6 +8,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Overlay } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material/dialog';
 import { EditaddressComponent } from '../editaddress/editaddress.component';
+import { AddaddressComponent } from '../addaddress/addaddress.component';
 
 @Component({
   selector: 'app-showaddress',
@@ -21,6 +22,8 @@ export class ShowaddressComponent implements OnInit {
   dataSource: Address[] = [];
   shippingAddressList: Address[];
   radioSelected: number;
+  panelOpenState = false;
+  
 
   constructor(
     private addressService: AddressService,
@@ -102,6 +105,16 @@ export class ShowaddressComponent implements OnInit {
       maxHeight: '90vh',
       maxWidth: '130vh'
 
+    });
+  }
+
+  openDialogAddAddress() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(AddaddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
     });
   }
 
