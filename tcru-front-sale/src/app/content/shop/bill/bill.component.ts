@@ -27,26 +27,28 @@ export class BillComponent implements OnInit {
       ...Subject,
       order_id: localStorage.getItem('order_id'),
     }
-    
+
     this.orderService.getOrederDetail(requestData.order_id).subscribe(
       res => {
         this.orderDetail = res;
         // this.addressData = this.orderDetail[0].address; 
-        this.resData[0] =  this.orderDetail[0].address;   
-        this.resData[1] =  this.orderDetail[0].telephone;   
-        this.resData[2] =  this.orderDetail[0].firstname;   
-        this.resData[3] =  this.orderDetail[0].lastname;   
-        this.resData[4] =  this.orderDetail[0].total_price;
-        this.resData[5] =  this.orderDetail[0].district;
-        this.resData[6] =  this.orderDetail[0].amphures;
-        this.resData[7] =  this.orderDetail[0].province;  
-        this.resData[8] =  this.orderDetail[0].postal_code;
-        this.resData[9] =  this.orderDetail[0].net_amount;
-        this.resData[10] =  this.orderDetail[0].discount;
-        this.resData[11] =  this.orderDetail[0].total_price;
+        this.resData[0] = this.orderDetail[0].address;
+        this.resData[1] = this.orderDetail[0].telephone;
+        this.resData[2] = this.orderDetail[0].firstname;
+        this.resData[3] = this.orderDetail[0].lastname;
+        this.resData[4] = this.orderDetail[0].total_price;
+        this.resData[5] = this.orderDetail[0].district;
+        this.resData[6] = this.orderDetail[0].amphures;
+        this.resData[7] = this.orderDetail[0].province;
+        this.resData[8] = this.orderDetail[0].postal_code;
+        this.resData[9] = this.orderDetail[0].net_amount;
+        this.resData[10] = this.orderDetail[0].discount;
+        this.resData[11] = this.orderDetail[0].total_price;
       }
     )
   }
+
+
 
   public openPDF(): void {
     let DATA = document.getElementById('htmlData');
@@ -64,7 +66,7 @@ export class BillComponent implements OnInit {
       PDF.save('product.pdf');
     });
   }
-  
+
 
 
 

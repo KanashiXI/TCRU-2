@@ -20,7 +20,7 @@ class CartController extends Controller
         //     ->get(); 
         $getall = DB::table('cart')
             ->join('product', 'product.product_id', '=', 'cart.product_id')
-            ->select('*')
+            ->select('cart.cart_id','product.image','cart.price_per_piece','product.product_description','product.product_id','product.product_name','cart.product_quantity','product.product_type','product.product_type_id','cart.retail_price','product.stock','product.unit','product.unit_count_id','cart.user_id')
             ->where('cart.user_id', $request)
             ->get();
 
