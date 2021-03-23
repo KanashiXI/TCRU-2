@@ -6,6 +6,7 @@
         
       </div>
     </div> -->
+    <br><br>
     <div class="row">
       <!-- <div class="col-md-4"></div> -->
       <div class="col-md-12 center">
@@ -14,12 +15,13 @@
         style="width: 120px;">
         <br><br>
         <p>ไม่มีสินค้าในตะกร้า</p>
-        <button mat-stroked-button class="number" (click)="handlePlus(cart)">
-        </button>
+        <button mat-stroked-button routerLink="/"><span class="material-icons">
+          add_circle_outline
+          </span>&nbsp;&nbsp;เลือกซื้อสินค้า</button>
       </div>
-      <!-- <div class="col-md-4"></div> -->
+      
     </div>
-    
+    <br><br><br><br>
   </div>
 
   <div [@fadeInOut] *ngIf="cartStatus == false && productInCart.length != 0">
