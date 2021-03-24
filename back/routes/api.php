@@ -67,6 +67,8 @@ Route::group([
     Route::post('addproductcart','CartController@addtoCart');
     // 
     Route::post('updateProductCart','CartController@updateProductInCart');
+    //แบรนที่จัดส่ง
+    Route::get('getShippingBrand','ShippingController@getShippingBrand');
 
     // coupon
     Route::get('coupon/{user_id}','CouponController@checkCoupon');

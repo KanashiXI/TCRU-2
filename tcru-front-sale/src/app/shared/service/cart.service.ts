@@ -5,7 +5,7 @@ import { CartItem } from 'src/app/content/shop/cart/cart-datasource';
 import { Product } from 'src/app/content/shop/shopview/interfaces/product';
 import { ApiConstants } from '../constants/ApiConstants';
 import { Promotion } from 'src/app/shared/interface/promotion';
-
+import { ShippingBrand } from 'src/app/shared/interface/shipping-brand';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +13,11 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
   cartUrl = 'api/cart'
+
+  getShippingBrand() {
+    return this.http.get<ShippingBrand[]>(`${ApiConstants.baseURl}${ApiConstants.shippingBrandURL}`);
+  }
+
   getCartPromotion() {
     return this.http.get<Promotion[]>(`${ApiConstants.baseURl}${ApiConstants.getCartPromotionURL}`);
   }
@@ -51,6 +56,7 @@ export class CartService {
   deleteFromCart(data) {
     return this.http.post(`${ApiConstants.baseURl}${ApiConstants.deleteFromCartURL}`, data)
   }
+
 
 
   // checkoutCart(data, data2) {

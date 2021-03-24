@@ -9,6 +9,7 @@ import { CartDataSource, CartItem } from './cart-datasource';
 import { Product } from '../shopview/interfaces/product';
 import { Subject } from 'rxjs';
 import { CartService } from 'src/app/shared/service/cart.service';
+import { ShippingBrand } from 'src/app/shared/interface/shipping-brand';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -78,7 +79,7 @@ export class CartComponent implements OnInit {
   isSelectProduct: boolean = false;
   taxCheck: boolean = false;
   panelOpenState = false;
- 
+  shippingBrand: ShippingBrand[] = [];
 
   @ViewChild('htmlData') htmlData: ElementRef;
   USERS = [
@@ -160,6 +161,12 @@ export class CartComponent implements OnInit {
     this.getCartPromotion();
   }
 
+  getShippingAddress() {
+    this.cartService.getShippingBrand().subscribe(data => {
+      this.shippingBrand = data;
+    });
+  }
+
   getUserAddress(user_id) {
     this.addressService.getShippingAddress(user_id).subscribe(data => {
       this.shippingAddressList = data;
@@ -237,7 +244,7 @@ export class CartComponent implements OnInit {
               });
               this.router.navigateByUrl('/order');
               // this.ngOnInit()
-            },err => {
+            }, err => {
               Swal.fire({
                 icon: 'error',
                 title: 'ทำรายการไม่สำเร็จ',
@@ -369,12 +376,12 @@ export class CartComponent implements OnInit {
       cart.product_quantity--;
       cart.retail_price -= cart.price_per_piece;
       this.editProductQuantityForm.patchValue({
-      retail_price: cart.retail_price,
-      product_id: cart.product_id,
-      product_quantity: cart.product_quantity,
-    })
+        retail_price: cart.retail_price,
+        product_id: cart.product_id,
+        product_quantity: cart.product_quantity,
+      })
     }
-    
+
     this.updateCart();
   }
 

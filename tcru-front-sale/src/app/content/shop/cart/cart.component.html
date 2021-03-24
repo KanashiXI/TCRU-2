@@ -10,16 +10,24 @@
     <div class="row">
       <!-- <div class="col-md-4"></div> -->
       <div class="col-md-12 center">
-        <img src="../../../../assets/f261d222816d01149261d6237bef4e62.png" 
-        alt="Icon made from http://www.onlinewebfonts.com/icon Icon Fonts is licensed by CC BY 3.0"
-        style="width: 120px;">
+        <img src="../../../../assets/f261d222816d01149261d6237bef4e62.png"
+          alt="Icon made from http://www.onlinewebfonts.com/icon Icon Fonts is licensed by CC BY 3.0"
+          style="width: 120px;">
         <br><br>
         <p>ไม่มีสินค้าในตะกร้า</p>
         <button mat-stroked-button routerLink="/"><span class="material-icons">
-          add_circle_outline
+            add_circle_outline
           </span>&nbsp;&nbsp;เลือกซื้อสินค้า</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
       </div>
-      
+
     </div>
     <br><br><br><br>
   </div>
@@ -107,12 +115,24 @@
         <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-9">
-
-            <!-- <div *ngIf="!statusAddIsNull">
-              <span class="material-icons">local_shipping</span> &nbsp;&nbsp; เลือกที่อยู่จัดส่ง
-            </div> -->
-            <!-- <div *ngIf="statusAddIsNull"></div> -->
-            <span class="material-icons">local_shipping</span> &nbsp;&nbsp; จัดส่งที่:
+            <span class="material-icons">local_shipping</span>&nbsp;&nbsp;
+            &nbsp;&nbsp; เลือกประเภทการจัดส่ง
+          </div>
+          <div *ngIf="taxCheck == true">
+            <div class="col-md-1"><button mat-stroked-button (click)="openDialogTax()"><span
+                  class="material-icons">create</span></button></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-9">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-9">
+            <span class="material-icons">location_on</span> &nbsp;&nbsp; จัดส่งที่:
             {{dataSource[0].address}}
             {{dataSource[0].province_name}} {{dataSource[0].amphure_name}} {{dataSource[0].district_name}}
             รหัสไปรษณีย์ {{dataSource[0].postal_code}}
@@ -124,24 +144,6 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-9">
-            <!-- <mat-expansion-panel>
-              <mat-expansion-panel-header>
-                <mat-panel-title>
-                  <div class="align-self-center">ข้อมูลที่อยู่จัดส่ง</div>
-                </mat-panel-title>
-                <div class="row align-self-center">
-                  <div class="col-md-12">
-                    <mat-panel-description>
-                      <div class="col-md-6">
-                        <button mat-raised-button color="primary" green
-                          (click)="openDialogAddress()">เพิ่มที่อยู่จัดส่ง</button>
-                      </div>
-                    </mat-panel-description>
-                  </div>
-                </div>
-              </mat-expansion-panel-header>
-              <app-showaddress></app-showaddress>
-            </mat-expansion-panel> -->
           </div>
         </div>
         <br>
@@ -204,242 +206,7 @@
       </mat-card>
     </div>
   </div>
-  <!-- 
-  <div class="row">
 
-    <div class="col-md-8" id="htmlData">
-      <table class="table table-bordered">
-        <tr class="table-primary">
-          <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
-        </tr>
-        <tr *ngFor="let user of USERS">
-          <th>{{user.id}}</th>
-          <td>{{user.name}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.phone}}</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="col-md-4 text-right">
-      <button mat-raised-button color="primary" class="btn-block" (click)="openPDF()">Download PDF</button>
-      <button class="btn btn-success btn-block" (click)="openPDF()">Download PDF</button>
-    </div>
-
-  </div> -->
 
 
 </div>
-<!-- <br>
-
-  <div class="row" [@fadeInOut]>
-    <div class="col-md-12">
-      <mat-card>
-        <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-7">
-            <div *ngIf="statusAddIsNull == true">
-              คุณยังไม่เลือกที่อยู่จัดส่ง
-            </div>
-          </div>
-        </div>
-      </mat-card>
-    </div>
-  </div> -->
-
-
-
-<!-- <div class="cart-page-content" *ngIf="productInCart.length == 0">
-  <h4>Your cart is empty.</h4>
-  <a routerLink="/">Go shopping</a>
-</div> -->
-
-
-
-
-
-<!-- <div class="cart-page-container">
-        <div class="cart-page-header">
-          <h1>Shopping Cart</h1>
-        </div>
-        {{selectItem}}
-        <div class="cart-page-content" *ngIf="productInCart.length > 0">
-          <div class="cart-item-header cart-item-row">
-            <div class="cart-item-cell "><span>สินค้า</span></div>
-            <div class="cart-item-cell cart-item-product"><span>สินค้า</span></div>
-            <div class="cart-item-cell cart-item-quantity"><span>จำนวนสินค้า(ชิ้น)</span></div>
-            <div class="cart-item-cell cart-item-total"><span>ราคารวม(บาท)</span></div>
-            <div class="cart-item-cell cart-item-action"><span></span></div>
-          </div> -->
-
-
-<!-- <div class="cart-item-row" *ngFor="let cart of productInCart;let i = index">
-            <input type="checkbox" [checked]="cart.checked" [(ngModel)]="cart.product_id" (change)="changeSelection()">
-            <div class=" cart-item-cell cart-item-product">
-    
-              <div class="cart-item-thumbnail"
-                [ngStyle]="{'background-image': 'url(http://www.clinictech.ops.go.th/online/cmo/fileuser/340/images/05.jpg)'}">
-              </div> -->
-<!-- <div class="cart-item-thumbnail">
-                <img src="assets/FreshTricoderma.jpg" height="100px">
-              </div> -->
-
-<!-- <div class="cart-item-info"> -->
-<!-- <mat-checkbox [(ngModel)]="cart" (ngModelChange)="updateAllComplete(cart)">
-                </mat-checkbox> -->
-<!-- <mat-checkbox  value="cart" [value]="cart" [(ngModel)]="selectItem"
-                  [inputId]="cart.retail_price">
-                </mat-checkbox> -->
-<!--     
-                <div class="cart-item-brand">{{cart.product_name}}</div>
-                <div class="cart-item-title">{{cart.product_quantity}}</div>
-              </div>
-            </div>
-            <div class="cart-item-cell cart-item-quantity"> -->
-<!-- <quantity-control [quantity]="cart.product_quantity">
-              </quantity-control> -->
-
-<!-- <div class="wrapper">
-                <button class="plusminus" (click)="handleMinus(cart)">-</button>
-                <input type="number" class="num" id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" />
-                <button class="plusminus" (click)="handlePlus(cart)">+</button>
-              </div> -->
-
-<!-- <button mat-stroked-button (click)="handleMinus(cart)">
-                <span class="material-icons">
-                  remove
-                </span>
-              </button>
-              <mat-form-field appearance="outline">
-                <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity">
-              </mat-form-field>
-              <button mat-stroked-button (click)="handlePlus(cart)">
-                <span class="material-icons">
-                  add
-                </span>
-              </button> -->
-
-
-<!-- <a (click)="minusOne(productInOrder)"><i class="fa fa-minus"></i></a>
-                  <input min="1" id="{{productInOrder.productId}}"
-                        [max]=productInOrder.productStock
-                        [(ngModel)]="productInOrder.count"
-                        (change)="onChange(productInOrder)"
-                        size="5"
-                        type="number"
-                        required
-                        name='count'>
-                  <a (click)="addOne(productInOrder)"> <i class="fa fa-plus"></i></a> -->
-
-<!-- <quantity-control [quantity]="cart.product_quantity" (onChange)="changeQuantity(cart,$event)">
-              </quantity-control> -->
-<!-- </div>
-            <div class="cart-item-cell cart-item-total">
-              <div class="item-price"> -->
-<!-- {{cart.retail_price | currency :'USD':true }} -->
-<!-- {{cart.retail_price}} ฿
-              </div>
-            </div>
-            <div class="cart-item-cell cart-item-action">
-              <div class="item-remove" (click)="remove(cart.cart_id)">X</div>
-            </div>
-          </div>
-
-
-
-
-
-          
-          <div class="row cart-total">
-            <div class="col-lg-offset-6"> -->
-<!-- <div class="cart-total-row row">
-                <div class="col-md-6 cart-total-label">
-                  Cart overview
-                </div>
-                <div class="col-md-6 cart-total-value"></div>
-              </div> -->
-<!-- <div class="cart-total-row row">
-                <div class="col-md-6 cart-total-label">
-                  ราคารวม
-                </div>
-                <div class="col-md-6 cart-total-value">
-                  {{totalPrice | currency :'฿':true}}
-                </div>
-              </div>
-    
-    
-              <div class="cart-total-row row" *ngIf="isGotPromotion == true">
-                <div class="col-md-6 cart-total-label">
-                  คุณได้รับโปรโมชัน {{discribePromotion}} ส่วนลด
-                </div>
-                <div class="col-md-6 cart-total-value">
-                  {{discount | currency :'฿':true}}
-                </div>
-              </div>
-    
-    
-    
-              <div class="cart-total-row row">
-                <div class="col-md-6 cart-total-label">
-                  ยอดสุทธิ
-                </div>
-                <div class="col-md-6 cart-total-value cart-total-price">
-                  {{cartTotal | currency :'฿':true}} -->
-<!-- {{totalPrice | currency :'USD':true}} AUD -->
-<!-- </div>
-              </div>
-            </div>
-          </div>
-          <div class="cart-buttons">
-            <div class="continue-shopping"><a routerLink="/">เลือกสินค้าเพิ่ม</a></div>
-            <div class="checkout-button button button-primary button-large">ซื้อ ({{cartTotal}}) ฿
-            </div>
-    
-            <button mat-flat-button color="accent" (click)="checkoutCart()">ซื้อ</button>
-          </div>
-        </div>
-        <div class="cart-page-content" *ngIf="productInCart.length == 0">
-          <h4>Your cart is empty.</h4>
-          <a routerLink="/">Go shopping</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  
-</div> -->
-
-
-
-
-
-
-
-
-<!-- <div class="row">
-    <div class="col-md-12">
-      <div class="mat-elevation-z8">
-        <table mat-table class="full-width-table" matSort aria-label="Elements">
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-            <td mat-cell *matCellDef="let row">{{row.id}}</td>
-          </ng-container>
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-            <td mat-cell *matCellDef="let row">{{row.name}}</td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <mat-paginator #paginator
-            [length]="dataSource?.data.length"
-            [pageIndex]="0"
-            [pageSize]="50"
-            [pageSizeOptions]="[25, 50, 100, 250]">
-        </mat-paginator>
-      </div>
-    </div>
-  </div> -->

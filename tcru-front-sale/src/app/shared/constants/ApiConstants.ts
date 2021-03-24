@@ -83,6 +83,10 @@ export class ApiConstants {
     public static get orderDetailURL(): string {
         return '/api/selectOrder';
     }
-    
+
+    public static get shippingBrandURL(): string {
+        return '/api/getShippingBrand';
+    }
+
 
 }
