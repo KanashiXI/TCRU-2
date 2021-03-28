@@ -41,4 +41,8 @@ export class PromotionService {
     return this.http.get<PromotionInteface>(`${ApiConstants.baseURl}${ApiConstants.getOnePromotionURL}/${data}`);
   }
 
+  editPromotionStatus(data) {
+    return this.http.post<PromotionInteface[]>(`${ApiConstants.baseURl}${ApiConstants.editPromotionStatusURl}`, data);
+  }
+
 }

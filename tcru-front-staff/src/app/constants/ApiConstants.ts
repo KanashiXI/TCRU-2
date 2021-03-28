@@ -18,6 +18,10 @@ export class ApiConstants {
         return '/api/editpromotion';
     }
 
+    public static get editPromotionStatusURl(): string {
+        return '/api/editpromotionstatus';
+    }
+
     public static get getOnePromotionURL(): string {
         return '/api/onePromotion';
     }
