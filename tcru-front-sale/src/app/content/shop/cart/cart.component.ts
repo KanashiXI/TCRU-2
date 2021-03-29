@@ -83,8 +83,9 @@ export class CartComponent implements OnInit {
   panelOpenState = false;
   shippingBrand: ShippingBrand[] = [];
   shippingCost: Shippingcost[] = [];
-  shiippingData: Shippingcost[] = [];
+  shippingData: Shippingcost[] = [];
   cartWeight: number;
+  sumShippingCost: number = 0;
   @ViewChild('htmlData') htmlData: ElementRef;
   USERS = [
     {
@@ -189,7 +190,7 @@ export class CartComponent implements OnInit {
   }
 
   filterShippingCost(brandId) {
-    this.shiippingData = this.shippingCost.filter((value) => {
+    this.shippingData = this.shippingCost.filter((value) => {
       return value.shipping_brand_id == brandId;
     })
   }
@@ -362,27 +363,32 @@ export class CartComponent implements OnInit {
       this.cartTotal += Number(obj.retail_price);
       this.cartWeight += (Number(obj.weight) * Number(obj.product_quantity))
     });
-    // console.log(this.cartWeight)
+    console.log('weight' + this.cartWeight)
     if (this.cartTotal > 0) {
       this.isSelectProduct = true;
     } else {
       this.isSelectProduct = false;
     }
-    console.log(this.isSelectProduct)
+    // console.log(this.isSelectProduct)
 
     this.totalPrice = this.cartTotal;
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
       this.isGotPromotion = true;
       this.discount = (this.cartTotal * (this.promotionNumber / 100))
-      this.cartTotal = this.cartTotal - this.discount;
+      this.calculateShippingCostByWeight(this.cartWeight)
+      this.cartTotal = (this.cartTotal - this.discount) + Number(this.sumShippingCost);
+
       this.reactiveForm.patchValue({
         discount: this.discount,
         net_amount: this.cartTotal,
         promotion_id: this.promotionId,
         total_price: this.totalPrice,
       })
+
     } else {
       this.isGotPromotion = false;
+      const sumShipping = this.calculateShippingCostByWeight(this.cartWeight)
+
       this.reactiveForm.patchValue({
         discount: this.discount,
         net_amount: this.cartTotal,
@@ -390,6 +396,17 @@ export class CartComponent implements OnInit {
         total_price: this.totalPrice
       })
     }
+  }
+
+  calculateShippingCostByWeight(cartWeight) {
+    this.shippingData.filter((value) => {
+
+      if (Number(cartWeight) >= Number(value.weight_condition)) {
+        this.sumShippingCost = value.transportation_cost
+
+      }
+    })
+    // console.log('---------' + this.sumShippingCost)
   }
 
   updateCart() {
