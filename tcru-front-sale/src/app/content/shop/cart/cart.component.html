@@ -118,6 +118,30 @@
             <span class="material-icons">local_shipping</span>&nbsp;&nbsp;
             &nbsp;&nbsp; เลือกประเภทการจัดส่ง
           </div>
+          <div class="row" *ngFor="let item of shippingBrand; let i = index">
+            <div class="col-md-12">
+              <mat-card>
+                <div class="row">
+                  <div class="col-md-1 address-padding">
+
+                    <input type="radio" value="{{i}}" [checked]="item.status == 1" (change)="handleRadio(i)">
+                    <!-- {{item.status == 1 | json }} -->
+
+                  </div>
+                  <div class="col-md-9 address-padding">
+                    จัดส่งด้วย: {{item.brand}}
+                  </div>
+                  <div class="col-md-1 btn-padding">
+                    <!-- <button mat-raised-button color="accent" class="btn-block" type="submit"
+                      (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button> -->
+
+                  </div>
+                </div>
+              </mat-card>
+              <br>
+            </div>
+          </div>
+
           <div *ngIf="taxCheck == true">
             <div class="col-md-1"><button mat-stroked-button (click)="openDialogTax()"><span
                   class="material-icons">create</span></button></div>
@@ -194,6 +218,7 @@
               <div class="col-md-4"></div>
               <div class="col-md-3">
                 <button mat-stroked-button routerLink="/" class="btn-block">เลือกสินค้าเพิ่ม</button>
+                {{shiippingData|json}}
                 <!-- <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button> -->
                 <!-- <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button> -->
               </div>

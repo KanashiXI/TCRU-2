@@ -88,5 +88,9 @@ export class ApiConstants {
         return '/api/getShippingBrand';
     }
 
+    public static get shippingCostURL(): string {
+        return '/api/gettransport';
+    }
+
 
 }
