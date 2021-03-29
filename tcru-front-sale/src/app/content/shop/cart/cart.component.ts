@@ -387,7 +387,7 @@ export class CartComponent implements OnInit {
 
     } else {
       this.isGotPromotion = false;
-      const sumShipping = this.calculateShippingCostByWeight(this.cartWeight)
+      this.calculateShippingCostByWeight(this.cartWeight)
 
       this.reactiveForm.patchValue({
         discount: this.discount,
@@ -399,9 +399,10 @@ export class CartComponent implements OnInit {
   }
 
   calculateShippingCostByWeight(cartWeight) {
-    this.shippingData.filter((value) => {
+    this.shippingData.sort((a, b) => a.weight_condition - b.weight_condition);
 
-      if (Number(cartWeight) >= Number(value.weight_condition)) {
+    this.shippingData.filter((value) => {
+      if (Number(cartWeight) <= Number(value.weight_condition)) {
         this.sumShippingCost = value.transportation_cost
 
       }

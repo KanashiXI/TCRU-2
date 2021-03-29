@@ -127,7 +127,7 @@
               <div class="row">
                 <div class="col-md-1 address-padding">
                   <input type="radio" value="{{i}}" [checked]="item.status == 1" (change)="handleRadio(i)">
-                   <!-- {{item.status == 1 | json }} -->
+                  <!-- {{item.status == 1 | json }} -->
                 </div>
                 <div class="col-md-9 address-padding">
                   จัดส่งด้วย: {{item.brand}}
@@ -144,11 +144,11 @@
           <div class="col-md-4"></div>
         </div>
 
-          <!-- <div *ngIf="taxCheck == true">
+        <!-- <div *ngIf="taxCheck == true">
             <div class="col-md-1"><button mat-stroked-button (click)="openDialogTax()"><span
                   class="material-icons">create</span></button></div>
           </div> -->
-        
+
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-9">
@@ -220,7 +220,7 @@
               <div class="col-md-4"></div>
               <div class="col-md-3">
                 <button mat-stroked-button routerLink="/" class="btn-block">เลือกสินค้าเพิ่ม</button>
-                {{shiippingData|json}}
+                {{shippingData|json}}
                 <!-- <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button> -->
                 <!-- <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button> -->
               </div>
