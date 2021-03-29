@@ -98,7 +98,7 @@ Route::group([
     Route::post('editpromotion','PromotionController@editPromotion');
     Route::get('onePromotion/{promotion_id}', 'PromotionController@getOnePromotion');
     Route::get('cartpromotion','PromotionController@getCartPromotion'); //promotion in cart
-    
+    Route::post('editpromotionstatus','PromotionController@editPromotionStatus');
 
         // วัตถุดิบ
     Route::post('/material','MaterialController@addMaterial');

@@ -65,9 +65,15 @@
       <br>
       <mat-card (click)="onClickSubmit(item.product_id,item.retail_price)" class="pointer">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-7">
             <span class="material-icons">label</span>
-            {{item.product_type}}
+            &nbsp;{{item.product_type}}
+          </div>
+          <div class="col-md-5" style="text-align: right;" *ngIf="item.stock != 0">
+            <kbd class="sale">มีสินค้า</kbd>
+          </div>
+          <div class="col-md-5" style="text-align: right;" *ngIf="item.stock == 0">
+            <kbd class="out">สินค้าหมด</kbd>
           </div>
         </div>
         <br>
@@ -153,16 +159,17 @@
       <br>
       <mat-card (click)="onClickSubmit(item.product_id,item.retail_price)" class="pointer">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-7">
             <span class="material-icons">label</span>
-            <p>{{item.product_type}}</p>
+            &nbsp;{{item.product_type}}
+          </div>
+          <div class="col-md-5" style="text-align: right;" *ngIf="item.stock != 0">
+            <kbd class="sale">มีสินค้า</kbd>
+          </div>
+          <div class="col-md-5" style="text-align: right;" *ngIf="item.stock == 0">
+            <kbd class="out">สินค้าหมด</kbd>
           </div>
         </div>
-        <!-- <div class="row">
-          <div class="col-md-12" style="text-align: right;">
-            <kbd><small>มีสินค้า</small></kbd>
-          </div>
-        </div> -->
         <br>
         <div class="row">
           <div class="col-md-12">
@@ -178,7 +185,7 @@
         <br>
         <div class="row">
           <div class="col-md-5">
-            {{item.retail_price}} ฿22
+            {{item.retail_price}} ฿
           </div>
           <div class="col-md-7">
             <!-- <button mat-stroked-button color="primary" class="btn-block"
@@ -248,9 +255,15 @@
       <!-- routerLink="/productdetail/{{item.product_id}}/{{item.retail_price}}" -->
       <mat-card (click)="onClickSubmit(item.product_id,item.retail_price)">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-7">
             <span class="material-icons">label</span>
-            {{item.product_type}}
+            &nbsp;{{item.product_type}}
+          </div>
+          <div class="col-md-5" style="text-align: right;" *ngIf="item.stock != 0">
+            <kbd class="sale">มีสินค้า</kbd>
+          </div>
+          <div class="col-md-5" style="text-align: right;" *ngIf="item.stock == 0">
+            <kbd class="out">สินค้าหมด</kbd>
           </div>
         </div>
         <br>

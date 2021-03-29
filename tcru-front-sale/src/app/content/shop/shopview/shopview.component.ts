@@ -38,6 +38,7 @@ export class ShopviewComponent implements OnInit {
   allProduct: boolean = false;
   typeLoader: boolean = false;
   listHotProduct: Product[] = [];
+
   slides = [
     { 'image': 'https://i.imgur.com/O9UeG0P.jpg'},
     { 'image': 'https://scontent.fbkk5-6.fna.fbcdn.net/v/t1.0-9/126976613_393904472025324_8066580742924449164_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=8bfeb9&_nc_eui2=AeG1gMYW7EmTNItMg-R-SDAqJ4f9skLfVvonh_2yQt9W-iDye1obfDvk42NLEkf23zFiMxjYI5qoX5BMFhn3ogy_&_nc_ohc=4Hh-pm5lWrwAX-B-vHV&_nc_ht=scontent.fbkk5-6.fna&oh=422ea4fe48d2eaa512253e4ac0bc5ffd&oe=60779CC4' },

@@ -15,12 +15,22 @@ export class ShowPromotionComponent implements OnInit {
   dataSource: PromotionInteface[];
   errorMessage: String;
   dataForm: PromotionInteface;
+  toggleChecked: number;
 
 
   constructor(
     private PromotionService: PromotionService,
 
   ) { }
+
+  handleToggle(i): void {
+    this.dataSource.forEach((item) => {
+      item.status = 0;
+    });
+    var x = i
+    this.dataSource[x].status = 1;
+    this.PromotionService.editPromotionStatus(this.dataSource).subscribe();
+  }
 
   ngOnInit() {
     this.PromotionService.getPromotion().subscribe(

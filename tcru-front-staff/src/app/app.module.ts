@@ -90,6 +90,7 @@ import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 
+
 const appRoutes: Routes = [
   {
     path: '', 
@@ -305,7 +306,8 @@ const appRoutes: Routes = [
     Ng2SearchPipeModule,
     NgMultiSelectDropDownModule.forRoot(),
     NgxDatePickerModule,
-    NgSelectModule
+    NgSelectModule,
+    MatSlideToggleModule
   ],
   providers: [
   ],

@@ -38,9 +38,9 @@ import { ConfirmDialogComponent } from './content/decorate/confirm-dialog/confir
 import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
 import { ResponseResetComponent } from './content/auth/password/response-reset/response-reset.component';
 import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/skeleton-loder/skeleton-loader.component';
-// import { BreadcrumbModule } from 'angular-crumbs';
 import { BillComponent } from './content/shop/bill/bill.component';
 import { OrderComponent } from './content/user/order/order.component';
+import { InstructucionsComponent } from './content/shop/Instructucions/Instructucions.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +67,8 @@ import { OrderComponent } from './content/user/order/order.component';
     ResponseResetComponent,
     SkeletonLoaderComponent,
     BillComponent,
-    OrderComponent
+    OrderComponent,
+    InstructucionsComponent
   ],
   entryComponents: [ProductDetailComponent],
   imports: [

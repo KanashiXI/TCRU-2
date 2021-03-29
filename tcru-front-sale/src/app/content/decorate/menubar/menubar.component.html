@@ -1,7 +1,11 @@
 
 <div class="bar">
   <div class="row" *ngIf="!(isHandset$ | async)">
-    <div class="col-md-11">
+    <div class="col-md-1"></div>
+    <div class="col-md-5" style="text-align: left;">
+      <a routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">วิธีใช้สินค้า</a>
+    </div>
+    <div class="col-md-5">
       <a routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">บัญชีของฉัน</a>
       <a routerLink="/register" *ngIf="!loggedIn && !(isHandset$ | async)">ลงทะเบียน</a>
       <a routerLink="/login" *ngIf="!loggedIn && !(isHandset$ | async)">เข้าสู่ระบบ</a>
@@ -19,13 +23,21 @@
         [opened]="!(isHandset$ | async)!.matches === false">
       <mat-toolbar>Menu</mat-toolbar>
       <mat-nav-list>
-        <a mat-list-item routerLink="profile" *ngIf="loggedIn">บัญชีผู้ใช้</a>
-        <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">
-          <span class="material-icons">shopping_cart</span>ตะกร้าสินค้า
+        <a mat-list-item routerLink="profile" *ngIf="loggedIn">
+          <span class="material-icons">account_box</span>&nbsp;บัญชีผู้ใช้
         </a>
-        <a mat-list-item routerLink="/register" *ngIf="!loggedIn">ลงทะเบียน</a>
-        <a mat-list-item routerLink="/login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
-        <a mat-list-item  routerLink="" (click)="logout($event)" *ngIf="loggedIn">ออกจากระบบ</a>
+        <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">
+          <span class="material-icons">shopping_cart</span>&nbsp;ตะกร้าสินค้า
+        </a>
+        <a mat-list-item routerLink="/register" *ngIf="!loggedIn">
+          <span class="material-icons">person_add_alt_1</span>&nbsp;ลงทะเบียน
+        </a>
+        <a mat-list-item routerLink="/login" *ngIf="!loggedIn">
+          <span class="material-icons">login</span>&nbsp;เข้าสู่ระบบ
+        </a>
+        <a mat-list-item  routerLink="" (click)="logout($event)" *ngIf="loggedIn">
+          <span class="material-icons">logout</span>&nbsp;ออกจากระบบ
+        </a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

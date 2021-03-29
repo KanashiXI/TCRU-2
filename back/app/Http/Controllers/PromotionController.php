@@ -61,7 +61,20 @@ class PromotionController extends Controller
         $result = $edit->save();
     }
 
-
+    public function editPromotionStatus(Request $request){
+        try {
+            foreach ($request->all() as $key => $data ) {                
+                $input = [               
+                    'status' => $data['status'],
+                ];
+                DB::table('promotion')->where('promotion_id',$data['promotion_id'])->update($input);
+            }             
+            return response()->json(true,200); 
+        }
+        catch(\Exception $e){
+            return response()->json($e,500); 
+        }
+    }
 
 
 }

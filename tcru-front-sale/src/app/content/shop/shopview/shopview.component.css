@@ -33,9 +33,16 @@ mat-card{
   line-height:24px;
 }
 
-kbd {
+kbd.sale{
   background-color:#7fdaab;
   color: #495057;
   border-radius: 30px;
+  font-family: 'Kanit', sans-serif !important;
 }
 
+kbd.out{
+  background-color:#da7f7f;
+  color: #495057;
+  border-radius: 30px;
+  font-family: 'Kanit', sans-serif !important;
+}
