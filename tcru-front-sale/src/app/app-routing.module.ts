@@ -1,3 +1,4 @@
+import { InstructucionsComponent } from './content/shop/Instructucions/Instructucions.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BeforeLoginService } from './shared/service/before-login.service';
@@ -110,6 +111,10 @@ const routes: Routes = [
   {
     path: 'order',
     component: OrderComponent,
+  },
+  {
+    path: 'instruction',
+    component: InstructucionsComponent,
   },
   {
     path: '**',
