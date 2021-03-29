@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ShippingInterface } from './../../../interfaces/shippingInterface';
+// import { ShippingInterface } from './../../../interfaces/shippingInterface';
+import { OrderInterface } from './../../../interfaces/orderInterface';
 import { ShippingService } from './../../../Service/shippingService.service';
 
 //dropdown status
@@ -17,9 +18,9 @@ interface status {
 })
 export class DeliveryStatusComponent implements OnInit {
 
-  dataSource: ShippingInterface[];
+  dataSource: OrderInterface[] = [];
   errorMessage: String;
-  dataForm: ShippingInterface;
+  dataForm: OrderInterface;
 
   // dropdown status 
   selectedValue: string;

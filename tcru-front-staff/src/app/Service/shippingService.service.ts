@@ -5,7 +5,8 @@ import { element } from 'protractor';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { stringify } from 'querystring';
 import { ApiConstants } from '../constants/ApiConstants';
-import { ShippingInterface } from './../interfaces/shippingInterface';
+// import { ShippingInterface } from './../interfaces/shippingInterface';
+import { OrderInterface } from '../interfaces/orderInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,11 +25,11 @@ export class ShippingService {
   }
 
   getShippingOrder() {
-    return this.http.get<ShippingInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getShippingOrderURL}`);
+    return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getShippingOrderURL}`);
   }
 
-  getOnePromotion(data) {
-    return this.http.get<ShippingInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getOneShippingURL}/${data}`);
+  getOneShipping(data) {
+    return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getOneShippingURL}/${data}`);
   }
 
 }

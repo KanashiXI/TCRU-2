@@ -5,13 +5,14 @@ use Illuminate\Http\Request;
 use App\shipping;
 use App\shippingBrand;
 use App\transportation;
+use App\order;
 use DB;
 
 class ShippingController extends Controller {
 
     public function getDetailShipping($request)
     {
-        $getall = DB::table('shipping')
+        $getall = DB::table('order')
             ->join('order', 'order.order_id', '=', 'shipping.order_id')
             ->join('address', 'address.address_id', '=', 'order.address_id')
             ->join('provinces', 'provinces.id', '=', 'address.province_id')
@@ -19,8 +20,8 @@ class ShippingController extends Controller {
             ->join('districts', 'districts.amphure_id', '=', 'amphures.id')
             ->join('shipping_brand', 'shipping_brand.shipping_brand_id', '=', 'shipping.shipping_brand_id')
             ->select('shipping.shipping_id','shipping.number')
-            ->where('shipping.shipping_id', $request)
-            ->groupBy('shipping.shipping_id')
+            ->where('order.order_id', $request)
+            ->groupBy('order.order_id')
             ->get(); 
         return response()->json($getall,200); 
     }
@@ -39,7 +40,7 @@ class ShippingController extends Controller {
 
     public function getShippingOrder()
     {
-        $getall = shipping::all();
+        $getall = order::all();
         return response()->json($getall,200); 
     }
 
