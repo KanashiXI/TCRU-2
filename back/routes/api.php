@@ -88,6 +88,7 @@ Route::group([
     Route::get('getShippingOrder','ShippingController@getShippingOrder');
     Route::get('getOneShipping/{shipping_id}', 'ShippingController@getOneShipping');
     Route::get('getShipping/{a}', 'ShippingController@getDetailShipping');
+    Route::get('gettransport', 'ShippingController@getTranspotationCost');
 
 
         // โปรโมชัน

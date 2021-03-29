@@ -4,6 +4,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\shipping;
 use App\shippingBrand;
+use App\transportation;
 use DB;
 
 class ShippingController extends Controller {
@@ -21,6 +22,12 @@ class ShippingController extends Controller {
             ->where('shipping.shipping_id', $request)
             ->groupBy('shipping.shipping_id')
             ->get(); 
+        return response()->json($getall,200); 
+    }
+
+    public function getTranspotationCost()
+    {
+        $getall = transportation::all();
         return response()->json($getall,200); 
     }
 

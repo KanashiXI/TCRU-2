@@ -10,6 +10,7 @@ import { Product } from '../shopview/interfaces/product';
 import { Subject } from 'rxjs';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { ShippingBrand } from 'src/app/shared/interface/shipping-brand';
+
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -23,6 +24,7 @@ import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
+import { Shippingcost } from './../../../shared/interface/shippingcost';
 
 @Component({
   selector: 'app-cart',
@@ -80,7 +82,9 @@ export class CartComponent implements OnInit {
   taxCheck: boolean = false;
   panelOpenState = false;
   shippingBrand: ShippingBrand[] = [];
-
+  shippingCost: Shippingcost[] = [];
+  shiippingData: Shippingcost[] = [];
+  cartWeight: number;
   @ViewChild('htmlData') htmlData: ElementRef;
   USERS = [
     {
@@ -159,13 +163,37 @@ export class CartComponent implements OnInit {
     this.createForm(requestData.customerUsername);
     this.queryCartProduct(requestData.customerUsername);
     this.getCartPromotion();
+    this.getShippingBrand();
+    this.getShippingCost();
   }
 
-  getShippingAddress() {
+  getShippingBrand() {
     this.cartService.getShippingBrand().subscribe(data => {
       this.shippingBrand = data;
     });
   }
+
+  getShippingCost() {
+    this.cartService.getShippingCost().subscribe(data => {
+      this.shippingCost = data;
+    });
+  }
+
+  handleRadio(i): void {
+    this.shippingBrand.forEach((item) => {
+      item.status = 0;
+    });
+    var x = i
+    this.shippingBrand[x].status = 1;
+    this.filterShippingCost(this.shippingBrand[x].shipping_brand_id)
+  }
+
+  filterShippingCost(brandId) {
+    this.shiippingData = this.shippingCost.filter((value) => {
+      return value.shipping_brand_id == brandId;
+    })
+  }
+
 
   getUserAddress(user_id) {
     this.addressService.getShippingAddress(user_id).subscribe(data => {
@@ -183,11 +211,9 @@ export class CartComponent implements OnInit {
     this.dataSource = this.shippingAddressList.filter((value, index) => {
       return value.status == 1;
     });
-
     this.reactiveForm.patchValue({
       address_id: this.dataSource[0].address_id,
     })
-
   }
 
   changestatusCart() {
@@ -331,9 +357,12 @@ export class CartComponent implements OnInit {
 
   ngAfterContentChecked() {
     this.cartTotal = 0;
+    this.cartWeight = 0;
     this.selectItem.map((obj) => {
       this.cartTotal += Number(obj.retail_price);
+      this.cartWeight += (Number(obj.weight) * Number(obj.product_quantity))
     });
+    // console.log(this.cartWeight)
     if (this.cartTotal > 0) {
       this.isSelectProduct = true;
     } else {

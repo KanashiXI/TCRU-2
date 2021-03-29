@@ -6,6 +6,7 @@ import { Product } from 'src/app/content/shop/shopview/interfaces/product';
 import { ApiConstants } from '../constants/ApiConstants';
 import { Promotion } from 'src/app/shared/interface/promotion';
 import { ShippingBrand } from 'src/app/shared/interface/shipping-brand';
+import { Shippingcost } from 'src/app/shared/interface/shippingcost';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +17,10 @@ export class CartService {
 
   getShippingBrand() {
     return this.http.get<ShippingBrand[]>(`${ApiConstants.baseURl}${ApiConstants.shippingBrandURL}`);
+  }
+
+  getShippingCost() {
+    return this.http.get<Shippingcost[]>(`${ApiConstants.baseURl}${ApiConstants.shippingCostURL}`);
   }
 
   getCartPromotion() {
