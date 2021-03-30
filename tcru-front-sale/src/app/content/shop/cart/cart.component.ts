@@ -79,6 +79,7 @@ export class CartComponent implements OnInit {
   editProductQuantityForm: FormGroup;
   loadUpdateCart: boolean = false;
   isSelectProduct: boolean = false;
+  isSelectShipping: boolean = false;
   taxCheck: boolean = false;
   panelOpenState = false;
   shippingBrand: ShippingBrand[] = [];
@@ -184,7 +185,8 @@ export class CartComponent implements OnInit {
     this.shippingBrand.forEach((item) => {
       item.status = 0;
     });
-    var x = i
+    this.isSelectShipping = true;
+    let x = i
     this.shippingBrand[x].status = 1;
     this.filterShippingCost(this.shippingBrand[x].shipping_brand_id)
   }
@@ -252,39 +254,48 @@ export class CartComponent implements OnInit {
 
   checkoutCart() {
     if (this.isSelectProduct) {
-      this.cartService.checkoutCart(this.selectItem).subscribe(
-        res => {
-          this.dataForm = res;
-          this.reactiveForm.patchValue({
-            order_id: this.dataForm,
-            request_tax: this.taxCheck
-            ///////////////////////////////////////////////////////////////////////////////////////////////////
-          });
-          this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
-            res => {
-              this.cartService.deleteFromCart(this.selectItem).subscribe();
-              Swal.fire({
-                icon: 'success',
-                title: 'ทำรายการสำเร็จ',
-                showConfirmButton: false,
-                timer: 2000
-              });
-              this.router.navigateByUrl('/order');
-              // this.ngOnInit()
-            }, err => {
-              Swal.fire({
-                icon: 'error',
-                title: 'ทำรายการไม่สำเร็จ',
-                showConfirmButton: false,
-                timer: 2000
-              });
-            }
-          );
-          this.ngOnInit()
-        },
-        error => {
-        }
-      );
+      if (this.isSelectShipping) {
+        this.cartService.checkoutCart(this.selectItem).subscribe(
+          res => {
+            this.dataForm = res;
+            this.reactiveForm.patchValue({
+              order_id: this.dataForm,
+              request_tax: this.taxCheck
+              ///////////////////////////////////////////////////////////////////////////////////////////////////
+            });
+            this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
+              res => {
+                this.cartService.deleteFromCart(this.selectItem).subscribe();
+                Swal.fire({
+                  icon: 'success',
+                  title: 'ทำรายการสำเร็จ',
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+                this.router.navigateByUrl('/order');
+                // this.ngOnInit()
+              }, err => {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'ทำรายการไม่สำเร็จ',
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+              }
+            );
+            this.ngOnInit()
+          },
+          error => {
+          }
+        );
+      } else {
+        Swal.fire({
+          icon: 'warning',
+          title: 'โปรดเลือกประเภทจัดส่ง',
+          showConfirmButton: false,
+          timer: 2000
+        });
+      }
     } else {
       Swal.fire({
         icon: 'warning',
@@ -359,6 +370,7 @@ export class CartComponent implements OnInit {
   ngAfterContentChecked() {
     this.cartTotal = 0;
     this.cartWeight = 0;
+    this.sumShippingCost = 0;
     this.selectItem.map((obj) => {
       this.cartTotal += Number(obj.retail_price);
       this.cartWeight += (Number(obj.weight) * Number(obj.product_quantity))
@@ -399,15 +411,15 @@ export class CartComponent implements OnInit {
   }
 
   calculateShippingCostByWeight(cartWeight) {
-    this.shippingData.sort((a, b) => a.weight_condition - b.weight_condition);
+    this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition);
 
     this.shippingData.filter((value) => {
       if (Number(cartWeight) <= Number(value.weight_condition)) {
-        this.sumShippingCost = value.transportation_cost
-
+        this.sumShippingCost = value.transportation_cost;
+        console.log(cartWeight + '----- <= -----' + value.weight_condition)
       }
     })
-    // console.log('---------' + this.sumShippingCost)
+
   }
 
   updateCart() {
