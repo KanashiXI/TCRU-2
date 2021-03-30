@@ -371,6 +371,31 @@ export class CartComponent implements OnInit {
     }
   }
 
+  // calculateShippingCostByWeight(cartWeight) {
+  //   this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition).filter((value) => {
+  //     let i = cartWeight;
+  //     while (i <= 0) {
+  //       if (Number(cartWeight) <= Number(value.weight_condition)) {
+  //         this.sumShippingCost += value.transportation_cost;
+  //         i -= value.weight_condition;
+  //       }
+  //     }
+  //   })
+  // }
+
+  // calculateShippingCostByWeight(cartWeight) {
+  //   this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition).filter((value) => {
+  //     let i = cartWeight;
+  //     while (i <= 0) {
+  //       if (Number(cartWeight) <= Number(value.weight_condition)) {
+  //         this.sumShippingCost += value.transportation_cost;
+  //         i -= value.weight_condition;
+  //       }
+  //     }
+  //   })
+  // }
+
+
   calculateShippingCostByWeight(cartWeight) {
     this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition).filter((value) => {
       if (Number(cartWeight) <= Number(value.weight_condition)) {
