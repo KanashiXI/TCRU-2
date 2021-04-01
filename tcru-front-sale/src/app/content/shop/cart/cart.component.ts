@@ -278,7 +278,7 @@ export class CartComponent implements OnInit {
 
   fetchSelectedItems() {
     console.log()
-    this.selectItem = this.productInCart.filter((value) => {
+    this.selectItem = this.productInCart.filter(value => {
       return value.checked;
     });
   }
@@ -287,6 +287,7 @@ export class CartComponent implements OnInit {
     this.productInCart.forEach(element => {
       element.checked = true;
     });
+    this.fetchSelectedItems();
   }
 
 
