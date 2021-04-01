@@ -84,7 +84,7 @@
                 </span>
               </button>
               <mat-form-field appearance="outline">
-                <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" min="1">
+                <input matInput id="{{cart.product_id}}" [(ngModel)]="cart.product_quantity" min="1" [disabled]="true">
               </mat-form-field>
               <button mat-stroked-button class="number" (click)="handlePlus(cart)">
                 <span class="material-icons">
