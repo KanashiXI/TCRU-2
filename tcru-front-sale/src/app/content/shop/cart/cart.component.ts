@@ -130,6 +130,7 @@ export class CartComponent implements OnInit {
     this.getCartPromotion();
     this.getShippingBrand();
     this.getShippingCost();
+
   }
 
   getShippingBrand() {
@@ -277,10 +278,17 @@ export class CartComponent implements OnInit {
 
   fetchSelectedItems() {
     console.log()
-    this.selectItem = this.productInCart.filter((value, index) => {
+    this.selectItem = this.productInCart.filter((value) => {
       return value.checked;
     });
   }
+
+  checkAll() {
+    this.productInCart.forEach(element => {
+      element.checked = true;
+    });
+  }
+
 
   getCartPromotion() {
     this.cartService.getCartPromotion().subscribe(res => {
@@ -298,6 +306,7 @@ export class CartComponent implements OnInit {
       this.editProductQuantityForm.patchValue({
         user_id: user_id,
       })
+      this.checkAll();
     })
   }
 
