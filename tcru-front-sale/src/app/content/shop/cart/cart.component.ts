@@ -229,15 +229,17 @@ export class CartComponent implements OnInit {
             });
             this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
               res => {
-                this.cartService.deleteFromCart(this.selectItem).subscribe();
+                this.cartService.deleteFromCart(this.selectItem).subscribe(res => {
+                  this.ngOnInit();
+                });
                 Swal.fire({
                   icon: 'success',
                   title: 'ทำรายการสำเร็จ',
                   showConfirmButton: false,
                   timer: 2000
                 });
-                this.router.navigateByUrl('/order');
-                // this.ngOnInit()
+                // this.router.navigateByUrl('/order');
+
               }, err => {
                 Swal.fire({
                   icon: 'error',
@@ -247,7 +249,7 @@ export class CartComponent implements OnInit {
                 });
               }
             );
-            this.ngOnInit()
+
           },
           error => {
           }
