@@ -82,7 +82,9 @@ Route::group([
     Route::get('order/{user_id}','OrderController@getOrderByUser');
     Route::get('selectOrder/{order_id}','OrderController@getOrderDetail');
 
-
+    // สถานะสินค้า
+    Route::get('getStatus', 'StatusController@getStatus');
+    Route::post('editStatus', 'ShippingController@editStatus');
 
     //จัดส่งสินค้า
     Route::get('getShippingOrder','ShippingController@getShippingOrder');

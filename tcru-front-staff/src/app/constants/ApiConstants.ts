@@ -33,4 +33,12 @@ export class ApiConstants {
     public static get getOneShippingURL(): string {
         return '/api/getOneShipping';
     }
+    
+    public static get getStatusURL(): string {
+        return '/api/getStatus';
+    }
+
+    public static get editStatusURL(): string {
+        return '/api/editStatus';
+    }
 }

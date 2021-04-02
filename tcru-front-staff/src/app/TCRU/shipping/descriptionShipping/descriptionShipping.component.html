@@ -1,3 +1,79 @@
-<p>
-  descriptionShipping works!
-</p>
+<br>
+<div class="left">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h3>รายละเอียดการสั่งสินค้า</h3>
+    </div>
+  </div>
+  <br>
+  <div [formGroup]="reactiveForm">
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-10">
+        <div class="card">
+          <div class="card-header">
+            <h5>รายการสั่งซื้อเลขที่ : {{order_number}}</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-3">
+                    <p><b>สั่งซื้อโดย : </b></p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>{{shUserfirstname}}  {{shUserlastname}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <p><b>จัดส่ง : </b></p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>{{shShipfirstname}}  {{shShiplastname}}</p>
+                    <p>{{shAddress}} {{shSubdistrict}}  {{shDistrict}} {{shProvince}} {{shPostal_code}}</p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <p><b>ติดต่อ : </b></p>
+                  </div>
+                  <div class="col-md-8">
+                    <p>{{shTelephone}}</p>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <div class="col-md-4">
+                <p>สถานะ</p>
+                <br>
+                <mat-form-field appearance="fill" class="dropdown dropHeight">
+                  <mat-label>สถานะ</mat-label>
+                  <mat-select formControlName="status" required>
+                    <mat-option>--</mat-option>
+                    <mat-option *ngFor="let obj of statusArr" value="{{obj.id}}">
+                      {{obj.name}}
+                    </mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="reactiveForm.controls['status'].errors?.required">โปรดเลือกสถานะ</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8"></div>
+              <div class="col-md-2">
+                <button mat-stroked-button color="primary" class="btn-block" routerLink="/deliveryStatus">ยกเลิก</button>
+              </div>
+              <div class="col-md-2">
+                <button mat-raised-button color="primary" type="submit" class="btn-block"
+                  [disabled]="reactiveForm.invalid" (click)="onClickSubmit()">บันทึกข้อมูล</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
