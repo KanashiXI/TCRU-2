@@ -16,4 +16,14 @@ export interface OrderInterface {
     send_date?: Date;
     estimate?: number;
     shipping_price?: number;
+    userfirstname?: string;
+    userlastname?: string;
+    shipfirstname?: string;
+    shiplastname?: string;
+    address?: string;
+    subdistrict?: string;
+    district?: string;
+    province?: string;
+    postal_code?: string;
+    telephone?: string;
 }

@@ -7,6 +7,7 @@ import { stringify } from 'querystring';
 import { ApiConstants } from '../constants/ApiConstants';
 // import { ShippingInterface } from './../interfaces/shippingInterface';
 import { OrderInterface } from '../interfaces/orderInterface';
+import { StatusInterface } from './../interfaces/statusInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,14 @@ export class ShippingService {
 
   getOneShipping(data) {
     return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getOneShippingURL}/${data}`);
+  }
+
+  getStatus() {
+    return this.http.get<StatusInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getStatusURL}`);
+  }
+
+  editStatus(data) {
+    return this.http.post<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.editStatusURL}`, data);
   }
 
 }

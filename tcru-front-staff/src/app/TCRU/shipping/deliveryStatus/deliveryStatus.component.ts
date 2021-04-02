@@ -48,7 +48,7 @@ export class DeliveryStatusComponent implements OnInit {
 
   onClickDetail(data) {
     this.ShippingService.nextMessage(data);
-    localStorage.setItem("shipping_id", data);
+    localStorage.setItem("order_id", data);
   }
 
 }
