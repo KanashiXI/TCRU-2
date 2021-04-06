@@ -1,3 +1,24 @@
 .container{
     text-align: left;
 }
+
+kbd.sale{
+    background-color:#7fdaab;
+    color: #495057;
+    border-radius: 30px;
+    font-family: 'Kanit', sans-serif !important;
+  }
+
+  kbd.out{
+    background-color:#F8C471;
+    color: #495057;
+    border-radius: 30px;
+    font-family: 'Kanit', sans-serif !important;
+  }
+
+  kbd.wait{
+    background-color:#5DADE2;
+    color: #495057;
+    border-radius: 30px;
+    font-family: 'Kanit', sans-serif !important;
+  }

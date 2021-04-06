@@ -28,13 +28,14 @@ export class OrderComponent implements OnInit {
     }
     this.orderService.getOreder(requestData.customerUsername).subscribe(
       res => {
+        res.sort((a, b) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
         this.dataSource = res;
 
       }
     )
   }
 
-  onClickSubmit(id){
+  onClickSubmit(id) {
     localStorage.setItem("order_id", id);
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
     this.dialog.open(BillComponent, {
@@ -45,9 +46,9 @@ export class OrderComponent implements OnInit {
     });
   }
 
-    
+
   // onClickBill() {
-    
+
   // }
 
 
