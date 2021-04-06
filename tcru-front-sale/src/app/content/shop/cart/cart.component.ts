@@ -343,6 +343,7 @@ export class CartComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
+
     this.cartTotal = 0;
     this.cartWeight = 0;
     this.sumShippingCost = 0;
@@ -418,9 +419,11 @@ export class CartComponent implements OnInit {
   }
 
   updateCart() {
+
     this.loadUpdateCart = true;
     this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe(res => {
       this.loadUpdateCart = false;
+      this.cartService.changeCount();
     });
 
   }

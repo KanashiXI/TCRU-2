@@ -4,7 +4,7 @@
     <div class="col-md-12">
       <mat-card>
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-6">
             ออเดอร์เลขที่: {{item.order_id}} วันที่ทำรายการ: {{item.order_date}}
           </div>
 
@@ -21,14 +21,18 @@
           </div>
 
           <div class="col-md-2">
+            <button mat-raised-button color="accent" (click)="onClickUpload(item.order_id)">
+              <span class="material-icons">receipt</span>
+            </button>
+          </div>
 
-
-
+          <div class="col-md-2">
             <button mat-raised-button color="accent" (click)="onClickSubmit(item.order_id)">
               <span class="material-icons">receipt</span>
             </button>
-
           </div>
+
+
         </div>
       </mat-card>
       <br>
