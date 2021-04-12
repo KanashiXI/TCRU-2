@@ -37,11 +37,11 @@
                 <tbody>
                     <tr *ngFor="let mat of dataArr | filter:searchText">
                         <td>{{mat.order_name}}</td>
-                        <td>{{mat.status_name}}</td>
+                        <td>{{mat.status}}</td>
                         <td>{{mat.start_date}}</td>
                         <td>{{mat.end_date}}</td>
-                        <td>{{mat.sum_quantity}}</td>
                         <td>{{mat.sum_price}}</td>
+                        <td>{{mat.sum_materials}}</td>
                         <td>
                             <div class="btn-group btn-group-sm">
                                 <button class="btn" routerLink="detail">
