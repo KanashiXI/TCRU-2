@@ -1,14 +1,20 @@
 export class OrderMaterials {
     order_material_id: number;
+    shop_name: string;
+    contact_person: string;
+    phone_contact_person: string;
+    order_name: string;
+    address: Text;
     start_date?: any;
     end_date?: any;
     material_name: string;
-    detail: string;
+    detail: Text;
     quantity: number;
     price: number;
-    supplier_name: string;
-    status_order: string;
+    discount: number;
+    vat: number;
+    status: string;
     sum_quantity: number;
     sum_price: number;
-    order_name: string;
+    shop_id: any="";
 }
