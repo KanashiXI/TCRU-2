@@ -193,11 +193,11 @@ const appRoutes: Routes = [
   {
     path: 'showformula/:id',
     component: ShowformulaComponent
-  }
-
-
-
-  
+  },
+  {
+    path: 'addOrder',
+    component: AddOrderComponent
+  }  
 ];
 
 @NgModule({
