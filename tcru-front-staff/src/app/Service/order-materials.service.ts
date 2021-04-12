@@ -13,9 +13,9 @@ export class OrderMaterialsService {
     return this.http.get('http://localhost:5000/api/orderMaterials');
   }
 
-  getData1(data)
+  getsupplier()
   {
-    return this.http.post('http://localhost:5000/api/addorderM', data);
+    return this.http.get('http://localhost:5000/api/supplier11');
   }
 
 }
