@@ -19,6 +19,7 @@ export class AddOrderComponent implements OnInit {
   date: any;
   from: Date
   to: Date
+  suppilerArr: any;
 
   constructor(private fb: FormBuilder,
     private http: HttpClient,
@@ -31,64 +32,39 @@ export class AddOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.createForm();
-    this.orderMaterial();
+    this.getsupplier();
   }
 
   createForm()
   {
     this.form = this.fb.group({
-      supplier_name: ['', [Validators.required]],
-      start_date: [''],
-      end_date: [''],
+      shop_id: ['', [Validators.required]],
+      contact_person: ['', [Validators.required]],
+      phone_contact_person: ['', [Validators.required]],
+      order_name: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+      start_date: ['', [Validators.required]],
+      end_date: ['', [Validators.required]],
       material_name: ['', [Validators.required]],
-      detail: [''],
-      quantity: ['', [Validators.required,Validators.minLength(0),]],
-      price: ['', [Validators.required,Validators.minLength(0),]],
-      status_order: ['', [Validators.required]],
-      sum_quantity: ['', [Validators.minLength(0),]],
-      sum_price: ['', [Validators.minLength(0),]],
-      order_name: ['', [Validators.required]]
+      detail: ['', [Validators.required]],
+      quantity: ['', [Validators.minLength(0),]],
+      price: ['', [Validators.minLength(0),]],
+      discount: ['', [Validators.minLength(0),]],
+      vat: ['', [Validators.minLength(0),]]
     })
   }
 
-  orderMaterial()
-  {
-    this.OrderM.getData1(this.dataArr).subscribe((res: any) =>{
-      this.dataArr = res.data;
+  // orderMaterial()
+  // {
+  //   this.OrderM.getData1(this.dataArr).subscribe((res: any) =>{
+  //     this.dataArr = res.data;
+  //   })
+  // }
+
+  getsupplier() {
+    this.OrderM.getsupplier().subscribe(res => {
+      this.suppilerArr = res;
     })
-  }
-
-  addCreds() {
-    const creds = this.form.controls.credentials as FormArray;
-    creds.push(this.fb.group({
-      material_name: ['', {
-        validators: [this.isNameDuplicate()],
-        updateOn: 'blur'
-      }],
-      detail: '',
-      quantity: '',
-      price: '',
-      sum_quantity: '',
-      sum_price: ''
-    }));
-  }
-
-  isNameDuplicate(): ValidatorFn {
-    return (c: AbstractControl): { [key: string]: boolean } | null => {
-      const Material = this.form.get("credentials").value;
-      console.log(Material);
-      const names = Material.map(item => item.Material.trim());
-      const hasDuplicate = names.some(
-        (name, index) => names.indexOf(name, index + 1) != -1
-      );
-
-      if (hasDuplicate) {
-        console.log(hasDuplicate);
-        return { duplicate: true };
-      }
-
-      return null;
-    }
   }
 
   updateFromDate(source) {
@@ -98,8 +74,24 @@ export class AddOrderComponent implements OnInit {
     this.to = source.target.valueAsDate;
   }
 
-  get supplier_name() {
-    return this.form.get('supplier_name')
+  get shop_id() {
+    return this.form.get('shop_id')
+  }
+
+  get contact_person(){
+    return this.form.get('contact_person')
+  }
+
+  get phone_contact_person(){
+    return this.form.get('phone_contact_person')
+  }
+
+  get order_name(){
+    return this.form.get('order_name')
+  }
+
+  get address(){
+    return this.form.get('address')
   }
 
   get start_date(){
@@ -126,20 +118,12 @@ export class AddOrderComponent implements OnInit {
     return this.form.get('price')
   }
 
-  get status_order(){
-    return this.form.get('status_order')
+  get discount(){
+    return this.form.get('discount')
   }
 
-  get sum_quantity(){
-    return this.form.get('sum_quantity')
-  }
-
-  get sum_price(){
-    return this.form.get('sum_price')
-  }
-
-  get order_name(){
-    return this.form.get('order_name')
+  get vat(){
+    return this.form.get('vat')
   }
 
 }
