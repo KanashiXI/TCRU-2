@@ -2,15 +2,16 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\orderMaterial;
+use App\Models\OrderMaterials;
 use DB;
 
 class OrderMaterialController extends Controller
 {
     public function getorderMaterialsall()
     {
-        $getall = orderMaterial::all();
-        return response()->json($getall, 200);
+        $orderMaterialModel = new OrderMaterials();
+        $data = $orderMaterialModel->getOrderMaterials();
+        return response()->json($data);
     }
 
     // public function getorderMaterials()

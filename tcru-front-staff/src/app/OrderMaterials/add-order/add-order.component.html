@@ -1,220 +1,199 @@
 <div class="main-container" style="height: 155vh;" id="element-to-export">
-    <div class="card" style="margin-top: 30px; margin-right: 10px; margin-left: 10px;">
-        <!-- หัวเรื่อง -->
-        <div class="card-header">
-            <h2 class="card-title" style="text-align: center;">ใบสั่งซื้อวัตถุดิบ</h2>
-        </div>
+    <!-- <div class="card" style="margin-top: 30px; margin-right: 10px; margin-left: 10px;"> -->
 
-        <!-- หัวเรื่องผู้ขาย/วันที่ -->
-        <div class="card-header">
-            <div class="row">
-                <!-- ผู้ขาย -->
-                <div class="col-sm-3">
-                    <h3 class="card-title">ข้อมูลใบสั่งซื้อ</h3>
-                </div>
-            </div>
-        </div>
+    <!-- หัวเรื่อง -->
+    <h5 class="card-title">ใบสั่งซื้อวัตถุดิบ</h5>
 
-        <!-- เลือกร้านค้า/วันที่ -->
+    <!-- body -->
+    <section class="content-header">
         <div class="card-body">
-            <div class="row">
-                <!-- เลือกร้านค้า -->
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>ชื่อร้านค้า</label><br />
-                        <select class="form-control" formControlName="shop_id" [(ngModel)]="OrderMaterials.shop_id">
-                            <option value="">ร้านค้า</option>
-                            <option *ngFor="let suppiler of suppilerArr" value="{{suppiler.id}}">{{suppiler.shop_name}}
-                            </option>
-                        </select>
+            <form [formGroup]="form">
+                <!-- หัวเรื่องข้อมูลใบสั่งซื้อ -->
+                <div class="card-header">
+                    <div class="col-sm-12">
+                        <label>ข้อมูลใบสั่งซื้อ</label>
                     </div>
                 </div>
 
-                <!-- ผู้ติดต่อ -->
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>ชื่อผู้ติดต่อ</label>
-                        <input type="text" class="form-control" formcontrolName="contact_person">
+                <div class="card card_primary">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- เลือกร้านค้า -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>ชื่อร้านค้า</label>
+                                    <select class="form-control" formControlName="shop_id" [(ngModel)]=OrderMaterials.shop_id>
+                                        <option value="">ร้านค้า</option>
+                                        <option *ngFor="let suppiler of suppilerArr" value="{{suppiler.id}}">{{suppiler.shop_name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- ผู้ติดต่อ -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>ชื่อผู้ติดต่อ</label>
+                                    <input type="text" class="form-control" formcontrolName="contact_person">
+                                </div>
+                            </div>
+
+                            <!-- เบอร์โทรศัพท์ผู้ติดต่อ -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>เบอร์โทรศัพท์ผู้ติดต่อ</label>
+                                    <input type="text" class="form-control" formcontrolName="phone_contact_person">
+                                </div>
+                            </div>
+
+                            <!-- เลขที่ใบสั่งซื้อ -->
+                            <div class="col-sm-3">
+                                <div class="form-gorup">
+                                    <label>เลขที่ใบสั่งซื้อ</label>
+                                    <input type="text" class="form-control" formcontrolName="order_number" placeholder="EX: PO-1903">
+                                </div>
+                            </div>
+
+                            <!-- ที่อยู่ในการจัดส่งวัตถุดิบ -->
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>ที่อยู่จัดส่ง</label>
+                                    <textarea formControlName="address" type="text" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- เลือกวันที่ -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>วันที่สั่งซื้อวัตถุดิบ</label> <br />
+                                    <input type="date" [value]="from | date:'yyyy-MM-dd'" (input)="updateFromDate($event)" class="form-control" placeholder="วันที่สั่งซื้อวัตถุดิบ" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>วันที่ได้รับวัตถุดิบ</label> <br />
+                                    <input type="date" [value]="to | date:'yyyy-MM-dd'" (input)="updateToDate($event)" class="form-control" placeholder="วันที่ได้รับวัตถุดิบ" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <!-- หัวเรื่องรายการสั่งซื้อ -->
+                <div class="card-header">
+                    <div class="col-sm-12">
+                        <label>รายการ</label>
                     </div>
                 </div>
 
-                <!-- เบอร์โทรศัพท์ผู้ติดต่อ -->
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>เบอร์โทรศัพท์ผู้ติดต่อ</label>
-                        <input type="text" class="form-control" formcontrolName="phone_contact_person">
+                <!-- หัวเรื่องย่อยรายการวัตถุดิบ -->
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- เพิ่มรายการสินค้า -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>ชื่อวัตถุดิบ</label>
+                                    <input type="text" class="form-control" formcontrolName="material_name">
+                                </div>
+                            </div>
+
+                            <!-- รายละเอียด -->
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                    <label>รายละเอียด</label>
+                                    <textarea formControlName="detail" type="text" class="form-control"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- จำนวน -->
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <label>จำนวน</label>
+                                    <input type="text" class="form-control" formcontrolName="quantity">
+                                </div>
+                            </div>
+
+                            <!-- ราคา/ชิ้น -->
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <label>ราคา</label>
+                                    <input type="text" class="form-control" formcontrolName="price">
+                                </div>
+                            </div>
+
+                            <!-- ส่วนลด -->
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <label>ส่วนลด</label>
+                                    <input type="text" class="form-control" formcontrolName="discount">
+                                </div>
+                            </div>
+
+                            <!-- จำนวนภาษีมูลค่าเพิ่ม -->
+                            <div class="col-sm-1">
+                                <div class="form-group">
+                                    <label>Vat</label>
+                                    <input type="text" class="form-control" formcontrolName="vat">
+                                </div>
+                            </div>
+
+                            <!-- ปุ่มเพิ่มรายการ -->
+                            <div class="col-sm-1">
+                                <button class="btn btn-success">เพิ่ม</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <!-- หัวเรื่องสรุปรายการ -->
+                <div class="card-header">
+                    <div class="col-sm-12">
+                        <label>สรุปรายการสั่งซื้อ</label>
                     </div>
                 </div>
 
-                <!-- เลขที่ใบสั่งซื้อ -->
-                <div class="col-sm-3">
-                    <div class="form-gorup">
-                        <label>เลขที่ใบสั่งซื้อ</label>
-                        <input type="text" class="form-control" formcontrolName="order_number" placeholder="EX: PO-1903">
+                <!-- สรุปรายการ -->
+                <div class="card card-primary">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">ยอดรวมสินค้า</div>
+                            <div class="col-sm-3">...</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">ส่วนลด</div>
+                            <div class="col-sm-3">...</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">Vat</div>
+                            <div class="col-sm-3">...</div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">รวมเงินทั้งสิ้น</div>
+                            <div class="col-sm-3">...</div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <!-- ปุ่มเพิ่ม-ยกเลิก -->
+                <div class="row">
+                    <div class="form-group">
+                        <td>
+                            <button class="btn btn-block btn-success ">ยืนยัน</button>
+                        </td>
+                        <td>
+                            &nbsp; <button class="btn btn-secondary  " routerLink="/showOrderM"> กลับ</button>
+                        </td>
                     </div>
                 </div>
 
-                <!-- ที่อยู่ในการจัดส่งวัตถุดิบ -->
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <label>ที่อยู่จัดส่ง</label>
-                        <textarea formControlName="address" type="text" class="form-control"></textarea>
-                    </div>
-                </div>
-
-                <!-- เลือกวันที่ -->
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>วันที่สั่งซื้อวัตถุดิบ</label> <br />
-                        <input type="date" [value]="from | date:'yyyy-MM-dd'" (input)="updateFromDate($event)" class="form-control" placeholder="วันที่สั่งซื้อวัตถุดิบ" />
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>วันที่ได้รับวัตถุดิบ</label> <br />
-                        <input type="date" [value]="to | date:'yyyy-MM-dd'" (input)="updateToDate($event)" class="form-control" placeholder="วันที่ได้รับวัตถุดิบ" />
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
-        <!-- หัวเรื่องรายการวัตถุดิบ -->
-        <div class="card-header">
-            <h3 class="card-title">รายการ</h3>
-        </div>
-
-        <!-- หัวเรื่องย่อยรายการวัตถุดิบ -->
-        <div class="crad-body" style="margin-top: 20px; margin-left: 10px; margin-right: 10px;">
-            <div class="row">
-                <!-- เพิ่มรายการสินค้า -->
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label>ชื่อวัตถุดิบ</label><br />
-                        <input type="text" class="form-control" formcontrolName="material_name">
-                    </div>
-                </div>
-
-                <!-- รายละเอียด -->
-                <div class="col-sm-5">
-                    <div class="form-group">
-                        <label>รายละเอียด</label><br />
-                        <textarea formControlName="detail" type="text" class="form-control"></textarea>
-                    </div>
-                </div>
-
-                <!-- จำนวน -->
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <label>จำนวน</label>
-                        <input type="text" class="form-control" formcontrolName="quantity">
-                    </div>
-                </div>
-
-                <!-- ราคา/ชิ้น -->
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <label>ราคา</label>
-                        <input type="text" class="form-control" formcontrolName="price">
-                    </div>
-                </div>
-
-                <!-- ส่วนลด -->
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <label>ส่วนลด</label>
-                        <input type="text" class="form-control" formcontrolName="discount">
-                    </div>
-                </div>
-
-                <!-- จำนวนภาษีมูลค่าเพิ่ม -->
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <label>Vat</label>
-                        <input type="text" class="form-control" formcontrolName="vat">
-                    </div>
-                </div>
-
-                <!-- ปุ่มเพิ่มรายการ -->
-                <div class="col-sm-1">
-                    <button class="btn btn-success">เพิ่ม</button>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="card-body">
-                    <table class="table">
-                        <!-- หัวตาราง -->
-                        <thead>
-                            <th>ชื่อวัตถุดิบ</th>
-                            <th>รายละเอียด</th>
-                            <th>จำนวน</th>
-                            <th>ราคา/ชิ้น</th>
-                            <th>ส่วนลด</th>
-                            <th>ภาษีมูลค่าเพิ่ม</th>
-                            <th></th>
-                        </thead>
-
-                        <!-- ข้อมูลในตาราง -->
-                        <tbody>
-                            <tr>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>...</td>
-                                <td>
-                                    <button class="btn btn-warning" routerLink="/editOrder">
-                                        <mat-icon class="icon">create</mat-icon>
-                                    </button>
-
-                                    <button class="btn btn-danger" routerLink="delete">
-                                        <mat-icon class="icon">delete_sweep</mat-icon>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-
-        </div>
-
-        <div class="card-header">
-            <h3 class="card-title">สรุปรายการสั่งซื้อ</h3>
-        </div>
-
-        <div class="crad-body" style="margin-top: 20px; margin-left: 10px; margin-right: 10px;">
-            <div class="row">
-                <div class="col-sm-3">ยอดรวมสินค้า</div>
-                <div class="col-sm-3">...</div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-3">ส่วนลด</div>
-                <div class="col-sm-3">...</div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-3">Vat</div>
-                <div class="col-sm-3">...</div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-3">รวมเงินทั้งสิ้น</div>
-                <div class="col-sm-3">...</div>
-            </div>
-        </div>
-
-
-    </div>
-    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
-        <div class="col-sm-1">
-            <button class="example-button-row" class="btn btn-success" type="submit">ยืนยัน</button>
-        </div>
-        <div class="col-sm-1">
-            <button class="example-button-row" class="btn btn-danger" type="button">ยกเลิก</button>
-        </div>
-    </div>
+    </section>
 </div>

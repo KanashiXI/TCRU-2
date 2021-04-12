@@ -1,0 +1,40 @@
+.form-control.ng-invalid.ng-touched {
+    border-color: #ff0000;
+}
+
+.text-error {
+    font-size: 0.85rem;
+    margin: 4px;
+    text-align: right;
+    color: #ff0000;
+    opacity: 0.9;
+    font-family: 'Kanit', cursive;
+    font-weight: bold;
+}
+
+
+/* Style the label to display next to the inputs */
+
+label {
+    display: block;
+    font-family: 'Kanit', cursive;
+}
+
+.btn-block {
+    background-color: #79994a;
+    color: #ffffff;
+}
+
+h5 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-family: 'Kanit', cursive;
+}
+
+.card-header {
+    background-color: #6a941d88;
+}
