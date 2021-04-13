@@ -1,63 +1,66 @@
 <div class="main-container" style="height: 92vh;">
-    <div class="row">
-        <!-- ปุ่มสร้างใบสั่งซื้อ -->
-        <div class="col-sm-8">
-            <div class="example-button-row">
-                <a href="#" class="btn btn-success" [routerLink]="['/addOrder']" routerLinkActive="router-link-active">ใบสั่งซื้อวัตถุดิบ</a>
+    <section class="content-header">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <!-- ปุ่มสร้างใบสั่งซื้อ -->
+                    <div class="col-sm-8">
+                        <div class="example-button-row">
+                            <a href="#" class="btn btn-success" [routerLink]="['/addOrder']" routerLinkActive="router-link-active">ใบสั่งซื้อวัตถุดิบ</a>
+                        </div>
+                    </div>
+                    <!-- textค้นหา -->
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" placeholder="ค้นหา" name="search" [(ngModel)]="searchText" autocomplete="off">
+                    </div>
+                </div>
             </div>
-        </div>
-        <!-- textค้นหา -->
-        <div class="col-sm-3">
-            <input type="text" class="form-control" placeholder="ค้นหา" name="search" [(ngModel)]="searchText" autocomplete="off">
-        </div>
-    </div>
+        </section>
 
-    <div class="card" style="margin-top: 50px; margin-right: 10px; margin-left: 10px;">
         <!-- หัวเรื่อง -->
-        <div class="card-header">
-            <h2 class="card-title">รายการสั่งซื้อ</h2>
-        </div>
-
-        <!-- ตาราง -->
-        <div class="card-body">
-            <table class="table">
-
-                <!-- หัวตาราง -->
-                <thead>
-                    <th>ใบสั่งซื้อ</th>
-                    <th>สถานะ</th>
-                    <th>วันที่สั่งซื้อวัตถุดิบ</th>
-                    <th>วันที่รับวัตถุดิบ</th>
-                    <th>ยอดเงินรวม</th>
-                    <th>ยอดสุทธิ</th>
-                    <th>รายละเอียด | แก้ไข | ลบ</th>
-                </thead>
-
-                <!-- ข้อมูลในตาราง -->
-                <tbody>
-                    <tr *ngFor="let mat of dataArr | filter:searchText">
-                        <td>{{mat.order_name}}</td>
-                        <td>{{mat.status}}</td>
-                        <td>{{mat.start_date}}</td>
-                        <td>{{mat.end_date}}</td>
-                        <td>{{mat.sum_price}}</td>
-                        <td>{{mat.sum_materials}}</td>
-                        <td>
-                            <div class="btn-group btn-group-sm">
-                                <button class="btn" routerLink="detail">
-                                    <mat-icon class="icon">assignment</mat-icon>
+        <h5 class="card-title">รายการสั่งซื้อ</h5>
+        <div class="card card-success">
+            <div class="card-body p-0">
+                <table class="table">
+                    <!-- หัวตาราง -->
+                    <thead>
+                        <th>ใบสั่งซื้อ</th>
+                        <th>สถานะ</th>
+                        <th>วันที่สั่งซื้อวัตถุดิบ</th>
+                        <th>วันที่รับวัตถุดิบ</th>
+                        <th>ยอดเงินรวม</th>
+                        <th>ยอดสุทธิ</th>
+                        <th>รายละเอียด | แก้ไข | ลบ</th>
+                    </thead>
+                    <!-- ข้อมูลในตาราง -->
+                    <tbody>
+                        <tr *ngFor="let mat of dataArr | filter:searchText">
+                            <td>{{mat.order_name}}</td>
+                            <td>{{mat.status}}</td>
+                            <td>{{mat.start_date}}</td>
+                            <td>{{mat.end_date}}</td>
+                            <td>{{mat.sum_price}}</td>
+                            <td>{{mat.sum_materials}}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn" routerLink="detail">
+                                    <mat-icon class="icon">visibility</mat-icon>
                                 </button>
-                                <button class="btn btn-warning" routerLink="edit">
+                                    <button class="btn btn-warning" routerLink="edit">
                                     <mat-icon class="icon">create</mat-icon>
                                 </button>
-                                <button class="btn btn-danger" routerLink="delete">
+                                    <button class="btn btn-danger" (click)="deleteOrderM(mat.order_material_id)">
                                     <mat-icon class="icon">delete_sweep</mat-icon>
                                 </button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
-    </div>
+        <br>
+        <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination" (pageChange)="getOrder()"></ngb-pagination>
+    </section>
 </div>
