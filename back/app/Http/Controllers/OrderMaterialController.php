@@ -14,6 +14,26 @@ class OrderMaterialController extends Controller
         return response()->json($data);
     }
 
+    public function getorderMaterialsSkipAndLimit(Request $request)
+    {
+        $skip = $request->skip;
+        $limit = $request->limit;
+        $orderMaterialModel = new OrderMaterials();
+        $data = $orderMaterialModel->getOrderMaterialsSkipAndLimit($skip, $limit);
+        $totalCount = $orderMaterialModel->getTatalOrderMaterials();
+        $response["data"] = $data;
+        $response["totalRecord"] = $totalCount;
+        return response()->json($response);
+    }
+
+    public function getOneOrderMaterials(Request $request)
+    {
+        $id = $request->order_material_id;
+        $orderMaterialModel = new OrderMaterials();
+        $data = $orderMaterialModel->getOneOrderMaterials($id);
+        return response()->json($data);
+    }
+
     // public function getorderMaterials()
     // {
     //     $getall = DB::table('order_material')
@@ -26,22 +46,12 @@ class OrderMaterialController extends Controller
     //         return response()->json($getall,200);
     // }
 
-    public function postorderMaterials(Request $request)
+    public function destroys(Request $request)
     {
-        $new = new orderMaterial;
-        $new->supplier_name = $request->input('supplier_name');
-        $new->start_date = $request->input('start_date');
-        $new->end_date = $request->input('end_date');
-        $new->status_order = $request->input('status_order');
-        $new->material_name = $request->input('material_name');
-        $new->detail = $request->input('detail');
-        $new->quantity =$request->input('quantity');
-        $new->sum_quantity = $request->input('sum_quantity');
-        $new->price = $request->input('price');
-        $new->sum_price = $request->input('sum_price');
-        $new->order_name = $request->input('order_name');
-        $new->save();
-        return response()->json(['newitem'=>$new],200);
+        $id = $request->order_material_id;
+        $orderMaterialModel = new OrderMaterials();
+        $orderMaterialModel->deleteOrderMaterails($id);
+        return response()->json(['id' => $id]);
     }
 }
 

@@ -145,6 +145,8 @@ Route::group([
     //ใบสั่งซื้อวัตถุดิบ
     Route::get('/orderMaterials', 'OrderMaterialController@getorderMaterialsall');
     Route::post('/addorderM', 'OrderMaterialController@postorderMaterials');
+    Route::post('/Ordermaterial1', 'OrderMaterialController@getorderMaterialsSkipAndLimit');
+    Route::delete('/deleteOrderM/{order_material_id}', 'OrderMaterialController@destroys');
 });
 
 
