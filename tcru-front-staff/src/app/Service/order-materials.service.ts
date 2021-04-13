@@ -18,4 +18,14 @@ export class OrderMaterialsService {
     return this.http.get('http://localhost:5000/api/supplier11');
   }
 
+  getData1(data)
+  {
+    return this.http.post('http://localhost:5000/api/Ordermaterial1',data);
+  }
+
+  deleteOrderM(id)
+  {
+    return this.http.delete('http://localhost:5000/api/deleteOrderM/'+id)
+  }
+
 }

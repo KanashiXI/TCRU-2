@@ -13,7 +13,6 @@ export interface OrderMaterial {
     price: number;
     discount: number;
     vat: number;
-    status: string;
     sum_quantity: number;
     sum_price: number;
 }

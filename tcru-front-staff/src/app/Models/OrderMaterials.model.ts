@@ -17,4 +17,5 @@ export class OrderMaterials {
     sum_quantity: number;
     sum_price: number;
     shop_id: any="";
+    store_name: any="";
 }
