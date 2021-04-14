@@ -16,6 +16,7 @@ export class ShippingService {
 
   private message = new BehaviorSubject('');
   sharedMessage = this.message.asObservable();
+  dataSource: any;
 
   constructor(
     private http: HttpClient
@@ -33,8 +34,12 @@ export class ShippingService {
     return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getOneShippingURL}/${data}`);
   }
 
+  // getStatus() {
+  //   return this.http.get<StatusInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getStatusURL}`);
+  // }
+
   getStatus() {
-    return this.http.get<StatusInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getStatusURL}`);
+    return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getStatusURL}`);
   }
 
   editStatus(data) {

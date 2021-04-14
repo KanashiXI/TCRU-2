@@ -86,12 +86,14 @@ class OrderController extends Controller
     {
         $getall = DB::table('order')
             ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id' )
+            ->join('status', 'status.id', '=', 'order.status')
             ->join('product', 'product.product_id', '=', 'order_detail.product_id')
             ->join('address', 'address.address_id', '=', 'order.address_id')
             ->join('provinces', 'provinces.id', '=', 'address.province_id')
             ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
             ->join('districts', 'districts.id', '=', 'address.districts_id')
-            ->select('order.order_id', 'order.order_date', 'order.require_date', 'order.status', 
+            ->select('order.order_id', 'order.order_date', 'order.require_date', 'order.status as status_id', 
+                    'status.name as status_name',
                     'order.user_id', 'order.updated_at', 'order.created_at', 'order.net_amount',
                     'order.total_price', 'order.promotion_id', 'order.discount as discount', 'order.request_tax',
                     'order.address_id', 'order_detail.product_quantity', 'order.net_amount', 

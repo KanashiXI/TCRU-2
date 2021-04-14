@@ -83,7 +83,8 @@ Route::group([
     Route::get('selectOrder/{order_id}','OrderController@getOrderDetail');
 
     // สถานะสินค้า
-    Route::get('getStatus', 'StatusController@getStatus');
+    // Route::get('getStatus', 'StatusController@getStatus');
+    Route::get('getStatus', 'ShippingController@getStatus');
     Route::post('editStatus', 'ShippingController@editStatus');
 
     //จัดส่งสินค้า

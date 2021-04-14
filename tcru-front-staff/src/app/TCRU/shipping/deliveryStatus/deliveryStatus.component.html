@@ -1,66 +1,77 @@
 <div class="main-container" style=" height:90vh;">
-    <div class="row">
-        <div class="col-sm-8">
+    <!-- <div class="row">
+        <div class="col-md-4">
             <div class="example-button-row">
-                <button mat-stroked-button routerLink="/">เพิ่มรายการจัดส่ง</button>
+                <div class="form-group">
+                    <label>เลือกตามสถานะจัดส่ง</label>
+                    <select class="form-control" [(ngModel)]="selectStatus" (change)="valueSelected()">
+                      <option>แสดงทั้งหมด</option>
+                      <option *ngFor="let item of statusArr;">{{item.name}}</option>
+                    </select>
+                  </div>
             </div>
         </div>
-        <div class="col-sm-3">
-            <input type="text" class="form-control" placeholder="Search...">
+    </div> -->
+
+    <div class="row" style="text-align: center;">
+        <div class="col-12">
+            <mat-card>
+                <mat-button-toggle-group #group="matButtonToggleGroup" multiple=false>
+                    <!-- <app-skeleton-loader *ngIf="!typeLoader"></app-skeleton-loader> -->
+                    <mat-button-toggle (click)="onClickSelectType(4)">รายการทั้งหมด</mat-button-toggle>
+                    <mat-button-toggle *ngFor="let item of statusArr; index as i;" [value]="i"
+                      (click)="onClickSelectType(i)">{{item.name}}</mat-button-toggle>
+                </mat-button-toggle-group>
+            </mat-card>
         </div>
     </div>
 
-    <div class="card card-success" style="margin-top: 50px; margin-right: 90px;">
-        <div class="card-header">
-            <h3 class="card-title">รายการจัดส่งสินค้า</h3>
-        </div>
-        <div class="card-body">
-            <table class="table" id="excel-table">
-                <thead>
-                    <tr>
-                        <th>เลขที่สั่งซ้อ</th>
-                        <th>เลขจัดส่ง</th>
-                        <th>วันจัดส่ง</th>
-                        <th>ประมาณการจัดส่ง</th>
-                        <th>ค่าจัดส่ง</th>
-                        <th>สถานะจัดส่ง</th>
-                        <th></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let item of dataSource; let i = index">
-                        <td>{{item.order_id}}</td>
-                        <td>{{item.shipping_number}}</td>
-                        <td>{{item.send_date}}</td>
-                        <td>{{item.estimate}}</td>
-                        <td>{{item.shipping_price}}</td>
-                        <td>
-                            <!-- <mat-form-field appearance="fill">
-                                <mat-label>สถานะจัดส่ง</mat-label>
-                                <mat-select [(ngModel)]="selectedStatus" name="status" panelClass="panel-custom-width">
-                                    <mat-option *ngFor="let status of status" [value]="status.value">
-                                        {{status.viewValue}}
-                                    </mat-option>
-                                </mat-select>
-                            </mat-form-field> -->
-                            {{item.status}}
-                        </td>
-                        <td>
-                            <button mat-raised-button type="submit" (click)="onClickDetail(item.order_id)" routerLink="/descriptionShipping">
-                                <span class="material-icons">description</span>
-                            </button>
-                            <!-- <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.promotion_id)" routerLink="/editpromotion">
-                                <span class="material-icons">create</span>
-                            </button> -->
-                            <!-- <button mat-raised-button color="warn" (click)="onClickDelete(item.promotion_id)">
-                                <span class="material-icons">delete</span>
-                            </button> -->
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <div class="col-12">
+        <div class="card" style="margin-top: 50px; margin-right: 90px;">
+            <div class="card-header">
+                <h3 class="card-title">รายการจัดส่งสินค้า</h3>
+            </div>
+            <div class="card-body">
+                <table class="table" id="excel-table">
+                    <thead>
+                        <tr>
+                            <th>เลขที่สั่งซื้อ</th>
+                            <th>วันที่สั่งซื้อ</th>
+                            <th>เลขจัดส่ง</th>
+                            <th>วันจัดส่ง</th>
+                            <th>ประมาณการจัดส่ง</th>
+                            <th>ค่าจัดส่ง</th>
+                            <th>สถานะจัดส่ง</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+    
+                    <tbody>
+                        <tr *ngFor="let item of orderOnfilter; let i = index">
+                            <td>{{item.order_id}}</td>
+                            <td>{{item.order_date}}</td>
+                            <td>{{item.shipping_number}}</td>
+                            <td>{{item.send_date}}</td>
+                            <td>{{item.estimate}}</td>
+                            <td>{{item.shipping_price}}</td>
+                            <td>{{item.status_name}}</td>
+                            <td>
+                                <button mat-raised-button type="submit" (click)="onClickDetail(item.order_id)" routerLink="/descriptionShipping">
+                                    <span class="material-icons">description</span>
+                                </button>
+                                <!-- <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.promotion_id)" routerLink="/editpromotion">
+                                    <span class="material-icons">create</span>
+                                </button> -->
+                                <!-- <button mat-raised-button color="warn" (click)="onClickDelete(item.promotion_id)">
+                                    <span class="material-icons">delete</span>
+                                </button> -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    
     <!-- <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination" (pageChange)="getCustomers()"></ngb-pagination> -->
 </div>
