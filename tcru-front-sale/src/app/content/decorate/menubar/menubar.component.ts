@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./menubar.component.css']
 })
 export class MenubarComponent {
+  eventSubscription: Subscription;
 
   public loggedIn: boolean;
 
@@ -42,13 +43,17 @@ export class MenubarComponent {
     private cartService: CartService,
     private fb: FormBuilder,
 
-    ) {}
+  ) {
+    this.eventSubscription = this.cartService.getChangeEvent().subscribe(() => {
+      this.ngOnInit()
+    })
+  }
 
-    logout(event: MouseEvent) {
-      event.preventDefault();
-      this.Token.remove();
-      this.Auth.changeAuthStatus(false);
-      this.router.navigateByUrl('/login');
+  logout(event: MouseEvent) {
+    event.preventDefault();
+    this.Token.remove();
+    this.Auth.changeAuthStatus(false);
+    this.router.navigateByUrl('/login');
   }
 
   ngOnInit(): void {

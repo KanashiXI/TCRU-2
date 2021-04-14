@@ -77,10 +77,12 @@ Route::group([
     Route::post('cartcheckout','OrderController@createOrder');
     Route::post('order','OrderController@fillOrder');
     Route::post('deletefromcart','OrderController@deleteFromCart');
-    Route::get('getOrder','OrderController@getOrder');
-    
+    Route::get('getOrder','OrderController@getOrder'); 
     Route::get('order/{user_id}','OrderController@getOrderByUser');
     Route::get('selectOrder/{order_id}','OrderController@getOrderDetail');
+    Route::post('uploadslip','OrderController@fillImageOrder');
+
+
 
     // สถานะสินค้า
     // Route::get('getStatus', 'StatusController@getStatus');

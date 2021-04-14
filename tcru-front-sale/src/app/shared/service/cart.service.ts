@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { CartItem } from 'src/app/content/shop/cart/cart-datasource';
 import { Product } from 'src/app/content/shop/shopview/interfaces/product';
 import { ApiConstants } from '../constants/ApiConstants';
@@ -12,8 +12,17 @@ import { Shippingcost } from 'src/app/shared/interface/shippingcost';
 })
 export class CartService {
 
+  private subject = new Subject<any>();
+
   constructor(private http: HttpClient) { }
   cartUrl = 'api/cart'
+
+  changeCount() {
+    this.subject.next();
+  }
+  getChangeEvent(): Observable<any> {
+    return this.subject.asObservable();
+  }
 
   getShippingBrand() {
     return this.http.get<ShippingBrand[]>(`${ApiConstants.baseURl}${ApiConstants.shippingBrandURL}`);
@@ -58,8 +67,13 @@ export class CartService {
   addOrder(data) {
     return this.http.post<Product>(`${ApiConstants.baseURl}${ApiConstants.orderURL}`, data)
   }
+
   deleteFromCart(data) {
     return this.http.post(`${ApiConstants.baseURl}${ApiConstants.deleteFromCartURL}`, data)
+  }
+
+  uploadSlip(data) {
+    return this.http.post(`${ApiConstants.baseURl}${ApiConstants.uploadSlipURL}`, data)
   }
 
 

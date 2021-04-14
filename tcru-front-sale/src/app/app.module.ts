@@ -41,6 +41,7 @@ import { SkeletonLoaderComponent } from './content/decorate/skeleton-loading/ske
 import { BillComponent } from './content/shop/bill/bill.component';
 import { OrderComponent } from './content/user/order/order.component';
 import { InstructucionsComponent } from './content/shop/Instructucions/Instructucions.component';
+import { SlipuploadComponent } from './content/user/order/slipupload/slipupload.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { InstructucionsComponent } from './content/shop/Instructucions/Instructu
     SkeletonLoaderComponent,
     BillComponent,
     OrderComponent,
-    InstructucionsComponent
+    InstructucionsComponent,
+    SlipuploadComponent
   ],
   entryComponents: [ProductDetailComponent],
   imports: [

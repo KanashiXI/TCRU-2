@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { Order } from 'src/app/shared/interface/order';
 import { OrderService } from 'src/app/shared/service/order.service';
 import { BillComponent } from '../../shop/bill/bill.component';
+import { SlipuploadComponent } from './slipupload/slipupload.component';
 
 @Component({
   selector: 'app-order',
@@ -47,9 +48,16 @@ export class OrderComponent implements OnInit {
   }
 
 
-  // onClickBill() {
-
-  // }
+  onClickUpload(id) {
+    localStorage.setItem("order_id", id);
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    this.dialog.open(SlipuploadComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+    });
+  }
 
 
 }

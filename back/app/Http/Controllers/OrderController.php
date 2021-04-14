@@ -38,6 +38,13 @@ class OrderController extends Controller
         }              
     }
 
+    public function fillImageOrder(Request $request){ 
+        $file = order::where('order_id',$request->order_id)->first(); 
+        // $file->image = $request->;
+        // $file->save();
+        return response()->json([$request],200);
+    }
+
     public function fillOrder(Request $request, order $order){       
         $edit = order::where('order_id', $request->order_id)->first();   
         $edit->total_price=$request->net_amount;
@@ -50,6 +57,8 @@ class OrderController extends Controller
         $result = $edit->save(); 
         return response()->json(true,200);
     }
+
+
 
     public function deleteFromCart(Request $request){
         try {
