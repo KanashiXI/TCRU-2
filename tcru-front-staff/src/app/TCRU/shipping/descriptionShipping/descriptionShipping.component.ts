@@ -22,7 +22,8 @@ export class DescriptionShippingComponent implements OnInit {
   
   dataSource: OrderInterface[];
   dataForm: OrderInterface[];
-  statusArr: StatusInterface[] = [];
+  // statusArr: StatusInterface[] = [];
+  statusArr: OrderInterface[] = [];
   reactiveForm: FormGroup;
 
   order_number: Number;
@@ -72,7 +73,7 @@ export class DescriptionShippingComponent implements OnInit {
           province: this.dataForm[0].province,
           postal_code: this.dataForm[0].postal_code,
           telephone: this.dataForm[0].telephone,
-          status: this.dataForm[0].status
+          status: this.dataForm[0].status_id
         })
         this.order_number = this.reactiveForm.get('order_id').value
         this.shUserfirstname = this.reactiveForm.get('userfirstname').value
@@ -110,13 +111,6 @@ export class DescriptionShippingComponent implements OnInit {
   }
 
   getStatus() {
-    // var obj = {
-    //   id: event.value
-    // }
-    // this.shStatus = obj.id;
-    // this.reactiveForm.patchValue({
-    //   shStatus: this.shStatus
-    // })
     this.ShippingService.getStatus().subscribe(
       res => {
         this.statusArr = res;
