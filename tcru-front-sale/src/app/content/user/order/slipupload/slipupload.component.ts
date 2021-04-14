@@ -10,6 +10,7 @@ import { CartService } from 'src/app/shared/service/cart.service';
 export class SlipuploadComponent {
 
 
+
   constructor(
     private cartService: CartService,
   ) { }
@@ -30,6 +31,7 @@ export class SlipuploadComponent {
 
     const formdata = new FormData();
     formdata.append('image', this.files, this.files.name);
+    formdata.append('order_id', requestData.order_id);
     // if (event.target.files.length > 0) {
     //   const reader = new FileReader();
     //   let formdata = new FormData();
