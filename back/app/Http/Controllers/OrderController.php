@@ -38,11 +38,11 @@ class OrderController extends Controller
         }              
     }
 
-    public function fillImageOrder(Request $request){ 
+    public function fillImageOrder(Request $request, order $order){ 
         $file = order::where('order_id',$request->order_id)->first(); 
-        // $file->image = $request->;
-        // $file->save();
-        return response()->json([$request],200);
+        $file->image = $request->image;
+        $file->save();
+        return response()->json([$file],200);
     }
 
     public function fillOrder(Request $request, order $order){       

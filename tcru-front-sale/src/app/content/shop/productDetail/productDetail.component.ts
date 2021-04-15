@@ -102,6 +102,7 @@ export class ProductDetailComponent implements OnInit {
           retail_price: Number(curPrice) + Number(0),
         })
         this.cartService.addToCart(this.reactiveForm.getRawValue()).subscribe(res => {
+          this.cartService.changeCount();
           Swal.fire({
             icon: 'success',
             title: 'เพิ่มสินค้าสำเร็จ',
@@ -117,6 +118,7 @@ export class ProductDetailComponent implements OnInit {
           retail_price: Number(curPrice) + Number(oldPrice),
         })
         this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe(res => {
+          this.cartService.changeCount();
           Swal.fire({
             icon: 'success',
             title: 'เพิ่มสินค้าสำเร็จ',

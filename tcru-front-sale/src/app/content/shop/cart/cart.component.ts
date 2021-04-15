@@ -230,6 +230,7 @@ export class CartComponent implements OnInit {
             this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
               res => {
                 this.cartService.deleteFromCart(this.selectItem).subscribe(res => {
+                  this.cartService.changeCount();
                   this.ngOnInit();
                 });
                 Swal.fire({
@@ -330,6 +331,7 @@ export class CartComponent implements OnInit {
             '',
             'success',
           )
+          this.cartService.changeCount();
           this.ngOnInit()
 
           //dialog ลบสำเร็จ
