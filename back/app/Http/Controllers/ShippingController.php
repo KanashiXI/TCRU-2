@@ -63,8 +63,9 @@ class ShippingController extends Controller {
         // return response()->json($getall,200);
 
         $getall = DB::table('order')
-            // ->join('order', 'order.order_id', '=', 'shipping.order_id')
-            ->join('users', 'users.id', '=', 'order.user_id')
+            ->join('users', 'users.id', '=', 'order.user_id')            
+            ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id')
+            ->join('product', 'product.product_id', '=', 'order_detail.product_id')
             ->join('address', 'address.address_id', '=', 'order.address_id')
             ->join('provinces', 'provinces.id', '=', 'address.province_id')
             ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
@@ -76,7 +77,9 @@ class ShippingController extends Controller {
             'address.telephone as telephone',
             'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
             'address.postal_code as postal_code',
-            'status.name as status')
+            'status.name as status',
+            'order_detail.order_detail_id as detail_id', 'order_detail.product_quantity as quantity', 'order_detail.retail_price as retail_price',
+            'product.product_name as product_name')
             
             ->where('order.order_id', $request)
             // ->groupBy('order.order_id')
@@ -88,15 +91,6 @@ class ShippingController extends Controller {
     {       
         $edit = order::where('order_id', $request->order_id)->first();
         $edit->status=$request->status;
-        // $edit->amphures_id=$request->amphures_id;
-        // $edit->districts_id=$request->districts_id;
-        // $edit->postal_code=$request->postal_code;
-        // $edit->province_id=$request->province_id;
-        // $edit->geographic_id=$request->geographic_id;
-        // $edit->status=$request->status;
-        // $edit->telephone=$request->telephone;
-        // $edit->firstname=$request->firstname;
-        // $edit->lastname=$request->lastname;
         $result = $edit->save();
     }
 

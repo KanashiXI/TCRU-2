@@ -25,53 +25,64 @@
             </mat-card>
         </div>
     </div>
-
-    <div class="col-12">
-        <div class="card" style="margin-top: 50px; margin-right: 90px;">
-            <div class="card-header">
-                <h3 class="card-title">รายการจัดส่งสินค้า</h3>
-            </div>
-            <div class="card-body">
-                <table class="table" id="excel-table">
-                    <thead>
-                        <tr>
-                            <th>เลขที่สั่งซื้อ</th>
-                            <th>วันที่สั่งซื้อ</th>
-                            <th>เลขจัดส่ง</th>
-                            <th>วันจัดส่ง</th>
-                            <th>ประมาณการจัดส่ง</th>
-                            <th>ค่าจัดส่ง</th>
-                            <th>สถานะจัดส่ง</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-    
-                    <tbody>
-                        <tr *ngFor="let item of orderOnfilter; let i = index">
-                            <td>{{item.order_id}}</td>
-                            <td>{{item.order_date}}</td>
-                            <td>{{item.shipping_number}}</td>
-                            <td>{{item.send_date}}</td>
-                            <td>{{item.estimate}}</td>
-                            <td>{{item.shipping_price}}</td>
-                            <td>{{item.status_name}}</td>
-                            <td>
-                                <button mat-raised-button type="submit" (click)="onClickDetail(item.order_id)" routerLink="/descriptionShipping">
-                                    <span class="material-icons">description</span>
-                                </button>
-                                <!-- <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.promotion_id)" routerLink="/editpromotion">
-                                    <span class="material-icons">create</span>
-                                </button> -->
-                                <!-- <button mat-raised-button color="warn" (click)="onClickDelete(item.promotion_id)">
-                                    <span class="material-icons">delete</span>
-                                </button> -->
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+    <div class="row">
+        <div class="col-12">
+            <div class="card" style="margin-top: 50px; margin-right: 90px;">
+                <div class="card-header">
+                    <h3 class="card-title">รายการจัดส่งสินค้า</h3>
+                </div>
+                <div class="card-body">
+                    <table class="table" id="excel-table">
+                        <thead>
+                            <tr>
+                                <th>เลขที่สั่งซื้อ</th>
+                                <th>วันที่สั่งซื้อ</th>
+                                <th>เลขจัดส่ง</th>
+                                <th>วันจัดส่ง</th>
+                                <th>ประมาณการจัดส่ง</th>
+                                <th>ค่าจัดส่ง</th>
+                                <th>สถานะจัดส่ง</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+        
+                        <tbody>
+                            <tr *ngFor="let item of orderOnfilter; let i = index">
+                                <td>{{item.order_id}}</td>
+                                <td>{{item.order_date}}</td>
+                                <td>{{item.shipping_number}}</td>
+                                <td>{{item.send_date}}</td>
+                                <td>{{item.estimate}}</td>
+                                <td>{{item.shipping_price}}</td>
+                                <td>{{item.status_name}}</td>
+                                <td>
+                                    <button mat-raised-button type="submit" (click)="onClickDetail(item.order_id)" routerLink="/descriptionShipping">
+                                        <span class="material-icons">description</span>
+                                    </button>
+                                    <!-- <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.promotion_id)" routerLink="/editpromotion">
+                                        <span class="material-icons">create</span>
+                                    </button> -->
+                                    <!-- <button mat-raised-button color="warn" (click)="onClickDelete(item.promotion_id)">
+                                        <span class="material-icons">delete</span>
+                                    </button> -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-    
-    <!-- <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination" (pageChange)="getCustomers()"></ngb-pagination> -->
+    <div class="row">
+        <div class="col-12">
+            <mat-paginator
+                (page)="handlePageEvent($event)"
+                [length]="length"
+                [pageSize]="pageSize"
+                [showFirstLastButtons]="showFirstLastButtons"
+                [pageSizeOptions]="pageSizeOptions"
+                [pageIndex]="pageIndex">
+            </mat-paginator>
+        </div>
+    </div>
 </div>

@@ -7,6 +7,7 @@ import { OrderInterface } from './../../../interfaces/orderInterface';
 import { ShippingService } from './../../../Service/shippingService.service';
 import { StatusInterface } from './../../../interfaces/statusInterface';
 import { findIndex } from 'rxjs/operators';
+import {PageEvent} from '@angular/material/paginator';
 
 
 @Component({
@@ -30,6 +31,11 @@ export class DeliveryStatusComponent implements OnInit {
   typeList: OrderInterface[] = [];
   // ------------
 
+  length = 500;
+  pageSize = 10;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 25];
+  showFirstLastButtons = true;
 
   constructor(
     private ShippingService: ShippingService,
@@ -82,6 +88,12 @@ export class DeliveryStatusComponent implements OnInit {
       return (element.status_id == this.typeList[index].id)
     }
     
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.length = event.length;
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
   }
 
 }
