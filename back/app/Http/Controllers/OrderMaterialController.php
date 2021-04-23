@@ -34,17 +34,11 @@ class OrderMaterialController extends Controller
         return response()->json($data);
     }
 
-    // public function getorderMaterials()
-    // {
-    //     $getall = DB::table('order_material')
-    //         ->join('supplier', 'supplier.id', '=', 'order_material.id')
-    //         ->join('status_order', 'status_order.id', '=', 'order_material.status_order_id')
-    //         ->select('order_material.order_material_id', 'order_material.status_order', 'order_material.start_date', 'order_material.end_date')
-    //         ->where('order_material.order_material_id')
-    //         ->groupBy('order_material.order_material_id')
-    //         ->get(); 
-    //         return response()->json($getall,200);
-    // }
+    public function addOrderMaterials(Request $request)
+    {
+        $orderMaterialModel = new OrderMaterials();
+        $data = $orderMaterialModel->addOrderMaterials($request->all());
+    }
 
     public function destroys(Request $request)
     {

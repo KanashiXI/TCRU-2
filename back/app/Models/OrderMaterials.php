@@ -30,6 +30,11 @@ class OrderMaterials
         $data = DB::table("order_materail")->where("order_material_id", $id)->get()->first();
     }
 
+    function addOrderMaterials($data)
+    {
+        DB::table("order_materail")->insert($data);
+    }
+
     function deleteOrderMaterails($id)
     {
         DB::table("order_materail")->where("order_material_id",$id)->delete();
