@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { OrderMaterials } from '../../Models/OrderMaterials.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-show-order',
@@ -15,9 +16,8 @@ export class ShowOrderComponent implements OnInit {
   searchText: string;
   order_material_id: string;
   Search: string;
-  materialMessage: string;
+  OrderMMessage: string;
   dataArr: any;
-  material_name:any;
   page: any = 1;
   limit: any = 5;
   skip: any;
@@ -26,7 +26,8 @@ export class ShowOrderComponent implements OnInit {
   constructor(private http: HttpClient,
     private Order: OrderMaterialsService,
     private route: ActivatedRoute,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    private toastr: ToastrService,) { }
 
   ngOnInit(): void {
     this.getOrder();
@@ -55,12 +56,16 @@ export class ShowOrderComponent implements OnInit {
 
   deleteOrderM(id)
   {
-    if(confirm('คุณต้องการลบฟรือไม่ ?') == true)
+    if(confirm('คุณต้องการลบหรือไม่ ?') == true)
     this.Order.deleteOrderM(id).subscribe(result => {
       this.getOrder();
+      this.spinner.show();
+      this.toastr.success('ลบรายการสั่งซื้อสำเร็จ!');
     },
     err => {
+      this.toastr.error('ลบรายการสั่งซื้อไม่สำเร็จ!!');
+      this.spinner.show();
       console.log(err);
-    })
+    });
   }
 }

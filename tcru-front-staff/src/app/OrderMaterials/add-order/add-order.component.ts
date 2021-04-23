@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ValidatorFn, AbstractControl, FormArray } from '@angular/forms';
 import { OrderMaterialsService } from '../../Service/order-materials.service';
 import { OrderMaterials } from '../../Models/OrderMaterials.model';
+import { CurrencyPipe } from "@angular/common";
 
 @Component({
   selector: 'app-add-order',
@@ -14,21 +15,23 @@ export class AddOrderComponent implements OnInit {
 
   dataArr: any;
   form: FormGroup;
+  Materials: FormGroup;
   id: any;
   OrderMaterials = new OrderMaterials();
   date: any;
   from: Date
   to: Date
   suppilerArr: any;
+  sum_price: number = 0;
+  sum_discount: number = 0;
+  materialsArrayPrice: any;
+  materialsArrayDiscount: any;
 
   constructor(private fb: FormBuilder,
     private http: HttpClient,
     private OrderM: OrderMaterialsService,
-    private route: ActivatedRoute) { 
-      this.form = this.fb.group({
-        credentials: this.fb.array([]),
-      });
-    }
+    private route: ActivatedRoute,
+    private currencyPipe: CurrencyPipe) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -38,21 +41,70 @@ export class AddOrderComponent implements OnInit {
   createForm()
   {
     this.form = this.fb.group({
-      shop_id: ['', [Validators.required]],
-      contact_person: ['', [Validators.required]],
-      phone_contact_person: ['', [Validators.required]],
-      order_name: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      start_date: ['', [Validators.required]],
-      end_date: ['', [Validators.required]],
-      material_name: ['', [Validators.required]],
-      detail: ['', [Validators.required]],
-      quantity: ['', [Validators.minLength(0),]],
-      price: ['', [Validators.minLength(0),]],
-      discount: ['', [Validators.minLength(0),]],
-      vat: ['', [Validators.minLength(0),]]
-    })
+      shop_name: [''],
+      contact_person: [''],
+      phone_contact_person: [''],
+      order_name: [''],
+      address: [''],
+      start_date: [''],
+      end_date: [''],
+      materials: this.fb.array([])
+    });
   }
+
+  materials(): FormArray
+  {
+    return this.form.get("materials") as FormArray
+  }
+
+  newMaterials(): FormGroup
+  {
+    return this.fb.group(
+      {
+        material_name: '',
+        detail: '',
+        quantity: '',
+        price: '',
+        discount: '',
+        vat: '',
+        TotalPrice: [{ value: "", disabled: true }]
+      }
+    )
+  }
+
+  addMaterials()
+  {
+    this.materials().push(this.newMaterials());
+  }
+
+  removeMaterials(i: number)
+  {
+    this.materials().removeAt(i);
+  }
+
+  sumPrice(materialsArrayPrice)
+  {
+    this.sum_price = 0;
+    for (let i in materialsArrayPrice)
+    {
+      let totalUnitPrice = materialsArrayPrice[i].quantity * materialsArrayPrice[i].price;
+      this.sum_price += totalUnitPrice;
+    }
+  }
+
+  sumDiscount(materialsArrayDiscount)
+  {
+    this.sum_discount = 0;
+    for (let i in materialsArrayDiscount)
+    {
+      let totalUnitDiscount = (materialsArrayDiscount[i].discount + materialsArrayDiscount[i].discount) / 100;
+      this.sum_discount += totalUnitDiscount
+    }
+  }
+
+  
+
+  
 
   // orderMaterial()
   // {
@@ -74,8 +126,8 @@ export class AddOrderComponent implements OnInit {
     this.to = source.target.valueAsDate;
   }
 
-  get shop_id() {
-    return this.form.get('shop_id')
+  get shop_name() {
+    return this.form.get('shop_name')
   }
 
   get contact_person(){
@@ -103,27 +155,27 @@ export class AddOrderComponent implements OnInit {
   }
 
   get material_name(){
-    return this.form.get('material_name')
+    return this.form.get('Materials').get('material_name')
   }
 
   get detail(){
-    return this.form.get('detail')
+    return this.form.get('Materials').get('detail')
   }
 
   get quantity(){
-    return this.form.get('quantity')
+    return this.form.get('Materials').get('quantity')
   }
 
   get price(){
-    return this.form.get('price')
+    return this.form.get('Materials').get('price')
   }
 
   get discount(){
-    return this.form.get('discount')
+    return this.form.get('Materials').get('discount')
   }
 
   get vat(){
-    return this.form.get('vat')
+    return this.form.get('Materials').get('vat')
   }
 
 }

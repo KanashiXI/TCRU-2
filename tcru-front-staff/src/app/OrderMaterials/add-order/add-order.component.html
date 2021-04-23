@@ -22,7 +22,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>ชื่อร้านค้า</label>
-                                    <select class="form-control" formControlName="shop_id" [(ngModel)]=OrderMaterials.shop_id>
+                                    <select class="form-control" formControlName="shop_name" [(ngModel)]=OrderMaterials.shop_name>
                                         <option value="">ร้านค้า</option>
                                         <option *ngFor="let suppiler of suppilerArr" value="{{suppiler.id}}">{{suppiler.store_name}}</option>
                                     </select>
@@ -64,14 +64,14 @@
                             <!-- เลือกวันที่ -->
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label>วันที่สั่งซื้อวัตถุดิบ</label> <br />
+                                    <label>วันที่สั่งซื้อวัตถุดิบ</label>
                                     <input type="date" [value]="from | date:'yyyy-MM-dd'" (input)="updateFromDate($event)" class="form-control" placeholder="วันที่สั่งซื้อวัตถุดิบ" />
                                 </div>
                             </div>
 
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label>วันที่ได้รับวัตถุดิบ</label> <br />
+                                    <label>วันที่ได้รับวัตถุดิบ</label>
                                     <input type="date" [value]="to | date:'yyyy-MM-dd'" (input)="updateToDate($event)" class="form-control" placeholder="วันที่ได้รับวัตถุดิบ" />
                                 </div>
                             </div>
@@ -95,15 +95,13 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>ชื่อวัตถุดิบ</label>
-                                    <input type="text" class="form-control" formcontrolName="material_name">
                                 </div>
                             </div>
 
                             <!-- รายละเอียด -->
-                            <div class="col-sm-5">
+                            <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>รายละเอียด</label>
-                                    <textarea formControlName="detail" type="text" class="form-control"></textarea>
                                 </div>
                             </div>
 
@@ -111,7 +109,6 @@
                             <div class="col-sm-1">
                                 <div class="form-group">
                                     <label>จำนวน</label>
-                                    <input type="text" class="form-control" formcontrolName="quantity">
                                 </div>
                             </div>
 
@@ -119,7 +116,6 @@
                             <div class="col-sm-1">
                                 <div class="form-group">
                                     <label>ราคา</label>
-                                    <input type="text" class="form-control" formcontrolName="price">
                                 </div>
                             </div>
 
@@ -127,7 +123,6 @@
                             <div class="col-sm-1">
                                 <div class="form-group">
                                     <label>ส่วนลด</label>
-                                    <input type="text" class="form-control" formcontrolName="discount">
                                 </div>
                             </div>
 
@@ -135,15 +130,71 @@
                             <div class="col-sm-1">
                                 <div class="form-group">
                                     <label>Vat</label>
-                                    <input type="text" class="form-control" formcontrolName="vat">
                                 </div>
                             </div>
+                        </div>
 
-                            <!-- ปุ่มเพิ่มรายการ -->
-                            <div class="col-sm-1">
-                                <button class="btn btn-success">เพิ่ม</button>
+                        <div formArrayName="materials" *ngFor="let material of materials().controls; let i = index" [formGroupName]="i">
+                            <div class="row">
+                                <!-- เพิ่มรายการสินค้า -->
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formcontrolName="material_name">
+                                    </div>
+                                </div>
+
+                                <!-- รายละเอียด -->
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <textarea formControlName="detail" type="text" class="form-control"></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- จำนวน -->
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formcontrolName="quantity">
+                                    </div>
+                                </div>
+
+                                <!-- ราคา/ชิ้น -->
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formcontrolName="price">
+                                    </div>
+                                </div>
+
+                                <!-- ส่วนลด -->
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formcontrolName="discount">
+                                    </div>
+                                </div>
+
+                                <!-- จำนวนภาษีมูลค่าเพิ่ม -->
+                                <div class="col-sm-1">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" formcontrolName="vat">
+                                    </div>
+                                </div>
+
+                                <!-- <div class="col-sm-1">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                </div> -->
+
+                                <div class="col-sm-1">
+                                    <button (click)="removeMaterials(i)" class="btn btn-danger">ลบ</button>
+                                </div>
                             </div>
                         </div>
+                        <!-- ปุ่มเพิ่มรายการ -->
+                        <div class="col-sm-1">
+                            <button class="btn btn-success" (click)="addMaterials()">เพิ่ม</button>
+                        </div>
+
+
+
+
                     </div>
                 </div>
                 <br>
@@ -159,8 +210,8 @@
                 <div class="card card-primary">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-3">ยอดรวมสินค้า</div>
-                            <div class="col-sm-3">...</div>
+                            <div class="col-sm-3">ยอดรวม</div>
+                            <div class="col-sm-3">{{sum_price | currency: 'THB' : 'symbol-narrow' : '1.2-2'}}</div>
                         </div>
 
                         <div class="row">

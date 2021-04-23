@@ -23,6 +23,11 @@ export class OrderMaterialsService {
     return this.http.post('http://localhost:5000/api/Ordermaterial1',data);
   }
 
+  addOrderM(data)
+  {
+    return this.http.post('http://localhost:5000/api/addorderM', data);
+  }
+
   deleteOrderM(id)
   {
     return this.http.delete('http://localhost:5000/api/deleteOrderM/'+id)

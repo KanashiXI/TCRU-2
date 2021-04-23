@@ -11,7 +11,7 @@
                     </div>
                     <!-- textค้นหา -->
                     <div class="col-sm-3">
-                        <input type="text" class="form-control" placeholder="ค้นหา" name="search" [(ngModel)]="searchText" autocomplete="off">
+                        <input type="search" class="form-control" placeholder="ค้นหา" name="search" [(ngModel)]="searchText" autocomplete="off">
                     </div>
                 </div>
             </div>
@@ -25,22 +25,22 @@
                     <!-- หัวตาราง -->
                     <thead>
                         <th>ใบสั่งซื้อ</th>
-                        <th>สถานะ</th>
                         <th>วันที่สั่งซื้อวัตถุดิบ</th>
                         <th>วันที่รับวัตถุดิบ</th>
                         <th>ยอดเงินรวม</th>
                         <th>ยอดสุทธิ</th>
+                        <th>สถานะ</th>
                         <th>รายละเอียด | แก้ไข | ลบ</th>
                     </thead>
                     <!-- ข้อมูลในตาราง -->
                     <tbody>
                         <tr *ngFor="let mat of dataArr | filter:searchText">
                             <td>{{mat.order_name}}</td>
-                            <td>{{mat.status}}</td>
                             <td>{{mat.start_date}}</td>
                             <td>{{mat.end_date}}</td>
                             <td>{{mat.sum_price}}</td>
                             <td>{{mat.sum_materials}}</td>
+                            <td>{{mat.status}}</td>
                             <td>
                                 <div class="btn-group btn-group-sm">
                                     <button class="btn" routerLink="detail">

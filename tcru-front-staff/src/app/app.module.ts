@@ -91,6 +91,7 @@ import { NgMultiSelectDropDownModule  } from 'ng-multiselect-dropdown';
 import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
+import { CurrencyPipe } from "@angular/common";
 
 const appRoutes: Routes = [
   {
@@ -316,6 +317,7 @@ const appRoutes: Routes = [
     // NgSelectModule
   ],
   providers: [
+    CurrencyPipe
   ],
   bootstrap: [
     AppComponent,
