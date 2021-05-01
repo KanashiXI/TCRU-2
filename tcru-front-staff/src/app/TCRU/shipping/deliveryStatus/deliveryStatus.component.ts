@@ -31,12 +31,14 @@ export class DeliveryStatusComponent implements OnInit {
   orderOnfilter: OrderInterface[] = [];
   // typeList: StatusInterface[] = [];
   typeList: OrderInterface[] = [];
-  // ------------
+  
+  chooseAddress: boolean = false;
+  shAddress: boolean = false;
+  choosen: OrderInterface[] = [];
 
-  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
-  orderFilter: MatTableDataSource<OrderInterface>;
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  orderAddressSelected : OrderInterface[] = [];
+  addressList: OrderInterface[];
+  selectAddress: OrderInterface[] = [];
 
   constructor(
     private ShippingService: ShippingService,
@@ -60,7 +62,7 @@ export class DeliveryStatusComponent implements OnInit {
     )
     this.getStatus();
     console.log(this.dataSource)
-    
+    this.getAddress();
   }
 
   onClickDetail(data) {
@@ -79,6 +81,12 @@ export class DeliveryStatusComponent implements OnInit {
   onClickSelectType(index) {
     this.orderOnfilter = this.dataSource.filter((element) => this.filterByType(element, index));
     console.log(this.orderOnfilter)
+    if(index == 1){
+      this.shAddress = true;
+    } else {
+      this.shAddress = false;
+    }
+    console.log(this.shAddress)
   }
 
   filterByType(element, index) {
@@ -90,4 +98,54 @@ export class DeliveryStatusComponent implements OnInit {
     }
     
   }
+
+  changeSelection(orderId) {
+    this.fetchSelectedItems();
+    // this.getEditForm(orderId);
+    // this.selectAddress = this.orderAddressSelected.filter(value => {
+    //   return Number(value.order_id) == Number(orderId)
+    // });
+    // console.log(this.selectAddress) 
+    this.getAddress()
+    console.log(this.orderAddressSelected)
+  }
+
+  getAddress(){
+    this.ShippingService.getShippingAddress().subscribe(
+      res => {
+        this.orderAddressSelected =  this.orderOnfilter.filter(value => {
+          return value.chooseAddress;
+        });
+      }
+    )
+    // console.log(this.orderAddressSelected)
+  }
+
+  fetchSelectedItems() {
+    this.choosen = this.orderOnfilter.filter(value => {
+      return value.chooseAddress;
+    });
+    console.log(this.choosen)
+    // this.fetchAddress()
+  }
+
+  // fetchAddress() {
+  //   this.orderAddressSelected = this.addressList.filter(value => {
+  //     return value.address;
+  //   });
+  //   console.log(this.orderAddressSelected)
+  // }
+
+  // getEditForm(data) {
+  //   this.ShippingService.getOneShipping(data).subscribe(
+  //     res => {
+  //       this.addressList = res;
+  //       // this.fetchAddress()
+  //       this.orderAddressSelected.push
+
+  //     },
+  //     error => this.errorMessage = <any>error
+  //   )
+    
+  // }
 }

@@ -41,4 +41,8 @@ export class ApiConstants {
     public static get editStatusURL(): string {
         return '/api/editStatus';
     }
+
+    public static get getShippingAddressURL(): string {
+        return '/api/getShippingAddress';
+    }
 }

@@ -46,4 +46,8 @@ export class ShippingService {
     return this.http.post<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.editStatusURL}`, data);
   }
 
+  getShippingAddress() {
+    return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getShippingAddressURL}`);
+  }
+
 }

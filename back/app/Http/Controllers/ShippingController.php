@@ -57,6 +57,24 @@ class ShippingController extends Controller {
         return response()->json($getall,200);
     }
 
+    public function getShippingAddress()
+    {
+        $getall = DB::table('order')
+            ->join('status', 'status.id', '=', 'order.status')
+            ->join('address', 'address.address_id', '=', 'order.address_id')
+            ->join('provinces', 'provinces.id', '=', 'address.province_id')
+            ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
+            ->join('districts', 'districts.id', '=', 'address.districts_id')
+            ->select('order.order_id', 'order.address_id', 'address.firstname', 'address.lastname',
+                    'address.address', 'address.telephone as telephone',
+                    'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
+                    'address.postal_code as postal_code')
+            // ->where('order.order_id', $request)
+            ->groupBy('order.order_id')
+            ->get(); 
+        return response()->json($getall,200);
+    }
+
     public function getOneShipping($request)
     {
         // $getall = order::where('order_id', $request)->get();  
