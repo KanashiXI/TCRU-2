@@ -72,6 +72,7 @@ Route::group([
 
     // coupon
     Route::get('coupon/{user_id}','CouponController@checkCoupon');
+    Route::get('generatecoupon','CouponController@generateRandomString');
 
     // ออเดอร์
     Route::post('cartcheckout','OrderController@createOrder');

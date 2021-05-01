@@ -39,10 +39,26 @@ class OrderController extends Controller
     }
 
     public function fillImageOrder(Request $request, order $order){ 
-        $file = order::where('order_id',$request->order_id)->first(); 
-        $file->image = $request->image;
-        $file->save();
-        return response()->json([$file],200);
+        // $file = order::where('order_id',$request->order_id)->first(); 
+        // $file = $request->file('image');
+        // $file->save();
+
+        if ($request->hasFile('image'))
+         {
+            $file      = $request->file('image');
+            $filename  = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+            $picture   = date('His').'-'.$filename;
+            //move image to public/img folder
+            $file->move(public_path('img'), $picture);
+            return response()->json(["message" => "Image Uploaded Succesfully"]);
+         } 
+        else
+        {
+            return response()->json(["message" => "Select image first."]);
+        }
+
+        // return response()->json([$file],200);
     }
 
     public function fillOrder(Request $request, order $order){       
