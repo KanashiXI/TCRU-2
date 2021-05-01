@@ -74,6 +74,37 @@
         </div>
       </div>
     </div>
+    <br><br>
+    <div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-header">
+            <h5>รายการสั่งซื้อ</h5>
+          </div>
+          <div class="card-body">
+            <table class="table" id="excel-table">
+              <thead>
+                <tr class="center">
+                  <th></th>
+                  <th>ชื่อสินค้า</th>
+                  <th>จำนวน</th>
+                  <th>ราคา</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of dataForm; index as i">
+                  <td class="center">{{i+1}}</td>
+                  <td>{{item.product_name}}</td>
+                  <td class="center">{{item.quantity}}</td>
+                  <td class="center">{{item.retail_price}}</td>
+                </tr>
+              </tbody>    
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

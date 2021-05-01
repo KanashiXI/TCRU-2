@@ -1,12 +1,15 @@
+import { MatTableDataSource } from '@angular/material/table';
 import { statusOrder } from './../../../OrderMaterials/Interface/statusOrder';
 import { element } from 'protractor';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 // import { ShippingInterface } from './../../../interfaces/shippingInterface';
 import { OrderInterface } from './../../../interfaces/orderInterface';
 import { ShippingService } from './../../../Service/shippingService.service';
 import { StatusInterface } from './../../../interfaces/statusInterface';
 import { findIndex } from 'rxjs/operators';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatSort} from '@angular/material/sort';
 
 
 @Component({
@@ -30,6 +33,10 @@ export class DeliveryStatusComponent implements OnInit {
   typeList: OrderInterface[] = [];
   // ------------
 
+  displayedColumns: string[] = ['id', 'name', 'progress', 'color'];
+  orderFilter: MatTableDataSource<OrderInterface>;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private ShippingService: ShippingService,
@@ -83,5 +90,4 @@ export class DeliveryStatusComponent implements OnInit {
     }
     
   }
-
 }

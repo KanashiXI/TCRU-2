@@ -28,4 +28,8 @@ export interface OrderInterface {
     postal_code?: string;
     telephone?: string;
     id?: string;
+    detail_id?: number;
+    product_name?: string;
+    quantity?: number;
+    retail_price?: number;
 }

@@ -24,9 +24,9 @@ export class ShowPromotionComponent implements OnInit {
   ) { }
 
   handleToggle(i): void {
-    this.dataSource.forEach((item) => {
-      item.status = 0;
-    });
+    // this.dataSource.forEach((item) => {
+    //   item.status = 0;
+    // });
     var x = i
     this.dataSource[x].status = 1;
     this.PromotionService.editPromotionStatus(this.dataSource).subscribe();

@@ -38,6 +38,7 @@ export class DescriptionShippingComponent implements OnInit {
   shPostal_code: string;
   shTelephone: string;
   shStatus: string;
+  shDetail_id: number;
 
   constructor(
     private ShippingService: ShippingService,
@@ -73,7 +74,8 @@ export class DescriptionShippingComponent implements OnInit {
           province: this.dataForm[0].province,
           postal_code: this.dataForm[0].postal_code,
           telephone: this.dataForm[0].telephone,
-          status: this.dataForm[0].status_id
+          status: this.dataForm[0].status_id,
+          detail_id: this.dataForm[0].detail_id,
         })
         this.order_number = this.reactiveForm.get('order_id').value
         this.shUserfirstname = this.reactiveForm.get('userfirstname').value
@@ -87,6 +89,7 @@ export class DescriptionShippingComponent implements OnInit {
         this.shPostal_code = this.reactiveForm.get('postal_code').value
         this.shTelephone = this.reactiveForm.get('telephone').value
         this.shStatus = this.reactiveForm.get('status').value
+        this.shDetail_id = this.reactiveForm.get('detail_id').value
       },
       error => this.errorMessage = <any>error
     )
@@ -107,6 +110,7 @@ export class DescriptionShippingComponent implements OnInit {
       postal_code: ['',],
       telephone: ['',],
       status: ['',[Validators.required]],
+      detail_id: ['',],
     })
   }
 
@@ -171,5 +175,8 @@ export class DescriptionShippingComponent implements OnInit {
   }
   get status() {
     return this.reactiveForm.get('status')
+  }
+  get detail_id() {
+    return this.reactiveForm.get('detail_id')
   }
 }
