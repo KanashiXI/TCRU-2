@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderMaterialsService } from '../../Service/order-materials.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { OrderMaterials } from '../../Models/OrderMaterials.model';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -22,6 +22,7 @@ export class ShowOrderComponent implements OnInit {
   limit: any = 5;
   skip: any;
   totalCount: any;
+  id: any;
 
   constructor(private http: HttpClient,
     private Order: OrderMaterialsService,
@@ -30,6 +31,7 @@ export class ShowOrderComponent implements OnInit {
     private toastr: ToastrService,) { }
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params.id;
     this.getOrder();
   }
 

@@ -39,4 +39,10 @@ class OrderMaterials
     {
         DB::table("order_materail")->where("order_material_id",$id)->delete();
     }
+
+    function getunit_material()
+    {
+        $data = DB::table("unit_material")->get();
+        return $data;
+    }
 }

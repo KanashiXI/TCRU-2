@@ -23,6 +23,10 @@ export class OrderMaterialsService {
     return this.http.post('http://localhost:5000/api/Ordermaterial1',data);
   }
 
+  getunit_material(){
+    return this.http.get('http://localhost:5000/api/unit_material');
+   }
+
   addOrderM(data)
   {
     return this.http.post('http://localhost:5000/api/addorderM', data);

@@ -43,11 +43,11 @@
                             <td>{{mat.status}}</td>
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <button class="btn" routerLink="detail">
+                                    <button class="btn" routerLink="/printOrder/{{mat.order_material_id}}">
                                     <mat-icon class="icon">visibility</mat-icon>
                                 </button>
-                                    <button class="btn btn-warning" routerLink="edit">
-                                    <mat-icon class="icon">create</mat-icon>
+                                    <button class="btn btn-warning" routerLink="/editOrder/{{mat.order_material_id}}">
+                                    <mat-icon class="icon">edit</mat-icon>
                                 </button>
                                     <button class="btn btn-danger" (click)="deleteOrderM(mat.order_material_id)">
                                     <mat-icon class="icon">delete_sweep</mat-icon>

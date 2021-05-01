@@ -147,6 +147,7 @@ Route::group([
     Route::post('/addorderM', 'OrderMaterialController@addOrderMaterials');
     Route::post('/Ordermaterial1', 'OrderMaterialController@getorderMaterialsSkipAndLimit');
     Route::delete('/deleteOrderM/{order_material_id}', 'OrderMaterialController@destroys');
+    Route::get('/unit_material', 'OrderMaterialController@getunit_material');
 });
 
 

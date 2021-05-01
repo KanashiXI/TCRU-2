@@ -47,5 +47,12 @@ class OrderMaterialController extends Controller
         $orderMaterialModel->deleteOrderMaterails($id);
         return response()->json(['id' => $id]);
     }
+
+    public function getunit_material()
+    {
+        $orderMaterialModel = new OrderMaterials();
+        $data = $orderMaterialModel ->getunit_material();
+        return response()->json($data);
+    }
 }
 
