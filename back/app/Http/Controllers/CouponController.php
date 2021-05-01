@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\order;
+use App\coupon;
 use DB;
 
 class CouponController extends Controller
@@ -11,31 +12,75 @@ class CouponController extends Controller
     public function checkCoupon($request)
     {
 
+        $getOrder = DB::table('users')
+            ->join('order', 'order.user_id', '=', 'users.id')
+            ->select( 'order_id', 'coupon_status')
+            ->where('users.id', $request)
+            // ->where('order.status', '>', 0)
+            // ->where('order.check_for_coupon ','=', 1 )
+            ->get(); 
 
         $getall = DB::table('users')
             ->join('order', 'order.user_id', '=', 'users.id')
             ->select( DB::raw('sum(order.net_amount) as sumnet'))
             ->where('users.id', $request)
-            ->where('order.status', '>', 0)
+            // ->where('order.status', '>', 0)
             // ->where('order.check_for_coupon ','=', 1 )
             ->get(); 
-            return response()->json($getall,200);
+        // return response()->json($getall,200);
+        $total = $getall[0]->sumnet;
+        if($total >= 10000){
 
-        // if(10000){
-        //     $voucher->code = $this->generateRandomString(6);
-        // }else{
-        // }     
-    }
 
-    public  function generateRandomString($length = 20) {
+        $length = 20;
+        // generate coupon    
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';
         for ($i = 0; $i < $length; $i++) {
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
-        return $randomString;
+        $data = new coupon;
+        $data->key = $randomString;
+        $data->coupon_status = 0;
+        $data->user_id = $request;
+        $data->save();
+        // $fillkey = coupon::where('user_id', $request)->first();
+        // $result = $edit->save();
+        //addCoupon()
+        //changeStatusOrder() getorderId
+
+        DB::beginTransaction();
+        try {
+            foreach($getOrder->all() as $key => $item){
+                // $status['order_id']= 1;
+                $status['coupon_status']= 1;
+                $status->save();
+            } 
+
+            DB::commit();
+            return response()->json('success',201);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error'=>$e->getMessage()],500);
+        }
+        //
+            // $voucher->code = $this->generateRandomString(6);
+        }else{
+
+        }
+        return $total;    
     }
+
+    // public  function generateRandomString($length = 20) {
+    //     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    //     $charactersLength = strlen($characters);
+    //     $randomString = '';
+    //     for ($i = 0; $i < $length; $i++) {
+    //         $randomString .= $characters[rand(0, $charactersLength - 1)];
+    //     }
+    //     return $randomString;
+    // }
     
 
 }

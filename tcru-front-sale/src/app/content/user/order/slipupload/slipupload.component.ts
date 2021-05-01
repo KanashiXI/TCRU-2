@@ -15,7 +15,7 @@ export class SlipuploadComponent {
     private cartService: CartService,
   ) { }
 
-
+  success: number;
   files: File = null;
 
   onFileSelected(event) {
