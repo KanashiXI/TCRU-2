@@ -6,36 +6,30 @@
             <mat-icon class="icon" [@iconAnimation]="sidebarState">dashboard</mat-icon>
             <a class="label" [@labelAnimation]="sidebarState">รายงาน</a>
         </mat-list-item>
-
-
-
         <mat-list-item (click)="showSubmenu = !showSubmenu">
             <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
             <a class="label" [@labelAnimation]="sidebarState">วัตถุดิบ</a>
         </mat-list-item>
-
         <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="showSubmenu && (isShowing || isExpanded)">
             <a class="list" mat-list-item routerLink="/addm">ข้อมูลวัตถุดิบ</a>
             <a class="list" mat-list-item routerLink="/terminal" routerLinkActive="active">สต๊อกวัตถุดิบ</a>
             <a class="list" mat-list-item routerLink="/showOrderM" routerLinkActive="active">สั่งซื้อวัตถุดิบ</a>
         </div>
-
         <mat-list-item (click)="showSubSubMenu = !showSubSubMenu">
             <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubSubMenu}" *ngIf="isExpanded || isShowing">expand_more</mat-icon>
             <a class="label" [@labelAnimation1]="sidebarState">สินค้า</a>
         </mat-list-item>
-
         <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="showSubSubMenu && (isShowing || isExpanded)">
             <a class="list" mat-list-item routerLink="/showp">ข้อมูลสินค้า</a>
             <a class="list" mat-list-item routerLink="/stockp" routerLinkActive="active">สต๊อกสินค้า</a>
+            <a class="list" mat-list-item routerLink="/addstock" routerLinkActive="active">ผลิตสินค้า</a>
             <a class="list" mat-list-item routerLink="/ShowReveal" routerLinkActive="active">เบิกสินค้า</a>
+            <a class="list" mat-list-item routerLink="/addstock" routerLinkActive="active">ผลิตสินค้า</a>
         </div>
-
         <mat-list-item routerLinkActive="active-list-item" routerLink="shows" title="ร้านค้าวัตถุดิบ">
             <mat-icon class="icon" [@iconAnimation]="sidebarState">home</mat-icon>
             <a class="label" [@labelAnimation]="sidebarState">ร้านค้า</a>
         </mat-list-item>
-
         <mat-list-item routerLinkActive="active-list-item" routerLink="Customers" title="customers">
             <mat-icon class="icon" [@iconAnimation]="sidebarState">supervisor_account</mat-icon>
             <a class="label" [@labelAnimation]="sidebarState">ลูกค้า</a>

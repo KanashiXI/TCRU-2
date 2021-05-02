@@ -1,74 +1,132 @@
-<div class="main-container" style=" height:200vh;">
-  <h3 class="card-title">ใบผลิตสินค้า</h3>
-<div class="card card-primary">
+<div class="main-container" style="height: 155vh;" id="element-to-export">
+    <!-- <div class="card" style="margin-top: 30px; margin-right: 10px; margin-left: 10px;"> -->
+    
+    <h5 class="card-title">ผลิตสินค้า</h5>
 
-              <div class="card-body">
-                <form>
-                    <div class="row">
-                       
-                        <div class="form-group col-sm-2 ">
-                          <label>สินค้าที่จะผลิต</label>
-                          <select class="form-control"name="">
-                            <option value="">เลือก</option>
-                            <option ></option>
-                          </select>
-                        </div>
-                        
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label>วันที่ผลิต</label>
-                                <input formControlName="material_name" type="date" class="form-control"
-                                    placeholder="01/01/2563 ...">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                          <div class="form-group">
-                              <label>วันที่หมดอายุ</label>
-                              <input formControlName="material_name" type="date" class="form-control"
-                                  placeholder="01/01/2563 ...">
-                          </div>
-                      </div>
-
+    <!-- body -->
+    <section class="content-header">
+        <div class="card-body">
+            <form [formGroup]=form >
+                <!-- หัวเรื่องข้อมูลใบสั่งซื้อ -->
+                <div class="card-header">
+                    <div class="col-sm-12">
+                        <label>ข้อมูลการผลิตสินค้า</label>
                     </div>
-                </form>
-                <br>
-                <div class="card card-success">
-                    <div class="card-header">
-                        <h3 class="card-title">วัตถุดิบที่ใช้</h3>
-                    </div>
-                    <!-- /.card-header -->
-                    <form>
-                                        
-                        <div class="row">
-                            <div class="col-sm-5">
-                                <!-- text input -->
-                                <div class="form-group">
-                                    <label>วัตถุดิบ</label>
-                                    <input formControlName="material_id" type="text" class="form-control"
-                                        placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-sm-5">
-                                <div class="form-group">
-                                    <label>จำนวนที่ใช้</label>
-                                    <input formControlName="material_name" type="number" class="form-control"
-                                        placeholder="">
-                                </div>
-                            </div>
-                    
-                                <div class="col-sm-1">
-                                    <br>
-                                    <a href="#" aria-label="submit" class="btn btn-block btn-success" [routerLink]="['/addm']"
-                                        routerLinkActive="router-link-active">ยืนยัน</a>
-                                </div>
-        
-                            
-                                
-                        </div>
-                    </form>
-                    <!-- /.card-body -->
                 </div>
-            </div>
-            <!-- /.card-body -->
-          </div>
+
+                <div class="card card_primary">
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- เลือกร้านค้า -->
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                  <div class="form-group">
+                                    <label>เลือกสินค้าที่จะผลิต</label>
+                                    <select class="form-control"placeholder="เลือกสินค้าที่จะผลิต" formControlName="id" [(ngModel)]="product.product_name"(change)="formulabyproduct($event)">
+                                      <option *ngFor="let mat of dataArr" value="{{mat.id}}">{{mat.product_name}}
+                                      </option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+
+                            <!-- ผู้ติดต่อ -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>จำนวน</label>
+                                    <input type="text" class="form-control" formcontrolName="contact_person">
+                                </div>
+                            </div>
+
+                            <!-- เบอร์โทรศัพท์ผู้ติดต่อ -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>วันที่ผลิต</label>
+                                    <input type="text" class="form-control" formcontrolName="phone_contact_person">
+                                </div>
+                            </div>
+
+                            <!-- เลขที่ใบสั่งซื้อ -->
+                            <div class="col-sm-3">
+                              <div class="form-group">
+                                  <label>วันหมดอายุ</label>
+                                  <input type="text" class="form-control" formcontrolName="phone_contact_person">
+                              </div>
+                          </div>
+
+                            <!-- ที่อยู่ในการจัดส่งวัตถุดิบ -->
+
+
+                            <!-- เลือกวันที่ -->
+
+                        </div>
+                    </div>
+                
+
+                <!-- หัวเรื่องย่อยรายการวัตถุดิบ -->
+                
+                      <div class="card-body col-sm-11.5">
+                        <div class="card-header">
+                          <div class="col-sm-12">
+                            <label>รายการวัตถุดิบที่ใช้ผลิต</label>
+                          </div>
+                        </div>
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>ลำดับ</th>
+                              <th>วัตถุดิบ</th>
+                              <th>จำนวน</th>
+                              <th>หน่วยนับ</th>
+                              <th>รวม</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let mat1 of formulaArr ;let i=index " >
+                              <td></td>
+                              <td>{{i+1}}</td>
+                              <td>{{mat1.material_name}}</td>
+                              <td>{{mat1.quantity}}</td>
+                              <td>{{mat1.unit}}</td>
+                              <td>{{mat1.quantity*3}}</td>
+                              <td >
+                              </td>
+                              
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                 
+                    <br>
+                      <div class="row">
+                    <div class="form-group">
+                      <td>
+                        &nbsp; &nbsp;<button class="btn btn-secondary  " routerLink="/showp"> กลับ</button>
+                      </td>
+                    </div>
+                  </div>
+                 
+                <br>
+
+                <!-- หัวเรื่องสรุปรายการ -->
+                <br>
+
+                <!-- ปุ่มเพิ่ม-ยกเลิก -->
+                <div class="row">
+                    <div class="form-group">
+                        <td>
+                            <button class="btn btn-block btn-success ">ยืนยัน</button>
+                        </td>
+                        <td>
+                            &nbsp; <button class="btn btn-secondary  " routerLink="/showOrderM"> กลับ</button>
+                        </td>
+                    </div>
+                </div>
+
+            </form>
         </div>
+    </section>
+</div>

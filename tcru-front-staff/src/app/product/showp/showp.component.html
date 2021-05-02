@@ -7,55 +7,75 @@
             <a href="#" class="btn btn-success " [routerLink]="['/addp']"
               routerLinkActive="router-link-active">เพิ่มข้อมูลสินค้า <i
                 class="fas fa-arrow-circle "></i></a>&nbsp;&nbsp;
-                <a href="#" class="btn btn-success " [routerLink]="['/formula']"
+            <!-- <a href="#" class="btn btn-success " [routerLink]="['/formula']"
               routerLinkActive="router-link-active">เพิ่มสูตรการผลิต <i
-                class="fas fa-arrow-circle "></i></a>&nbsp;&nbsp;
-            <a href="#" class="btn btn-success " [routerLink]="['/']" 
-              routerLinkActive="router-link-active">รายละเอียดการผลิต <i class="fas fa-arrow-circle "></i></a>
+                class="fas fa-arrow-circle "></i></a> -->
           </div>
         </div>
       </div>
     </section>
+    <form [formGroup]=form >
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
+      <div class="col-sm-2">
+        <label>ค้นหาสินค้าจากประเภทสินค้า :</label>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <div class="form-group">
+            <select class="form-control" formControlName="category_id" [(ngModel)]="product.category_id"(change)="getProductCategory($event)">
+              <option  value="">ทั้งหมด</option>  
+              <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div></form>
     <h5 class="card-title">ข้อมูลสินค้า</h5>
     <div class="card card-success">
       <div class="card-body p-0">
-        <div class="search-hero">
-          <input  class="form-control " type="search" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="ค้นหา">
-        </div>
         <table class="table">
           <thead>
             <tr>
-              <th >รูปสินค้า</th>
-              <th (click)="sort('product_name')">ชื่อสินค้า<mat-icon>sort_by_alpha</mat-icon></th>
+              <th>ลำดับ</th>
+              <th >ชื่อสินค้า
+              </th>
               <th>ราคา</th>
               <th>น้ำหนัก/กรัม</th>
-              <th>จำนวนวันที่เก็บรักษา</th>
-              <th (click)="sort('name')">ประเภทสินค้า<mat-icon>sort_by_alpha</mat-icon></th>
-              <th>รายละเอียดวัตถุดิบ</th>
+              <th>วันที่เก็บรักษา</th>
+              <th>จุดวิกฤตของสินค้า</th>
+              <th >ประเภทสินค้า
+              </th>
+              <th>รูปสินค้า</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let mat of dataArr | filter:searchText  | orderBy:key:reverse">
-              <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px"></td>
+            <tr *ngFor="let mat of ProductCategory ;let i=index ">
+              <td>{{i+1}}</td>
               <td>{{mat.product_name}}</td>
               <td>{{mat.price}}</td>
-              <td>{{mat.weight}}</td>
               <td>{{mat.expire}}&nbsp;&nbsp;&nbsp;วัน</td>
+              <td>{{mat.weight}}</td>
               <td>{{mat.name}}</td>
-              <td>{{mat.material_name}}</td>
+              <!-- <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px"></td> -->
+              <!-- <td>{{mat.material_name}}</td> -->
               <!-- <td *ngFor="let friend of dataArr">{{friend.material_name}}</td> -->
               <td class="text-right py-0 align-middle">
                 <div class="btn-group btn-group-sm">
-                  <button class="btn btn-info" routerLink="/showformula/{{mat.id}}">
+                  <button class="btn btn-info" routerLink="/formula/{{mat.id}}">
                     <mat-icon>add</mat-icon>
                   </button>
                   <button class="btn btn-warning" routerLink="/editp/{{mat.id}}">
                     <mat-icon>edit</mat-icon>
                   </button>
-                  <button class="btn btn-default" routerLink="/addstock">
+                  <!-- <button class="btn btn-default" routerLink="/addstock">
                     <mat-icon>add_shopping_cart</mat-icon>
-                  </button>
+                  </button> -->
+                  <!-- <button class="btn btn-danger" (click)="deleteProduct(mat.id)">
+                    <mat-icon>delete_sweep</mat-icon>
+                  </button> -->
                 </div>
               </td>
             </tr>
@@ -64,7 +84,7 @@
       </div>
     </div>
     <br>
-    <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination"
-      (pageChange)="getProduct()"></ngb-pagination>
+    <!-- <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination"
+      (pageChange)="getProduct()"></ngb-pagination> -->
   </section>
 </div>

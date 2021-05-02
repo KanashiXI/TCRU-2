@@ -1,0 +1,48 @@
+
+
+  /* Style the label to display next to the inputs */
+
+  /* Style the submit button */
+  input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+  }
+  h5 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 1.67em;
+    margin-block-end: 1.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-family: 'Kanit', cursive;
+}
+.mat-sort-header-container {
+  align-items: center;
+}
+ngb-pagination ::ng-deep a {
+  color: black !important;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link {
+  border-color: #79994a;
+  background-color: #79994a;
+}
+
+ngb-pagination ::ng-deep .page-item.active .page-link:focus, .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}
+
+ngb-pagination ::ng-deep .page-link:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.1rem dimgrey;
+}
+.btn-success{
+  background-color: #79994a;
+}
+.form-control{
+  border: 1px solid #ffffff;
+}

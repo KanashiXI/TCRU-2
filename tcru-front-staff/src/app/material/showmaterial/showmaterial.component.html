@@ -69,6 +69,23 @@
               <div class="col-sm-3">
               </div>
               <div class="col-sm-2">
+                <label>จำนวนจุดวิกฤติ :</label>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <input formControlName="critical" type="text" class="form-control" [(ngModel)]="Materials.critical">
+                  <div *ngIf="critical.invalid && (critical.dirty || critical.touched)" class="text-error">
+                    <div *ngIf="critical.errors.required">
+                      กรุณากรอกชื่อวัตถุดิบ
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3">
+              </div>
+              <div class="col-sm-2">
                 <label>หน่วยนับ :</label>
               </div>
               <div class="col-sm-4">
@@ -109,7 +126,6 @@
                 <div class="form-group">
                   <input type="file" class="form-control" formControlName="image" (change)="imageUpload($event)">
                   <div *ngIf="image.invalid && (image.dirty || image.touched)" class="text-error">
-
                     <div *ngIf="image.errors.required">
                       กรุณาใส่รูปภาพ
                     </div>
@@ -130,9 +146,7 @@
             </td>
           </div>
         </div>
-
       </form>
     </div>
   </section>
-
 </div>

@@ -27,7 +27,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let mat of dataArr | filter:searchText">
+              <tr *ngFor="let mat of dataArr ">
                 <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px">
                 </td>
                 <td>{{mat.material_name}}</td>
@@ -38,9 +38,9 @@
                     <button class="btn btn-warning" routerLink="/editm/{{mat.material_id}}">
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <!-- <button class="btn btn-danger" (click)="deleteMaterial(mat.material_id)">
+                    <button class="btn btn-danger" (click)="deleteMaterial(mat.material_id)">
                       <mat-icon>delete_sweep</mat-icon>
-                    </button> -->
+                    </button>
                     <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
                   </div>
                 </td>

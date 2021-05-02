@@ -68,8 +68,7 @@
             </div>
             <div class="col-sm-4">
               <div class="form-group">
-                <input formControlName="price" type="number" class="form-control" [(ngModel)]="product.price"
-                   >
+                <input formControlName="price" type="number" class="form-control" [(ngModel)]="product.price">
                 <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-error">
                   <div *ngIf="price.errors.required">
                     กรุณากรอกราคาสินค้า
@@ -82,7 +81,7 @@
             <div class="col-sm-3">
             </div>
             <div class="col-sm-2">
-              <label>น้ำหนักสินค้า/กรัม :</label>
+              <label>น้ำหนักสินค้า :</label>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
@@ -90,6 +89,41 @@
                 <div *ngIf="weight.invalid && (weight.dirty || weight.touched)" class="text-error">
                   <div *ngIf="weight.errors.required">
                     กรุณากรอกน้ำหนักสินค้า
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>หน่วยการวัดน้ำหนัก :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div>
+                  <select class="form-control" formControlName="weight_unit" [(ngModel)]="product.weight_unit">
+                    <option value="">หน่วยการวัดน้ำหนัก</option>
+                    <option>กรัม</option>
+                    <option>มิลลิลิตร</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>จุดวิกฤติ :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input formControlName="critical" type="text" class="form-control" [(ngModel)]="product.critical">
+                <div *ngIf="critical.invalid && (critical.dirty || critical.touched)" class="text-error">
+                  <div *ngIf="critical.errors.required">
+                    กรุณากรอกจุดวิกฤติ
                   </div>
                 </div>
               </div>
@@ -160,9 +194,9 @@
         </div>
       </div>
       <br>
-      <div class="card-header">
+      <!-- <div class="card-header">
         <div class="col-sm-12">
-          <label>วัตถุดิบที่ใช้ในการผลิต</label>
+          <label>วัตถุดิบในการผลิต</label>
         </div>
       </div>
       <div class="card card-primary">
@@ -182,7 +216,7 @@
           </div>
         </div>
       </div>
-      <br>
+      <br> -->
       <div class="card-header">
         <div class="col-sm-12">
           <label>รูปภาพ</label>

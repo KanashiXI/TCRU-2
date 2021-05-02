@@ -7,17 +7,190 @@
           </div>
         </div>
       </div><!-- /.container-fluid -->
-      <h5 class="card-title">สูตรการผลิต</h5>
+      <h5 class="card-title">ข้อมูลสินค้า</h5>
     </section>
+    <form [formGroup]=form >
+
+      <div class="card-header">
+        <div class="col-sm-12">
+          <label>ข้อมูลสินค้า</label>
+        </div>
+      </div>
+      <div class="card card-primary">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>รูปสินค้า :</label>
+            </div>
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <input formControlName="product_name"  class="form-control"
+                  [(ngModel)]="product.image">
+                  <img [(ngModel)]="product.image" height="50px">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>ชื่อสินค้า :</label>
+            </div>
+            <div class="col-sm-4">
+              <!-- text input -->
+              <div class="form-group">
+                <input formControlName="product_name"  class="form-control"
+                  [(ngModel)]="product.product_name">
+                <div *ngIf="product_name.invalid && (product_name.dirty || product_name.touched)" class="text-error">
+                  <div *ngIf="product_name.errors.required">
+                    กรุณากรอกชื่อสินค้า
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>ประเภทสินค้า :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="form-group">
+                  <select class="form-control" formControlName="category_id" [(ngModel)]="product.category_id">
+                    <option value="">ประเภทสินค้า</option>
+                    <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+                  </select>
+                  <div *ngIf="category_id.invalid && (category_id.dirty || category_id.touched)" class="text-error">
+                    <div *ngIf="category_id.errors.required">
+                      กรุณาใส่ประเภทสินค้า
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>ราคาสินค้า :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input formControlName="price" type="number" class="form-control" [(ngModel)]="product.price"
+                  minlength=2 min=40>
+                <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-error">
+                  <div *ngIf="price.errors.required">
+                    กรุณากรอกราคาสินค้า
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>น้ำหนักสินค้า/กรัม :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input formControlName="weight" type="number" class="form-control" [(ngModel)]="product.weight">
+                <div *ngIf="weight.invalid && (weight.dirty || weight.touched)" class="text-error">
+                  <div *ngIf="weight.errors.required">
+                    กรุณากรอกน้ำหนักสินค้า
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>หน่วยนับ :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <div class="form-group">
+                  <select class="form-control" formControlName="unit_count_id" [(ngModel)]="product.unit_count_id">
+                    <option value="">หน่วยนับสินค้า</option>
+                    <option *ngFor="let mat of unit_countArr" value="{{mat.unit_count_id}}">{{mat.unit}}</option>
+                  </select>
+                  <div *ngIf="unit_count_id.invalid && (unit_count_id.dirty || unit_count_id.touched)"
+                    class="text-error">
+                    <div *ngIf="unit_count_id.errors.required">
+                      กรุณาใส่หน่วยนับสินค้า
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>จำนวนวันที่เก็บรักษา :</label>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <input formControlName="expire" type="number" class="form-control" [(ngModel)]="product.expire" min="1">
+                <div *ngIf="expire.invalid && (expire.dirty || expire.touched)" class="text-error">
+                  <div *ngIf="expire.errors.required">
+                    กรุณาจำนวนวันที่เก็บรักษา
+                  </div>
+                  <div *ngIf="expire.errors.min">
+                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-2">
+              <label>รายละเอียดของสินค้า :</label>
+            </div>
+            <div class="col-sm-4">
+              <!-- textarea -->
+              <div class="form-group">
+                <textarea class="form-control" rows="3" formControlName="Detail"
+                  [(ngModel)]="product.Detail"></textarea>
+                <div *ngIf="Detail.invalid && (Detail.dirty || Detail.touched)" class="text-error">
+                  <div *ngIf="Detail.errors.required">
+                    กรุณากรอกรายละเอียดของสินค้า
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+    </form>
+
     <div class="card card-success">
       <div class="card-body p-0">
+        <div class="card-header">
+          <div class="col-sm-12">
+            <label>สูตรการผลิต</label>
+          </div>
+        </div>
         <table class="table">
           <thead>
-            <tr>
+            <!-- <tr>
               <th>วัตถุดิบ</th>
               <th>จำนวน</th>
               <th></th>
-            </tr>
+            </tr> -->
           </thead>
           <tbody>
             <tr *ngFor="let mat of formula  ">

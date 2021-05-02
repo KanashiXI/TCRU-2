@@ -55,6 +55,8 @@ export class AddpComponent implements OnInit {
       expire: ['', [Validators.required]],
       category_id: ['', [Validators.required]],
       unit_count_id: ['', [Validators.required]],
+      critical: ['', [Validators.required]],
+      weight_unit: ['', [Validators.required]],
     });
   }
   getProduct() {
@@ -145,6 +147,12 @@ export class AddpComponent implements OnInit {
   }
   get unit_count_id() {
     return this.form.get('unit_count_id')
+  }
+  get critical() {
+    return this.form.get('critical')
+  }
+  get weight_unit() {
+    return this.form.get('weight_unit')
   }
 
 }

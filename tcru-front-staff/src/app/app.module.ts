@@ -84,7 +84,7 @@ import { EditPromotionComponent } from './TCRU/promotion/editPromotion/editPromo
 import { DeliveryStatusComponent } from './TCRU/shipping/deliveryStatus/deliveryStatus.component';
 import { DescriptionShippingComponent } from './TCRU/shipping/descriptionShipping/descriptionShipping.component';
 import { ShowOrderComponent } from './OrderMaterials/show-order/show-order.component';
-import { FormulaComponent } from './TCRU/formula/formula.component';
+import { FormulaComponent } from './product/formula/formula.component';
 import { ShowformulaComponent } from './product/showformula/showformula.component';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { NgMultiSelectDropDownModule  } from 'ng-multiselect-dropdown';
@@ -92,13 +92,15 @@ import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 import { CurrencyPipe } from "@angular/common";
-import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
-import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
-import { PrintOrderComponent } from './OrderMaterials/print-order/print-order.component';
-import { RevealInsideComponent } from './Reveal/reveal-inside/reveal-inside.component';
-import { RevealOutsideComponent } from './Reveal/reveal-outside/reveal-outside.component';
-import { ReturnComponent } from './Return/return/return.component';
-import { LoginComponent } from './Login/login/login.component';
+// import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
+// import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
+// import { PrintOrderComponent } from './OrderMaterials/print-order/print-order.component';
+// import { RevealInsideComponent } from './Reveal/reveal-inside/reveal-inside.component';
+// import { RevealOutsideComponent } from './Reveal/reveal-outside/reveal-outside.component';
+// import { ReturnComponent } from './Return/return/return.component';
+// import { LoginComponent } from './Login/login/login.component';
+import { ModalComponentComponent} from './modal-component/modal-component/modal-component.component';
+import { ShowproComponent } from './product/showpro/showpro.component';
 
 const appRoutes: Routes = [
   {
@@ -195,7 +197,7 @@ const appRoutes: Routes = [
     component: AddlotComponent
   },
   {
-    path: 'formula',
+    path: 'formula/:id',
     component: FormulaComponent
   },
   {
@@ -206,34 +208,41 @@ const appRoutes: Routes = [
     path: 'addOrder',
     component: AddOrderComponent
   },
+  // {
+  //   path: 'editOrder/:id',
+  //   component: EditOrderComponent
+  // },
+  // {
+  //   path: 'printOrder/:id',
+  //   component: PrintOrderComponent
+  // },
+  // {
+  //   path: 'ShowReveal',
+  //   component: ShowRevealComponent
+  // },
+  // {
+  //   path: 'RevealIn',
+  //   component: RevealInsideComponent
+  // },
+  // {
+  //   path: 'Return',
+  //   component: RevealOutsideComponent
+  // },
+  // {
+  //   path: 'login',
+  //   component: LoginComponent
+  //   path: 'Modal',
+  //   component: ModalComponentComponent
+  // },
   {
-    path: 'editOrder/:id',
-    component: EditOrderComponent
-  },
-  {
-    path: 'printOrder/:id',
-    component: PrintOrderComponent
-  },
-  {
-    path: 'ShowReveal',
-    component: ShowRevealComponent
-  },
-  {
-    path: 'RevealIn',
-    component: RevealInsideComponent
-  },
-  {
-    path: 'Return',
-    component: RevealOutsideComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
+    path: 'Showpro',
+    component: ShowproComponent
   }
 ];
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HeaderComponent,
     SidebarComponent,
@@ -265,16 +274,19 @@ const appRoutes: Routes = [
     AddOrderComponent,
     FormulaComponent,
     ShowformulaComponent,
-    ShowRevealComponent,
-    EditOrderComponent,
-    PrintOrderComponent,
-    RevealInsideComponent,
-    RevealOutsideComponent,
-    ReturnComponent,
-    LoginComponent
+    // ShowRevealComponent,
+    // EditOrderComponent,
+    // PrintOrderComponent,
+    // RevealInsideComponent,
+    // RevealOutsideComponent,
+    // ReturnComponent,
+    // LoginComponent
+    // ModalComponentComponent,
+    ShowproComponent,
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
+    
     CommonModule,
     BrowserModule,
     AppRoutingModule,
@@ -356,6 +368,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     CurrencyPipe
+    
   ],
   bootstrap: [
     AppComponent,

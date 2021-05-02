@@ -10,6 +10,9 @@ export class ProductService {
   getData() {
     return this.httpClient.get('http://localhost:5000/api/product');
   }
+  getProduct() {
+    return this.httpClient.get('http://localhost:5000/api/getProduct');
+  }
   getDatamaterial() {
     return this.httpClient.get('http://localhost:5000/api/material');
   }
@@ -20,6 +23,9 @@ export class ProductService {
   getcategory(){
     return this.httpClient.get('http://localhost:5000/api/categoryp');
    }
+   ProductCategory(data){
+    return this.httpClient.post('http://localhost:5000/api/ProductCategory',data);
+  }
    getunit_count(){
     return this.httpClient.get('http://localhost:5000/api/unit_count');
    }

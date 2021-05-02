@@ -65,6 +65,7 @@ export class AddmComponent {
       this.getMeterial();
       this.spinner.show();
       this.toastr.success('ลบข้อมูลวัตถุดิบสำเร็จ!'); 
+      console.log(id);
     },
     err => {
     this.toastr.error('ลบล้มข้อมูลวัตถุดิบเหลว!');

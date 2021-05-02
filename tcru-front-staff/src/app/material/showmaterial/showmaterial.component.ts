@@ -52,6 +52,8 @@ export class ShowmaterialComponent implements OnInit {
       category_id: ['', [Validators.required]],
       image: ['', [Validators.required]],
       unit_count_id: ['', [Validators.required]],
+      scale: ['', [Validators.required]],
+      critical: ['', [Validators.required]],
     });
   }
   getMeterial() {
@@ -125,8 +127,14 @@ export class ShowmaterialComponent implements OnInit {
   get image() {
     return this.form.get('image')
   }
+  get scale() {
+    return this.form.get('scale')
+  }
   get unit_count_id() {
     return this.form.get('unit_count_id')
+  }
+  get critical() {
+    return this.form.get('critical')
   }
 
 

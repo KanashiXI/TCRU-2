@@ -24,6 +24,7 @@ export class EditpComponent implements OnInit {
   unit_countArr: any;
   selectedMaterials:any = [];
   MaterialsList: any;
+  ProductCategory: any;
 
 
   constructor(private fb: FormBuilder,private http: HttpClient,
@@ -62,14 +63,34 @@ getData(){
   this.ProductService.geteditProduct(this.id).subscribe(res=>{
     this.date = res;
     this.product = this.date;
-    
-
   })
 }
 getcategory() {
   this.ProductService.getcategory().subscribe(res => {
     this.categoryArr = res;
   })
+}
+getProductCategory(event) {
+  var obj = {
+    category_id: event.target.value
+
+  }
+  let x = obj.category_id
+  if (x != "") {
+    
+      this.ProductService.ProductCategory(obj).subscribe(res => {
+        this.ProductCategory = res;
+        console.log(obj)
+
+    });
+  } else {
+    this.ProductService.getProduct().subscribe(res => {
+      this.ProductCategory = res;
+      console.log(x)
+    
+    });
+  }
+  console.log(this.category_id)
 }
 getunit_count() {
   this.ProductService.getunit_count().subscribe(res => {
@@ -78,7 +99,7 @@ getunit_count() {
 }
 editProduct(){
   if (confirm('คุณต้องการแก้ไขหรือไม่ ?') === true) {
-    this.product.material_name = this.selectedMaterials.toString();
+    // this.product.material_name = this.selectedMaterials.toString();
   this.ProductService.editProduct(this.id,this.product).subscribe(res=>{
     this.toastr.success('แก้ไขสำเร็จ!');
   },

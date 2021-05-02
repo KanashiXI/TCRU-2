@@ -24,5 +24,17 @@ export class FormulaService {
   {
    return this.httpClient.get('http://localhost:5000/api/formula1/'+id);
   }
+  deleteFormula(id) {
+    return this.httpClient.delete('http://localhost:5000/api/deleteFormula/'+id);
+  }
+  MaterialCategory(data){
+    return this.httpClient.post('http://localhost:5000/api/MaterialCategory',data);
+  }
+  getcategory(){
+    return this.httpClient.get('http://localhost:5000/api/categorym');
+   }
+   formulabyproduct(data){
+    return this.httpClient.post('http://localhost:5000/api/formulabyproduct',data);
+  }
 
 }
