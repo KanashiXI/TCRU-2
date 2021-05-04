@@ -1,4 +1,5 @@
 export interface OrderInterface {
+    chooseAddress: boolean;
     order_id?: number;
     order_date?: number;
     require_date?: string;
