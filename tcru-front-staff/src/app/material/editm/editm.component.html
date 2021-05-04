@@ -42,7 +42,7 @@
                   <br>
                   <div class="card-header">
                     <div class="col-sm-12">
-                      <label>ประเภท</label>
+                      <label>วัตถุดิบ</label>
                     </div>
                   </div>
                   <div class="card card-primary">
@@ -65,6 +65,23 @@
                               </div>
                               <div *ngIf="material_name.errors.uniquematerial_name">
                                 มีวัตถุดิบนี้อยู่ในระบบแล้ว
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-3">
+                        </div>
+                        <div class="col-sm-2">
+                          <label>จำนวนจุดวิกฤติ :</label>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="critical" type="text" class="form-control" [(ngModel)]="Materials.critical">
+                            <div *ngIf="critical.invalid && (critical.dirty || critical.touched)" class="text-error">
+                              <div *ngIf="critical.errors.required">
+                                กรุณากรอกชื่อวัตถุดิบ
                               </div>
                             </div>
                           </div>
