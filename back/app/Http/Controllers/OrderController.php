@@ -38,6 +38,14 @@ class OrderController extends Controller
         }              
     }
 
+    public function getImageOrder($request){ 
+        $getall = DB::table('order')
+            ->select('image')
+            ->where('order.order_id', $request)
+            ->get(); 
+        return response()->json($getall,200);
+    }
+
     public function fillImageOrder(Request $request, order $order){ 
         // $file = order::where('order_id',$request->order_id)->first(); 
         // $file = $request->file('image');
@@ -45,12 +53,16 @@ class OrderController extends Controller
 
         if ($request->hasFile('image'))
          {
+            // $file = order::where('order_id',$request->order_id)->first(); 
+            $file = $request->file('image');
             $file      = $request->file('image');
             $filename  = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
-            $picture   = date('His').'-'.$filename;
-            //move image to public/img folder
+            $picture   = date('His').'-'.$filename;           
             $file->move(public_path('img'), $picture);
+            $imageName["image"] =  $filename;
+            DB::table("order")->where("order_id",$request->order_id)->update($imageName);
+            //move image to public/img folder
             return response()->json(["message" => "Image Uploaded Succesfully"]);
          } 
         else

@@ -96,5 +96,9 @@ export class ApiConstants {
         return '/api/uploadslip';
     }
 
+    public static get getSlipURL(): string {
+        return '/api/getslip';
+    }
+
 
 }

@@ -12,7 +12,7 @@ export interface Order {
     discount?: string;
     request_tax?: number;
     address_id?: number;
-    address?:String;
+    address?: String;
     telephone?: String;
     firstname?: String;
     lastname?: String;
@@ -20,4 +20,5 @@ export interface Order {
     amphures?: String;
     province?: String;
     postal_code?: String;
+    image?: string;
 }
