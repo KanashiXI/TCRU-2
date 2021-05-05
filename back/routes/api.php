@@ -83,6 +83,7 @@ Route::group([
     Route::get('selectOrder/{order_id}','OrderController@getOrderDetail');
     Route::post('uploadslip','OrderController@fillImageOrder');
     Route::get('getslip/{order_id}','OrderController@getImageOrder');
+    Route::get('exportexcel','OrderController@exportExcel');
 
 
 

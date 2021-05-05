@@ -5,6 +5,9 @@ use Illuminate\Http\Request;
 use App\order;
 use App\orderDetail;
 use DB;
+use App\Exports\ExcelExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class OrderController extends Controller
 {
@@ -144,6 +147,12 @@ class OrderController extends Controller
             ->get(); 
         return response()->json($getall,200);
     } 
+
+
+    public function exportExcel()
+    {
+        return Excel::download(new ExcelExport, 'orders.xlsx');
+    }
     
     
 
