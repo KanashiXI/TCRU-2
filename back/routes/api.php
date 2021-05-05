@@ -148,6 +148,12 @@ Route::group([
     Route::post('/Ordermaterial1', 'OrderMaterialController@getorderMaterialsSkipAndLimit');
     Route::delete('/deleteOrderM/{order_material_id}', 'OrderMaterialController@destroys');
     Route::get('/unit_material', 'OrderMaterialController@getunit_material');
+
+    // login
+    Route::post('login', 'AdminController@login');
+    Route::post('logout', 'AdminController@logout');
+    Route::post('refresh', 'AdminController@refresh');
+    Route::post('meAdmin', 'AdminController@meAdmin');
 });
 
 
