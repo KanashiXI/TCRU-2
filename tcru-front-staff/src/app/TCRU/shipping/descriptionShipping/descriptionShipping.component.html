@@ -3,6 +3,7 @@
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
+      <p routerLink="/deliveryStatus"><u>รายการสั่งซื้อ</u></p>
       <h3>รายละเอียดการสั่งสินค้า</h3>
     </div>
   </div>
@@ -50,8 +51,10 @@
               </div>
               <hr>
               <div class="col-md-4">
+                <div *ngIf="orderPart[0].image != null">
+                  <img [src]="orderPart[0].image ? imageDirectoyPath+orderPart[0].image : 'assets/image/no-image.png'" style="width: 50%;">
+                </div>
                 <p>สถานะ</p>
-                <br>
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
                   <mat-label>สถานะ</mat-label>
                   <mat-select formControlName="status" required>
