@@ -92,6 +92,8 @@ import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 import { CurrencyPipe } from "@angular/common";
+import { ChartModule } from 'angular2-chartjs';
+
 // import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
 // import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
 // import { PrintOrderComponent } from './OrderMaterials/print-order/print-order.component';
@@ -101,6 +103,7 @@ import { CurrencyPipe } from "@angular/common";
 // import { LoginComponent } from './Login/login/login.component';
 import { ModalComponentComponent} from './modal-component/modal-component/modal-component.component';
 import { ShowproComponent } from './product/showpro/showpro.component';
+import { chartsComponent } from './Chart/chart/charts.component';
 
 const appRoutes: Routes = [
   {
@@ -237,6 +240,10 @@ const appRoutes: Routes = [
   {
     path: 'Showpro',
     component: ShowproComponent
+  },
+  {
+    path: 'Chart',
+    component: chartsComponent
   }
 ];
 
@@ -283,6 +290,7 @@ const appRoutes: Routes = [
     // LoginComponent
     // ModalComponentComponent,
     ShowproComponent,
+    chartsComponent,
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
@@ -364,7 +372,8 @@ const appRoutes: Routes = [
     Ng2SearchPipeModule,
     // NgMultiSelectDropDownModule.forRoot(),
     // NgxDatePickerModule,
-    // NgSelectModule
+    // NgSelectModule,
+    ChartModule
   ],
   providers: [
     CurrencyPipe

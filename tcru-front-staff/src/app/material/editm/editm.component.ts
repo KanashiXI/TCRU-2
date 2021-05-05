@@ -30,12 +30,14 @@ export class EditmComponent implements OnInit {
   }
   createForm() {
     this.form = this.fb.group({
-      material_id: ['', [Validators.required]],
-      material_name: ['', [Validators.required], uniquematerial_nameValidator(this.MeterialService)],
+      // material_id: ['', [Validators.required]],
+      material_name: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       category_id: ['', [Validators.required]],
       image: ['', [Validators.required]],
       unit_count_id: ['', [Validators.required]],
+      scale: ['', [Validators.required]],
+      critical: ['', [Validators.required]],
     });
   }
 
@@ -93,8 +95,15 @@ get category_id() {
 get image() {
   return this.form.get('image')
 }
+get scale() {
+  return this.form.get('scale')
+}
 get unit_count_id() {
   return this.form.get('unit_count_id')
 }
+get critical() {
+  return this.form.get('critical')
+}
+
 
 }

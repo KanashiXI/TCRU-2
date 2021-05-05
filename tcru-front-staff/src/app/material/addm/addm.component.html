@@ -10,40 +10,59 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+    <br><br>
+    <form [formGroup]=form >
+      <div class="row">
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-2">
+          <label>ค้นหาวัตถุดิบจากประเภท :</label>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <div class="form-group">
+              <select class="form-control" formControlName="category_id" [(ngModel)]="Materials.category_id"(change)="getMeterialService($event)">
+                <option  value="">ทั้งหมด</option>  
+                <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
     <h5 class="card-title">วัตถุดิบ</h5>
     <div class="card card-success">
       <div class="card-body p-0">
-        <div class="search-hero">
-          <input  class="form-control " type="search" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="ค้นหา">
-        </div>
         <div class="card-body p-0 ">
           <table class="table">
             <thead>
               <tr>
-                <th>รูปวัตถุดิบ</th>
-                <th>ชื่อวัตถุดิบ</th>
-                <th>ประเภทวัตถุดิบ</th>
+                <!-- <th>รูปวัตถุดิบ</th> -->
                 <th></th>
+                <th>ลำดับ</th>
+                <th>ชื่อวัตถุดิบ</th>
+                <th>จุดวิกฤตของสินค้า</th>
+                <th>แก้ไขวัตถุดิบ</th>
+                <!-- <th>หน่วย</th> -->
+                <!-- <th>ประเภทวัตถุดิบ</th> -->
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let mat of dataArr ">
-                <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px">
-                </td>
+              <tr *ngFor="let mat of MaterialCategory ;let i=index ">
+                <td></td>
+                <td>{{i+1}}</td>
+                <!-- <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px">
+                </td> -->
                 <td>{{mat.material_name}}</td>
-                <td>{{mat.name}}</td>
-                <td class="text-right py-0 align-middle">
-
+                <td>{{mat.critical}}</td>
+                <td >
                   <div class="btn-group btn-group-sm">
                     <button class="btn btn-warning" routerLink="/editm/{{mat.material_id}}">
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <button class="btn btn-danger" (click)="deleteMaterial(mat.material_id)">
-                      <mat-icon>delete_sweep</mat-icon>
-                    </button>
-                    <!-- <button  class="btn btn-danger"(click)="deleteMaterial(mat.material_id)"><i class="fas fa-trash"></i></button> -->
                   </div>
                 </td>
+
               </tr>
             </tbody>
           </table>
@@ -51,7 +70,5 @@
       </div>
     </div>
     <br>
-    <ngb-pagination [collectionSize]="totalCount" [pageSize]="limit" [(page)]="page" aria-label="Default pagination"
-      (pageChange)="getMeterial()"></ngb-pagination>
   </section>
 </div>
