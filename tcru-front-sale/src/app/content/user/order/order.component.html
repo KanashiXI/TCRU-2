@@ -6,26 +6,26 @@
 
         <div class="row">
           <div class="col-md-4">
-            ออเดอร์เลขที่: {{item.order_id}} วันที่ทำรายการ: {{item.order_date}}
+            ออเดอร์เลขที่: {{item.order_id}} <br> วันที่ทำรายการ: {{item.order_date}}
           </div>
 
-          <div class="col-md-4">
-            <div class="col-md-4" style="text-align: right;" *ngIf="item.status == 1">
+          <!-- <div class="col-md-4"> -->
+            <div class="col-md-4" *ngIf="item.status == 1">
               <kbd class="wait">จัดเตรียมสินค้า</kbd>
             </div>
-            <div class="col-md-4" style="text-align: right;" *ngIf="item.status == 2">
+            <div class="col-md-4" *ngIf="item.status == 2">
               <kbd class="sale">จัดส่งแล้ว</kbd>
             </div>
-          </div>
+          <!-- </div> -->
 
-          <div class="col-md-4">
-            <div class="col-md-4" style="text-align: right;" *ngIf="item.image == null">
+          <!-- <div class="col-md-4"> -->
+            <div class="col-md-4" *ngIf="item.image == null">
               <kbd class="out">ยังไม่อัพโหลดหลักฐาน</kbd>
             </div>
-            <div class="col-md-4" style="text-align: right;" *ngIf="item.status == 0">
+            <div class="col-md-4" *ngIf="item.status == 0">
               <kbd class="out">รอการชำระเงิน</kbd>
             </div>
-          </div>
+          <!-- </div> -->
 
         </div>
 
@@ -34,7 +34,7 @@
           </div>
           <div class="col-md-2">
             <button mat-raised-button color="accent" (click)="onClickUpload(item.order_id)">
-              <span class="material-icons">receipt</span>
+              <span class="material-icons">description</span>
             </button>
           </div>
           <div class="col-md-2">
