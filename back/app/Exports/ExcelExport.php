@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\User;
+use App\Order;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ExcelExport implements FromCollection
@@ -12,6 +12,6 @@ class ExcelExport implements FromCollection
     */
     public function collection()
     {
-        return User::all();
+        return Order::all();
     }
 }
