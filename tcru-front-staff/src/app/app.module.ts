@@ -1,3 +1,4 @@
+import { PrintAddressComponent } from './TCRU/shipping/printAddress/printAddress.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -192,7 +193,11 @@ const appRoutes: Routes = [
   {
     path: 'addOrder',
     component: AddOrderComponent
-  }  
+  },
+  {
+    path: 'printAddress',
+    component: PrintAddressComponent
+  }
 ];
 
 @NgModule({
@@ -226,7 +231,8 @@ const appRoutes: Routes = [
     EditsComponent,
     ShowOrderComponent,
     FormulaComponent,
-    AddOrderComponent
+    AddOrderComponent,
+    PrintAddressComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
