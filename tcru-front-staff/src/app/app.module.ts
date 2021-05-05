@@ -106,7 +106,7 @@ import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angula
 // import { RevealInsideComponent } from './Reveal/reveal-inside/reveal-inside.component';
 // import { RevealOutsideComponent } from './Reveal/reveal-outside/reveal-outside.component';
 // import { ReturnComponent } from './Return/return/return.component';
-// import { LoginComponent } from './Login/login/login.component';
+import { LoginComponent } from './Login/login/login.component';
 import { ModalComponentComponent} from './modal-component/modal-component/modal-component.component';
 import { ShowproComponent } from './product/showpro/showpro.component';
 // import { chartsComponent } from './Chart/chart/charts.component';
@@ -237,12 +237,15 @@ const appRoutes: Routes = [
   //   path: 'Return',
   //   component: RevealOutsideComponent
   // },
-  // {
-  //   path: 'login',
-  //   component: LoginComponent
-  //   path: 'Modal',
-  //   component: ModalComponentComponent
-  // },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [BeforeLoginService],
+  },
+  {
+    path: 'Modal',
+    component: ModalComponentComponent
+  },
   {
     path: 'Showpro',
     component: ShowproComponent
