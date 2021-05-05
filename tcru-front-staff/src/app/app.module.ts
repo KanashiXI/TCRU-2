@@ -92,30 +92,27 @@ import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 import { CurrencyPipe } from "@angular/common";
-// import { ChartModule } from 'angular2-chartjs';
-import { AfterLoginService } from './Service/after-login.service';
-import { BeforeLoginService } from './Service/before-login.service';
-import { AuthService } from './Service/auth.service';
-import { TokenService } from './Service/token.service';
-import { JarwisService } from './Service/jarwis.service';
-import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
-
-// import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
-// import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
-// import { PrintOrderComponent } from './OrderMaterials/print-order/print-order.component';
-// import { RevealInsideComponent } from './Reveal/reveal-inside/reveal-inside.component';
-// import { RevealOutsideComponent } from './Reveal/reveal-outside/reveal-outside.component';
-// import { ReturnComponent } from './Return/return/return.component';
+import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
+import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
+import { PrintOrderComponent } from './OrderMaterials/print-order/print-order.component';
+import { RevealInsideComponent } from './Reveal/reveal-inside/reveal-inside.component';
+import { RevealOutsideComponent } from './Reveal/reveal-outside/reveal-outside.component';
+import { ReturnComponent } from './Return/return/return.component';
 import { LoginComponent } from './Login/login/login.component';
 import { ModalComponentComponent} from './modal-component/modal-component/modal-component.component';
 import { ShowproComponent } from './product/showpro/showpro.component';
-// import { chartsComponent } from './Chart/chart/charts.component';
+import { BeforeLoginService } from './Service/before-login.service';
+import { AfterLoginService } from './Service/after-login.service';
+import { JarwisService } from './Service/jarwis.service';
+import { TokenService } from './Service/token.service';
+import { AuthService } from './Service/auth.service';
 
 const appRoutes: Routes = [
   {
     path: '', 
-    redirectTo: '/Report', 
-    pathMatch: 'full'
+    redirectTo: '/login', 
+    pathMatch: 'full',
+    canActivate: [AfterLoginService]
   },
   {
     path: 'Report',
@@ -217,42 +214,36 @@ const appRoutes: Routes = [
     path: 'addOrder',
     component: AddOrderComponent
   },
-  // {
-  //   path: 'editOrder/:id',
-  //   component: EditOrderComponent
-  // },
-  // {
-  //   path: 'printOrder/:id',
-  //   component: PrintOrderComponent
-  // },
-  // {
-  //   path: 'ShowReveal',
-  //   component: ShowRevealComponent
-  // },
-  // {
-  //   path: 'RevealIn',
-  //   component: RevealInsideComponent
-  // },
-  // {
-  //   path: 'Return',
-  //   component: RevealOutsideComponent
-  // },
+  {
+    path: 'editOrder/:id',
+    component: EditOrderComponent
+  },
+  {
+    path: 'printOrder/:id',
+    component: PrintOrderComponent
+  },
+  {
+    path: 'ShowReveal',
+    component: ShowRevealComponent
+  },
+  {
+    path: 'RevealIn',
+    component: RevealInsideComponent
+  },
+  {
+    path: 'Return',
+    component: RevealOutsideComponent
+  },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [BeforeLoginService],
-  },
-  {
-    path: 'Modal',
-    component: ModalComponentComponent
+    canActivate: [BeforeLoginService]
+    // path: 'Modal',
+    // component: ModalComponentComponent
   },
   {
     path: 'Showpro',
     component: ShowproComponent
-  },
-  {
-    // path: 'Chart',
-    // component: chartsComponent
   }
 ];
 
@@ -296,10 +287,9 @@ const appRoutes: Routes = [
     // RevealInsideComponent,
     // RevealOutsideComponent,
     // ReturnComponent,
-    // LoginComponent
+    LoginComponent,
     // ModalComponentComponent,
     ShowproComponent,
-    // chartsComponent,
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
@@ -381,12 +371,10 @@ const appRoutes: Routes = [
     Ng2SearchPipeModule,
     // NgMultiSelectDropDownModule.forRoot(),
     // NgxDatePickerModule,
-    // NgSelectModule,
-    // ChartModule
+    // NgSelectModule
   ],
   providers: [
     CurrencyPipe, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService
-    , { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions }
     
   ],
   bootstrap: [
