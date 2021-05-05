@@ -92,7 +92,13 @@ import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 import { CurrencyPipe } from "@angular/common";
-import { ChartModule } from 'angular2-chartjs';
+// import { ChartModule } from 'angular2-chartjs';
+import { AfterLoginService } from './Service/after-login.service';
+import { BeforeLoginService } from './Service/before-login.service';
+import { AuthService } from './Service/auth.service';
+import { TokenService } from './Service/token.service';
+import { JarwisService } from './Service/jarwis.service';
+import { MatCheckboxDefaultOptions, MAT_CHECKBOX_DEFAULT_OPTIONS } from '@angular/material/checkbox';
 
 // import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
 // import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
@@ -103,7 +109,7 @@ import { ChartModule } from 'angular2-chartjs';
 // import { LoginComponent } from './Login/login/login.component';
 import { ModalComponentComponent} from './modal-component/modal-component/modal-component.component';
 import { ShowproComponent } from './product/showpro/showpro.component';
-import { chartsComponent } from './Chart/chart/charts.component';
+// import { chartsComponent } from './Chart/chart/charts.component';
 
 const appRoutes: Routes = [
   {
@@ -242,8 +248,8 @@ const appRoutes: Routes = [
     component: ShowproComponent
   },
   {
-    path: 'Chart',
-    component: chartsComponent
+    // path: 'Chart',
+    // component: chartsComponent
   }
 ];
 
@@ -290,7 +296,7 @@ const appRoutes: Routes = [
     // LoginComponent
     // ModalComponentComponent,
     ShowproComponent,
-    chartsComponent,
+    // chartsComponent,
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
@@ -373,10 +379,11 @@ const appRoutes: Routes = [
     // NgMultiSelectDropDownModule.forRoot(),
     // NgxDatePickerModule,
     // NgSelectModule,
-    ChartModule
+    // ChartModule
   ],
   providers: [
-    CurrencyPipe
+    CurrencyPipe, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService
+    , { provide: MAT_CHECKBOX_DEFAULT_OPTIONS, useValue: { clickAction: 'noop' } as MatCheckboxDefaultOptions }
     
   ],
   bootstrap: [
