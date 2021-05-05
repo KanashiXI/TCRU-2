@@ -20,6 +20,7 @@ export interface Product {
     check?: boolean;
     cart_id?: Number;
     image?: string;
+    shipping_brand?: number;
     // product_id: number;
     // product_name: string;
     // retail_price: string;

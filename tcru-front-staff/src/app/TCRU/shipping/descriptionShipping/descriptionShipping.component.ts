@@ -128,7 +128,7 @@ export class DescriptionShippingComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'เพิ่มข้อมูลสำเร็จ',
-          showConfirmButton: false,
+          // showConfirmButton: false,
           timer: 2000
         });
         this.router.navigateByUrl('deliveryStatus');
@@ -138,7 +138,7 @@ export class DescriptionShippingComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'เพิ่มข้อมูลไม่สำเร็จ',
-          showConfirmButton: false,
+          // showConfirmButton: false,
           timer: 2000
         });
       }

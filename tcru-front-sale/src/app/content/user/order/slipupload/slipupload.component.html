@@ -7,7 +7,8 @@
             คุณยังไม่ได้อัพโหลดหลักฐานการจ่ายเงิน
         </div>
         <div *ngIf="orderPart[0].image != null">
-            <img src="../../../../../../back/public/img/{{orderPart[0].image}}" style="width: 100%;">
+            {{orderPart[0].image}}
+            <img [src]="orderPart[0].image ? imageDirectoyPath+orderPart[0].image : 'assets/image/no-image.png'" style="width: 50%;">
         </div>
     </div>
     <input type="file" class="form-control" (change)="onFileSelected($event)">

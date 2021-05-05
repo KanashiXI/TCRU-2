@@ -23,6 +23,8 @@ export class SlipuploadComponent implements OnInit {
   files: File = null;
   orderId: string;
   orderPart: Order[] = [];
+  imageDirectoyPath:any = 'http://127.0.0.1:8000/img/';
+
 
   ngOnInit() {
     const requestData = {

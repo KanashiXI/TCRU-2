@@ -146,6 +146,7 @@ export class CartComponent implements OnInit {
   }
 
   handleRadio(i): void {
+    
     this.shippingBrand.forEach((item) => {
       item.status = 0;
     });
@@ -156,6 +157,9 @@ export class CartComponent implements OnInit {
   }
 
   filterShippingCost(brandId) {
+    this.reactiveForm.patchValue({
+      shipping_brand: brandId
+    });
     this.shippingData = this.shippingCost.filter((value) => {
       return value.shipping_brand_id == brandId;
     })
@@ -202,6 +206,8 @@ export class CartComponent implements OnInit {
       discount: ['',],
       request_tax: ['',],
       address_id: [''],
+      shipping_brand: [''],
+      /////////////////////////////////////////
     })
 
     this.reactiveForm.patchValue({
