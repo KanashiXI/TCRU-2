@@ -45,4 +45,8 @@ export class ApiConstants {
     public static get getShippingAddressURL(): string {
         return '/api/getShippingAddress';
     }
+
+    public static get getSlipURL(): string {
+        return '/api/getslip';
+    }
 }

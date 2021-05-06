@@ -39,6 +39,11 @@ export class DescriptionShippingComponent implements OnInit {
   shTelephone: string;
   shStatus: string;
   shDetail_id: number;
+  shSlip: string;
+
+  orderId: string;
+  orderPart: OrderInterface[] = [];
+  imageDirectoyPath:any = 'http://127.0.0.1:5000/img/';
 
   constructor(
     private ShippingService: ShippingService,
@@ -53,9 +58,11 @@ export class DescriptionShippingComponent implements OnInit {
       order_id: localStorage.getItem('order_id'),
     }
     // this.order = requestData.order_id;
+    this.orderId = requestData.order_id;
     this.createForm();
-    this.getEditForm(requestData.order_id),
-    this.getStatus()
+    this.getEditForm(this.orderId),
+    this.getStatus();
+    this.getUserSlip();
   }
   
   getEditForm(data) {
@@ -76,6 +83,7 @@ export class DescriptionShippingComponent implements OnInit {
           telephone: this.dataForm[0].telephone,
           status: this.dataForm[0].status_id,
           detail_id: this.dataForm[0].detail_id,
+          image: this.dataForm[0].image
         })
         this.order_number = this.reactiveForm.get('order_id').value
         this.shUserfirstname = this.reactiveForm.get('userfirstname').value
@@ -90,6 +98,7 @@ export class DescriptionShippingComponent implements OnInit {
         this.shTelephone = this.reactiveForm.get('telephone').value
         this.shStatus = this.reactiveForm.get('status').value
         this.shDetail_id = this.reactiveForm.get('detail_id').value
+        this.shSlip = this.reactiveForm.get('image').value 
       },
       error => this.errorMessage = <any>error
     )
@@ -111,6 +120,7 @@ export class DescriptionShippingComponent implements OnInit {
       telephone: ['',],
       status: ['',[Validators.required]],
       detail_id: ['',],
+      image: ['',],
     })
   }
 
@@ -128,7 +138,7 @@ export class DescriptionShippingComponent implements OnInit {
         Swal.fire({
           icon: 'success',
           title: 'เพิ่มข้อมูลสำเร็จ',
-          showConfirmButton: false,
+          // showConfirmButton: false,
           timer: 2000
         });
         this.router.navigateByUrl('deliveryStatus');
@@ -138,11 +148,19 @@ export class DescriptionShippingComponent implements OnInit {
         Swal.fire({
           icon: 'error',
           title: 'เพิ่มข้อมูลไม่สำเร็จ',
-          showConfirmButton: false,
+          // showConfirmButton: false,
           timer: 2000
         });
       }
     );
+  }
+
+  getUserSlip() {
+    this.ShippingService.getSlip(this.orderId).subscribe(
+      res => {
+        this.orderPart = res;
+      }
+    )
   }
 
 
@@ -178,5 +196,8 @@ export class DescriptionShippingComponent implements OnInit {
   }
   get detail_id() {
     return this.reactiveForm.get('detail_id')
+  }
+  get image() {
+    return this.reactiveForm.get('image')
   }
 }

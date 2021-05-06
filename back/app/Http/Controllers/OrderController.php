@@ -11,6 +11,10 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
+
+
+
+
     public function createOrder(Request $request)
     {     
         // $result = $edit->save();
@@ -41,6 +45,8 @@ class OrderController extends Controller
         }              
     }
 
+
+
     public function getImageOrder($request){ 
         $getall = DB::table('order')
             ->select('image')
@@ -61,7 +67,8 @@ class OrderController extends Controller
             $file      = $request->file('image');
             $filename  = $file->getClientOriginalName();
             $extension = $file->getClientOriginalExtension();
-            $picture   = date('His').'-'.$filename;           
+            $uploadPath = "public/image";
+            $picture   = $filename;           
             $file->move(public_path('img'), $picture);
             $imageName["image"] =  $filename;
             DB::table("order")->where("order_id",$request->order_id)->update($imageName);
@@ -85,6 +92,7 @@ class OrderController extends Controller
         $edit->request_tax=$request->request_tax;
         $edit->user_id=$request->user_id; 
         $edit->address_id=$request->address_id; 
+        $edit->shipping_brand=$request->shipping_brand;   
         $result = $edit->save(); 
         return response()->json(true,200);
     }

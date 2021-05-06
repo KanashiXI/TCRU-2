@@ -50,4 +50,8 @@ export class ShippingService {
     return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getShippingAddressURL}`);
   }
 
+  getSlip(orderId) {
+    return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getSlipURL}/${orderId}`)
+  }
+
 }
