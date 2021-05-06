@@ -109,11 +109,11 @@ export class AddOrderComponent implements OnInit {
     })
   }
 
-  getmaterial(){
-    this.OrderM.getmaterial().subscribe(res => {
-      this.materialsArr = res
-    })
-  }
+  // getmaterial(){
+  //   this.OrderM.getmaterial().subscribe(res => {
+  //     this.materialsArr = res
+  //   })
+  // }
 
   updateFromDate(source) {
     this.from = source.target.valueAsDate;

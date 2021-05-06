@@ -30,6 +30,7 @@ export class FormulaComponent implements OnInit {
   categoryArr: any;
   date: any;
   product = new product();
+  unit_count: any;
 
   constructor(private fb: FormBuilder, private http: HttpClient,
     private FormulaService: FormulaService,
@@ -61,7 +62,7 @@ export class FormulaComponent implements OnInit {
       product_name: ['',],
       material_name: ['',],
       quantity: ['',],
-      unit: ['',],
+      // unit: ['',],
 
     });
   }
@@ -89,6 +90,16 @@ export class FormulaComponent implements OnInit {
     }
     this.FormulaService.MaterialCategory(obj).subscribe(res => {
       this.MaterialCategory = res;
+      console.log(this.MaterialCategory);
+    });
+  }
+  Materialunit_count(event) {
+    var obj = {
+      unit_count_id: event.target.value
+    }
+    this.FormulaService.Materialunit_count(obj).subscribe(res => {
+      this.unit_count = res;
+      console.log(this.unit_count);
     });
   }
   getDataproduct() {
@@ -109,7 +120,6 @@ export class FormulaComponent implements OnInit {
       console.log(this.product)
     })
   }
-
   insertData() {
 
     if (confirm('คุณต้องการเพิ่มข้อมูลสินค้าหรือไม่ ?') === true) {
@@ -152,7 +162,7 @@ export class FormulaComponent implements OnInit {
   get quantity() {
     return this.form.get('quantity')
   }
-  get unit() {
-    return this.form.get('unit')
-  }
+  // get unit() {
+  //   return this.form.get('unit')
+  // }
 }

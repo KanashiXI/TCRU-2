@@ -158,19 +158,6 @@
             <div class="col-sm-2">
               <label>จำนวนวันที่เก็บรักษา :</label>
             </div>
-            <div class="col-sm-4">
-              <div class="form-group">
-                <input formControlName="expire" type="number" class="form-control" [(ngModel)]="product.expire" min="1">
-                <div *ngIf="expire.invalid && (expire.dirty || expire.touched)" class="text-error">
-                  <div *ngIf="expire.errors.required">
-                    กรุณาจำนวนวันที่เก็บรักษา
-                  </div>
-                  <div *ngIf="expire.errors.min">
-                    กรุณากรอกชื่อวัตถุดิบเป็นภาษาไทยหรือภาษาอังกฤษ
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="row">
             <div class="col-sm-3">

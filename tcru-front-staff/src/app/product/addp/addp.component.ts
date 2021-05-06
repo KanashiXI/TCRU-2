@@ -52,7 +52,6 @@ export class AddpComponent implements OnInit {
       image: ['', [Validators.required]],
       weight: ['', [Validators.required]],
       Detail: ['', [Validators.required]],
-      expire: ['', [Validators.required]],
       category_id: ['', [Validators.required]],
       unit_count_id: ['', [Validators.required]],
       critical: ['', [Validators.required]],
@@ -81,7 +80,7 @@ export class AddpComponent implements OnInit {
     
     if (confirm('คุณต้องการเพิ่มข้อมูลสินค้าหรือไม่ ?') === true) {
        {
-        this.product.material_name = this.selectedMaterials.toString();
+        // this.product.material_name = this.selectedMaterials.toString();
         let formdata = new FormData();
         formdata.append("file", this.files, this.files.name);
         formdata.append("data", JSON.stringify(this.product));
@@ -138,9 +137,6 @@ export class AddpComponent implements OnInit {
   }
   get price() {
     return this.form.get('price')
-  }
-  get expire() {
-    return this.form.get('expire')
   }
   get category_id() {
     return this.form.get('category_id')

@@ -6,7 +6,27 @@ import { HttpClient, HttpParams , HttpHeaders } from '@angular/common/http';
 })
 export class ProductService {
   constructor(private httpClient: HttpClient) { }
+  getproduction() {
+    return this.httpClient.get('http://localhost:5000/api/production');
+  }
+  addproduction(data)
+  {
+   return this.httpClient.post('http://localhost:5000/api/production',data);
+  }
+  getproductionsum() {
+    return this.httpClient.get('http://localhost:5000/api/productionsum');
+  }
+  productionid(id) {
+    return this.httpClient.get('http://localhost:5000/api/productionid/'+id);
+  }
+  Oneupdateproduction(id){
+    return this.httpClient.get('http://localhost:5000/api/Oneupdateproduction/'+id);
+   }
 
+   updateproduction(id,data)
+   {
+    return this.httpClient.patch('http://localhost:5000/api/updateproduction/'+id,data);
+   }
   getData() {
     return this.httpClient.get('http://localhost:5000/api/product');
   }
@@ -46,4 +66,7 @@ export class ProductService {
    {
     return this.httpClient.patch('http://localhost:5000/api/update1/'+id,data);
    }
+   getcritical() {
+    return this.httpClient.get('http://localhost:5000/api/getcritical');
+  }
 }

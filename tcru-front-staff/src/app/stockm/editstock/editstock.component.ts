@@ -13,11 +13,11 @@ import { FormulaService } from 'src/app/service/formula.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-addstock',
-  templateUrl: './addstock.component.html',
-  styleUrls: ['./addstock.component.css']
+  selector: 'app-editstock',
+  templateUrl: './editstock.component.html',
+  styleUrls: ['./editstock.component.css']
 })
-export class AddstockComponent implements OnInit {
+export class EditstockComponent implements OnInit {
 
   dataaArr: any = [ ];
   product = new product();
@@ -27,6 +27,7 @@ export class AddstockComponent implements OnInit {
   id: any;
   dataArr: any;
   dataArrr: any;
+  dataArrrr: any;
   formulaArr: any;
   form: FormGroup;
   x: any;
@@ -43,9 +44,8 @@ export class AddstockComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
     // this.getFormula();
-    this.getProduct1();
     this.createForm();
-    this.formulabyproduct(event);
+    this.getData();
   }
   createForm() {
     this.form = this.fb.group({
@@ -90,42 +90,25 @@ export class AddstockComponent implements OnInit {
     this.dataaArr.push(this.product)
     console.log(this.dataaArr);
   }
-  insertData() {
-    if (confirm('คุณต้องการเพิ่มการผลิตหรือไม่ ?') === true) {
-       {
-        this.production.status = 0;
-        this.ProductService.addproduction(this.production).subscribe(res => {
-          this.getproduction();
-          this.toastr.success('เพิ่มสำเร็จ!');
-        } ,
-          err => {
-            this.toastr.error('เพิ่มล้มเหลว!');
-            console.log(err);
-          });
-      }
-    }
-  }
-  getproduction() {
-    this.ProductService.getproduction().subscribe(res => {
-      this.dataArrr = res;
-      console.log(this.dataArrr)
+  getData(){
+    this.ProductService.Oneupdateproduction(this.id).subscribe(res=>{
+      this.dataArrrr = res;
+      this.production = this.dataArrrr;
     })
   }
-  getProduct1() {
-    this.ProductService.getProduct().subscribe(res => {
-      this.dataArr = res;
-      console.log(this.dataArr)
-    })
-  }
-  formulabyproduct(event) {
-    var obj = {
-      product_id: event.target.value
-    }
-    this.FormulaService.formulabyproduct(obj).subscribe(res => {
-      this.formulaArr = res;
-      console.log(this.formula1)
+  editProduct(){
+    if (confirm('คุณต้องการแก้ไขหรือไม่ ?') === true) {
+      this.production.status = 1;
+    this.ProductService.updateproduction(this.id,this.production).subscribe(res=>{
+      this.toastr.success('แก้ไขสำเร็จ!');
+    },
+      err => {
+      this.toastr.error('แก้ไขล้มเหลว!');
+      console.log(err);
     });
   }
+  }
+
   get product_id() {
     return this.form.get('product_id')
   }

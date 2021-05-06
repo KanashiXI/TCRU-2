@@ -1,11 +1,10 @@
-export class formula {
+
+export class production {
     id: string;
-    material_id:any="";
-    product_id: any="";
-    // product: any="";
-    material_name: string;
+    product_id: string;
     quantity: number;
-    unit:string;
+    MFG: Date;
+    status:any="";
     material1:any="";
     material2:any="";
     material3:any="";
@@ -24,8 +23,4 @@ export class formula {
     lotmaterial4:any="";
     lotmaterial5:any="";
     lotmaterial6:any="";
-
-
-    
-    
 }

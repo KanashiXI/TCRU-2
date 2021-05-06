@@ -1,15 +1,132 @@
 <div class="main-container" style=" height:200vh;">
+  <section class="content-header">
     <section class="content-header">
-      <section class="content-header">
-        <div class="container-fluid">
-          <div class="row ">
-            <div class="col-sm-4 ">
-              <a href="#" class="btn btn-success " [routerLink]="['/formm']"
-                routerLinkActive="router-link-active">ผลิตสินค้า <mat-icon>add_circle_outline</mat-icon></a>
+      <div class="container-fluid">
+        <div class="row ">
+          <div class="col-sm-4 ">
+            <a href="#" class="btn btn-success " [routerLink]="['/addstock']"
+              routerLinkActive="router-link-active">ผลิตสินค้า <mat-icon>add_circle_outline</mat-icon></a>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <br><br><br>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header header3">
+              <div class="col-sm-12">
+                <label>สินค้าที่มีจำนวนเหลือต่ำกว่าค่าวิกฤต</label>
+              </div>
+            </div>
+            <div class="card card-success">
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ลำดับ</th>
+                      <th>ชื่อสินค้า</th>
+                      <th>จำนวน</th>
+                      <th>ต้องผลิตเพิ่มขั้นต่ำ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mat of criticalArr ;let i=index ">
+                      <td>{{i+1}}</td>
+                      <td>{{mat.product_name}}</td>
+                      <td>{{mat.total}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
+                      <td>{{mat.critical-mat.total}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </div><!-- /.container-fluid -->
-      </section>
-
+        </div>
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header header2">
+              <div class="col-sm-12">
+                <label>รายการสินค้าที่กำลังทำการผลิต</label>
+              </div>
+            </div>
+            <div class="card card-success">
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ลำดับ</th>
+                      <th>ชื่อสินค้า</th>
+                      <th>จำนวนที่่ผลิต</th>
+                      <th>วันที่ผลิต</th>
+                      <th>เพิ่มสูตรการผลิต | แก้ไขข้อมูลสินค้า</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mat of productionArr ;let i=index ">
+                      <td>{{i+1}}</td>
+                      <td>{{mat.product_name}}</td>
+                      <td>{{mat.quantity}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
+                      <td>{{mat.MFG}}</td>
+                      <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="btn-group btn-group-sm">
+                          <button class="btn btn-warning" routerLink="/editstock/{{mat.id}}">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br><br>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card card-primary">
+            <div class="card-header">
+              <div class="col-sm-12">
+                <label>สินค้าในสต๊อก</label>
+              </div>
+            </div>
+            <div class="card card-success">
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ลำดับ</th>
+                      <th>ชื่อสินค้า</th>
+                      <th>จำนวน</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let mat of productionsum ;let i=index ">
+                      <td>{{i+1}}</td>
+                      <td>{{mat.product_name}}</td>
+                      <td>{{mat.total}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
+                      <td >
+                        <div class="btn-group btn-group-sm">
+                          <button class="btn btn-warning" routerLink="/showlotp/{{mat.product_id}}">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-  </div>
+    
+
+
+  </section>
+</div>
