@@ -22,6 +22,11 @@
                                 <div class="form-group">
                                     <label>เลขที่ใบสั่งซื้อ</label>
                                     <input type="text" class="form-control" formControlName="order_name" placeholder="EX: PO-1903" [(ngModel)]="OrderMaterials.order_name">
+                                    <div *ngIf="order_name.invalid && (order_name.dirty || order_name.touched)" class="text-error">
+                                        <div *ngIf="order_name.errors.required">
+                                            กรุณากรอกเลขที่ใบสั่งซื้อ
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -31,7 +36,13 @@
                                     <label>ชื่อร้านค้า</label>
                                     <select class="form-control" formControlName="shop_name" [(ngModel)]="OrderMaterials.shop_name">
                                         <option value="">ร้านค้า</option>
+                                        <option *ngFor="let mat of suppilerArr" value="{{mat.shop_name}}">{{mat.store_name}}</option>
                                     </select>
+                                    <!-- <div *ngIf="shop_name.invalid && (shop_name.dirty || shop_name.touched)" class="text-error">
+                                        <div *ngIf="shop_name.errors.required">
+                                            กรุณาเลือกร้านค้า
+                                        </div>
+                                    </div> -->
                                 </div>
                             </div>
 
@@ -40,6 +51,11 @@
                                 <div class="form-group">
                                     <label>ชื่อผู้ติดต่อ</label>
                                     <input type="text" class="form-control" formControlName="contact_person" [(ngModel)]="OrderMaterials.contact_person">
+                                    <div *ngIf="contact_person.invalid && (contact_person.dirty || contact_person.touched)" class="text-error">
+                                        <div *ngIf="contact_person.errors.required">
+                                            กรุณากรอกชื่อผู้ติดต่อ
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -48,6 +64,11 @@
                                 <div class="form-group">
                                     <label>เบอร์โทรศัพท์ผู้ติดต่อ</label>
                                     <input type="text" class="form-control" formControlName="phone_contact_person" [(ngModel)]="OrderMaterials.phone_contact_person">
+                                    <div *ngIf="phone_contact_person.invalid && (phone_contact_person.dirty || phone_contact_person.touched)" class="text-error">
+                                        <div *ngIf="phone_contact_person.errors.required">
+                                            กรุณากรอกเบอร์โทรศัพท์ผู้ติดต่อ
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -99,7 +120,13 @@
                                         <label>ชื่อวัตถุดิบ</label>
                                         <select class="form-control" formControlName="material_name" [(ngModel)]="OrderMaterials.material_name">
                                             <option value="">วัตถุดิบ</option>
+                                            <option *ngFor="let mat of materialsArr" value="{{mat.material_name}}">{{mat.material_name}}</option>
                                         </select>
+                                        <!-- <div *ngIf="material_name.invalid && (material_name.dirty || material_name.touched)" class="text-error">
+                                            <div *ngIf="material_name.errors.required">
+                                                กรุณาเลือกวัถตุดิบ
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <!-- จำนวน -->
@@ -107,6 +134,11 @@
                                     <div class="form-group">
                                         <label>จำนวน</label>
                                         <input type="number" class="form-control" formControlName="quantity" [(ngModel)]="OrderMaterials.quantity">
+                                        <div *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)" class="text-error">
+                                            <div *ngIf="quantity.errors.required">
+                                                กรุณากรอกจำนวน
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- หน่วยนับ -->
@@ -115,7 +147,13 @@
                                         <label>หน่วยนับ</label>
                                         <select class="form-control" formControlName="unit" [(ngModel)]="OrderMaterials.unit_material_id">
                                             <option value="">หน่วยนับ</option>
+                                            <option *ngFor="let mat of unitArr" value="{{mat.unit}}">{{mat.unit_material_name}}</option>
                                         </select>
+                                        <!-- <div *ngIf="unit.invalid && (unit.dirty || unit.touched)" class="text-error">
+                                            <div *ngIf="unit.errors.required">
+                                                กรุณาเลือกวัถตุดิบ
+                                            </div>
+                                        </div> -->
                                     </div>
                                 </div>
                                 <!-- ราคา -->
@@ -146,39 +184,30 @@
                                         </div>
                                     </div>
                                     <!-- หัวตารางรายการสั่งวัตถุดิบ -->
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th></th>
-                                                <th>ลำดับ</th>
-                                                <th>ชื่อวัตถุดิบ</th>
-                                                <th>จำนวน</th>
-                                                <th>หน่วยนับ</th>
-                                                <th>ราคา</th>
-                                                <th>ส่วนลด</th>
-                                                <th>ยอดรวม</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr *ngFor="let material of materials; let i=index">
-                                                <td></td>
-                                                <td>{{i+1}}</td>
-                                                <td>{{material?.material_name}}</td>
-                                                <td>{{material?.quantity}}</td>
-                                                <td>{{material?.unit_material_id}}</td>
-                                                <td>{{material?.price}}</td>
-                                                <td>{{material?.discount}}</td>
-                                                <td>{{ summary(material) | number : '1.2-2'}}</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <div class="table-list">
+                                        <div class="heading">
+                                            <div>ชื่อวัตถุดิบ</div>
+                                            <div>จำนวน</div>
+                                            <div>หน่วยนับ</div>
+                                            <div>ราคา</div>
+                                            <div>ส่วนลด</div>
+                                            <div>ยอดรวม</div>
+                                        </div>
+                                        <div class="body" *ngFor="let d of data; let i = index">
+                                            <div>{{d?.name_material}}</div>
+                                            <div>{{d?.quantity}}</div>
+                                            <div>{{d?.unit}}</div>
+                                            <div>{{d?.price | number : '1.2-2'}} ฿</div>
+                                            <div>{{d?.discount | number : '1.2-2'}} ฿</div>
+                                            <div>{{ summary(d) | number : '1.2-2'}} ฿</div>
+                                        </div>
+                                    </div>
                                     <br />
                                     <hr />
                                     <div>
                                         <form [formGroup]="formvat">
-                                            <input type="radio" name="vat" value="Y" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> มีภาษีมูลค่าเพิ่ม 7%
-                                            <input type="radio" name="vat" value="N" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> ไม่มีภาษีมูลค่าเพิ่ม 7%
+                                            <input type="radio" name="vat" value="Y" formControlName="vat"> มีภาษีมูลค่าเพิ่ม 7%
+                                            <input type="radio" name="vat" value="N" formControlName="vat"> ไม่มีภาษีมูลค่าเพิ่ม 7%
                                         </form>
                                     </div>
 
@@ -210,7 +239,7 @@
                             <button class="btn btn-block btn-success">ยืนยัน</button>
                         </td>
                         <td>
-                            &nbsp; <button class="btn btn-secondary" routerLink="/showOrderM">กลับ</button>
+                            &nbsp; <button class="btn btn-secondary" routerLink="/showOrderM">ยกเลิก</button>
                         </td>
                     </div>
                 </div>

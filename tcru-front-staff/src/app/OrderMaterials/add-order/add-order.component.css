@@ -38,3 +38,22 @@ h5 {
 .card-header {
     background-color: #6a941d88;
 }
+
+.table-list .heading,
+.body {
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+}
+
+.heading div {
+    padding: 5px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.body div {
+    padding: 5px;
+    font-weight: normal;
+    width: 100%;
+}

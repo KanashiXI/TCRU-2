@@ -10,6 +10,7 @@ import { map, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { threadId } from 'node:worker_threads';
 
 @Component({
   selector: 'app-add-order',
@@ -20,7 +21,7 @@ export class AddOrderComponent implements OnInit {
 
   dataArr: any;
   form: FormGroup;
-  Materials: FormGroup;
+  formMaterial: FormGroup;
   formvat: FormGroup;
   id: any;
   OrderMaterials = new OrderMaterials();
@@ -28,28 +29,14 @@ export class AddOrderComponent implements OnInit {
   from: Date
   to: Date
   suppilerArr: any;
-  sum_price: number = 0;
-  sum_discount: number = 0;
-  sumPrice$: Observable<number>;
-  sumDiscount$: Observable<number>;
-  sumVat$: Observable<number>;
-  sumAfterDiscount$: Observable<number>;
-  sumAfterDiscount: number = 0;
-  materialsArrayAfterDiscount: any;
-  sum: number = 0;
-  sumVat: number = 0;
-  isVat = false;
-  summary = 0;
   unitArr: any;
-  isValidFormSubmitted = null;
-  sum_AfterDiscount: number = 0;
-  sumNovat$: Observable<number>;
-  sumTotal$: Observable<number>;
   files: any;
   page: any = 1;
   limit: any = 5;
   skip: any;
   totalCount: any;
+  data: Array<string[]>;
+  materialsArr: any;
 
   constructor(private fb: FormBuilder,
     private http: HttpClient,
@@ -65,103 +52,67 @@ export class AddOrderComponent implements OnInit {
     this.getunit();
   }
 
-  createForm()
-  {
+  createForm() {
     this.form = this.fb.group({
-      shop_name: ['', [Validators.required]],
-      contact_person: ['', [Validators.required]],
-      phone_contact_person: ['', [Validators.required]],
-      order_name: ['', [Validators.required]],
-      address: ['', [Validators.required]],
+      shop_name: [''],
+      contact_person: [''],
+      phone_contact_person: [''],
+      order_name: [''],
+      address: [''],
       start_date: [''],
-      end_date: [''],
-      materials: this.fb.array([this.newMaterials()])
-      
+      end_date: ['']
     });
 
-    this.formvat = this.fb.group(
+    this.formMaterial = this.fb.group(
       {
-        vat: ['N']
-      }
-    )
-
-    this.sumPrice$ = this.materials().valueChanges.pipe(map(groupList=>groupList.reduce((sum,group)=>sum +Number(group.price) * Number(group.quantity),0)))
-    this.sumDiscount$ = this.materials().valueChanges.pipe(map(groupList=>groupList.reduce((sum,group)=>sum+(Number(group.price) * Number(group.discount) / 100) ,0) ))
-    this.sumAfterDiscount$ = combineLatest([this.sumPrice$,this.sumDiscount$]).pipe(map(([sumPrice,sumCount])=>sumPrice - sumCount));
-    this.sumVat$ = combineLatest([this.sumAfterDiscount$]).pipe(map(([sumVat])=>sumVat + sumVat * 0.07));
-    // this.sumTotal$ = combineLatest([this.sumAfterDiscount$]).pipe(map(([sumVat])=>sumVat + sumVat * 0.7));
-    
-    this.materials().valueChanges.subscribe(form => {
-      let sum: number = 0;
-      let sumprice: number = 0;
-      let sumdiscount: number = 0;
-      form.forEach(({ price, discount, quantity}) => {
-        sumprice = price * quantity;
-        sumdiscount = (price * quantity) /100
-        this.sum = sumprice - sumdiscount
-      });
-    })
-  }
-
-  materials(): FormArray
-  {
-    return this.form.get("materials") as FormArray
-  }
-
-  newMaterials(): FormGroup
-  {
-    return this.fb.group(
-      {
-        material_name: ['', [Validators.required]],
-        detail: [''],
-        quantity: ['', [Validators.required]],
-        unit:[''],
+        material_name: [''],
+        quantity: [''],
+        unit: [''],
         price: [''],
         discount: [''],
       }
     )
+    this.data = [];
+
+    this.formvat = this.fb.group(
+      {
+        vat: ["N"]
+      }
+    )
   }
 
-  getSummary(materialss) {
-    return (
-      materialss.price * materialss.quantity - (materialss.price * materialss.quantity * materialss.discount) / 100
-    );
-  }
-
-  get getGranTotalVat() {
-    return this.sum + this.sum * 0.7;
-  }
-  get IncludeVat() {
-    return this.sum * 0.7;
-  }
-  get noVat(){
-    return this.sum + 0;
-  }
-  get sumnoVat(){
-    return this.summary = this.sum;
-  }
-
-  addMaterials()
+  add()
   {
-    this.materials().push(this.newMaterials());
+    if (this.formMaterial.valid)
+    {
+      this.data.push(this.formMaterial.value)
+      this.formMaterial.reset();
+    }
   }
 
-  removeMaterials(i: number)
+  summary(data)
   {
-    this.materials().removeAt(i);
+    return parseInt(
+      (data.price * data.quantity - (data.price * data.quantity * data.discount) / 100).toFixed(2)
+    )
   }
-  
+
   getsupplier() {
     this.OrderM.getsupplier().subscribe(res => {
       this.suppilerArr = res;
     })
   }
 
-  getunit(){
+  getunit() {
     this.OrderM.getunit_material().subscribe(res => {
-        this.unitArr = res
-      }
-    )
+      this.unitArr = res
+    })
+  }
+
+  getmaterial(){
+    this.OrderM.getmaterial().subscribe(res => {
+      this.materialsArr = res
+    })
   }
 
   updateFromDate(source) {
@@ -173,13 +124,12 @@ export class AddOrderComponent implements OnInit {
 
   insertData() {
     if (confirm('คุณต้องการเพิ่มข้อมูลหรือไม่ ?') === true) {
-       {
+      {
         let formdata = new FormData();
         formdata.append("data", JSON.stringify(this.OrderMaterials));
         this.OrderM.addOrderM(formdata).subscribe(res => {
           this.toastr.success('เพิ่มข้อมูลวัตถุดิบสำเร็จ!');
-        }
-          ,
+        },
           err => {
             this.toastr.error('เพิ่มข้อมูลวัตถุดิบล้มเหลว!');
             console.log(err);
@@ -189,56 +139,64 @@ export class AddOrderComponent implements OnInit {
     }
   }
 
-  get shop_name() {
+  get shop_name()
+  {
     return this.form.get('shop_name')
   }
 
-  get contact_person(){
+  get contact_person()
+  {
     return this.form.get('contact_person')
   }
 
-  get phone_contact_person(){
-    return this.form.get('phone_contact_person')
+  get phone_contact_person()
+  {
+    return this.form.get("phone_contact_person")
   }
 
-  get order_name(){
-    return this.form.get('order_name')
+  get order_name()
+  {
+    return this.form.get("order_name")
   }
 
-  get address(){
+  get address()
+  {
     return this.form.get('address')
   }
 
-  get start_date(){
+  get start_date()
+  {
     return this.form.get('start_date')
   }
 
-  get end_date(){
+  get end_date()
+  {
     return this.form.get('end_date')
   }
 
-  get material_name(){
-    return this.form.get('Materials').get('material_name')
+  get material_name()
+  {
+    return this.formMaterial.get('material_name')
   }
 
-  get detail(){
-    return this.form.get('Materials').get('detail')
+  get quantity()
+  {
+    return this.formMaterial.get('quantity')
   }
 
-  get quantity(){
-    return this.form.get('Materials').get('quantity')
+  get unit()
+  {
+    return this.formMaterial.get('unit')
   }
 
-  get price(){
-    return this.form.get('Materials').get('price')
+  get price()
+  {
+    return this.formMaterial.get('price')
   }
 
-  get discount(){
-    return this.form.get('Materials').get('discount')
-  }
-
-  get vat(){
-    return this.form.get('Materials').get('vat')
+  get discount()
+  {
+    return this.formMaterial.get('discount')
   }
 
 }
