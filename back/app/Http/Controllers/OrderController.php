@@ -159,7 +159,8 @@ class OrderController extends Controller
 
     public function exportExcel()
     {
-        return Excel::download(new ExcelExport, 'orders.xlsx');
+        // return Excel::download(new ExcelExport, 'orders.xlsx');
+        return (new ExcelExport('2021-03-06','2021-03-06'))->download('orders.xlsx');
     }
     
     
