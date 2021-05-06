@@ -8,6 +8,10 @@ import { StatusInterface } from './../../../interfaces/statusInterface'
 import { ShippingService } from './../../../Service/shippingService.service';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import { Router } from '@angular/router';
+import { PrintAddressComponent } from './../printAddress/printAddress.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Overlay } from '@angular/cdk/overlay';
+
 
 @Component({
   selector: 'app-descriptionShipping',
@@ -19,7 +23,7 @@ export class DescriptionShippingComponent implements OnInit {
   message: string;
   errorMessage: String;
   submitted = false;
-  
+
   dataSource: OrderInterface[];
   dataForm: OrderInterface[];
   // statusArr: StatusInterface[] = [];
@@ -45,13 +49,15 @@ export class DescriptionShippingComponent implements OnInit {
 
   orderId: string;
   orderPart: OrderInterface[] = [];
-  imageDirectoyPath:any = 'http://127.0.0.1:5000/img/';
+  imageDirectoyPath: any = 'http://127.0.0.1:5000/img/';
 
   selectesStatus: OrderInterface;
   constructor(
     private ShippingService: ShippingService,
     private fb: FormBuilder,
     private router: Router,
+    public dialog: MatDialog,
+    private overlay: Overlay
   ) { }
 
   ngOnInit() {
@@ -62,20 +68,20 @@ export class DescriptionShippingComponent implements OnInit {
     }
     // this.order = requestData.order_id;
     this.orderId = requestData.order_id;
-    
+
     this.createForm();
     this.getEditForm(this.orderId),
-    this.getStatus();
+      this.getStatus();
     this.getUserSlip();
     this.getSelectedStatus(this.orderId)
   }
 
-  getSelectedStatus(orderId){
-    this.ShippingService.getOneStatus(orderId).subscribe( res => {
+  getSelectedStatus(orderId) {
+    this.ShippingService.getOneStatus(orderId).subscribe(res => {
       this.selectesStatus = res;
     })
   }
-  
+
   getEditForm(data) {
     this.ShippingService.getOneShipping(data).subscribe(
       res => {
@@ -111,11 +117,11 @@ export class DescriptionShippingComponent implements OnInit {
         this.shStatus = this.reactiveForm.get('status').value
         this.shStatusName = this.reactiveForm.get('status_name').value
         this.shDetail_id = this.reactiveForm.get('detail_id').value
-        this.shSlip = this.reactiveForm.get('image').value 
+        this.shSlip = this.reactiveForm.get('image').value
       },
       error => this.errorMessage = <any>error
     )
-    
+
   }
 
   createForm() {
@@ -131,7 +137,7 @@ export class DescriptionShippingComponent implements OnInit {
       province: ['',],
       postal_code: ['',],
       telephone: ['',],
-      status: ['',[Validators.required]],
+      status: ['', [Validators.required]],
       detail_id: ['',],
       image: ['',],
     })
@@ -174,6 +180,18 @@ export class DescriptionShippingComponent implements OnInit {
         this.orderPart = res;
       }
     )
+  }
+
+  onPrintAddress(data) {
+    this.ShippingService.nextMessage(data);
+    localStorage.setItem("order_id", data);
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    this.dialog.open(PrintAddressComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh'
+    });
   }
 
 
