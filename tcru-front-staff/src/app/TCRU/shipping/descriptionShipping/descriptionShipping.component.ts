@@ -25,6 +25,7 @@ export class DescriptionShippingComponent implements OnInit {
   // statusArr: StatusInterface[] = [];
   statusArr: OrderInterface[] = [];
   reactiveForm: FormGroup;
+  selectedStatus: string;
 
   order_number: Number;
   shUserfirstname: String;
@@ -38,6 +39,7 @@ export class DescriptionShippingComponent implements OnInit {
   shPostal_code: string;
   shTelephone: string;
   shStatus: string;
+  shStatusName: string;
   shDetail_id: number;
   shSlip: string;
 
@@ -45,6 +47,7 @@ export class DescriptionShippingComponent implements OnInit {
   orderPart: OrderInterface[] = [];
   imageDirectoyPath:any = 'http://127.0.0.1:5000/img/';
 
+  selectesStatus: OrderInterface;
   constructor(
     private ShippingService: ShippingService,
     private fb: FormBuilder,
@@ -59,10 +62,18 @@ export class DescriptionShippingComponent implements OnInit {
     }
     // this.order = requestData.order_id;
     this.orderId = requestData.order_id;
+    
     this.createForm();
     this.getEditForm(this.orderId),
     this.getStatus();
     this.getUserSlip();
+    this.getSelectedStatus(this.orderId)
+  }
+
+  getSelectedStatus(orderId){
+    this.ShippingService.getOneStatus(orderId).subscribe( res => {
+      this.selectesStatus = res;
+    })
   }
   
   getEditForm(data) {
@@ -82,6 +93,7 @@ export class DescriptionShippingComponent implements OnInit {
           postal_code: this.dataForm[0].postal_code,
           telephone: this.dataForm[0].telephone,
           status: this.dataForm[0].status_id,
+          status_name: this.dataForm[0].status_name,
           detail_id: this.dataForm[0].detail_id,
           image: this.dataForm[0].image
         })
@@ -97,6 +109,7 @@ export class DescriptionShippingComponent implements OnInit {
         this.shPostal_code = this.reactiveForm.get('postal_code').value
         this.shTelephone = this.reactiveForm.get('telephone').value
         this.shStatus = this.reactiveForm.get('status').value
+        this.shStatusName = this.reactiveForm.get('status_name').value
         this.shDetail_id = this.reactiveForm.get('detail_id').value
         this.shSlip = this.reactiveForm.get('image').value 
       },
@@ -193,6 +206,9 @@ export class DescriptionShippingComponent implements OnInit {
   }
   get status() {
     return this.reactiveForm.get('status')
+  }
+  get status_name() {
+    return this.reactiveForm.get('status_name')
   }
   get detail_id() {
     return this.reactiveForm.get('detail_id')

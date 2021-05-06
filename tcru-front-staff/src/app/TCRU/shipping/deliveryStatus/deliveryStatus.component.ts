@@ -91,7 +91,7 @@ export class DeliveryStatusComponent implements OnInit {
 
   filterByType(element, index) {
     if(index == 4){
-      return (element.status_id+1 == 0 || element.status_id+1 == 1 || element.status_id+1 == 2)
+      return (element.status_id == 0 || element.status_id == 1 || element.status_id == 2)
     }else{
       // console.log(element.status+'------'+this.typeList[index].id)
       return (element.status_id == this.typeList[index].id)

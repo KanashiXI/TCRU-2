@@ -49,4 +49,8 @@ export class ApiConstants {
     public static get getSlipURL(): string {
         return '/api/getslip';
     }
+
+    public static get getOneStatusURL(): string {
+        return '/api/getselectedstatus';
+    }
 }

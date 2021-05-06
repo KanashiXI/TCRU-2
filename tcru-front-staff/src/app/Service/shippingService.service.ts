@@ -26,6 +26,10 @@ export class ShippingService {
     this.message.next(message)
   }
 
+  getOneStatus(data){
+    return this.http.get<OrderInterface>(`${ApiConstants.baseURl}${ApiConstants.getOneStatusURL}/${data}`);
+  }
+
   getShippingOrder() {
     return this.http.get<OrderInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getShippingOrderURL}`);
   }

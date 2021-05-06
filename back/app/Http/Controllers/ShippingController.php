@@ -95,7 +95,7 @@ class ShippingController extends Controller {
             'address.telephone as telephone',
             'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
             'address.postal_code as postal_code',
-            'status.name as status',
+            'status.name as status_name',
             'order_detail.order_detail_id as detail_id', 'order_detail.product_quantity as quantity', 'order_detail.retail_price as retail_price',
             'product.product_name as product_name')
             
@@ -110,6 +110,16 @@ class ShippingController extends Controller {
         $edit = order::where('order_id', $request->order_id)->first();
         $edit->status=$request->status;
         $result = $edit->save();
+    }
+
+    public function getOneStatus($request) {
+        // $getStatus = order::where('order_id', $request->order_id)->first();
+        $getStatus = DB::table('order')
+            ->join('status', 'status.id', '=', 'order.status' )
+            ->select('status.name')
+            ->where('order.order_id', $request)
+            ->get(); 
+        return response()->json($getStatus,200);
     }
 
     public function getStatus() {

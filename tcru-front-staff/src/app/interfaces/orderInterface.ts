@@ -34,4 +34,5 @@ export interface OrderInterface {
     quantity?: number;
     retail_price?: number;
     image?: string;
+    
 }
