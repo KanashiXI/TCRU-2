@@ -92,12 +92,13 @@ import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
 import { CurrencyPipe } from "@angular/common";
-import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
-import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
-import { PrintOrderComponent } from './OrderMaterials/print-order/print-order.component';
-import { RevealInsideComponent } from './Reveal/reveal-inside/reveal-inside.component';
-import { RevealOutsideComponent } from './Reveal/reveal-outside/reveal-outside.component';
-import { ReturnComponent } from './Return/return/return.component';
+import { ChartModule } from 'angular2-chartjs';
+// import { ShowRevealComponent } from './Reveal/show-reveal/show-reveal.component';
+// import { EditOrderComponent } from './OrderMaterials/edit-order/edit-order.component';
+// import { PrintOrderComponent } from './OrderMaterials/print-order/print-order.component';
+// import { RevealInsideComponent } from './Reveal/reveal-inside/reveal-inside.component';
+// import { RevealOutsideComponent } from './Reveal/reveal-outside/reveal-outside.component';
+// import { ReturnComponent } from './Return/return/return.component';
 import { LoginComponent } from './Login/login/login.component';
 import { ModalComponentComponent} from './modal-component/modal-component/modal-component.component';
 import { ShowproComponent } from './product/showpro/showpro.component';
@@ -107,6 +108,8 @@ import { JarwisService } from './Service/jarwis.service';
 import { TokenService } from './Service/token.service';
 import { AuthService } from './Service/auth.service';
 
+import { chartsComponent } from './Chart/chart/charts.component';
+ 
 const appRoutes: Routes = [
   {
     path: '', 
@@ -214,26 +217,26 @@ const appRoutes: Routes = [
     path: 'addOrder',
     component: AddOrderComponent
   },
-  {
-    path: 'editOrder/:id',
-    component: EditOrderComponent
-  },
-  {
-    path: 'printOrder/:id',
-    component: PrintOrderComponent
-  },
-  {
-    path: 'ShowReveal',
-    component: ShowRevealComponent
-  },
-  {
-    path: 'RevealIn',
-    component: RevealInsideComponent
-  },
-  {
-    path: 'Return',
-    component: RevealOutsideComponent
-  },
+  // {
+  //   path: 'editOrder/:id',
+  //   component: EditOrderComponent
+  // },
+  // {
+  //   path: 'printOrder/:id',
+  //   component: PrintOrderComponent
+  // },
+  // {
+  //   path: 'ShowReveal',
+  //   component: ShowRevealComponent
+  // },
+  // {
+  //   path: 'RevealIn',
+  //   component: RevealInsideComponent
+  // },
+  // {
+  //   path: 'Return',
+  //   component: RevealOutsideComponent
+  // },
   {
     path: 'login',
     component: LoginComponent,
@@ -244,6 +247,11 @@ const appRoutes: Routes = [
   {
     path: 'Showpro',
     component: ShowproComponent
+  }
+  ,
+  {
+    path: 'Chart',
+    component: chartsComponent
   }
 ];
 
@@ -290,6 +298,7 @@ const appRoutes: Routes = [
     LoginComponent,
     // ModalComponentComponent,
     ShowproComponent,
+    chartsComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
@@ -372,6 +381,8 @@ const appRoutes: Routes = [
     // NgMultiSelectDropDownModule.forRoot(),
     // NgxDatePickerModule,
     // NgSelectModule
+    // NgSelectModule,
+    ChartModule, 
   ],
   providers: [
     CurrencyPipe, JarwisService, TokenService, AuthService, AfterLoginService, BeforeLoginService

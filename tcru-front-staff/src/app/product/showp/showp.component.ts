@@ -95,7 +95,6 @@ export class ShowpComponent implements OnInit {
     }
     let x = obj.category_id
     if (x != "") {
-      
         this.ProductService.ProductCategory(obj).subscribe(res => {
           this.ProductCategory = res;
           console.log(obj)

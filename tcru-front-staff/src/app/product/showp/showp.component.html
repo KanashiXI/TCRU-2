@@ -39,30 +39,24 @@
           <thead>
             <tr>
               <th>ลำดับ</th>
-              <th >ชื่อสินค้า
-              </th>
-              <th>ราคา</th>
-              <th>น้ำหนัก/กรัม</th>
-              <th>วันที่เก็บรักษา</th>
+              <th>ชื่อสินค้า</th>
               <th>จุดวิกฤตของสินค้า</th>
-              <th >ประเภทสินค้า
-              </th>
-              <th>รูปสินค้า</th>
-              <th></th>
+              <th>น้ำหนัก/ชิ้น</th>
+              <th>ราคา</th>
+              <th>เพิ่มสูตรการผลิต | แก้ไขข้อมูลสินค้า</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let mat of ProductCategory ;let i=index ">
               <td>{{i+1}}</td>
               <td>{{mat.product_name}}</td>
-              <td>{{mat.price}}</td>
-              <td>{{mat.expire}}&nbsp;&nbsp;&nbsp;วัน</td>
-              <td>{{mat.weight}}</td>
-              <td>{{mat.name}}</td>
+              <td>{{mat.critical}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
+              <td>{{mat.weight}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.weight_unit}}</td>
+              <td>{{mat.price}}&nbsp;&nbsp;&nbsp;บาท</td>
               <!-- <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px"></td> -->
               <!-- <td>{{mat.material_name}}</td> -->
               <!-- <td *ngFor="let friend of dataArr">{{friend.material_name}}</td> -->
-              <td >
+              <td >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="btn-group btn-group-sm">
                   <button class="btn btn-info" routerLink="/formula/{{mat.id}}">
                     <mat-icon>add</mat-icon>

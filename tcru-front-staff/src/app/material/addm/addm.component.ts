@@ -127,15 +127,6 @@ export class AddmComponent {
     console.log(err);
     });
 }
-
-// applyFilter(event: Event) {
-//   const filterValue = (event.target as HTMLInputElement).value;
-//   this.dataSource.filter = filterValue.trim().toLowerCase();
-
-//   if (this.dataSource.paginator) {
-//     this.dataSource.paginator.firstPage();
-//   }
-// }
 get material_name() {
   return this.form.get('material_name')
 }

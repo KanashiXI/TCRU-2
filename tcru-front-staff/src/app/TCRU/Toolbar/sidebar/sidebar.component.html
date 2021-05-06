@@ -2,7 +2,7 @@
     <mat-nav-list class="menu-list">
         <!-- <img src="assets/Image/TCRU.jpg" alt="TCRU" width="100" /> -->
 
-        <mat-list-item routerLinkActive="active-list-item" routerLink="Report" title="Report">
+        <mat-list-item routerLinkActive="active-list-item" routerLink="Chart" title="Report">
             <mat-icon class="icon" [@iconAnimation]="sidebarState">dashboard</mat-icon>
             <a class="label" [@labelAnimation]="sidebarState">รายงาน</a>
         </mat-list-item>
@@ -22,9 +22,8 @@
         <div class="submenu" [ngClass]="{'expanded' : showSubSubMenu}" *ngIf="showSubSubMenu && (isShowing || isExpanded)">
             <a class="list" mat-list-item routerLink="/showp">ข้อมูลสินค้า</a>
             <a class="list" mat-list-item routerLink="/stockp" routerLinkActive="active">สต๊อกสินค้า</a>
-            <a class="list" mat-list-item routerLink="/addstock" routerLinkActive="active">ผลิตสินค้า</a>
+            <a class="list" mat-list-item routerLink="/Showpro" routerLinkActive="active">ผลิตสินค้า</a>
             <a class="list" mat-list-item routerLink="/ShowReveal" routerLinkActive="active">เบิกสินค้า</a>
-            <a class="list" mat-list-item routerLink="/addstock" routerLinkActive="active">ผลิตสินค้า</a>
         </div>
         <mat-list-item routerLinkActive="active-list-item" routerLink="shows" title="ร้านค้าวัตถุดิบ">
             <mat-icon class="icon" [@iconAnimation]="sidebarState">home</mat-icon>

@@ -4,23 +4,22 @@
     <form [formGroup]=form (ngSubmit)="insertData()">
       <div class="col-sm-4">
         <div class="form-group">
-          <input formControlName="product_id" class="form-control"disabled="" [(ngModel)]="product.product_name">
+          <input formControlName="product_id" class="form-control" disabled="" [(ngModel)]="product.product_name">
         </div>
-      </div>          
-
+      </div>
       <div class="card card-primary">
         <div class="card-body">
           <div class="row ">
-            <div class="col-sm-4">
-              
+            <div class="col-sm-1">
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1.5">
               <label>เลือกประเภทวัตถุดิบ :</label>
             </div>
             <div class="col-sm-2">
               <div class="form-group">
                 <div class="form-group">
-                  <select class="form-control" formControlName="id" [(ngModel)]="Materials.name"(change)="getMaterialCategory($event)">
+                  <select class="form-control" formControlName="id" [(ngModel)]="Materials.name"
+                    (change)="getMaterialCategory($event)">
                     <option value="">ประเภทวัตถุดิบ</option>
                     <option *ngFor="let mat of categoryArr" value="{{mat.id}}">{{mat.name}}
                     </option>
@@ -34,18 +33,13 @@
                 </div>
               </div>
             </div>
-          </div>
-            <br>
-          <div class="row ">
-
-            <div class="col-sm-2">
+            <div class="col-sm-1">
               <label>เลือกวัตถุดิบ :</label>
             </div>
             <div class="col-sm-2">
               <div class="form-group">
                 <div class="form-group">
                   <select class="form-control" formControlName="material_name" [(ngModel)]="formula.material_name">
-                    <option value="">เลือกวัตถุดิบ</option>
                     <option *ngFor="let mat of MaterialCategory" value="{{mat.material_name}}">{{mat.material_name}}
                     </option>
                   </select>
@@ -58,28 +52,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-2">
-              <label>หน่วยนับ :</label>
-            </div>
-            <div class="col-sm-2">
-              <div class="form-group">
-                <div class="form-group">
-                  <select class="form-control" formControlName="unit" [(ngModel)]="formula.unit">
-                    <option value="">เลือกวัตถุดิบ</option>
-                    <option>ขวด</option>
-                    <option>กระสอบ</option>
-                    <option>ลิตร</option>
-                  </select>
-                  <div *ngIf="material_name.invalid && (material_name.dirty || material_name.touched)"
-                    class="text-error">
-                    <div *ngIf="material_name.errors.required">
-                      กรุณาเลือกวัตถุดิบ
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
               <label>จำนวน :</label>
             </div>
             <div class="col-sm-2">
@@ -96,12 +69,13 @@
               &nbsp;&nbsp;<button class="btn btn-success ">ยืนยัน</button>
             </td>
           </div>
+          <br>
+
         </div>
       </div>
     </form>
   </section>
   <br>
-
   <section class="content-header">
     <div class="card card-success">
       <div class="card-body p-0">
@@ -117,8 +91,7 @@
               <th>ลำดับ</th>
               <th>วัตถุดิบ</th>
               <th>จำนวน</th>
-              <th>หน่วยนับ</th>
-              <th></th>
+              <th>ลบวัตถุดิบ</th>
             </tr>
           </thead>
           <tbody>
@@ -126,28 +99,26 @@
               <td></td>
               <td>{{i+1}}</td>
               <td>{{mat.material_name}}</td>
-              <td>{{mat.quantity}}</td>
-              <td>{{mat.unit}}</td>
-              <td >
+              <td>{{mat.quantity}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
+              <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="btn-group btn-group-sm">
-                  <a  (click)="deleteFormula(mat.id)">
+                  <a (click)="deleteFormula(mat.id)">
                     <mat-icon>delete_sweep</mat-icon>
                   </a>
                 </div>
               </td>
-              
             </tr>
           </tbody>
         </table>
       </div>
     </div>
     <br>
-      <div class="row">
-    <div class="form-group">
-      <td>
-        &nbsp; &nbsp;<button class="btn btn-secondary  " routerLink="/showp"> กลับ</button>
-      </td>
+    <div class="row">
+      <div class="form-group">
+        <td>
+          &nbsp; &nbsp;<button class="btn btn-secondary  " routerLink="/showp"> กลับ</button>
+        </td>
+      </div>
     </div>
-  </div>
   </section>
 </div>

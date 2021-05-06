@@ -30,6 +30,9 @@ export class FormulaService {
   MaterialCategory(data){
     return this.httpClient.post('http://localhost:5000/api/MaterialCategory',data);
   }
+  Materialunit_count(data){
+    return this.httpClient.post('http://localhost:5000/api/Materialunit_count',data);
+  }
   getcategory(){
     return this.httpClient.get('http://localhost:5000/api/categorym');
    }

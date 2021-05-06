@@ -43,18 +43,14 @@
                 <th>ชื่อวัตถุดิบ</th>
                 <th>จุดวิกฤตของสินค้า</th>
                 <th>แก้ไขวัตถุดิบ</th>
-                <!-- <th>หน่วย</th> -->
-                <!-- <th>ประเภทวัตถุดิบ</th> -->
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let mat of MaterialCategory ;let i=index ">
                 <td></td>
                 <td>{{i+1}}</td>
-                <!-- <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px">
-                </td> -->
                 <td>{{mat.material_name}}</td>
-                <td>{{mat.critical}}</td>
+                <td>{{mat.critical}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
                 <td >
                   <div class="btn-group btn-group-sm">
                     <button class="btn btn-warning" routerLink="/editm/{{mat.material_id}}">
