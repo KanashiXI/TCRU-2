@@ -11,10 +11,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
-
-
-
-
     public function createOrder(Request $request)
     {     
         // $result = $edit->save();

@@ -82,6 +82,7 @@ export class DescriptionShippingComponent implements OnInit {
         this.dataForm = res;
         this.reactiveForm.patchValue({
           order_id: this.dataForm[0].order_id,
+          user_id: this.dataForm[0].user_id,
           userfirstname: this.dataForm[0].userfirstname,
           userlastname: this.dataForm[0].userlastname,
           shipfirstname: this.dataForm[0].shipfirstname,
@@ -95,7 +96,8 @@ export class DescriptionShippingComponent implements OnInit {
           status: this.dataForm[0].status_id,
           status_name: this.dataForm[0].status_name,
           detail_id: this.dataForm[0].detail_id,
-          image: this.dataForm[0].image
+          image: this.dataForm[0].image,
+          net_amount: this.dataForm[0].net_amount,
         })
         this.order_number = this.reactiveForm.get('order_id').value
         this.shUserfirstname = this.reactiveForm.get('userfirstname').value
@@ -121,6 +123,7 @@ export class DescriptionShippingComponent implements OnInit {
   createForm() {
     this.reactiveForm = this.fb.group({
       order_id: ['',],
+      user_id: ['',],
       userfirstname: ['',],
       userlastname: ['',],
       shipfirstname: ['',],
@@ -134,6 +137,7 @@ export class DescriptionShippingComponent implements OnInit {
       status: ['',[Validators.required]],
       detail_id: ['',],
       image: ['',],
+      net_amount: ['',],
     })
   }
 

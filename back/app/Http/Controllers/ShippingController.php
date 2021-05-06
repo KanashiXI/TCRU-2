@@ -7,6 +7,8 @@ use App\shippingBrand;
 use App\transportation;
 use App\order;
 use App\status;
+use App\coupon;
+use App\users;
 use DB;
 
 class ShippingController extends Controller {
@@ -75,42 +77,9 @@ class ShippingController extends Controller {
         return response()->json($getall,200);
     }
 
-    public function getOneShipping($request)
-    {
-        // $getall = order::where('order_id', $request)->get();  
-        // return response()->json($getall,200);
+    
 
-        $getall = DB::table('order')
-            ->join('users', 'users.id', '=', 'order.user_id')            
-            ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id')
-            ->join('product', 'product.product_id', '=', 'order_detail.product_id')
-            ->join('address', 'address.address_id', '=', 'order.address_id')
-            ->join('provinces', 'provinces.id', '=', 'address.province_id')
-            ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
-            ->join('districts', 'districts.id', '=', 'address.districts_id')
-            ->join('shipping_brand', 'shipping_brand.shipping_brand_id', '=', 'order.shipping_brand')
-            ->join('status', 'status.id', '=', 'order.status')
-            ->select('order.order_id', 'users.firstname as userfirstname', 'users.lastname as userlastname',
-            'address.firstname as shipfirstname', 'address.lastname as shiplastname', 'address.address',
-            'address.telephone as telephone',
-            'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
-            'address.postal_code as postal_code',
-            'status.name as status_name',
-            'order_detail.order_detail_id as detail_id', 'order_detail.product_quantity as quantity', 'order_detail.retail_price as retail_price',
-            'product.product_name as product_name')
-            
-            ->where('order.order_id', $request)
-            // ->groupBy('order.order_id')
-            ->get(); 
-        return response()->json($getall,200); 
-    }
 
-    public function editStatus(Request $request, order $order)
-    {       
-        $edit = order::where('order_id', $request->order_id)->first();
-        $edit->status=$request->status;
-        $result = $edit->save();
-    }
 
     public function getOneStatus($request) {
         // $getStatus = order::where('order_id', $request->order_id)->first();
@@ -126,4 +95,99 @@ class ShippingController extends Controller {
         $getall = status::all();
         return response()->json($getall,200);
     }
+
+    public function getOneShipping($request)
+    {
+        // $getall = order::where('order_id', $request)->get();  
+        // return response()->json($getall,200);
+
+        $getall = DB::table('order')
+            ->join('users', 'users.id', '=', 'order.user_id')            
+            ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id')
+            ->join('product', 'product.product_id', '=', 'order_detail.product_id')
+            ->join('address', 'address.address_id', '=', 'order.address_id')
+            ->join('provinces', 'provinces.id', '=', 'address.province_id')
+            ->join('amphures', 'amphures.id', '=', 'address.amphures_id')
+            ->join('districts', 'districts.id', '=', 'address.districts_id')
+            ->join('shipping_brand', 'shipping_brand.shipping_brand_id', '=', 'order.shipping_brand')
+            ->join('status', 'status.id', '=', 'order.status')
+            ->select('order.net_amount', 'order.user_id', 'order.order_id', 'users.firstname as userfirstname', 'users.lastname as userlastname',
+            'address.firstname as shipfirstname', 'address.lastname as shiplastname', 'address.address',
+            'address.telephone as telephone',
+            'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
+            'address.postal_code as postal_code',
+            'status.name as status_name',
+            'order_detail.order_detail_id as detail_id', 'order_detail.product_quantity as quantity', 'order_detail.retail_price as retail_price',
+            'product.product_name as product_name')
+            
+            ->where('order.order_id', $request)
+            // ->groupBy('order.order_id')
+            ->get(); 
+        return response()->json($getall,200); 
+    }
+
+
+    public function editStatus(Request $request, order $order)
+    {       
+        $edit = order::where('order_id', $request->order_id)->first();
+        $edit->status=$request->status;
+        $result = $edit->save();
+        $statusValue = $request->status;
+        
+        $netAmount = DB::table('order')
+            ->select( 'net_amount')
+            ->where('order_id', $request->order_id)
+            ->get()
+            ->pluck('net_amount');     
+        $getUserShopPoint = DB::table('users')
+            ->select( 'shopping_point')
+            ->where('users.id', $request->user_id)
+            ->get()
+            ->pluck('shopping_point'); 
+
+            
+        if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1"){
+            // $editShopPoint = users::where('user_id', $request->user_id)->first();
+            $editShopPoint=(int)$getUserShopPoint[0]+(int)$netAmount[0];
+            if($editShopPoint >= 10000){
+                $newShopPoint = $editShopPoint - 10000;
+                $savePoint = users::where('id', $request->user_id)->first();
+                $savePoint->shopping_point=$newShopPoint;
+                $result = $savePoint->save();
+
+
+                $length = 20;
+                // generate coupon    
+                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                $charactersLength = strlen($characters);
+                $randomString = '';
+                for ($i = 0; $i < $length; $i++) {
+                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                }
+                $data = new coupon;
+                $data->key = $randomString;
+                $data->coupon_status = 0;
+                $data->user_id = $request->user_id;
+                $data->save();
+
+            }else{
+                $savePoint = users::where('id', $request->user_id)->first();
+                $savePoint->shopping_point=$editShopPoint;
+                $result = $savePoint->save();
+            }
+
+        }
+
+        return response()->json('success',200); 
+    }
+
+
+
+
+
+
+
+
+
+
 }
