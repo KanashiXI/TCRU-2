@@ -310,6 +310,17 @@ export class CartComponent implements OnInit {
     })
   }
 
+  selectPromption(){
+    this.promotionData.forEach( (obj,index) => {
+      if( this.totalPrice  > obj.cost_condidtion){
+        this.promotionNumber = this.promotionData[index].unit;
+        this.discribePromotion = this.promotionData[index].detail;
+        this.condition = this.promotionData[index].cost_condidtion;
+        this.promotionId = this.promotionData[index].promotion_id;
+      }
+    })
+  }
+
   queryCartProduct(user_id) {
     this.cartService.getCartItemList(user_id).subscribe(res => {
       this.productInCart = res;
@@ -351,7 +362,6 @@ export class CartComponent implements OnInit {
   }
 
   ngAfterContentChecked() {
-
     this.cartTotal = 0;
     this.cartWeight = 0;
     this.sumShippingCost = 0;
@@ -368,6 +378,7 @@ export class CartComponent implements OnInit {
     // console.log(this.isSelectProduct)
 
     this.totalPrice = this.cartTotal;
+    this.selectPromption();
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
       this.isGotPromotion = true;
       this.discount = (this.cartTotal * (this.promotionNumber / 100))
@@ -446,8 +457,8 @@ export class CartComponent implements OnInit {
         product_quantity: cart.product_quantity,
       })
     }
-
     this.updateCart();
+    
   }
 
   handlePlus(cart) {
