@@ -5,7 +5,7 @@
     <!-- body -->
     <section class="content-header">
         <div class="card-body">
-            <form [formGroup]="form">
+            <form [formGroup]="form" (ngSubmit)="insertData()">
                 <!-- หัวเรื่องข้อมูลใบสั่งซื้อ -->
                 <div class="card-header">
                     <div class="col-sm-12">
@@ -85,7 +85,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label>วันที่สั่งซื้อวัตถุดิบ</label>
-                                    <input type="date" [value]="from | date:'yyyy-MM-dd'" (input)="updateFromDate($event)" class="form-control" placeholder="วันที่สั่งซื้อวัตถุดิบ" [(ngModel)]="OrderMaterials.start_date" />
+                                    <input type="date" [value]="from | date:'yyyy-MM-dd'" (input)="updateFromDate($event)" class="form-control" placeholder="วันที่สั่งซื้อวัตถุดิบ" fromNameControl="start_date" [(ngModel)]="OrderMaterials.start_date" />
                                 </div>
                             </div>
                             <!-- วันที่ได้รับวัตถุดิบ -->
@@ -145,7 +145,7 @@
                                 <div class="col-sm-2">
                                     <div class="form-group">
                                         <label>หน่วยนับ</label>
-                                        <select class="form-control" formControlName="unit" [(ngModel)]="OrderMaterials.unit_material_id">
+                                        <select class="form-control" formControlName="unit" [(ngModel)]="OrderMaterials.unit">
                                             <option value="">หน่วยนับ</option>
                                             <option *ngFor="let mat of unitArr" value="{{mat.unit}}">{{mat.unit_material_name}}</option>
                                         </select>
@@ -170,6 +170,7 @@
                                         <input type="number" class="form-control" formControlName="discount" [(ngModel)]="OrderMaterials.discount">
                                     </div>
                                 </div>
+
                                 <!-- ปุ่มเพิ่มรายการ -->
                                 <div class="col-sm-1">
                                     <button class="btn btn-success" (click)="add()">เพิ่มรายการ</button>
@@ -196,36 +197,30 @@
                                         <div class="body" *ngFor="let d of data; let i = index">
                                             <div>{{d?.name_material}}</div>
                                             <div>{{d?.quantity}}</div>
-                                            <div>{{d?.unit}}</div>
+                                            <div>{{d.unit}}</div>
                                             <div>{{d?.price | number : '1.2-2'}} ฿</div>
                                             <div>{{d?.discount | number : '1.2-2'}} ฿</div>
-                                            <div>{{ summary(d) | number : '1.2-2'}} ฿</div>
+                                            <div>{{ getSummary(d) | number : '1.2-2'}} ฿</div>
                                         </div>
                                     </div>
                                     <br />
                                     <hr />
+                                    <!-- vat -->
                                     <div>
                                         <form [formGroup]="formvat">
-                                            <input type="radio" name="vat" value="Y" formControlName="vat"> มีภาษีมูลค่าเพิ่ม 7%
-                                            <input type="radio" name="vat" value="N" formControlName="vat"> ไม่มีภาษีมูลค่าเพิ่ม 7%
+                                            <input type="radio" name="vat" value="Y" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> มีภาษีมูลค่าเพิ่ม 7%
+                                            <input type="radio" name="vat" value="N" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> ไม่มีภาษีมูลค่าเพิ่ม 7%
                                         </form>
                                     </div>
-
                                     <div style="text-align: right;">
-                                        ยอดรวม
+                                        ยอดรวม: {{ summary | number : '1.2-2'}}
                                     </div>
 
-                                    <div style="text-align: right;">
-                                        VAT 7%
+                                    <div style="text-align: right;" *ngIf="formvat.get('vat').value =='Y' ">
+                                        VAT 7%: {{ IncludeVat | number : '1.2-2' }}
                                     </div>
-                                    <div style="text-align: right;">
-                                        รวมเงินทั้งสิ้น
-                                    </div>
-                                    <div style="text-align: right;">
-                                        no vat 7%
-                                    </div>
-                                    <div style="text-align: right;">
-                                        รวมเงินทั้งสิ้น
+                                    <div style="text-align: right;" *ngIf="formvat.get('vat').value =='Y' ">
+                                        รวมเงินทั้งสิ้น: {{ getGranTotalVat | number : '1.2-2' }}
                                     </div>
                                 </div>
                             </div>
