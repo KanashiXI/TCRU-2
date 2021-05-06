@@ -1,61 +1,65 @@
 <div class="main-container" style=" height:200vh;">
     <!-- <div class="card" style="margin-top: 30px; margin-right: 10px; margin-left: 10px;"> -->
-
+  
     <h5 class="card-title">ผลิตสินค้า</h5>
     <section class="content-header">
-        <div class="card-body">
-            <form [formGroup]=form (ngSubmit)="editProduct()">
-                <!-- หัวเรื่องข้อมูลใบสั่งซื้อ -->
-                <div class="card-header">
-                    <div class="col-sm-12">
-                        <label>ข้อมูลการผลิตสินค้า</label>
-                    </div>
+      <div class="card-body">
+        <form [formGroup]=form (ngSubmit)="editProduct()">
+          <!-- หัวเรื่องข้อมูลใบสั่งซื้อ -->
+          <div class="card-header">
+            <div class="col-sm-12">
+              <label>ข้อมูลการผลิตสินค้า</label>
+            </div>
+          </div>
+          <div class="card card_primary">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-2">
                 </div>
-                <div class="card card_primary">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-1">
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <label>เลือกสินค้าที่จะผลิต</label>
-                                        <select class="form-control" disabled="" placeholder="เลือกสินค้าที่จะผลิต" formControlName="product_id" [(ngModel)]="production.product_id" (change)="formulabyproduct($event)">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label>เลือกสินค้าที่จะผลิต</label>
+                      <select class="form-control" disabled=""placeholder="เลือกสินค้าที่จะผลิต" formControlName="product_id"
+                        [(ngModel)]="production.product_id">
                         <option *ngFor="let mat of dataArr" value="{{mat.id}}">{{mat.product_name}}
                         </option>
                       </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>จำนวน</label>
-                                    <input type="text" class="form-control" disabled="" formControlName="quantity" [(ngModel)]="production.quantity">
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label>วันที่ผลิต</label>
-                                    <input type="date" class="form-control" formControlName="MFG" disabled="" [(ngModel)]="production.MFG">
-                                </div>
-                            </div>
-                            <div class="col-sm-1">
-                            </div><br>
-                            <div class="form-group">
-                                <button class="btn btn-block btn-success ">สำเร็จ</button>
-                            </div>
-                        </div>
                     </div>
+                  </div>
                 </div>
-                <br>
-                <div class="row">
-                    <div class="form-group">
-                        <td>
-                            &nbsp; <button class="btn btn-secondary  " routerLink="/Showpro"> กลับ</button>
-                        </td>
-                    </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>จำนวน</label>
+                    <input type="text" class="form-control" disabled=""formControlName="quantity" [(ngModel)]="production.quantity">
+                  </div>
                 </div>
-            </form>
-        </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>วันที่ผลิต</label>
+                    <input type="date" class="form-control" disabled=""formControlName="MFG" [(ngModel)]="production.MFG">
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                </div>
+                <div class="form-group">
+                  <td>
+                    <button class="btn btn-block btn-success ">ยืนยัน</button>
+                  </td>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="form-group">
+              <td>
+                &nbsp; <button class="btn btn-secondary  " routerLink="/showOrderM"> กลับ</button>
+              </td>
+            </div>
+          </div>
+        </form>
+      </div>
     </section>
-</div>
+  </div>
