@@ -16,6 +16,17 @@ export class ProductService {
   getproductionsum() {
     return this.httpClient.get('http://localhost:5000/api/productionsum');
   }
+  productionid(id) {
+    return this.httpClient.get('http://localhost:5000/api/productionid/'+id);
+  }
+  Oneupdateproduction(id){
+    return this.httpClient.get('http://localhost:5000/api/Oneupdateproduction/'+id);
+   }
+
+   updateproduction(id,data)
+   {
+    return this.httpClient.patch('http://localhost:5000/api/updateproduction/'+id,data);
+   }
   getData() {
     return this.httpClient.get('http://localhost:5000/api/product');
   }

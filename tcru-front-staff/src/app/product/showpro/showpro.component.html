@@ -36,9 +36,6 @@
                       <td>{{i+1}}</td>
                       <td>{{mat.product_name}}</td>
                       <td>{{mat.total}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
-                      <!-- <td><img [src]="mat.image ? imageDirectoyPath+mat.image : 'assets/image/no-image.png'" height="50px"></td> -->
-                      <!-- <td>{{mat.material_name}}</td> -->
-                      <!-- <td *ngFor="let friend of dataArr">{{friend.material_name}}</td> -->
                       <td>{{mat.critical-mat.total}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
                     </tr>
                   </tbody>
@@ -75,10 +72,7 @@
                       <td>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <div class="btn-group btn-group-sm">
-                          <button class="btn btn-info" routerLink="/formula/{{mat.id}}">
-                            <mat-icon>add</mat-icon>
-                          </button>
-                          <button class="btn btn-warning" routerLink="/editp/{{mat.id}}">
+                          <button class="btn btn-warning" routerLink="/editstock/{{mat.id}}">
                             <mat-icon>edit</mat-icon>
                           </button>
                         </div>
@@ -115,6 +109,13 @@
                       <td>{{i+1}}</td>
                       <td>{{mat.product_name}}</td>
                       <td>{{mat.total}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat.unit}}</td>
+                      <td >
+                        <div class="btn-group btn-group-sm">
+                          <button class="btn btn-warning" routerLink="/showlotp/{{mat.product_id}}">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                        </div>
+                      </td>
                     </tr>
                   </tbody>
                 </table>

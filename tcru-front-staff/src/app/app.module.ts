@@ -109,6 +109,7 @@ import { TokenService } from './Service/token.service';
 import { AuthService } from './Service/auth.service';
 
 import { chartsComponent } from './Chart/chart/charts.component';
+import { EditstockComponent } from './stockm/editstock/editstock.component';
  
 const appRoutes: Routes = [
   {
@@ -252,6 +253,10 @@ const appRoutes: Routes = [
   {
     path: 'Chart',
     component: chartsComponent
+  },
+  {
+    path: 'editstock/:id',
+    component: EditstockComponent
   }
 ];
 
@@ -298,7 +303,8 @@ const appRoutes: Routes = [
     LoginComponent,
     // ModalComponentComponent,
     ShowproComponent,
-    chartsComponent
+    chartsComponent,
+    EditstockComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [

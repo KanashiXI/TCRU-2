@@ -1,0 +1,300 @@
+<div class="main-container" style=" height:200vh;">
+    <!-- <div class="card" style="margin-top: 30px; margin-right: 10px; margin-left: 10px;"> -->
+  
+    <h5 class="card-title">ผลิตสินค้า</h5>
+  
+    <!-- body -->
+    <section class="content-header">
+      <div class="card-body">
+        <form [formGroup]=form (ngSubmit)="editProduct()">
+          <!-- หัวเรื่องข้อมูลใบสั่งซื้อ -->
+          <div class="card-header">
+            <div class="col-sm-12">
+              <label>ข้อมูลการผลิตสินค้า</label>
+            </div>
+          </div>
+          <div class="card card_primary">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <label>เลือกสินค้าที่จะผลิต</label>
+                      <select class="form-control" placeholder="เลือกสินค้าที่จะผลิต" formControlName="product_id"
+                        [(ngModel)]="production.product_id" (change)="formulabyproduct($event)">
+                        <option *ngFor="let mat of dataArr" value="{{mat.id}}">{{mat.product_name}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>จำนวน</label>
+                    <input type="text" class="form-control" formControlName="quantity" [(ngModel)]="production.quantity">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>วันที่ผลิต</label>
+                    <input type="date" class="form-control" formControlName="MFG" [(ngModel)]="production.MFG">
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                </div>
+              </div>
+            </div>
+            <div class="card-body col-sm-11.5">
+              <div class="card-header">
+                <div class="col-sm-12">
+                  <label>แสดงสูตรที่ใช้ผลิต</label>
+                </div>
+              </div>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>วัตถุดิบ</th>
+                    <th>จำนวน</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let mat1 of formulaArr ;let i=index ">
+                    <td></td>
+                    <td>{{mat1.material_name}}</td>
+                    <td>{{mat1.quantity}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{mat1.unit}}</td>
+                  </tr>
+                </tbody>
+              </table>
+  
+            </div>
+  
+            <div class="card-body col-sm-11.5">
+              <div class="card-header">
+                <div class="col-sm-12">
+                  <label>เลือกวัตถุดบที่ใช้ผลิต</label>
+                </div>
+              </div>
+              <div class="card-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>วัตถุดิบ</th>
+                      <th>เลือกล็อต</th>
+                      <th>จำนวนรวม</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <select class="form-control" formControlName="material1" [(ngModel)]="production.material1">
+                              <option *ngFor="let mat of formulaArr" value="{{mat.id}}">{{mat.material_name}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="lotmaterial1" type="text" class="form-control"
+                              [(ngModel)]="production.lotmaterial1">
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <!-- text input -->
+                          <div class="form-group">
+                            <input formControlName="total1" type="text" class="form-control"
+                              [(ngModel)]="production.total1">
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <select class="form-control" formControlName="material2" [(ngModel)]="production.material2">
+                              <option *ngFor="let mat of formulaArr" value="{{mat.id}}">{{mat.material_name}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="lotmaterial2" type="text" class="form-control"
+                              [(ngModel)]="production.lotmaterial2">
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <!-- text input -->
+                          <div class="form-group">
+                            <input formControlName="total2" type="text" class="form-control"
+                              [(ngModel)]="production.total2">
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <select class="form-control" formControlName="material3" [(ngModel)]="production.material3">
+                              <option *ngFor="let mat of formulaArr" value="{{mat.id}}">{{mat.material_name}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="lotmaterial3" type="text" class="form-control"
+                              [(ngModel)]="production.lotmaterial3">
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <!-- text input -->
+                          <div class="form-group">
+                            <input formControlName="total3" type="text" class="form-control"
+                              [(ngModel)]="production.total3">
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <select class="form-control" formControlName="material4" [(ngModel)]="production.material4">
+                              <option *ngFor="let mat of formulaArr" value="{{mat.id}}">{{mat.material_name}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="lotmaterial4" type="text" class="form-control"
+                              [(ngModel)]="production.lotmaterial4">
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <!-- text input -->
+                          <div class="form-group">
+                            <input formControlName="total4" type="text" class="form-control"
+                              [(ngModel)]="production.total4">
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <select class="form-control" formControlName="material5" [(ngModel)]="production.material5">
+                              <option *ngFor="let mat of formulaArr" value="{{mat.id}}">{{mat.material_name}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="lotmaterial5" type="text" class="form-control"
+                              [(ngModel)]="production.lotmaterial5">
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <!-- text input -->
+                          <div class="form-group">
+                            <input formControlName="total5" type="text" class="form-control"
+                              [(ngModel)]="production.total5">
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <select class="form-control" formControlName="material6" [(ngModel)]="production.material6">
+                              <option *ngFor="let mat of formulaArr" value="{{mat.id}}">{{mat.material_name}}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="lotmaterial6" type="text" class="form-control"
+                              [(ngModel)]="production.lotmaterial6">
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <input formControlName="total6" type="text" class="form-control"
+                              [(ngModel)]="production.total6">
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+            <div class="form-group">
+              <td>
+                <button class="btn btn-block btn-success ">ยืนยัน</button>
+              </td>
+              <td>
+                &nbsp; <button class="btn btn-secondary  " routerLink="/showOrderM"> กลับ</button>
+              </td>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>

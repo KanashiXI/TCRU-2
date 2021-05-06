@@ -71,6 +71,7 @@ export class ShowproComponent implements OnInit {
   getproduction() {
     this.ProductService.getproduction().subscribe(res => {
       this.productionArr = res;
+      console.log(this.productionArr);
     })
   }
   getproductionsum() {
