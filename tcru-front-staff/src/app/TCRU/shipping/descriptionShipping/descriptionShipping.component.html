@@ -24,7 +24,7 @@
                     <p><b>สั่งซื้อโดย : </b></p>
                   </div>
                   <div class="col-md-8">
-                    <p>{{shUserfirstname}}  {{shUserlastname}}</p>
+                    <p>{{shUserfirstname}} {{shUserlastname}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -32,8 +32,8 @@
                     <p><b>จัดส่ง : </b></p>
                   </div>
                   <div class="col-md-8">
-                    <p>{{shShipfirstname}}  {{shShiplastname}}</p>
-                    <p>{{shAddress}} {{shSubdistrict}}  {{shDistrict}} {{shProvince}} {{shPostal_code}}</p>
+                    <p>{{shShipfirstname}} {{shShiplastname}}</p>
+                    <p>{{shAddress}} {{shSubdistrict}} {{shDistrict}} {{shProvince}} {{shPostal_code}}</p>
                   </div>
                 </div>
                 <div class="row">
@@ -46,13 +46,16 @@
                 </div>
                 <div class="row">
                   <div class="col-md-8"></div>
-                  <div class="col-md-4"><button mat-stroked-button color="primary" class="btn-block" routerLink="/printAddress">พิมพ์ที่อยู่จัดส่ง</button></div>
+                  <div class="col-md-4"><button mat-stroked-button color="primary" class="btn-block"
+                      (click)="onPrintAddress(order_number)">พิมพ์ที่อยู่จัดส่ง</button>
+                  </div>
                 </div>
               </div>
               <hr>
               <div class="col-md-4">
                 <div *ngIf="orderPart[0].image != null">
-                  <img [src]="orderPart[0].image ? imageDirectoyPath+orderPart[0].image : 'assets/image/no-image.png'" style="width: 50%;">
+                  <img [src]="orderPart[0].image ? imageDirectoyPath+orderPart[0].image : 'assets/image/no-image.png'"
+                    style="width: 50%;">
                 </div>
                 <p>สถานะ</p>
                 <mat-form-field appearance="fill" class="dropdown dropHeight">
@@ -71,7 +74,8 @@
             <div class="row">
               <div class="col-md-8"></div>
               <div class="col-md-2">
-                <button mat-stroked-button color="primary" class="btn-block" routerLink="/deliveryStatus">ยกเลิก</button>
+                <button mat-stroked-button color="primary" class="btn-block"
+                  routerLink="/deliveryStatus">ยกเลิก</button>
               </div>
               <div class="col-md-2">
                 <button mat-raised-button color="primary" type="submit" class="btn-block"
@@ -107,7 +111,7 @@
                   <td class="center">{{item.quantity}}</td>
                   <td class="center">{{item.retail_price}}</td>
                 </tr>
-              </tbody>    
+              </tbody>
             </table>
           </div>
         </div>
@@ -115,4 +119,3 @@
     </div>
   </div>
 </div>
-
