@@ -46,6 +46,7 @@ export class EditstockComponent implements OnInit {
     // this.getFormula();
     this.createForm();
     this.getData();
+    this.getProduct1();
   }
   createForm() {
     this.form = this.fb.group({
@@ -94,6 +95,12 @@ export class EditstockComponent implements OnInit {
     this.ProductService.Oneupdateproduction(this.id).subscribe(res=>{
       this.dataArrrr = res;
       this.production = this.dataArrrr;
+    })
+  }
+  getProduct1() {
+    this.ProductService.getProduct().subscribe(res => {
+      this.dataArr = res;
+      console.log(this.dataArr)
     })
   }
   editProduct(){
