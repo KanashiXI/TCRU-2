@@ -203,10 +203,10 @@
                                             <div>{{ getSummary(d) | number : '1.2-2'}} ฿</div>
                                         </div>
                                     </div>
-                                    <br />
-                                    <hr />
+                                    <!-- <br />
+                                    <hr /> -->
                                     <!-- vat -->
-                                    <div>
+                                    <!-- <div>
                                         <form [formGroup]="formvat">
                                             <input type="radio" name="vat" value="Y" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> มีภาษีมูลค่าเพิ่ม 7%
                                             <input type="radio" name="vat" value="N" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> ไม่มีภาษีมูลค่าเพิ่ม 7%
@@ -221,7 +221,7 @@
                                     </div>
                                     <div style="text-align: right;" *ngIf="formvat.get('vat').value =='Y' ">
                                         รวมเงินทั้งสิ้น: {{ getGranTotalVat | number : '1.2-2' }}
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </form>
