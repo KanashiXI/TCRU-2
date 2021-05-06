@@ -118,15 +118,12 @@
                                 <div class="col-sm-3">
                                     <div class="form-group">
                                         <label>ชื่อวัตถุดิบ</label>
-                                        <select class="form-control" formControlName="material_name" [(ngModel)]="OrderMaterials.material_name">
-                                            <option value="">วัตถุดิบ</option>
-                                            <option *ngFor="let mat of materialsArr" value="{{mat.material_name}}">{{mat.material_name}}</option>
-                                        </select>
-                                        <!-- <div *ngIf="material_name.invalid && (material_name.dirty || material_name.touched)" class="text-error">
+                                        <input type="text" class="form-control" formControlName="material_name" [(ngModel)]="OrderMaterials.material_name">
+                                        <div *ngIf="material_name.invalid && (material_name.dirty || material_name.touched)" class="text-error">
                                             <div *ngIf="material_name.errors.required">
-                                                กรุณาเลือกวัถตุดิบ
+                                                กรุณากรอกชื่อวัตถุดิบ
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- จำนวน -->
@@ -141,21 +138,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- หน่วยนับ -->
-                                <div class="col-sm-2">
-                                    <div class="form-group">
-                                        <label>หน่วยนับ</label>
-                                        <select class="form-control" formControlName="unit" [(ngModel)]="OrderMaterials.unit">
-                                            <option value="">หน่วยนับ</option>
-                                            <option *ngFor="let mat of unitArr" value="{{mat.unit}}">{{mat.unit_material_name}}</option>
-                                        </select>
-                                        <!-- <div *ngIf="unit.invalid && (unit.dirty || unit.touched)" class="text-error">
-                                            <div *ngIf="unit.errors.required">
-                                                กรุณาเลือกวัถตุดิบ
-                                            </div>
-                                        </div> -->
-                                    </div>
-                                </div>
+
                                 <!-- ราคา -->
                                 <div class="col-sm-2">
                                     <div class="form-group">
@@ -203,25 +186,6 @@
                                             <div>{{ getSummary(d) | number : '1.2-2'}} ฿</div>
                                         </div>
                                     </div>
-                                    <!-- <br />
-                                    <hr /> -->
-                                    <!-- vat -->
-                                    <!-- <div>
-                                        <form [formGroup]="formvat">
-                                            <input type="radio" name="vat" value="Y" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> มีภาษีมูลค่าเพิ่ม 7%
-                                            <input type="radio" name="vat" value="N" formControlName="vat" [(ngModel)]="OrderMaterials.vat"> ไม่มีภาษีมูลค่าเพิ่ม 7%
-                                        </form>
-                                    </div>
-                                    <div style="text-align: right;">
-                                        ยอดรวม: {{ summary | number : '1.2-2'}}
-                                    </div>
-
-                                    <div style="text-align: right;" *ngIf="formvat.get('vat').value =='Y' ">
-                                        VAT 7%: {{ IncludeVat | number : '1.2-2' }}
-                                    </div>
-                                    <div style="text-align: right;" *ngIf="formvat.get('vat').value =='Y' ">
-                                        รวมเงินทั้งสิ้น: {{ getGranTotalVat | number : '1.2-2' }}
-                                    </div> -->
                                 </div>
                             </div>
                         </form>

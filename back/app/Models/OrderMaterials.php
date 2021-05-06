@@ -46,8 +46,8 @@ class OrderMaterials
             "price" => $data['price'],
             "discount" => $data['discount'],
             "status" => "จัดทำใบสั่งซื้อ",
-            "unit" => $data['unit'],
-            "vat" => $data['vat']
+            // "unit" => $data['unit'],
+            // "vat" => $data['vat']
         ];
         DB::table("order_materail")->insert($insertData);
     }

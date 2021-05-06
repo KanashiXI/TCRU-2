@@ -90,7 +90,7 @@ export class AddOrderComponent implements OnInit {
     }
   }
 
-  summary(data)
+  getSummary(data)
   {
     return parseInt(
       (data.price * data.quantity - (data.price * data.quantity * data.discount) / 100).toFixed(2)
