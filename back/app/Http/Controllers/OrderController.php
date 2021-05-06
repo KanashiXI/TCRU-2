@@ -85,14 +85,15 @@ class OrderController extends Controller
 
     public function fillOrder(Request $request, order $order){       
         $edit = order::where('order_id', $request->order_id)->first();   
-        $edit->total_price=$request->net_amount;
+        $edit->total_price=$request->total_price;
         $edit->promotion_id=$request->promotion_id;
         $edit->discount=$request->discount;
         $edit->net_amount=$request->net_amount;
         $edit->request_tax=$request->request_tax;
         $edit->user_id=$request->user_id; 
         $edit->address_id=$request->address_id; 
-        $edit->shipping_brand=$request->shipping_brand;   
+        $edit->shipping_brand=$request->shipping_brand;
+        $edit->shipping_price=$request->shipping_price;    
         $result = $edit->save(); 
         return response()->json(true,200);
     }

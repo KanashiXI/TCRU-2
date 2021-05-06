@@ -207,7 +207,8 @@ export class CartComponent implements OnInit {
       request_tax: ['',],
       address_id: [''],
       shipping_brand: [''],
-      /////////////////////////////////////////
+      shipping_price: [''],
+
     })
 
     this.reactiveForm.patchValue({
@@ -369,14 +370,14 @@ export class CartComponent implements OnInit {
       this.cartTotal += Number(obj.retail_price);
       this.cartWeight += (Number(obj.weight) * Number(obj.product_quantity))
     });
-    console.log('weight' + this.cartWeight)
+    // console.log('weight' + this.cartWeight)
     if (this.cartTotal > 0) {
       this.isSelectProduct = true;
     } else {
       this.isSelectProduct = false;
     }
     // console.log(this.isSelectProduct)
-
+    this.sumShippingCost = 0;
     this.totalPrice = this.cartTotal;
     this.selectPromption();
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
@@ -392,8 +393,10 @@ export class CartComponent implements OnInit {
         total_price: this.totalPrice,
       })
     } else {
+      
       this.isGotPromotion = false;
       this.calculateShippingCostByWeight(this.cartWeight)
+      this.cartTotal = this.cartTotal + Number(this.sumShippingCost);
       this.reactiveForm.patchValue({
         discount: this.discount,
         net_amount: this.cartTotal,
@@ -432,6 +435,9 @@ export class CartComponent implements OnInit {
     this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition).filter((value) => {
       if (Number(cartWeight) <= Number(value.weight_condition)) {
         this.sumShippingCost = value.transportation_cost;
+        this.reactiveForm.patchValue({
+          shipping_price: this.sumShippingCost,
+        })
       }
     })
 
