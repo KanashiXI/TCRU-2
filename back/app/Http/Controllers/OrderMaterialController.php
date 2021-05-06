@@ -37,7 +37,9 @@ class OrderMaterialController extends Controller
     public function addOrderMaterials(Request $request)
     {
         $orderMaterialModel = new OrderMaterials();
-        $data = $orderMaterialModel->addOrderMaterials($request->all());
+        $strData = $request->all();
+        $data = json_decode($strData['data']);
+        $data = $orderMaterialModel->addOrderMaterials((array)$data);
     }
 
     public function destroys(Request $request)
