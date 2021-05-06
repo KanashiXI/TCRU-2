@@ -2,11 +2,7 @@
     <img src="assets/Image/TCRU.jpg" alt="TCRU" width="60" />
     <app-toggle-sidebar></app-toggle-sidebar>
     <span class="text">ระบบการจัดการการผลิตสินค้า</span>
-    <button class="logout" mat-button [matMenuTriggerFor]="dropDown">โปรไฟล์<mat-icon class="ml-1">arrow_drop_down</mat-icon></button>
-    <mat-menu #dropDown="matMenu" overlapTrigger="false">
-        <button mat-menu-item>
-          <mat-icon>exit_to_app</mat-icon>
-          <span class="logout">ออกจากระบบ</span>
-    </button>
-    </mat-menu>
+    <a class="login" routerLink="login" *ngIf="!loggedIn">เข้าสู่ระบบ</a>
+    <a class="login" href="#" (click)="logout($event)" *ngIf="loggedIn">Logout</a>
+    <a class="login" routerLink="Report" *ngIf="loggedIn">Profile</a>
 </mat-toolbar>
