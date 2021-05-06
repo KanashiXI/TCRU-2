@@ -47,7 +47,23 @@
                 <div class="row">
                   <div class="col-md-8"></div>
                   <div class="col-md-4"><button mat-stroked-button color="primary" class="btn-block"
-                      (click)="onPrintAddress(order_number)">พิมพ์ที่อยู่จัดส่ง</button>
+                      (click)="onPrintAddress(order_number)" *ngIf="selectesStatus[0].name === 'รอการจัดส่ง'">พิมพ์ที่อยู่จัดส่ง</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-6">
+                    <p>สถานะ</p>
+                    <mat-form-field appearance="fill" class="dropdown dropHeight">
+                      <mat-label>{{selectesStatus[0].name}}</mat-label>
+                      <!-- <mat-label>สถานะ</mat-label> -->
+                      <mat-select formControlName="status" required>
+                        <mat-option>--</mat-option>
+                        <mat-option *ngFor="let obj of statusArr" value="{{obj.id}}">
+                          {{obj.name}}
+                        </mat-option>
+                      </mat-select>
+                      <mat-error *ngIf="reactiveForm.controls['status'].errors?.required">โปรดเลือกสถานะ</mat-error>
+                    </mat-form-field>
                   </div>
                 </div>
               </div>
@@ -55,20 +71,8 @@
               <div class="col-md-4">
                 <div *ngIf="orderPart[0].image != null">
                   <img [src]="orderPart[0].image ? imageDirectoyPath+orderPart[0].image : 'assets/image/no-image.png'"
-                    style="width: 50%;">
+                    style="width: 80%;">
                 </div>
-                <p>สถานะ</p>
-                <mat-form-field appearance="fill" class="dropdown dropHeight">
-                  <mat-label>{{selectesStatus[0].name}}</mat-label>
-                  <!-- <mat-label>สถานะ</mat-label> -->
-                  <mat-select formControlName="status" required>
-                    <mat-option>--</mat-option>
-                    <mat-option *ngFor="let obj of statusArr" value="{{obj.id}}">
-                      {{obj.name}}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="reactiveForm.controls['status'].errors?.required">โปรดเลือกสถานะ</mat-error>
-                </mat-form-field>
               </div>
             </div>
             <div class="row">

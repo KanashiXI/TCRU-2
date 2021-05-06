@@ -1,15 +1,13 @@
+<div style="text-align: right;">
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>highlight_off</mat-icon>
+  </button>
+</div>
 <div class="container">
-
-
-
-
-
-
-
   <div class="row" *ngIf="!productDetailLoad">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <mat-card>
+      
         <div class="row">
           <div class="col-md-6 align-self-center">
             <app-skeleton-loader Cwidth="220" Cheight="220"></app-skeleton-loader>
@@ -66,7 +64,7 @@
             <p *ngIf="loggedIn">กรุณาเข้าสู่ระบบก่อนทำรายการ</p>
           </div>
         </div>
-      </mat-card>
+      
     </div>
   </div>
 
@@ -80,7 +78,7 @@
   <div class="row" *ngIf="productDetailLoad">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <mat-card>
+      
         <div class="row">
           <div class="col-md-6 align-self-center">
             <img mat-card-image src="../../../../assets/{{productImg}}">
@@ -131,7 +129,7 @@
             <p *ngIf="!loggedIn">กรุณาเข้าสู่ระบบก่อนทำรายการ</p>
           </div>
         </div>
-      </mat-card>
+      
     </div>
   </div>
 
