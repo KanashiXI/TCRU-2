@@ -25,7 +25,11 @@ export class OrderMaterialsService {
 
   getunit_material(){
     return this.http.get('http://localhost:5000/api/unit_material');
-   }
+  }
+
+  getmaterial(){
+    return this.http.get('http://localhost:5000/api/material');
+  }
 
   addOrderM(data)
   {
