@@ -7,7 +7,7 @@ kbd.sale{
     color: #495057;
     border-radius: 30px;
     font-family: 'Kanit', sans-serif !important;
-    text-align: left;
+    text-align: center;
   }
 
   kbd.out{
@@ -15,7 +15,7 @@ kbd.sale{
     color: #495057;
     border-radius: 30px;
     font-family: 'Kanit', sans-serif !important;
-    text-align: left;
+    text-align: center;
   }
 
   kbd.wait{
@@ -23,5 +23,5 @@ kbd.sale{
     color: #495057;
     border-radius: 30px;
     font-family: 'Kanit', sans-serif !important;
-    text-align: left;
+    text-align: center;
   }

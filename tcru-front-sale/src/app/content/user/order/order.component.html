@@ -7,11 +7,9 @@
     <div class="col-md-3">
       <mat-button-toggle (click)="filter(1)">ออเดอร์รอดำเนินการ</mat-button-toggle> 
     </div>
-
     <div class="col-md-3">
       <mat-button-toggle (click)="filter(2)">ออเดอร์จัดส่งแล้ว</mat-button-toggle> 
     </div>
-
   </div>
   <br>
   <div class="row" *ngFor="let item of filterOrder">
@@ -44,17 +42,17 @@
           </div> -->
           <!-- </div> -->
 
-        </div>
+        <!-- </div> -->
 
-        <div class="row">
-          <div class="col-md-4">
-          </div>
+        <!-- <div class="row"> -->
           <div class="col-md-2">
+          </div>
+          <div class="col-md-2" *ngIf="item.status == 0">
             <button mat-raised-button color="accent" (click)="onClickUpload(item.order_id)">
               <span class="material-icons">description</span>
             </button>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2" *ngIf="item.status != 0">
             <button mat-raised-button color="accent" (click)="onClickSubmit(item.order_id)">
               <span class="material-icons">receipt</span>
             </button>
