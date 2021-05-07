@@ -16,23 +16,17 @@ export class chartsComponent implements OnInit {
   ngOnInit() {
     this.typeChart = 'bar';   ////// สามารถกำหนดเป็น 'line','bar','radar','pie','doughnut','polarArea','bubble','scatter'
     this.dataChart = {
-      labels: ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"],
+      labels: ["ไตรโคเดอร์มา", "บิวเวอร์เรีย", "เมธาไรเซียม"],
       datasets: [
         {
-          label: "My Stats Chart",
-          data: [10, 30, 50, 30, 40, 30, 50, 30, 30, 50, 30, 50, 30],
-          backgroundColor : ['#1abc9c', '#3498db', '#9b59b6', '#bdc3c7', '#f39c12']
+          label: "เบิกขายนอกสถานที่",
+          data: [10, 30, 50],
+          backgroundColor : ['#9b59b6', '#9b59b6', '#9b59b6']
         },
         {
-          label: "My Stats Chart2",
-          data: [10, 30, 50, 30, 40, 30, 50, 30, 30, 50, 30, 50, 30],
-          backgroundColor : ['#1abc9c', '#3498db', '#9b59b6', '#bdc3c7', '#f39c12']
-        }
-        ,
-        {
-          label: "My Stats Chart2",
-          data: [10, 30, 50, 30, 40, 30, 50, 30, 30, 50, 30, 50, 30],
-          backgroundColor : ['#1abc9c', '#3498db', '#9b59b6', '#bdc3c7', '#f39c12']
+          label: "เบิกขายหน้าร้าน",
+          data: [10, 30, 50],
+          backgroundColor : ['#1abc9c', '#1abc9c', '#1abc9c']
         }
       ],
       
