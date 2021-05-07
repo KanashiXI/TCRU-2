@@ -30,6 +30,7 @@ Route::group([
     Route::delete('tax/{taxId}', 'TaxController@deleteTax'); //ค้นหาใบกำกับภาษีด้วยไอดีผู้ใช้
     //เพิ่ม
     Route::get('onetax/{tax_id}', 'TaxController@getOneTax');
+    Route::get('getshippoint/{user_id}', 'ShippingController@getShipPoint');
 
 
     //api ที่อยู่จัดส่งสินค้า(dropdown)

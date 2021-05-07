@@ -19,10 +19,14 @@
           <p class="info">{{ShowTelephone}}</p>
         </mat-card-content>
         <div class="row">
-          <div class="col-md-8"></div>
+          <div class="col-md-8">
+            ยอดสั่งซื้อสะสม {{shippingPoint[0].shopping_point}} บาท
+            <mat-progress-bar mode="determinate" [value]=pointShip></mat-progress-bar>
+          </div>
           <div class="col-md-4">
             <!-- <button mat-stroked-button color="primary" class="btn-block"
               routerLink="/editprofile">แก้ไขข้อมูลส่วนตัว</button> -->
+            
             <button mat-raised-button color="primary" (click)="onClickSubmit()">แก้ไขข้อมูลส่วนตัว</button>
 
           </div>

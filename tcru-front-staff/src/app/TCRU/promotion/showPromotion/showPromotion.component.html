@@ -29,14 +29,14 @@
               </thead>
 
               <tbody>
-                  <tr *ngFor="let item of dataSource; let i = index">
-                        <td>{{item.promotion_id}}</td>
-                        <td>{{item.promotion_name}}</td>
-                        <td>{{item.detail}}</td>
-                        <td style="text-align: center;"><mat-slide-toggle value="{{i}}" [checked]="item.status == 1" (change)="handleToggle(i)"></mat-slide-toggle>
+                  <tr *ngFor="let item of dataSource; let i = index" >
+                        <td *ngIf="i>0" >{{item.promotion_id}}</td >
+                        <td *ngIf="i>0" >{{item.promotion_name}}</td >
+                        <td *ngIf="i>0" >{{item.detail}}</td>
+                        <td *ngIf="i>0" style="text-align: center;"><mat-slide-toggle value="{{i}}" [checked]="item.status == 1" (change)="handleToggle(i)"></mat-slide-toggle>
                         </td>
-                        <td style="text-align: center;">{{item.update_at}}</td>
-                        <td>
+                        <td *ngIf="i>0" style="text-align: center;">{{item.update_at}}</td>
+                        <td *ngIf="i>0" >
                             <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.promotion_id)" routerLink="/editpromotion">
                                 <span class="material-icons">create</span>
                             </button>

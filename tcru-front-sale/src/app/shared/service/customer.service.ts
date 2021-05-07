@@ -40,6 +40,14 @@ export class CustomerService {
     )
   }
 
+  getShopPoint(userId) {
+    return this.http.get<Emloyeeinterface[]>(`${ApiConstants.baseURl}${ApiConstants.getshippointURL}/${userId}`)
+  }
+
+  // getSlip(orderId) {
+  //   return this.http.get<Order[]>(`${ApiConstants.baseURl}${ApiConstants.getSlipURL}/${orderId}`)
+  // }
+
   // getCustomerByUsername(
   //   username: string
   // ): Observable<{ status: string; data: Emloyeeinterface; code: number }> {

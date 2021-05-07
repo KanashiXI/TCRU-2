@@ -139,6 +139,15 @@ class ShippingController extends Controller {
         return response()->json($getall,200);
     }
 
+    public function getShipPoint($request)
+    {
+        $getall = DB::table('users')
+            ->select('users.shopping_point')
+            ->where('users.id', $request)
+            ->get(); 
+        return response()->json($getall,200);
+    }
+
     public function editStatus(Request $request, order $order)
     {       
         $edit = order::where('order_id', $request->order_id)->first();
@@ -161,7 +170,7 @@ class ShippingController extends Controller {
             ->pluck('shopping_point'); 
 
             
-        if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1" && $promotionId > 0){
+        if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1" && $promotionId = 0){
             // $editShopPoint = users::where('user_id', $request->user_id)->first();
             $editShopPoint=(int)$getUserShopPoint[0]+(int)$netAmount[0];
             if($editShopPoint >= 10000){

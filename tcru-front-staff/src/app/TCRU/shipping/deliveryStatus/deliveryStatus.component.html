@@ -36,7 +36,7 @@
                     <table class="table" id="excel-table">
                         <thead>
                             <tr>
-                                <th *ngIf="shAddress == true">เลือกที่อยู่</th>
+                                <!-- <th *ngIf="shAddress == true">เลือกที่อยู่</th> -->
                                 <th>เลขที่สั่งซื้อ</th>
                                 <th>วันที่สั่งซื้อ</th>
                                 <th>เลขจัดส่ง</th>
@@ -50,7 +50,7 @@
         
                         <tbody>
                             <tr *ngFor="let item of orderOnfilter; let i = index">
-                                <td *ngIf="shAddress == true"><input type="checkbox" [(ngModel)]="item.chooseAddress" (change)="changeSelection(item.order_id)"></td>
+                                <!-- <td *ngIf="shAddress == true"><input type="checkbox" [(ngModel)]="item.chooseAddress" (change)="changeSelection(item.order_id)"></td> -->
                                 <td>{{item.order_id}}</td>
                                 <td>{{item.order_date}}</td>
                                 <td>{{item.shipping_number}}</td>

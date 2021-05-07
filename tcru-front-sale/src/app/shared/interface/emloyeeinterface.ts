@@ -20,4 +20,5 @@ export interface Emloyeeinterface {
     coupon_id?: number;
     key?: string;
     coupon_status?: number;
+    shopping_point?: number;
 }

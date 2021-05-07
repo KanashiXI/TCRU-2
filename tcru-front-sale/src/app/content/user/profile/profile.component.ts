@@ -33,7 +33,8 @@ export class ProfileComponent implements OnInit {
   panelOpenState = false;
   couponData: Emloyeeinterface[] = [];
   filterCouponData: Emloyeeinterface[] = [];
-  
+  shippingPoint:Emloyeeinterface[] = [];
+  pointShip: number = 0;
   constructor(
 
     private customerService: CustomerService,
@@ -51,6 +52,13 @@ export class ProfileComponent implements OnInit {
     
   }
 
+  getShopPoint(userId) {
+    this.customerService.getShopPoint(userId).subscribe( res => {
+      this.shippingPoint = res;
+      this.pointShip = Number(this.shippingPoint[0].shopping_point)/100;
+    })
+  }
+
   onClickSubmit() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();
     const dialogRef = this.dialog.open(EditprofileComponent, {
@@ -65,6 +73,7 @@ export class ProfileComponent implements OnInit {
     this.customerService.getCoupon(userId).subscribe(res => {
       this.couponData = res;
       this.filter(0);
+      this.getShopPoint(userId);
     })
     
   }
