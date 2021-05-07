@@ -16,6 +16,8 @@ export class OrderComponent implements OnInit {
 
   dataSource: Order[] = [];
   orderDetail: Order[] = [];
+  filterOrder: Order[] = [];
+
   constructor(
     private orderService: OrderService,
     public dialog: MatDialog,
@@ -31,9 +33,24 @@ export class OrderComponent implements OnInit {
       res => {
         res.sort((a, b) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
         this.dataSource = res;
-
+        this.filter(0);
       }
     )
+  }
+
+  filter(index) {
+    this.filterOrder = this.dataSource.filter((element) => this.filterByType(element, index));
+  }
+
+  filterByType(element, index) {
+    if(index == 0){
+      return (element.status == 0)
+    }else if(index == 1){
+      return (element.status == 1)
+    }else if (index == 2){
+      return (element.status == 2)
+    }
+    
   }
 
   onClickSubmit(id) {

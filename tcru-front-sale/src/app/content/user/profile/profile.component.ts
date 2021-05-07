@@ -69,8 +69,6 @@ export class ProfileComponent implements OnInit {
     
   }
 
- 
-///////////////////////////////////////////////////////////
   filter(index) {
     this.filterCouponData = this.couponData.filter((element) => this.filterByType(element, index));
   }

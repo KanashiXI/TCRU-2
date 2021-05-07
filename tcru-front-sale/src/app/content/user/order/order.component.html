@@ -1,6 +1,20 @@
 <br><br>
 <div class="container">
-  <div class="row" *ngFor="let item of dataSource">
+  <div class="row">
+    <div class="col-md-3">
+      <mat-button-toggle (click)="filter(0)">ออเดอร์รอแจ้งชำระเงิน</mat-button-toggle> 
+    </div>
+    <div class="col-md-3">
+      <mat-button-toggle (click)="filter(1)">ออเดอร์รอดำเนินการ</mat-button-toggle> 
+    </div>
+
+    <div class="col-md-3">
+      <mat-button-toggle (click)="filter(2)">ออเดอร์จัดส่งแล้ว</mat-button-toggle> 
+    </div>
+
+  </div>
+  <br>
+  <div class="row" *ngFor="let item of filterOrder">
     <div class="col-md-12">
       <mat-card>
 
