@@ -111,7 +111,8 @@ class ShippingController extends Controller {
             ->join('districts', 'districts.id', '=', 'address.districts_id')
             ->join('shipping_brand', 'shipping_brand.shipping_brand_id', '=', 'order.shipping_brand')
             ->join('status', 'status.id', '=', 'order.status')
-            ->select('order.promotion_id', 'order.net_amount', 'order.user_id', 'order.order_id', 'users.firstname as userfirstname', 'users.lastname as userlastname',
+            ->select('order.net_amount', 'order.user_id', 'order.order_id', 'order.shipping_number', 'order.send_date',
+            'users.firstname as userfirstname', 'users.lastname as userlastname',
             'address.firstname as shipfirstname', 'address.lastname as shiplastname', 'address.address',
             'address.telephone as telephone',
             'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
@@ -142,6 +143,8 @@ class ShippingController extends Controller {
     {       
         $edit = order::where('order_id', $request->order_id)->first();
         $edit->status=$request->status;
+        $edit->shipping_number=$request->shipping_number;
+        $edit->send_date=$request->send_date;
         $result = $edit->save();
         $statusValue = $request->status;
         $promotionId = $request->promotion_id;
