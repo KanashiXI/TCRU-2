@@ -74,6 +74,7 @@ export class DescriptionShippingComponent implements OnInit {
       this.getStatus();
     this.getUserSlip();
     this.getSelectedStatus(this.orderId)
+    
   }
 
   getSelectedStatus(orderId) {
@@ -104,6 +105,7 @@ export class DescriptionShippingComponent implements OnInit {
           detail_id: this.dataForm[0].detail_id,
           image: this.dataForm[0].image,
           net_amount: this.dataForm[0].net_amount,
+          promotion_id: this.dataForm[0].promotion_id,
         })
         this.order_number = this.reactiveForm.get('order_id').value
         this.shUserfirstname = this.reactiveForm.get('userfirstname').value
@@ -144,6 +146,7 @@ export class DescriptionShippingComponent implements OnInit {
       detail_id: ['',],
       image: ['',],
       net_amount: ['',],
+      promotion_id: ['',],
     })
   }
 

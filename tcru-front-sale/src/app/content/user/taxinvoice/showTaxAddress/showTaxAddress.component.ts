@@ -49,7 +49,7 @@ export class ShowTaxAddressComponent implements OnInit {
     });
     var x = i
     this.dataSource[x].status = 1;
-    // this.taxService.editStatusAddress(this.dataSource).subscribe();
+    this.taxService.editStatusTax(this.dataSource).subscribe();
   }
 
   getUserTax(user_id) {

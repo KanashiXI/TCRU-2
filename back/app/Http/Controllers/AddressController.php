@@ -7,6 +7,7 @@ use DB;
 
 class AddressController extends Controller
 {
+
     public function editAddressStatus(Request $request)
     {
         try {
@@ -15,6 +16,22 @@ class AddressController extends Controller
                     'status' => $data['status'],
                 ];
                 DB::table('address')->where('address_id',$data['address_id'])->update($input);
+            }             
+            return response()->json(true,200); 
+        }
+        catch(\Exception $e){
+            return response()->json($e,500); 
+        }
+    }
+
+    public function editTaxStatus(Request $request)
+    {
+        try {
+            foreach ($request->all() as $key => $data ) {                
+                $input = [               
+                    'status' => $data['status'],
+                ];
+                DB::table('tax_info')->where('tax_id',$data['tax_id'])->update($input);
             }             
             return response()->json(true,200); 
         }

@@ -31,8 +31,9 @@ export class ProfileComponent implements OnInit {
   ShowLastname: String;
   ShowTelephone: String;
   panelOpenState = false;
-
-
+  couponData: Emloyeeinterface[] = [];
+  filterCouponData: Emloyeeinterface[] = [];
+  
   constructor(
 
     private customerService: CustomerService,
@@ -47,6 +48,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.checkCustomer();
+    
   }
 
   onClickSubmit() {
@@ -59,12 +61,37 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  getCoupon(userId){
+    this.customerService.getCoupon(userId).subscribe(res => {
+      this.couponData = res;
+      this.filter(0);
+    })
+    
+  }
+
+ 
+///////////////////////////////////////////////////////////
+  filter(index) {
+    this.filterCouponData = this.couponData.filter((element) => this.filterByType(element, index));
+  }
+
+  filterByType(element, index) {
+    if(index == 0){
+      return (element.coupon_status == 0)
+    }else if(index == 1){
+      return (element.coupon_status == 1)
+    }
+    
+  }
 
   checkCustomer() {
     const requestData = {
       ...Subject,
       customerUsername: localStorage.getItem('customerUsername'),
+      userId: localStorage.getItem('user_id'),
     }
+
+    this.getCoupon(requestData.userId)
     this.setEmail = requestData.customerUsername;
     this.customerService.getCustomerProfileByEmail(requestData.customerUsername).subscribe(
       res => {

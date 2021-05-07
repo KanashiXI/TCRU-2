@@ -100,5 +100,12 @@ export class ApiConstants {
         return '/api/getslip';
     }
 
+    public static get getcouponURL(): string {
+        return '/api/getcoupon';
+    }
+    public static get editTaxStatusURL(): string {
+        return '/api/editTaxStatus';
+    }
+
 
 }

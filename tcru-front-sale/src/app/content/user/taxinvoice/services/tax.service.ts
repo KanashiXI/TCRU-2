@@ -34,4 +34,11 @@ export class TaxService {
 
 
 
+
+  editStatusTax(data){
+    return this.http.post<Tax[]>(`${ApiConstants.baseURl}${ApiConstants.editTaxStatusURL}`, data);
+  }
+
+
+
 }

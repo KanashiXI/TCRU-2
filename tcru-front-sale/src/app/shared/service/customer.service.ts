@@ -91,6 +91,10 @@ export class CustomerService {
     return this.http.get<Emloyeeinterface>(`${ApiConstants.baseURl}${this.validateEmailURL}${email}`)
   }
 
+  getCoupon(userId: string): Observable<Emloyeeinterface[]> {
+    return this.http.get<Emloyeeinterface[]>(`${ApiConstants.baseURl}${ApiConstants.getcouponURL}/${userId}`)
+  }
+
   editProfile(data) {
     return this.http.post(`${ApiConstants.baseURl}${this.validateEmailURL}`, data)
   }

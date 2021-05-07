@@ -111,7 +111,7 @@ class ShippingController extends Controller {
             ->join('districts', 'districts.id', '=', 'address.districts_id')
             ->join('shipping_brand', 'shipping_brand.shipping_brand_id', '=', 'order.shipping_brand')
             ->join('status', 'status.id', '=', 'order.status')
-            ->select('order.net_amount', 'order.user_id', 'order.order_id', 'users.firstname as userfirstname', 'users.lastname as userlastname',
+            ->select('order.promotion_id', 'order.net_amount', 'order.user_id', 'order.order_id', 'users.firstname as userfirstname', 'users.lastname as userlastname',
             'address.firstname as shipfirstname', 'address.lastname as shiplastname', 'address.address',
             'address.telephone as telephone',
             'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
@@ -126,6 +126,17 @@ class ShippingController extends Controller {
         return response()->json($getall,200); 
     }
 
+    
+
+    public function getCouponByUserId($request)
+    { 
+        $getall = DB::table('coupon')
+            ->select('*')
+            ->where('coupon.user_id', $request)
+            ->where('coupon.coupon_status', 0)
+            ->get(); 
+        return response()->json($getall,200);
+    }
 
     public function editStatus(Request $request, order $order)
     {       
@@ -133,7 +144,8 @@ class ShippingController extends Controller {
         $edit->status=$request->status;
         $result = $edit->save();
         $statusValue = $request->status;
-        
+        $promotionId = $request->promotion_id;
+
         $netAmount = DB::table('order')
             ->select( 'net_amount')
             ->where('order_id', $request->order_id)
@@ -146,7 +158,7 @@ class ShippingController extends Controller {
             ->pluck('shopping_point'); 
 
             
-        if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1"){
+        if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1" && $promotionId > 0){
             // $editShopPoint = users::where('user_id', $request->user_id)->first();
             $editShopPoint=(int)$getUserShopPoint[0]+(int)$netAmount[0];
             if($editShopPoint >= 10000){

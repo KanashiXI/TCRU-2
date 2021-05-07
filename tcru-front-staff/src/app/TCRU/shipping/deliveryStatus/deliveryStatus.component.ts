@@ -2,7 +2,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { statusOrder } from './../../../OrderMaterials/Interface/statusOrder';
 import { element } from 'protractor';
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 // import { ShippingInterface } from './../../../interfaces/shippingInterface';
 import { OrderInterface } from './../../../interfaces/orderInterface';
 import { ShippingService } from './../../../Service/shippingService.service';
@@ -63,6 +63,11 @@ export class DeliveryStatusComponent implements OnInit {
     this.getStatus();
     console.log(this.dataSource)
     this.getAddress();
+
+  }
+
+  refresh(){
+    this.ngOnInit()
   }
 
   onClickDetail(data) {

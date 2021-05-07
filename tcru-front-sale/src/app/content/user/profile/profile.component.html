@@ -55,6 +55,67 @@
     </div>
   </div>
   <br>
+
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div class="align-self-center">คูปองส่วนลด  </div>
+          </mat-panel-title>
+          <div class="row align-self-center">
+            <div class="col-md-12">
+              <mat-panel-description>
+                <div class="col-md-6"> 
+                               
+                </div>
+              </mat-panel-description>
+            </div>
+          </div>
+        </mat-expansion-panel-header>
+        <!-- ............... component -->
+        <div class="row">
+          <div class="col-md-2">
+            <mat-button-toggle (click)="filter(0)">คูปองพร้อมใช้</mat-button-toggle> 
+          </div>
+          <div class="col-md-2">
+            <mat-button-toggle (click)="filter(1)">คูปองใช้แล้ว</mat-button-toggle> 
+          </div>
+
+        </div>
+        <br>
+        <div class="row" *ngFor="let item of filterCouponData; let i = index">
+          <div class="col-md-12">
+            <mat-card>
+              <div class="row">
+       
+                <div class="col-md-6 address-padding">
+                  รหัสคูปอง {{item.key}}
+                </div>
+                <div class="col-md-4 btn-padding">
+
+                  <div *ngIf="item.coupon_status == 0">สถานะพร้อมใช้งาน</div>
+                  <div *ngIf="item.coupon_status != 0">ใช้งานแล้ว</div>
+                  
+                </div>
+                <div class="col-md-2 btn-padding">
+                  คูปองส่วนลด 10%
+                </div>
+              </div>
+            </mat-card>
+            <br>
+          </div>
+        </div>
+        <!-- ............... component -->
+
+
+
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <br>
+
   <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-10">
@@ -78,10 +139,11 @@
       </mat-expansion-panel>
     </div>
   </div>
-
   <br>
+
   <div class="row">
     <div class="col-md-1"></div>
+    
     <div class="col-md-10">
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -101,7 +163,10 @@
         <app-showTaxAddress></app-showTaxAddress>
       </mat-expansion-panel>
     </div>
+
   </div>
+
+
   <br>
 
   <!-- <div class="col-md-6">

@@ -16,5 +16,8 @@ export interface Emloyeeinterface {
     province?: string;
     district?: string;
     sub_district?: string;
-    role?: string
+    role?: string;
+    coupon_id?: number;
+    key?: string;
+    coupon_status?: number;
 }

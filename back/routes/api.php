@@ -45,6 +45,8 @@ Route::group([
     Route::post('editshipaddress','AddressController@editShippingAddress');
     Route::post('editAddStatus','AddressController@editAddressStatus');
 
+    Route::post('editTaxStatus','AddressController@editTaxStatus');
+
     //เพิ่ม
     Route::get('oneaddress/{address_id}', 'AddressController@getOneShippingAddress');
 
@@ -73,6 +75,8 @@ Route::group([
     // coupon
     Route::get('coupon/{user_id}','CouponController@checkCoupon');
     Route::get('generatecoupon','CouponController@generateRandomString');
+    
+
 
     // ออเดอร์
     Route::post('cartcheckout','OrderController@createOrder');
@@ -92,6 +96,7 @@ Route::group([
     // Route::get('getStatus', 'StatusController@getStatus');
     Route::get('getStatus', 'ShippingController@getStatus');
     Route::post('editStatus', 'ShippingController@editStatus');
+    Route::get('getcoupon/{user_id}','ShippingController@getCouponByUserId');
 
     //จัดส่งสินค้า
     Route::get('getShippingOrder','ShippingController@getShippingOrder');
