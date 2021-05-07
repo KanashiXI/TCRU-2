@@ -46,6 +46,9 @@ export class DescriptionShippingComponent implements OnInit {
   shStatusName: string;
   shDetail_id: number;
   shSlip: string;
+  shNetAmount: any;
+  shShipping_number: string;
+  shSend_date: any;
 
   orderId: string;
   orderPart: OrderInterface[] = [];
@@ -104,6 +107,8 @@ export class DescriptionShippingComponent implements OnInit {
           detail_id: this.dataForm[0].detail_id,
           image: this.dataForm[0].image,
           net_amount: this.dataForm[0].net_amount,
+          shipping_number: this.dataForm[0].shipping_number,
+          send_date: this.dataForm[0].send_date
         })
         this.order_number = this.reactiveForm.get('order_id').value
         this.shUserfirstname = this.reactiveForm.get('userfirstname').value
@@ -120,6 +125,9 @@ export class DescriptionShippingComponent implements OnInit {
         this.shStatusName = this.reactiveForm.get('status_name').value
         this.shDetail_id = this.reactiveForm.get('detail_id').value
         this.shSlip = this.reactiveForm.get('image').value
+        this.shNetAmount = this.reactiveForm.get('net_amount').value
+        this.shShipping_number = this.reactiveForm.get('shipping_number').value
+        this.shSend_date = this.reactiveForm.get('send_date').value
       },
       error => this.errorMessage = <any>error
     )
@@ -144,6 +152,8 @@ export class DescriptionShippingComponent implements OnInit {
       detail_id: ['',],
       image: ['',],
       net_amount: ['',],
+      shipping_number: ['',],
+      send_date: ['',],
     })
   }
 
@@ -164,7 +174,7 @@ export class DescriptionShippingComponent implements OnInit {
           // showConfirmButton: false,
           timer: 2000
         });
-        this.router.navigateByUrl('deliveryStatus');
+        // this.router.navigateByUrl('deliveryStatus');
       },
       error => {
 
@@ -237,5 +247,14 @@ export class DescriptionShippingComponent implements OnInit {
   }
   get image() {
     return this.reactiveForm.get('image')
+  }
+  get net_amount() {
+    return this.reactiveForm.get('net_amount')
+  }
+  get shipping_number() {
+    return this.reactiveForm.get('shipping_number')
+  }
+  get send_date() {
+    return this.reactiveForm.get('send_date')
   }
 }
