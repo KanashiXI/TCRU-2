@@ -111,7 +111,7 @@ class ShippingController extends Controller {
             ->join('districts', 'districts.id', '=', 'address.districts_id')
             ->join('shipping_brand', 'shipping_brand.shipping_brand_id', '=', 'order.shipping_brand')
             ->join('status', 'status.id', '=', 'order.status')
-            ->select('order.net_amount', 'order.user_id', 'order.order_id', 'order.shipping_number', 'order.send_date',
+            ->select('order.promotion_id', 'order.net_amount', 'order.user_id', 'order.order_id', 'order.shipping_number', 'order.send_date',
             'users.firstname as userfirstname', 'users.lastname as userlastname',
             'address.firstname as shipfirstname', 'address.lastname as shiplastname', 'address.address',
             'address.telephone as telephone',
@@ -168,18 +168,15 @@ class ShippingController extends Controller {
             ->where('users.id', $request->user_id)
             ->get()
             ->pluck('shopping_point'); 
-
-            
-        if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1" && $promotionId = 0){
+        
+        if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1" && $promotionId == 0){
             // $editShopPoint = users::where('user_id', $request->user_id)->first();
             $editShopPoint=(int)$getUserShopPoint[0]+(int)$netAmount[0];
-            if($editShopPoint >= 10000){
+            if($editShopPoint >= 10000 ){
                 $newShopPoint = $editShopPoint - 10000;
                 $savePoint = users::where('id', $request->user_id)->first();
                 $savePoint->shopping_point=$newShopPoint;
                 $result = $savePoint->save();
-
-
                 $length = 20;
                 // generate coupon    
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -193,7 +190,6 @@ class ShippingController extends Controller {
                 $data->coupon_status = 0;
                 $data->user_id = $request->user_id;
                 $data->save();
-
             }else{
                 $savePoint = users::where('id', $request->user_id)->first();
                 $savePoint->shopping_point=$editShopPoint;
@@ -202,7 +198,7 @@ class ShippingController extends Controller {
 
         }
 
-        return response()->json('success',200); 
+        return response()->json($promotionId ); 
     }
 
 

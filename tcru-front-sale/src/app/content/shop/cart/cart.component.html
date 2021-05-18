@@ -115,48 +115,43 @@
     <div class="col-md-12">
       <mat-card>
         <br>
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-9">
             <span class="material-icons">local_shipping</span>&nbsp;&nbsp;
             &nbsp;&nbsp; เลือกประเภทการจัดส่ง
           </div>
-        </div>
+        </div> -->
         <br>
-        <div class="row">
+
+        <!-- <div class="row">
           <div class="col-md-1"></div>
           <div class="col-md-3">
             <mat-card *ngFor="let item of shippingBrand; let i = index">
               <div class="row">
                 <div class="col-md-1 address-padding">
                   <input type="radio" value="{{i}}" [checked]="item.status == 1" (change)="handleRadio(i)">
-                  <!-- {{item.status == 1 | json }} -->
                 </div>
                 <div class="col-md-9 address-padding">
                   จัดส่งด้วย: {{item.brand}}
                 </div>
                 <div class="col-md-1 btn-padding">
-                  <!-- <button mat-raised-button color="accent" class="btn-block" type="submit"
-                      (click)="onClickSubmit(item.address_id)" routerLink="/editaddress">แก้ไข</button> -->
-
                 </div>
               </div>
             </mat-card>
             <br>
           </div>
           <div class="col-md-4"></div>
-        </div>
+        </div> -->
 
-        <!-- <div *ngIf="taxCheck == true">
-            <div class="col-md-1"><button mat-stroked-button (click)="openDialogTax()"><span
-                  class="material-icons">create</span></button></div>
-          </div> -->
 
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-9">
           </div>
         </div>
+
+
         <br>
         <div class="row">
           <div class="col-md-1"></div>
@@ -193,6 +188,18 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-10">
+
+            <div class="row">
+              <div class="col-md-8">
+                ใช้คูปอง
+              </div>
+              <div class="col-md-4">
+                <button mat-raised-button color="accent" (click)="openDialogCoupon()"><span class="material-icons"><span
+                      class="material-icons">receipt</span></span></button>
+              </div>
+            </div>
+            <br>
+
             <div class="row">
               <div class="col-md-8">
                 <p>ราคารวม</p>
@@ -225,15 +232,13 @@
                 <p><strong>{{cartTotal | currency :'฿':true}}</strong></p>
               </div>
             </div>
+            {{couponKey|json}}
             <br>
 
             <div class="row rightside">
               <div class="col-md-4"></div>
               <div class="col-md-3">
                 <button mat-stroked-button routerLink="/" class="btn-block">เลือกสินค้าเพิ่ม</button>
-                <!-- {{selectItem|json}} -->
-                <!-- <button mat-raised-button color="primary" (click)="checkoutCart()">ซื้อสินค้า</button> -->
-                <!-- <button mat-raised-button color="primary" (click)="changestatusCart()">เลือกที่อยู่จัดส่ง</button> -->
               </div>
               <div class="col-md-3">
                 <button mat-raised-button color="primary" class="btn-block" (click)="checkoutCart()">ซื้อสินค้า</button>

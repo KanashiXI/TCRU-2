@@ -42,6 +42,7 @@ import { BillComponent } from './content/shop/bill/bill.component';
 import { OrderComponent } from './content/user/order/order.component';
 import { InstructucionsComponent } from './content/shop/Instructucions/Instructucions.component';
 import { SlipuploadComponent } from './content/user/order/slipupload/slipupload.component';
+import { CouponComponent } from './content/shop/cart/coupon/coupon.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { SlipuploadComponent } from './content/user/order/slipupload/slipupload.
     BillComponent,
     OrderComponent,
     InstructucionsComponent,
-    SlipuploadComponent
+    SlipuploadComponent,
+    CouponComponent
   ],
   entryComponents: [ProductDetailComponent],
   imports: [

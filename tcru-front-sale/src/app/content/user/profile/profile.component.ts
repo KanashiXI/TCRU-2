@@ -33,8 +33,9 @@ export class ProfileComponent implements OnInit {
   panelOpenState = false;
   couponData: Emloyeeinterface[] = [];
   filterCouponData: Emloyeeinterface[] = [];
-  shippingPoint:Emloyeeinterface[] = [];
+  shippingPoint: Emloyeeinterface[] = [];
   pointShip: number = 0;
+  counCoupon: Number = 0;
   constructor(
 
     private customerService: CustomerService,
@@ -49,13 +50,13 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.checkCustomer();
-    
+
   }
 
   getShopPoint(userId) {
-    this.customerService.getShopPoint(userId).subscribe( res => {
+    this.customerService.getShopPoint(userId).subscribe(res => {
       this.shippingPoint = res;
-      this.pointShip = Number(this.shippingPoint[0].shopping_point)/100;
+      this.pointShip = Number(this.shippingPoint[0].shopping_point) / 100;
     })
   }
 
@@ -69,13 +70,19 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  getCoupon(userId){
+  getCoupon(userId) {
     this.customerService.getCoupon(userId).subscribe(res => {
       this.couponData = res;
       this.filter(0);
       this.getShopPoint(userId);
+      let counter = 0;
+      for (const obj of this.couponData) {
+        counter++;
+      }
+      this.counCoupon = counter;
+
     })
-    
+
   }
 
   filter(index) {
@@ -83,12 +90,12 @@ export class ProfileComponent implements OnInit {
   }
 
   filterByType(element, index) {
-    if(index == 0){
+    if (index == 0) {
       return (element.coupon_status == 0)
-    }else if(index == 1){
+    } else if (index == 1) {
       return (element.coupon_status == 1)
     }
-    
+
   }
 
   checkCustomer() {

@@ -1,0 +1,21 @@
+<div class="row" *ngFor="let item of couponData; let i = index">
+    <div class="col-md-12">
+        <mat-card>
+            <div class="row" (click)="selectCoupon(item)">
+
+                <div class="col-md-6 address-padding">
+                    รหัสคูปอง {{item.key}}
+                </div>
+                <div class="col-md-4 btn-padding">
+                    <!-- <div *ngIf="item.coupon_status == 0">สถานะพร้อมใช้งาน</div>
+                    <div *ngIf="item.coupon_status != 0">ใช้งานแล้ว</div> -->
+                </div>
+                <div class="col-md-2 btn-padding">
+                    คูปองส่วนลด 10%
+                </div>
+            </div>
+        </mat-card>
+        <br>
+    </div>
+</div>
+<button mat-button [mat-dialog-close]=[coupon] cdkFocusInitial>ตกลง</button>

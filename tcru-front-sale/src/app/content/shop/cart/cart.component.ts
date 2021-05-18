@@ -25,6 +25,7 @@ import html2canvas from 'html2canvas';
 import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { Shippingcost } from './../../../shared/interface/shippingcost';
+import { CouponComponent } from './coupon/coupon.component';
 
 @Component({
   selector: 'app-cart',
@@ -87,6 +88,8 @@ export class CartComponent implements OnInit {
   shippingData: Shippingcost[] = [];
   cartWeight: number;
   sumShippingCost: number = 0;
+  couponKey: string;
+  isselectCoupon: boolean = false;
   @ViewChild('htmlData') htmlData: ElementRef;
 
   constructor(
@@ -102,17 +105,13 @@ export class CartComponent implements OnInit {
 
   public openPDF(): void {
     let DATA = document.getElementById('htmlData');
-
     html2canvas(DATA).then(canvas => {
-
       let fileWidth = 208;
       let fileHeight = canvas.height * fileWidth / canvas.width;
-
       const FILEURI = canvas.toDataURL('image/png')
       let PDF = new jsPDF('p', 'mm', 'a4');
       let position = 0;
       PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
-
       PDF.save('product.pdf');
     });
   }
@@ -124,13 +123,11 @@ export class CartComponent implements OnInit {
       customerUsername: localStorage.getItem('user_id'),
     }
     this.getUserAddress(requestData.customerUsername)
-    // customerUsername: localStorage.getItem('user_id'),
     this.createForm(requestData.customerUsername);
     this.queryCartProduct(requestData.customerUsername);
     this.getCartPromotion();
     this.getShippingBrand();
     this.getShippingCost();
-
   }
 
   getShippingBrand() {
@@ -142,11 +139,11 @@ export class CartComponent implements OnInit {
   getShippingCost() {
     this.cartService.getShippingCost().subscribe(data => {
       this.shippingCost = data;
+      this.handleRadio(0);
     });
   }
 
   handleRadio(i): void {
-    
     this.shippingBrand.forEach((item) => {
       item.status = 0;
     });
@@ -165,7 +162,6 @@ export class CartComponent implements OnInit {
     })
   }
 
-
   getUserAddress(user_id) {
     this.addressService.getShippingAddress(user_id).subscribe(data => {
       this.shippingAddressList = data;
@@ -179,7 +175,7 @@ export class CartComponent implements OnInit {
   }
 
   filterAdd() {
-    this.dataSource = this.shippingAddressList.filter((value, index) => {
+    this.dataSource = this.shippingAddressList.filter((value) => {
       return value.status == 1;
     });
     this.reactiveForm.patchValue({
@@ -232,7 +228,6 @@ export class CartComponent implements OnInit {
             this.reactiveForm.patchValue({
               order_id: this.dataForm,
               request_tax: this.taxCheck
-              ///////////////////////////////////////////////////////////////////////////////////////////////////
             });
             this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
               res => {
@@ -246,8 +241,6 @@ export class CartComponent implements OnInit {
                   showConfirmButton: false,
                   timer: 2000
                 });
-                // this.router.navigateByUrl('/order');
-
               }, err => {
                 Swal.fire({
                   icon: 'error',
@@ -257,7 +250,6 @@ export class CartComponent implements OnInit {
                 });
               }
             );
-
           },
           error => {
           }
@@ -280,8 +272,6 @@ export class CartComponent implements OnInit {
     }
   }
 
-
-
   changeSelection() {
     this.fetchSelectedItems();
   }
@@ -300,7 +290,6 @@ export class CartComponent implements OnInit {
     this.fetchSelectedItems();
   }
 
-
   getCartPromotion() {
     this.cartService.getCartPromotion().subscribe(res => {
       this.promotionData = res;
@@ -311,15 +300,22 @@ export class CartComponent implements OnInit {
     })
   }
 
-  selectPromption(){
-    this.promotionData.forEach( (obj,index) => {
-      if( this.totalPrice  > obj.cost_condidtion){
-        this.promotionNumber = this.promotionData[index].unit;
-        this.discribePromotion = this.promotionData[index].detail;
-        this.condition = this.promotionData[index].cost_condidtion;
-        this.promotionId = this.promotionData[index].promotion_id;
-      }
-    })
+  selectPromption() {
+    if (this.isselectCoupon == true) {
+      this.promotionNumber = 0
+      // this.promotionId = 0
+    } else {
+      this.promotionData.forEach((obj, index) => {
+        console.log('pofkpoptokpok');
+        if (this.totalPrice > obj.cost_condidtion) {
+          this.promotionNumber = this.promotionData[index].unit;
+          this.discribePromotion = this.promotionData[index].detail;
+          this.condition = this.promotionData[index].cost_condidtion;
+          this.promotionId = this.promotionData[index].promotion_id;
+        }
+      })
+    }
+
   }
 
   queryCartProduct(user_id) {
@@ -333,7 +329,6 @@ export class CartComponent implements OnInit {
   }
 
   remove(id: string) {
-
     Swal.fire({
       title: 'คุณต้องการลบข้อมูลนี้ ใช่ หรือ ไม่?',
       icon: 'warning',
@@ -343,7 +338,6 @@ export class CartComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.cartService.remove(id).subscribe(res => {
-
           Swal.fire(
             'ลบข้อมูลเรียบร้อย',
             '',
@@ -351,15 +345,9 @@ export class CartComponent implements OnInit {
           )
           this.cartService.changeCount();
           this.ngOnInit()
-
-          //dialog ลบสำเร็จ
         });
-
-
       } else if (result.dismiss === Swal.DismissReason.cancel) { }
     })
-
-
   }
 
   ngAfterContentChecked() {
@@ -370,66 +358,61 @@ export class CartComponent implements OnInit {
       this.cartTotal += Number(obj.retail_price);
       this.cartWeight += (Number(obj.weight) * Number(obj.product_quantity))
     });
-    // console.log('weight' + this.cartWeight)
     if (this.cartTotal > 0) {
       this.isSelectProduct = true;
     } else {
       this.isSelectProduct = false;
     }
-    // console.log(this.isSelectProduct)
     this.sumShippingCost = 0;
     this.totalPrice = this.cartTotal;
+    ////////////////
+
     this.selectPromption();
+    /////////////////
     if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
       this.isGotPromotion = true;
       this.discount = (this.cartTotal * (this.promotionNumber / 100))
       this.calculateShippingCostByWeight(this.cartWeight)
       this.cartTotal = (this.cartTotal - this.discount) + Number(this.sumShippingCost);
-
-      this.reactiveForm.patchValue({
-        discount: this.discount,
-        net_amount: this.cartTotal,
-        promotion_id: this.promotionId,
-        total_price: this.totalPrice,
-      })
+      this.patchValueFunction(
+        this.discount,
+        this.cartTotal,
+        this.promotionId,
+        this.totalPrice
+      )
+      // this.reactiveForm.patchValue({
+      //   discount: this.discount,
+      //   net_amount: this.cartTotal,
+      //   promotion_id: this.promotionId,
+      //   total_price: this.totalPrice,
+      // })
     } else {
-      
       this.isGotPromotion = false;
       this.calculateShippingCostByWeight(this.cartWeight)
       this.cartTotal = this.cartTotal + Number(this.sumShippingCost);
-      this.reactiveForm.patchValue({
-        discount: this.discount,
-        net_amount: this.cartTotal,
-        promotion_id: 0,
-        total_price: this.totalPrice
-      })
+      this.patchValueFunction(
+        this.discount,
+        this.cartTotal,
+        0,
+        this.totalPrice
+      )
+      // this.reactiveForm.patchValue({
+      //   discount: this.discount,
+      //   net_amount: this.cartTotal,
+      //   promotion_id: 0,
+      //   total_price: this.totalPrice
+      // })
     }
   }
 
-  // calculateShippingCostByWeight(cartWeight) {
-  //   this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition).filter((value) => {
-  //     let i = cartWeight;
-  //     while (i <= 0) {
-  //       if (Number(cartWeight) <= Number(value.weight_condition)) {
-  //         this.sumShippingCost += value.transportation_cost;
-  //         i -= value.weight_condition;
-  //       }
-  //     }
-  //   })
-  // }
-
-  // calculateShippingCostByWeight(cartWeight) {
-  //   this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition).filter((value) => {
-  //     let i = cartWeight;
-  //     while (i <= 0) {
-  //       if (Number(cartWeight) <= Number(value.weight_condition)) {
-  //         this.sumShippingCost += value.transportation_cost;
-  //         i -= value.weight_condition;
-  //       }
-  //     }
-  //   })
-  // }
-
+  patchValueFunction(Discount, Net_amount, Promotion_id, Total_price) {
+    this.reactiveForm.patchValue({
+      discount: Discount,
+      net_amount: Net_amount,
+      promotion_id: Promotion_id,
+      total_price: Total_price
+    })
+  }
 
   calculateShippingCostByWeight(cartWeight) {
     this.shippingData.sort((a, b) => b.weight_condition - a.weight_condition).filter((value) => {
@@ -440,17 +423,14 @@ export class CartComponent implements OnInit {
         })
       }
     })
-
   }
 
   updateCart() {
-
     this.loadUpdateCart = true;
     this.cartService.editQuantityProductInCart(this.editProductQuantityForm.getRawValue()).subscribe(res => {
       this.loadUpdateCart = false;
       this.cartService.changeCount();
     });
-
   }
 
   handleMinus(cart) {
@@ -464,7 +444,6 @@ export class CartComponent implements OnInit {
       })
     }
     this.updateCart();
-    
   }
 
   handlePlus(cart) {
@@ -488,6 +467,30 @@ export class CartComponent implements OnInit {
       maxHeight: '90vh',
       maxWidth: '130vh'
     });
+  }
+
+  openDialogCoupon() {
+    const scrollStrategy = this.overlay.scrollStrategies.reposition();
+    const dialogRef = this.dialog.open(CouponComponent, {
+      autoFocus: false,
+      scrollStrategy,
+      maxHeight: '90vh',
+      maxWidth: '130vh',
+      data: { key: this.couponKey }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.couponKey = result;
+      this.checkCoupon()
+    });
+
+  }
+  checkCoupon() {
+    if (this.couponKey[0].length != 0) {
+      this.isselectCoupon = true;
+    } else {
+      this.isselectCoupon = false;
+    }
+    this.selectPromption()
   }
 
   openDialogTax() {
