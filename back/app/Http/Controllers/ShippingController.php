@@ -194,6 +194,7 @@ class ShippingController extends Controller {
                 $savePoint = users::where('id', $request->user_id)->first();
                 $savePoint->shopping_point=$editShopPoint;
                 $result = $savePoint->save();
+                
             }
 
         }
