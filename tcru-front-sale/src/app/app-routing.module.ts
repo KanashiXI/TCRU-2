@@ -1,4 +1,3 @@
-import { InstructucionsComponent } from './content/shop/Instructucions/Instructucions.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BeforeLoginService } from './shared/service/before-login.service';
@@ -24,6 +23,9 @@ import { ResponseResetComponent } from './content/auth/password/response-reset/r
 import { RequestResetComponent } from './content/auth/password/request-reset/request-reset.component';
 import { BillComponent } from './content/shop/bill/bill.component';
 import { OrderComponent } from './content/user/order/order.component';
+import { ContactComponent } from './content/shop/contact/contact.component';
+import { InstructucionsComponent } from './content/shop/Instructucions/Instructucions.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -115,6 +117,10 @@ const routes: Routes = [
   {
     path: 'instruction',
     component: InstructucionsComponent,
+  },
+  {
+    path: 'contact',
+    component: ContactComponent,
   },
   {
     path: '**',

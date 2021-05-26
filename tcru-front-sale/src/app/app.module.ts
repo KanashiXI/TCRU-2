@@ -43,6 +43,7 @@ import { OrderComponent } from './content/user/order/order.component';
 import { InstructucionsComponent } from './content/shop/Instructucions/Instructucions.component';
 import { SlipuploadComponent } from './content/user/order/slipupload/slipupload.component';
 import { CouponComponent } from './content/shop/cart/coupon/coupon.component';
+import { ContactComponent } from './content/shop/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { CouponComponent } from './content/shop/cart/coupon/coupon.component';
     OrderComponent,
     InstructucionsComponent,
     SlipuploadComponent,
-    CouponComponent
+    CouponComponent,
+    ContactComponent,
   ],
   entryComponents: [ProductDetailComponent],
   imports: [

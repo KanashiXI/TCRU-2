@@ -1,0 +1,14 @@
+div.body{
+    text-align: left;
+}
+
+.material-icons{
+    display: inline-flex;
+    vertical-align: top;
+    font-size:30px;
+    line-height:24px;
+}
+
+.hidden{
+    color: #fff;
+}
