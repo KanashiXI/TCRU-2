@@ -1,0 +1,60 @@
+<br>
+<div class="row">
+  <div class="col-12">
+    <p class="link" routerLink="/showInstruction"><span class="material-icons">chevron_left</span>ย้อนกลับ</p>
+  </div>
+</div>
+<div class="main-container" style=" height:90vh;">
+  <div class="row">
+    <div class="col-12">
+      <h3>เพิ่มวิธีใช้สินค้า</h3>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <h5>หัวข้อ</h5>
+          <input type="text" formControlName="title"><br><br>
+          <h5>คำอธิบายวิธีการใช้สินค้า</h5><br>
+          <quill-editor formControlName="detail" [modules]="config" (onContentChanged)="maxLenght($event)"></quill-editor>
+        </div>
+        <div style="text-align: right;">
+          <button class="btn btn-outline-secondary">แสดงตัวอย่าง</button>
+          <button type="submit" class="btn btn-success" (click)="onClickSubmit()">บันทึกข้อความ</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">ตัวอย่างข้อความ</h5>
+          <p class="card-text" [innerHTML]="editorContent"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<!-- 
+<div class="row">
+  <div class="col-12">
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label style="margin-bottom: 15px;">Enter a date range</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Start date" style="position: static; margin-top: 15px;">
+        <input matEndDate formControlName="end" placeholder="End date" style="position: static;">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker" style="position: static; margin-top: -10px;"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error *ngIf="range.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="range.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+    </mat-form-field>
+  </div>
+</div> -->

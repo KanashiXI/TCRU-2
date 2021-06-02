@@ -53,4 +53,24 @@ export class ApiConstants {
     public static get getOneStatusURL(): string {
         return '/api/getselectedstatus';
     }
+
+    public static get addInstructionURL(): string {
+        return '/api/addinstruction';
+    }
+
+    public static get getInstructionURL(): string {
+        return '/api/getinstruction';
+    }
+
+    public static get deleteInstructionURL(): string {
+        return '/api/deleteinstruction';
+    }    
+    
+    public static get getOneInstructionURL(): string {
+        return '/api/getoneinstruction';
+    }    
+    
+    public static get editInstructionURL(): string {
+        return '/api/editinstruction';
+    }
 }
