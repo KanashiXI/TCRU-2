@@ -73,4 +73,8 @@ export class ApiConstants {
     public static get editInstructionURL(): string {
         return '/api/editinstruction';
     }
+
+        public static get addFaqURL(): string {
+        return '/api/addfaq';
+    }
 }

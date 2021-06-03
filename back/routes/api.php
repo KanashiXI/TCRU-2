@@ -124,6 +124,9 @@ Route::group([
     Route::get('getoneinstruction/{instruction_id}', 'InstructionController@getOneInstruction');
     Route::post('editinstruction','InstructionController@editInstruction');
 
+    //FAQ
+    Route::post('addfaq','FaqController@addFaq'); 
+
 
         // วัตถุดิบ
     Route::post('/material','MaterialController@addMaterial');

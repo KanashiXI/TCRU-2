@@ -1,0 +1,14 @@
+.material-icons{
+    display: inline-flex;
+    vertical-align: top;
+    font-size:30px;
+    line-height:24px;
+}
+
+::ng-deep .ql-container{
+    height: 300px;
+}
+
+button{
+    margin: 10px;
+}
