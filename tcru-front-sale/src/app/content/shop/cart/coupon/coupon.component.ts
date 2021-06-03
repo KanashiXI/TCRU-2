@@ -35,7 +35,7 @@ export class CouponComponent implements OnInit {
 
   selectCoupon(item) {
     // this.couponCode.emit(this.couponData[index].key);
-    this.coupon = item;
+    this.coupon = item.coupon_id;
     console.log('hey I am  clicked in child');
   }
 

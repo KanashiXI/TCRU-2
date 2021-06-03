@@ -33,7 +33,7 @@ export class ApiConstants {
     public static get getOneShippingURL(): string {
         return '/api/getOneShipping';
     }
-    
+
     public static get getStatusURL(): string {
         return '/api/getStatus';
     }
@@ -52,5 +52,12 @@ export class ApiConstants {
 
     public static get getOneStatusURL(): string {
         return '/api/getselectedstatus';
+    }
+
+    public static get getExportURL(): string {
+        return '/api/exportexcel';
+    }
+    public static get getExportAddressURL(): string {
+        return '/api/exportexcelAddress';
     }
 }

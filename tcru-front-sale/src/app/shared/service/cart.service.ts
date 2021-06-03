@@ -76,6 +76,10 @@ export class CartService {
     return this.http.post(`${ApiConstants.baseURl}${ApiConstants.uploadSlipURL}`, data)
   }
 
+  deleteCoupon(data) {
+    return this.http.delete(`${ApiConstants.baseURl}${ApiConstants.deletecouponURL}/${data}`)
+  }
+
 
 
   // checkoutCart(data, data2) {

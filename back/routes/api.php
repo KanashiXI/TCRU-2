@@ -76,7 +76,7 @@ Route::group([
     // coupon
     Route::get('coupon/{user_id}','CouponController@checkCoupon');
     Route::get('generatecoupon','CouponController@generateRandomString');
-    
+    Route::delete('deletecoupon/{coupon_id}','CouponController@deleteCoupon');
 
 
     // ออเดอร์
@@ -88,8 +88,10 @@ Route::group([
     Route::get('selectOrder/{order_id}','OrderController@getOrderDetail');
     Route::post('uploadslip','OrderController@fillImageOrder');
     Route::get('getslip/{order_id}','OrderController@getImageOrder');
-    Route::get('exportexcel','OrderController@exportExcel');
     Route::get('getselectedstatus/{order_id}','ShippingController@getOneStatus');
+
+    Route::get('exportexcel/{datefrom}/{mountfrom}/{yearfrom}/{dateto}/{mountto}/{yearto}','OrderController@exportExcel');
+    Route::get('exportexcelAddress/{datefrom}/{mountfrom}/{yearfrom}/{dateto}/{mountto}/{yearto}','OrderController@exportExcelAddress');
 
 
 

@@ -233,6 +233,7 @@ export class CartComponent implements OnInit {
               res => {
                 this.cartService.deleteFromCart(this.selectItem).subscribe(res => {
                   this.cartService.changeCount();
+                  this.cartService.deleteCoupon(this.couponKey).subscribe();
                   this.ngOnInit();
                 });
                 Swal.fire({
@@ -241,6 +242,7 @@ export class CartComponent implements OnInit {
                   showConfirmButton: false,
                   timer: 2000
                 });
+
               }, err => {
                 Swal.fire({
                   icon: 'error',

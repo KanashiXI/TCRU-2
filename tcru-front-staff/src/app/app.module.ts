@@ -1,59 +1,59 @@
 import { PrintAddressComponent } from './TCRU/shipping/printAddress/printAddress.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule }  from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Uniquematerial_nameValidatorDirective } from 'src/app/Service/unique-material-name-validator.directive';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
-import {A11yModule} from '@angular/cdk/a11y';
-import {ClipboardModule} from '@angular/cdk/clipboard';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {PortalModule} from '@angular/cdk/portal';
-import {ScrollingModule} from '@angular/cdk/scrolling';
-import {CdkStepperModule} from '@angular/cdk/stepper';
-import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
-import {MatButtonModule} from '@angular/material/button';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatDividerModule} from '@angular/material/divider';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatListModule} from '@angular/material/list';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatSelectModule} from '@angular/material/select';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatSliderModule} from '@angular/material/slider';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSortModule} from '@angular/material/sort';
-import {MatTableModule} from '@angular/material/table';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatTreeModule} from '@angular/material/tree';
-import {OverlayModule} from '@angular/cdk/overlay';
+import { A11yModule } from '@angular/cdk/a11y';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { PortalModule } from '@angular/cdk/portal';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { CdkStepperModule } from '@angular/cdk/stepper';
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatNativeDateModule, MatRippleModule, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTreeModule } from '@angular/material/tree';
+import { OverlayModule } from '@angular/cdk/overlay';
 import { IonicModule } from '@ionic/angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -86,7 +86,7 @@ import { DescriptionShippingComponent } from './TCRU/shipping/descriptionShippin
 import { ShowOrderComponent } from './OrderMaterials/show-order/show-order.component';
 import { FormulaComponent } from './TCRU/formula/formula.component';
 // import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { NgMultiSelectDropDownModule  } from 'ng-multiselect-dropdown';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
@@ -94,61 +94,61 @@ import { AddOrderComponent } from './OrderMaterials/add-order/add-order.componen
 
 const appRoutes: Routes = [
   {
-    path: '', 
-    redirectTo: '/Report', 
+    path: '',
+    redirectTo: '/Report',
     pathMatch: 'full'
   },
   {
     path: 'Report',
     component: ReportComponent,
   },
-  { 
-    path: 'Customers', 
-    component: CustomersComponent 
+  {
+    path: 'Customers',
+    component: CustomersComponent
   },
-  { 
-    path: 'shows', 
-    component: ShowsComponent 
+  {
+    path: 'shows',
+    component: ShowsComponent
   },
-  { 
-    path: 'adds', 
-    component: AddsComponent 
+  {
+    path: 'adds',
+    component: AddsComponent
   },
-  { 
-    path: 'addstock', 
-    component: AddstockComponent 
+  {
+    path: 'addstock',
+    component: AddstockComponent
   },
-  { 
-    path: 'stockp', 
-    component: StockComponent 
+  {
+    path: 'stockp',
+    component: StockComponent
   },
-  { 
-    path: 'addm', 
-    component: AddmComponent 
+  {
+    path: 'addm',
+    component: AddmComponent
   },
-  { 
-    path: 'formm', 
-    component: ShowmaterialComponent 
+  {
+    path: 'formm',
+    component: ShowmaterialComponent
   },
-  { 
-    path: 'editm/:id', 
-    component: EditmComponent 
+  {
+    path: 'editm/:id',
+    component: EditmComponent
   },
-  { 
-    path: 'addp', 
-    component: AddpComponent 
+  {
+    path: 'addp',
+    component: AddpComponent
   },
-  { 
-    path: 'showp', 
-    component: ShowpComponent 
+  {
+    path: 'showp',
+    component: ShowpComponent
   },
-  { 
-    path: 'editp/:id', 
-    component: EditpComponent 
+  {
+    path: 'editp/:id',
+    component: EditpComponent
   },
-  { 
-    path: 'addstm', 
-    component: AddstockComponent 
+  {
+    path: 'addstm',
+    component: AddstockComponent
   },
   {
     path: 'promotion',
@@ -170,13 +170,13 @@ const appRoutes: Routes = [
     path: 'descriptionShipping',
     component: DescriptionShippingComponent
   },
-  { 
-    path: 'edits/:id', 
-    component: EditsComponent 
+  {
+    path: 'edits/:id',
+    component: EditsComponent
   },
-  { 
-    path: 'showlotp/:id', 
-    component: ShowlotComponent 
+  {
+    path: 'showlotp/:id',
+    component: ShowlotComponent
   },
   {
     path: 'showOrderM',
@@ -197,6 +197,10 @@ const appRoutes: Routes = [
   {
     path: 'printAddress',
     component: PrintAddressComponent
+  },
+  {
+    path: 'report',
+    component: ReportComponent
   }
 ];
 
@@ -234,7 +238,7 @@ const appRoutes: Routes = [
     AddOrderComponent,
     PrintAddressComponent
   ],
-  entryComponents:[DialogCustomerComponent],
+  entryComponents: [DialogCustomerComponent],
   imports: [
     CommonModule,
     BrowserModule,
@@ -316,6 +320,7 @@ const appRoutes: Routes = [
     MatSlideToggleModule
   ],
   providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
   ],
   bootstrap: [
     AppComponent,

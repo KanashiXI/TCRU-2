@@ -6,6 +6,7 @@ use App\order;
 use App\orderDetail;
 use DB;
 use App\Exports\ExcelExport;
+use App\Exports\ExcelAddress;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -154,10 +155,25 @@ class OrderController extends Controller
     } 
 
 
-    public function exportExcel()
+    public function exportExcel($datefrom, $mountfrom, $yearfrom, $dateto, $mountto, $yearto)
     {
         // return Excel::download(new ExcelExport, 'orders.xlsx');
-        return (new ExcelExport('2021-03-06','2021-03-06'))->download('orders.xlsx');
+        $yearfirst = $yearfrom-543;
+        $yearnext = $yearto-543;
+        $datef = $yearfirst.'-'.$mountfrom.'-'.$datefrom;
+        $datet = $yearnext.'-'.$mountto.'-'.$dateto;
+        // $dateTo = 
+        return (new ExcelExport($datef,$datet))->download('orders.xlsx');
+        // return response()->json($datef,200);
+    }
+
+    public function exportExcelAddress($datefrom, $mountfrom, $yearfrom, $dateto, $mountto, $yearto)
+    {
+        $yearfirst = $yearfrom-543;
+        $yearnext = $yearto-543;
+        $datef = $yearfirst.'-'.$mountfrom.'-'.$datefrom;
+        $datet = $yearnext.'-'.$mountto.'-'.$dateto;
+        return (new ExcelAddress($datef,$datet))->download('orders-addreess.xlsx');
     }
     
     
