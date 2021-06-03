@@ -14,7 +14,6 @@ export class ShowInstructionComponent implements OnInit {
   dataSource: InstructionInterface[];
   errorMessage: String;
   dataForm: InstructionInterface;
-  toggleChecked: number;
 
   constructor(
     private InstructorService: InstructorService,

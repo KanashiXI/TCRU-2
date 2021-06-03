@@ -28,19 +28,19 @@
                       </thead>
       
                       <tbody>
-                        <!-- <tr *ngFor="let item of dataSource; let i = index" >
-                            <td>{{item.instruction_id}}</td >
-                            <td>{{item.title}}</td >
+                        <tr *ngFor="let item of dataSource; let i = index" >
+                            <td>{{i+1}}</td>
+                            <td>{{item.ask}}</td>
                             
                             <td>
-                                <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.instruction_id)" routerLink="/editinstruction">
+                                <!-- <button mat-raised-button color="accent" type="submit" (click)="onClickSubmit(item.instruction_id)" routerLink="/editinstruction">
                                     <span class="material-icons">create</span>
-                                </button>
-                                <button mat-raised-button color="warn" (click)="onClickDelete(item.instruction_id)">
+                                </button> -->
+                                <button mat-raised-button color="warn" (click)="onClickDelete(item.faq_id)">
                                     <span class="material-icons">delete</span>
                                 </button>
                             </td>
-                        </tr> -->
+                        </tr>
                       </tbody>
                   </table>
               </div>

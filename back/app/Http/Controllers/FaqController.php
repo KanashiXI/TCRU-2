@@ -15,21 +15,21 @@ class FaqController extends Controller
         return response()->json(['newitem'=>$new],201);
     }
 
-    // public function getInstruction()
-    // {
-    //     $getall = instruction::all();
-    //     return response()->json($getall,200); 
-    // }
+    public function getFaq()
+    {
+        $getall = faq::all();
+        return response()->json($getall,200); 
+    }
 
-    // public function deleteInstruction($request)
-    // {
-    //     $instruction = instruction::where('instruction_id', $request);
-    //         if($instruction)
-    //             $instruction->delete(); 
-    //         else
-    //         return response()->json(['instruction not found']);
-    //     return response()->json(['deleted']); 
-    // }
+    public function deleteFaq($request)
+    {
+        $faq = faq::where('faq_id', $request);
+            if($faq)
+                $faq->delete(); 
+            else
+            return response()->json(['faq not found']);
+        return response()->json(['deleted']); 
+    }
 
     // public function getOneInstruction($request)
     // {

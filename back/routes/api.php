@@ -126,6 +126,8 @@ Route::group([
 
     //FAQ
     Route::post('addfaq','FaqController@addFaq'); 
+    Route::get('getfaq','FaqController@getFaq');
+    Route::delete('deletefaq/{faq_id}','FaqController@deleteFaq'); 
 
 
         // วัตถุดิบ

@@ -24,4 +24,12 @@ export class FaqService {
     return this.http.post<FaqInterface[]>(`${ApiConstants.baseURl}${ApiConstants.addFaqURL}`, data);
   }
 
+  getFaq(){
+    return this.http.get<FaqInterface[]>(`${ApiConstants.baseURl}${ApiConstants.getFaqURL}`)
+  }
+
+  deleteFaq(data) {
+    return this.http.delete(`${ApiConstants.baseURl}${ApiConstants.deleteFaqURL}/${data}`);
+  }
+
 }
