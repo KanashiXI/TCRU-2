@@ -1,3 +1,4 @@
+import { ShowFAQComponent } from './TCRU/faq/showFAQ/showFAQ.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA} from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -187,6 +188,10 @@ const appRoutes: Routes = [
     path: 'editinstruction',
     component: EditInstructionComponent
   },
+  {
+    path: 'showFAQ',
+    component: ShowFAQComponent
+  },
   //-- end mine --
   { 
     path: 'edits/:id', 
@@ -254,7 +259,8 @@ const appRoutes: Routes = [
     PrintAddressComponent,
     ShowInstructionComponent,
     CreateInstructionComponent,
-    EditInstructionComponent
+    EditInstructionComponent,
+    ShowFAQComponent,
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [
