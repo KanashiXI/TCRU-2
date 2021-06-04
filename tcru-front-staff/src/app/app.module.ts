@@ -1,3 +1,4 @@
+import { EditFAQComponent } from './TCRU/faq/editFAQ/editFAQ.component';
 import { CreateFAQComponent } from './TCRU/faq/createFAQ/createFAQ.component';
 import { ShowFAQComponent } from './TCRU/faq/showFAQ/showFAQ.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -197,6 +198,10 @@ const appRoutes: Routes = [
     path: 'createFAQ',
     component: CreateFAQComponent
   },
+  {
+    path: 'editFAQ',
+    component: EditFAQComponent
+  },
   //-- end mine --
   { 
     path: 'edits/:id', 
@@ -266,7 +271,8 @@ const appRoutes: Routes = [
     CreateInstructionComponent,
     EditInstructionComponent,
     ShowFAQComponent,
-    CreateFAQComponent
+    CreateFAQComponent,
+    EditFAQComponent
   ],
   entryComponents:[DialogCustomerComponent],
   imports: [

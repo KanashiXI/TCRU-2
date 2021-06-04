@@ -1,13 +1,13 @@
 <br>
 <div class="row">
   <div class="col-12">
-    <p class="link" routerLink="/showInstruction"><span class="material-icons">chevron_left</span>ย้อนกลับ</p>
+    <p class="link" routerLink="/showFAQ"><span class="material-icons">chevron_left</span>ย้อนกลับ</p>
   </div>
 </div>
 <div class="main-container" style=" height:90vh;">
   <div class="row">
     <div class="col-12">
-      <h3>แก้ไขวิธีใช้สินค้า</h3>
+      <h3>แก้ไขคำถามพบบ่อย</h3>
     </div>
   </div>
   <br>
@@ -15,11 +15,11 @@
     <div class="col-12">
       <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-          <h5>หัวข้อ</h5>
-          <input formControlName="title" id="title" type="text" class="form-control" [formControl]="title" required>
+          <h5>คำถาม</h5>
+          <input formControlName="ask" id="ask" type="text" class="form-control" [formControl]="ask" required>
           <br><br>
-          <h5>คำอธิบายวิธีการใช้สินค้า</h5><br>
-          <quill-editor formControlName="detail" [modules]="config" (onContentChanged)="maxLenght($event)"></quill-editor>
+          <h5>คำตอบ</h5><br>
+          <quill-editor formControlName="answer" [modules]="config" (onContentChanged)="maxLenght($event)"></quill-editor>
         </div>
         <div style="text-align: right;">
           <button class="btn btn-outline-secondary">แสดงตัวอย่าง</button>

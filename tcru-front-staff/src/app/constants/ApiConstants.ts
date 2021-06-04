@@ -84,5 +84,14 @@ export class ApiConstants {
     
     public static get deleteFaqURL(): string {
         return '/api/deletefaq';
-    } 
+    }     
+    
+    public static get getOneFaqURL(): string {
+        return '/api/getonefaq';
+    }
+
+    public static get editFaqURL(): string {
+        return '/api/editfaq';
+    }    
+    
 }

@@ -128,7 +128,8 @@ Route::group([
     Route::post('addfaq','FaqController@addFaq'); 
     Route::get('getfaq','FaqController@getFaq');
     Route::delete('deletefaq/{faq_id}','FaqController@deleteFaq'); 
-
+    Route::get('getonefaq/{faq_id}', 'FaqController@getOneFaq');
+    Route::post('editfaq','FaqController@editFaq');
 
         // วัตถุดิบ
     Route::post('/material','MaterialController@addMaterial');

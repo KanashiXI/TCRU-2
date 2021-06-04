@@ -32,4 +32,12 @@ export class FaqService {
     return this.http.delete(`${ApiConstants.baseURl}${ApiConstants.deleteFaqURL}/${data}`);
   }
 
+  getOneFaq(data) {
+    return this.http.get<FaqInterface>(`${ApiConstants.baseURl}${ApiConstants.getOneFaqURL}/${data}`);
+  }
+
+  editFaq(data) {
+    return this.http.post<FaqInterface[]>(`${ApiConstants.baseURl}${ApiConstants.editFaqURL}`, data);
+  }
+
 }

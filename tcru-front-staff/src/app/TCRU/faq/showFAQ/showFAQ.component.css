@@ -1,0 +1,51 @@
+.example-button-row {
+    display: table-cell;
+    width: 500px;
+    font-family: 'Kanit', sans-serif;
+}
+
+.example-button-row .mat-button-base {
+    margin: 0px 1px 8px 10px;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td,
+th {
+    width: 10%;
+}
+
+th.mat-header-cell {
+    text-align: left;
+    font-family: 'Kanit', sans-serif;
+}
+
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+
+.font {
+    color: black;
+}
+
+.flex {
+    margin-left: 500px;
+}
+
+button {
+    margin: 5px;
+}
+
+.panel-custom-width {
+    width: 100px !important;
+    max-width: unset !important;
+}

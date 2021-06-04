@@ -49,4 +49,9 @@ export class ShowFAQComponent implements OnInit {
     }) 
   }
 
+  onClickSubmit(data) {
+    this.FaqService.nextMessage(data);
+    localStorage.setItem("faq_id", data);
+  }
+
 }

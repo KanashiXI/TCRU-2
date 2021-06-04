@@ -31,17 +31,17 @@ class FaqController extends Controller
         return response()->json(['deleted']); 
     }
 
-    // public function getOneInstruction($request)
-    // {
-    //     $getall = instruction::where('instruction_id', $request)->get();  
-    //     return response()->json($getall,200); 
-    // }
+    public function getOneFaq($request)
+    {
+        $getall = faq::where('faq_id', $request)->get();  
+        return response()->json($getall,200); 
+    }
 
-    // public function editInstruction(Request $request, instruction $instruction)
-    // {       
-    //     $edit = instruction::where('instruction_id', $request->instruction_id)->first();
-    //     $edit->title = $request->input('title');
-    //     $edit->detail = $request->input('detail');
-    //     $result = $edit->save();
-    // }
+    public function editFaq(Request $request, faq $faq)
+    {       
+        $edit = faq::where('faq_id', $request->faq_id)->first();
+        $edit->ask = $request->input('ask');
+        $edit->answer = $request->input('answer');
+        $result = $edit->save();
+    }
 }
