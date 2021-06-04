@@ -50,7 +50,7 @@ class ShippingController extends Controller {
             // ->join('order', 'order.order_id', '=', 'shipping.order_id')
             // ->join('users', 'users.id', '=', 'order.user_id')
             ->join('status', 'status.id', '=', 'order.status')
-            ->select('order.order_id', 'order.order_date', 'order.user_id', 
+            ->select('order.order_id', 'order.order_date', 'order.user_id', 'order.image',
                     'order.shipping_number', 'order.send_date', 'order.shipping_price', 'order.estimate',
                     'status.id as status_id','status.name as status_name')
             // ->where('order.order_id', $request)
