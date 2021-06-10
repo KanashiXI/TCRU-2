@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="reactiveForm">
+        <mat-accordion class="body">
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                                (closed)="panelOpenState = false" 
+                                *ngFor="let item of dataSource; let i = index">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <strong>{{item.ask}}</strong>
+              </mat-panel-title>
+              <!-- <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description> -->
+            </mat-expansion-panel-header>
+            <p [innerHTML]="item.answer"></p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </form>
+    </div>
+  </div>
+</div>
+

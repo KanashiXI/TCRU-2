@@ -10,7 +10,8 @@ class FaqController extends Controller
     {
         $new = new faq;
         $new->ask = $request->input('ask');
-        $new->answer = $request->input('answer');            
+        $new->answer = $request->input('answer');
+        $new->image = $request->input('image');
         $new->save();
         return response()->json(['newitem'=>$new],201);
     }

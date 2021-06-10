@@ -1,0 +1,6 @@
+mat-accordion.body{
+    text-align: left;
+}
+.mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
