@@ -3,10 +3,11 @@
   <div class="row" *ngIf="!(isHandset$ | async)">
     <div class="col-md-1"></div>
     <div class="col-md-5" style="text-align: left;">
-      <a routerLink="/instruction" *ngIf="loggedIn && !(isHandset$ | async)">วิธีใช้สินค้า</a>
-      <a routerLink="/contact" *ngIf="loggedIn && !(isHandset$ | async)">ติดต่อศูนย์</a>
+      <!-- <a routerLink="/contact" *ngIf="loggedIn && !(isHandset$ | async)">ติดต่อศูนย์</a> -->
     </div>
     <div class="col-md-5">
+      <a routerLink="/faq" *ngIf="loggedIn && !(isHandset$ | async)">คำถามพบบ่อย</a>
+      <a routerLink="/contact" *ngIf="loggedIn && !(isHandset$ | async)">ติดต่อศูนย์</a>
       <a routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">บัญชีของฉัน</a>
       <a routerLink="/register" *ngIf="!loggedIn && !(isHandset$ | async)">ลงทะเบียน</a>
       <a routerLink="/login" *ngIf="!loggedIn && !(isHandset$ | async)">เข้าสู่ระบบ</a>
@@ -35,6 +36,9 @@
         </a>
         <a mat-list-item  routerLink="/contact">
           <span class="material-icons">contact_support</span>&nbsp;ติดต่อศูนย์
+        </a>
+        <a mat-list-item  routerLink="/faq">
+          <span class="material-icons">contact_support</span>&nbsp;คำถามพบบ่อย
         </a>
         <a mat-list-item routerLink="/register" *ngIf="!loggedIn">
           <span class="material-icons">person_add_alt_1</span>&nbsp;ลงทะเบียน
@@ -65,6 +69,9 @@
         <a class="navbar-brand" routerLink="/" style="padding-left: 70px;">
           <img src="../../../assets/tcru-crop-removebg.png" height="47">
           <label style="font-size: 16px;">&nbsp;&nbsp;หน้าหลัก</label>
+        </a>
+        <a class="navbar-brand" routerLink="/instruction">
+          <label style="font-size: 16px;">&nbsp;&nbsp;เกี่ยวกับสินค้า</label>
         </a>  
         <span class="spacer"></span>
           <a mat-list-item routerLink="/cart" *ngIf="loggedIn && !(isHandset$ | async)" id="cart" style="padding-right: 100px;"><span class="material-icons" matBadge="{{cartTotal}}" matBadgeColor="warn">shopping_cart</span></a>
