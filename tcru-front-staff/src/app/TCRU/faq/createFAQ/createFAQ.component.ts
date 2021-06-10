@@ -28,6 +28,9 @@ export class CreateFAQComponent implements OnInit {
     ]
   }
 
+  imageDirectoyPath:any = 'http://127.0.0.1:8000/img/';
+  files: File = null;
+
   constructor(
     private fb: FormBuilder,
     private FaqService: FaqService,  
@@ -60,6 +63,23 @@ export class CreateFAQComponent implements OnInit {
     }
     console.log(e)
   }
+
+  onFileSelected(event) {
+    this.files = <File>event.target.files[0];
+  }
+
+  // imageUpload() {
+  //   const formdata = new FormData();
+  //   formdata.append('image', this.files, this.files.name);
+  //   // formdata.append('order_id', this.orderId);
+
+  //   if (formdata != null) {
+  //     this.FaqService.uploadSlip(formdata).subscribe(res => {
+  //       this.ngOnInit();
+  //     });
+  //     console.log("upload image")
+  //   }
+  // }
 
   onClickSubmit() {
     this.FaqService.addFaq(this.reactiveForm.getRawValue()).subscribe(
@@ -98,6 +118,10 @@ export class CreateFAQComponent implements OnInit {
 
   get answer() {
     return this.reactiveForm.get('answer')
+  }
+
+    get image() {
+    return this.reactiveForm.get('image')
   }
 
 }

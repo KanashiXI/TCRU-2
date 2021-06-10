@@ -11,9 +11,9 @@
     </div>
   </div>
   <br>
-  <div class="row">
-    <div class="col-12">
-      <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+      <div class="col-8">
         <div class="form-group">
           <h5>คำถาม</h5>
           <input type="text" formControlName="ask"><br><br>
@@ -24,10 +24,14 @@
           <button class="btn btn-outline-secondary">แสดงตัวอย่าง</button>
           <button type="submit" class="btn btn-success" (click)="onClickSubmit()">บันทึกข้อความ</button>
         </div>
-        
-      </form>
+      </div>
+      <!-- <div class="col-4">
+        <h5>เพิ่มรูปภาพ</h5>
+        <input type="file" class="form-control" (change)="onFileSelected($event)" style="height: 50px;">
+      </div> -->
     </div>
-  </div>
+  </form>
+
   <br>
   <div class="row">
     <div class="col-12">
