@@ -114,6 +114,9 @@ export class ApiConstants {
     public static get getshippointURL(): string {
         return '/api/getshippoint';
     }
+    public static get deletecouponURL(): string {
+        return '/api/deletecoupon';
+    }
 
     public static get getInstructionURL(): string {
         return '/api/getinstruction';

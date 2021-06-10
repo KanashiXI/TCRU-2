@@ -1,16 +1,12 @@
 import { ShowTaxAddressComponent } from './../../user/taxinvoice/showTaxAddress/showTaxAddress.component';
 import { ShowaddressComponent } from './../../user/showaddress/showaddress.component';
 import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
 import { Promotion } from 'src/app/shared/interface/promotion';
 import { CartDataSource, CartItem } from './cart-datasource';
 import { Product } from '../shopview/interfaces/product';
 import { Subject } from 'rxjs';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { ShippingBrand } from 'src/app/shared/interface/shipping-brand';
-
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -26,6 +22,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
 import { Shippingcost } from './../../../shared/interface/shippingcost';
 import { CouponComponent } from './coupon/coupon.component';
+import { CustomerService } from 'src/app/shared/service/customer.service';
+import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
 
 @Component({
   selector: 'app-cart',
@@ -50,32 +48,36 @@ export class CartComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
-
+  isGotPromotion: boolean = false;
   cartStatus: boolean = false;
   checked: boolean = false;
   counter: number = 0;
-  cartItem = [];
   cartTotal: number = 0;
-  productInCart: Product[] = [];
-  promotionData: Promotion[] = [];
   promotionNumber: number;
   discribePromotion: String;
   promotionId: number;
-  isGotPromotion: boolean = false;
   totalPrice: number;
   discount: number;
   condition: number;
   gun: string;
+  shippingAddressList: Address[] = [];
+  selectItemForDelete: Product[] = [];
+  couponData: Emloyeeinterface[] = [];
+  shippingBrand: ShippingBrand[] = [];
+  shippingCost: Shippingcost[] = [];
+  shippingData: Shippingcost[] = [];
+  promotionData: Promotion[] = [];
+  productInCart: Product[] = [];
+  mapSelectItem: Product[] = [];
   selectItem: Product[] = [];
   tempSelect: Product[] = [];
-  selectItemForDelete: Product[] = [];
+  dataSource: Address[] = [];
   arr: any[] = [];
+  cartItem = [];
   value = 0;
   reactiveForm: FormGroup;
   dataForm: Product;
   step: Number = 1;
-  shippingAddressList: Address[] = [];
-  dataSource: Address[] = [];
   statusAddIsNull: boolean;
   editProductQuantityForm: FormGroup;
   loadUpdateCart: boolean = false;
@@ -83,13 +85,11 @@ export class CartComponent implements OnInit {
   isSelectShipping: boolean = false;
   taxCheck: boolean = false;
   panelOpenState = false;
-  shippingBrand: ShippingBrand[] = [];
-  shippingCost: Shippingcost[] = [];
-  shippingData: Shippingcost[] = [];
   cartWeight: number;
   sumShippingCost: number = 0;
   couponKey: string;
   isselectCoupon: boolean = false;
+
   @ViewChild('htmlData') htmlData: ElementRef;
 
   constructor(
@@ -99,7 +99,8 @@ export class CartComponent implements OnInit {
     private cartService: CartService,
     private fb: FormBuilder,
     public dialog: MatDialog,
-    private overlay: Overlay
+    private overlay: Overlay,
+    private customerService: CustomerService,
 
   ) { }
 
@@ -117,7 +118,7 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.selectItem.values())
+    // console.log(this.selectItem.values())
     const requestData = {
       ...Subject,
       customerUsername: localStorage.getItem('user_id'),
@@ -128,6 +129,13 @@ export class CartComponent implements OnInit {
     this.getCartPromotion();
     this.getShippingBrand();
     this.getShippingCost();
+    this.getCoupon(requestData.customerUsername)
+  }
+
+  getCoupon(userId) {
+    this.customerService.getCoupon(userId).subscribe(res => {
+      this.couponData = res;
+    })
   }
 
   getShippingBrand() {
@@ -187,11 +195,6 @@ export class CartComponent implements OnInit {
     this.cartStatus = true;
   }
 
-  backstatusCart() {
-    // this.cartStatus = false;
-    // this.router.navigateByUrl('');
-  }
-
   createForm(uId) {
     this.reactiveForm = this.fb.group({
       order_id: ['',],
@@ -233,6 +236,7 @@ export class CartComponent implements OnInit {
               res => {
                 this.cartService.deleteFromCart(this.selectItem).subscribe(res => {
                   this.cartService.changeCount();
+                  this.cartService.deleteCoupon(this.couponKey).subscribe();
                   this.ngOnInit();
                 });
                 Swal.fire({
@@ -241,6 +245,7 @@ export class CartComponent implements OnInit {
                   showConfirmButton: false,
                   timer: 2000
                 });
+
               }, err => {
                 Swal.fire({
                   icon: 'error',
@@ -276,19 +281,97 @@ export class CartComponent implements OnInit {
     this.fetchSelectedItems();
   }
 
-  fetchSelectedItems() {
-    console.log()
-    this.selectItem = this.productInCart.filter(value => {
-      return value.checked;
-    });
+  handleMinus(cart) {
+    if (cart.product_quantity > 1) {
+      cart.product_quantity--;
+      cart.retail_price -= cart.price_per_piece;
+      this.editProductQuantityForm.patchValue({
+        retail_price: cart.retail_price,
+        product_id: cart.product_id,
+        product_quantity: cart.product_quantity,
+      })
+    }
+    this.updateCart();
   }
 
+  handlePlus(cart) {
+    cart.product_quantity++;
+    const oddRetail = Number(cart.retail_price);
+    const sumRetail = Number(cart.price_per_piece) + oddRetail;
+    cart.retail_price = sumRetail;
+    this.editProductQuantityForm.patchValue({
+      retail_price: cart.retail_price,
+      product_id: cart.product_id,
+      product_quantity: cart.product_quantity,
+    })
+    this.updateCart();
+  }
+
+
+  // setStockValue() {
+  //   this.mapSelectItem = this.selectItem.map((obj, index) => {
+  //     obj[index].stock * 2;
+  //     return obj;
+  //   });
+  // }
+
   checkAll() {
+    // this.setStockValue();
     this.productInCart.forEach(element => {
       element.checked = true;
     });
     this.fetchSelectedItems();
   }
+
+  fetchSelectedItems() {
+    this.selectItem = this.productInCart.filter(value => {
+      return value.checked;
+    });
+  }
+
+  ngAfterContentChecked() {
+    this.cartTotal = 0;
+    this.cartWeight = 0;
+    this.sumShippingCost = 0;
+    this.selectItem.map((obj) => {
+      this.cartTotal += Number(obj.retail_price);
+      this.cartWeight += (Number(obj.weight) * Number(obj.product_quantity))
+    });
+    if (this.cartTotal > 0) {
+      this.isSelectProduct = true;
+    } else {
+      this.isSelectProduct = false;
+    }
+    this.sumShippingCost = 0;
+    this.totalPrice = this.cartTotal;
+    this.selectPromption();
+    if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
+      this.isGotPromotion = true;
+      this.discount = (this.cartTotal * (this.promotionNumber / 100))
+      this.calculateShippingCostByWeight(this.cartWeight)
+      this.cartTotal = (this.cartTotal - this.discount) + Number(this.sumShippingCost);
+      this.patchValueFunction(
+        this.discount,
+        this.cartTotal,
+        this.promotionId,
+        this.totalPrice
+      )
+
+    } else {
+      this.isGotPromotion = false;
+      this.calculateShippingCostByWeight(this.cartWeight)
+      this.cartTotal = this.cartTotal + Number(this.sumShippingCost);
+      this.patchValueFunction(
+        this.discount,
+        this.cartTotal,
+        0,
+        this.totalPrice
+      )
+
+    }
+  }
+
+
 
   getCartPromotion() {
     this.cartService.getCartPromotion().subscribe(res => {
@@ -306,7 +389,6 @@ export class CartComponent implements OnInit {
       // this.promotionId = 0
     } else {
       this.promotionData.forEach((obj, index) => {
-        console.log('pofkpoptokpok');
         if (this.totalPrice > obj.cost_condidtion) {
           this.promotionNumber = this.promotionData[index].unit;
           this.discribePromotion = this.promotionData[index].detail;
@@ -350,61 +432,6 @@ export class CartComponent implements OnInit {
     })
   }
 
-  ngAfterContentChecked() {
-    this.cartTotal = 0;
-    this.cartWeight = 0;
-    this.sumShippingCost = 0;
-    this.selectItem.map((obj) => {
-      this.cartTotal += Number(obj.retail_price);
-      this.cartWeight += (Number(obj.weight) * Number(obj.product_quantity))
-    });
-    if (this.cartTotal > 0) {
-      this.isSelectProduct = true;
-    } else {
-      this.isSelectProduct = false;
-    }
-    this.sumShippingCost = 0;
-    this.totalPrice = this.cartTotal;
-    ////////////////
-
-    this.selectPromption();
-    /////////////////
-    if (this.promotionNumber > 0 && this.totalPrice >= this.condition) {
-      this.isGotPromotion = true;
-      this.discount = (this.cartTotal * (this.promotionNumber / 100))
-      this.calculateShippingCostByWeight(this.cartWeight)
-      this.cartTotal = (this.cartTotal - this.discount) + Number(this.sumShippingCost);
-      this.patchValueFunction(
-        this.discount,
-        this.cartTotal,
-        this.promotionId,
-        this.totalPrice
-      )
-      // this.reactiveForm.patchValue({
-      //   discount: this.discount,
-      //   net_amount: this.cartTotal,
-      //   promotion_id: this.promotionId,
-      //   total_price: this.totalPrice,
-      // })
-    } else {
-      this.isGotPromotion = false;
-      this.calculateShippingCostByWeight(this.cartWeight)
-      this.cartTotal = this.cartTotal + Number(this.sumShippingCost);
-      this.patchValueFunction(
-        this.discount,
-        this.cartTotal,
-        0,
-        this.totalPrice
-      )
-      // this.reactiveForm.patchValue({
-      //   discount: this.discount,
-      //   net_amount: this.cartTotal,
-      //   promotion_id: 0,
-      //   total_price: this.totalPrice
-      // })
-    }
-  }
-
   patchValueFunction(Discount, Net_amount, Promotion_id, Total_price) {
     this.reactiveForm.patchValue({
       discount: Discount,
@@ -433,31 +460,7 @@ export class CartComponent implements OnInit {
     });
   }
 
-  handleMinus(cart) {
-    if (cart.product_quantity > 1) {
-      cart.product_quantity--;
-      cart.retail_price -= cart.price_per_piece;
-      this.editProductQuantityForm.patchValue({
-        retail_price: cart.retail_price,
-        product_id: cart.product_id,
-        product_quantity: cart.product_quantity,
-      })
-    }
-    this.updateCart();
-  }
 
-  handlePlus(cart) {
-    cart.product_quantity++;
-    const oddRetail = Number(cart.retail_price);
-    const sumRetail = Number(cart.price_per_piece) + oddRetail;
-    cart.retail_price = sumRetail;
-    this.editProductQuantityForm.patchValue({
-      retail_price: cart.retail_price,
-      product_id: cart.product_id,
-      product_quantity: cart.product_quantity,
-    })
-    this.updateCart();
-  }
 
   openDialogAddress() {
     const scrollStrategy = this.overlay.scrollStrategies.reposition();

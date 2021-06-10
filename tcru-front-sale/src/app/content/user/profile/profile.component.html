@@ -85,15 +85,14 @@
           </div>
         </mat-expansion-panel-header>
         <!-- ............... component -->
-        <div class="row">
+        <!-- <div class="row">
           <div class="col-md-2">
             <mat-button-toggle (click)="filter(0)">คูปองพร้อมใช้</mat-button-toggle>
           </div>
           <div class="col-md-2">
             <mat-button-toggle (click)="filter(1)">คูปองใช้แล้ว</mat-button-toggle>
           </div>
-
-        </div>
+        </div> -->
         <br>
         <div class="row" *ngFor="let item of filterCouponData; let i = index">
           <div class="col-md-12">
@@ -105,8 +104,8 @@
                 </div>
                 <div class="col-md-4 btn-padding">
 
-                  <div *ngIf="item.coupon_status == 0">สถานะพร้อมใช้งาน</div>
-                  <div *ngIf="item.coupon_status != 0">ใช้งานแล้ว</div>
+                  <!-- <div *ngIf="item.coupon_status == 0">สถานะพร้อมใช้งาน</div> -->
+                  <!-- <div *ngIf="item.coupon_status != 0">ใช้งานแล้ว</div> -->
 
                 </div>
                 <div class="col-md-2 btn-padding">

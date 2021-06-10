@@ -43,17 +43,11 @@ class ShippingController extends Controller {
 
     public function getShippingOrder()
     {
-        // $getall = order::all();
-        // return response()->json($getall,200); 
-
         $getall = DB::table('order')
-            // ->join('order', 'order.order_id', '=', 'shipping.order_id')
-            // ->join('users', 'users.id', '=', 'order.user_id')
             ->join('status', 'status.id', '=', 'order.status')
-            ->select('order.order_id', 'order.order_date', 'order.user_id', 
+            ->select('order.order_id', 'order.order_date', 'order.user_id', 'order.image',
                     'order.shipping_number', 'order.send_date', 'order.shipping_price', 'order.estimate',
                     'status.id as status_id','status.name as status_name')
-            // ->where('order.order_id', $request)
             ->groupBy('order.order_id')
             ->get(); 
         return response()->json($getall,200);
@@ -71,18 +65,12 @@ class ShippingController extends Controller {
                     'address.address', 'address.telephone as telephone',
                     'provinces.name_th as province', 'amphures.name_th as district', 'districts.name_th as subdistrict',
                     'address.postal_code as postal_code')
-            // ->where('order.order_id', $request)
             ->groupBy('order.order_id')
             ->get(); 
         return response()->json($getall,200);
     }
 
-    
-
-
-
     public function getOneStatus($request) {
-        // $getStatus = order::where('order_id', $request->order_id)->first();
         $getStatus = DB::table('order')
             ->join('status', 'status.id', '=', 'order.status' )
             ->select('status.name')
@@ -98,9 +86,6 @@ class ShippingController extends Controller {
 
     public function getOneShipping($request)
     {
-        // $getall = order::where('order_id', $request)->get();  
-        // return response()->json($getall,200);
-
         $getall = DB::table('order')
             ->join('users', 'users.id', '=', 'order.user_id')            
             ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id')
@@ -119,15 +104,11 @@ class ShippingController extends Controller {
             'address.postal_code as postal_code',
             'status.name as status_name',
             'order_detail.order_detail_id as detail_id', 'order_detail.product_quantity as quantity', 'order_detail.retail_price as retail_price',
-            'product.product_name as product_name')
-            
+            'product.product_name as product_name')         
             ->where('order.order_id', $request)
-            // ->groupBy('order.order_id')
             ->get(); 
         return response()->json($getall,200); 
     }
-
-    
 
     public function getCouponByUserId($request)
     { 
@@ -157,7 +138,6 @@ class ShippingController extends Controller {
         $result = $edit->save();
         $statusValue = $request->status;
         $promotionId = $request->promotion_id;
-
         $netAmount = DB::table('order')
             ->select( 'net_amount')
             ->where('order_id', $request->order_id)
@@ -167,10 +147,8 @@ class ShippingController extends Controller {
             ->select( 'shopping_point')
             ->where('users.id', $request->user_id)
             ->get()
-            ->pluck('shopping_point'); 
-        
+            ->pluck('shopping_point');    
         if((int)$getUserShopPoint[0] <= 10000 && $statusValue == "1" && $promotionId == 0){
-            // $editShopPoint = users::where('user_id', $request->user_id)->first();
             $editShopPoint=(int)$getUserShopPoint[0]+(int)$netAmount[0];
             if($editShopPoint >= 10000 ){
                 $newShopPoint = $editShopPoint - 10000;
@@ -193,22 +171,10 @@ class ShippingController extends Controller {
             }else{
                 $savePoint = users::where('id', $request->user_id)->first();
                 $savePoint->shopping_point=$editShopPoint;
-                $result = $savePoint->save();
-                
+                $result = $savePoint->save();      
             }
-
         }
-
-        return response()->json($promotionId ); 
+        return response()->json($promotionId); 
     }
-
-
-
-
-
-
-
-
-
 
 }

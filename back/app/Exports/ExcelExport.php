@@ -3,6 +3,8 @@
 namespace App\Exports;
 use DB;
 use App\Order;
+use App\orderDetail;
+use App\users;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -56,47 +58,56 @@ class ExcelExport implements FromCollection, WithHeadings, WithEvents
 
         $getdb = DB::table('order_detail')
         ->join('product', 'product.product_id', '=', 'order_detail.product_id')
-        ->select( 'order_detail.product_id as product_id', 'product.product_name as product_name', 
-                'product_quantity', 'product.retail_price as retail_price', 'created_at',
+        ->join('users', 'users.id', '=', 'order_detail.user_id')
+        // ->join('order', 'order.order_id', '=', 'order_detail.order_id')
+        ->select( 'order_detail.order_id','order_detail.product_id as product_id', 'product.product_name as product_name', 
+                'order_detail.product_quantity', 'product.retail_price as retail_price', 
+                'order_detail.created_at as created_at',
+                'users.firstname', 'users.lastname',
+                
                 // DB::raw('sum(product_quantity*product.retail_price) as total')
                 )
-        ->whereDate('created_at','<=', $this->from)
-        ->whereDate('created_at','>=', $this->to)
+        ->whereDate('order_detail.created_at','<=', $this->from)
+        ->whereDate('order_detail.created_at','>=', $this->to)
         ->get(); 
 
 
-        $groups = $getdb->groupBy('product_id'); 
-        $groupwithcount = $groups->mapWithKeys(function ($group, $key) {
-            return [
-                    $key =>
-                        [
-                            'product_id' => $key,
-                            'product_name'=>$group->pluck('product_name')->first(),
-                            'product_quantity' => $group->sum('product_quantity'),
-                            'retail_price'=>$group->pluck('retail_price')->first(),
-                            // 'total' => $group->sum('total'),
-                            // 'created_at'=>$group->pluck('created_at')->first(),
-                        ]
-            ];
-        });
-        $sorted = $groupwithcount->sortByDesc('product_quantity');
+        // $groups = $getdb->groupBy('product_id'); 
+        // $groupwithcount = $groups->mapWithKeys(function ($group, $key) {
+        //     return [
+        //             $key =>
+        //                 [
+        //                     'product_id' => $key,
+        //                     'product_name'=>$group->pluck('product_name')->first(),
+        //                     'product_quantity' => $group->sum('product_quantity'),
+        //                     'retail_price'=>$group->pluck('retail_price')->first(),
+        //                     // 'total' => $group->sum('total'),
+        //                     // 'created_at'=>$group->pluck('created_at')->first(),
+        //                 ]
+        //     ];
+        // });
+        // $sorted = $groupwithcount->sortByDesc('product_quantity');
+
+        
         // $res = [];
         // foreach ($sorted  as $key => $value) {
         //     $res[] = $value;
         // }
-
-
-        return $sorted;
+        return $getdb;
     }
 
     public function headings(): array 
     {
         return [
+            'รหัสออเดอร์',
             'รหัสสินค้า',
             'ชื่อสินค้า',
             'จำนวน',
             'ราคา ต่อชิ้น',
-            'รวม'
+            'วันที่ทำรายการ',
+            'ชื่อ',
+            'สกุล',
+            // 'รวม'
             // 'วันที่'
         ];
     }

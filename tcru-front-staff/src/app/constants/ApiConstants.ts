@@ -33,7 +33,7 @@ export class ApiConstants {
     public static get getOneShippingURL(): string {
         return '/api/getOneShipping';
     }
-    
+
     public static get getStatusURL(): string {
         return '/api/getStatus';
     }
@@ -54,6 +54,12 @@ export class ApiConstants {
         return '/api/getselectedstatus';
     }
 
+    public static get getExportURL(): string {
+        return '/api/exportexcel';
+    }
+    public static get getExportAddressURL(): string {
+        return '/api/exportexcelAddress';
+    }
     public static get addInstructionURL(): string {
         return '/api/addinstruction';
     }
@@ -64,12 +70,12 @@ export class ApiConstants {
 
     public static get deleteInstructionURL(): string {
         return '/api/deleteinstruction';
-    }    
-    
+    }
+
     public static get getOneInstructionURL(): string {
         return '/api/getoneinstruction';
-    }    
-    
+    }
+
     public static get editInstructionURL(): string {
         return '/api/editinstruction';
     }
@@ -80,18 +86,18 @@ export class ApiConstants {
 
     public static get getFaqURL(): string {
         return '/api/getfaq';
-    }    
-    
+    }
+
     public static get deleteFaqURL(): string {
         return '/api/deletefaq';
-    }     
-    
+    }
+
     public static get getOneFaqURL(): string {
         return '/api/getonefaq';
     }
 
     public static get editFaqURL(): string {
         return '/api/editfaq';
-    }    
-    
+    }
+
 }

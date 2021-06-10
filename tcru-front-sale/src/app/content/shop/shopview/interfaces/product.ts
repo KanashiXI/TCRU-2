@@ -12,7 +12,7 @@ export interface Product {
     product_quantity?: number;
     retail_price?: number;
     price_per_piece?: number;
-    stock?: number;
+    stock?: Number;
     product_type?: string;
     count?: number;
     product_description?: string;

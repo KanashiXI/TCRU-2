@@ -8,6 +8,15 @@ use DB;
 
 class CouponController extends Controller
 {
+    public function deleteCoupon($request)
+    {
+        $prod = coupon::where('coupon_id', $request);
+            if($prod)
+                $prod->delete(); 
+            else
+            return response()->json(['prod not found']);
+        return response()->json(['deleted']); 
+    }
 
     public function checkCoupon($request)
     {

@@ -4,6 +4,27 @@
     font-family: 'Kanit', sans-serif;
 }
 
+kbd.out{
+    background-color: #7fdaab;
+    color: #495057;
+    border-radius: 30px;
+    font-family: 'Kanit', sans-serif !important;
+    text-align: center;
+  }
+
+  kbd.wait{
+    background-color:#F8C471;
+    color: #495057;
+    border-radius: 30px;
+    font-family: 'Kanit', sans-serif !important;
+    text-align: center;
+  }
+
+* {
+    font-family: 'Kanit', sans-serif;
+    font-size: 16px;
+}
+
 .example-button-row .mat-button-base {
     margin: 0px 1px 8px 10px;
 }
