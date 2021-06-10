@@ -1,4 +1,6 @@
-import { PrintAddressComponent } from './TCRU/shipping/printAddress/printAddress.component';
+import { EditFAQComponent } from './TCRU/faq/editFAQ/editFAQ.component';
+import { CreateFAQComponent } from './TCRU/faq/createFAQ/createFAQ.component';
+import { ShowFAQComponent } from './TCRU/faq/showFAQ/showFAQ.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -90,6 +92,11 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { NgxDatePickerModule } from '@ngx-tiny/date-picker';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { AddOrderComponent } from './OrderMaterials/add-order/add-order.component';
+import { QuillModule } from 'ngx-quill';
+import { EditInstructionComponent } from './TCRU/instruction/editInstruction/editInstruction.component';
+import { ShowInstructionComponent } from './TCRU/instruction/showInstruction/showInstruction.component';
+import { CreateInstructionComponent } from './TCRU/instruction/createInstruction/createInstruction.component';
+import { PrintAddressComponent } from './TCRU/shipping/printAddress/printAddress.component';
 
 
 const appRoutes: Routes = [
@@ -150,6 +157,7 @@ const appRoutes: Routes = [
     path: 'addstm',
     component: AddstockComponent
   },
+  //-- start mine --
   {
     path: 'promotion',
     component: ShowPromotionComponent
@@ -170,6 +178,31 @@ const appRoutes: Routes = [
     path: 'descriptionShipping',
     component: DescriptionShippingComponent
   },
+  {
+    path: 'showInstruction',
+    component: ShowInstructionComponent
+  },
+  {
+    path: 'createInstruction',
+    component: CreateInstructionComponent
+  },
+  {
+    path: 'editinstruction',
+    component: EditInstructionComponent
+  },
+  {
+    path: 'showFAQ',
+    component: ShowFAQComponent
+  },
+  {
+    path: 'createFAQ',
+    component: CreateFAQComponent
+  },
+  {
+    path: 'editFAQ',
+    component: EditFAQComponent
+  },
+  //-- end mine --
   {
     path: 'edits/:id',
     component: EditsComponent
@@ -202,6 +235,7 @@ const appRoutes: Routes = [
     path: 'report',
     component: ReportComponent
   }
+
 ];
 
 @NgModule({
@@ -236,7 +270,13 @@ const appRoutes: Routes = [
     ShowOrderComponent,
     FormulaComponent,
     AddOrderComponent,
-    PrintAddressComponent
+    PrintAddressComponent,
+    ShowInstructionComponent,
+    CreateInstructionComponent,
+    EditInstructionComponent,
+    ShowFAQComponent,
+    CreateFAQComponent,
+    EditFAQComponent
   ],
   entryComponents: [DialogCustomerComponent],
   imports: [
@@ -317,7 +357,15 @@ const appRoutes: Routes = [
     NgMultiSelectDropDownModule.forRoot(),
     NgxDatePickerModule,
     NgSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    QuillModule.forRoot({
+      customOptions: [
+        {
+          import: "formats/font",
+          whitelist: ["mirza", "roboto", "aref", "serif", "sansserif", "monospace"]
+        }
+      ]
+    })
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' }
@@ -330,6 +378,7 @@ const appRoutes: Routes = [
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
-    NO_ERRORS_SCHEMA]
+    NO_ERRORS_SCHEMA],
+
 })
 export class AppModule { }

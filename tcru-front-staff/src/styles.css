@@ -48,3 +48,12 @@ textarea {
 .form-control.ng-invalid.ng-touched {
     border-color: #ff0000;
 }
+
+button.primary{
+    background: #79994a;
+    color: #fff;
+}
+
+p.link{
+    cursor: pointer;
+}

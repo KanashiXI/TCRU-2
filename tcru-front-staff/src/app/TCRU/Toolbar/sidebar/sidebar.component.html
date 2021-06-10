@@ -52,6 +52,13 @@
         <mat-list-item routerLinkActive="active-list-item" routerLink="/report" title="promotion">
             <mat-icon class="icon" [@iconAnimation]="sidebarState">description</mat-icon>
             <a class="label" [@labelAnimation]="sidebarState">ออกรายงานยอดขาย</a>
-        </mat-list-item>
+            <mat-list-item routerLinkActive="active-list-item" routerLink="/showInstruction" title="Instruction">
+                <mat-icon class="icon rotate-270" [@iconAnimation]="sidebarState">edit_road</mat-icon>
+                <a class="label" [@labelAnimation]="sidebarState">วิธีใช้สินค้า</a>
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active-list-item" routerLink="/showFAQ" title="faq">
+                <mat-icon class="icon" [@iconAnimation]="sidebarState">help_center</mat-icon>
+                <a class="label" [@labelAnimation]="sidebarState">คำถามพบบ่อย</a>
+            </mat-list-item>
     </mat-nav-list>
 </div>

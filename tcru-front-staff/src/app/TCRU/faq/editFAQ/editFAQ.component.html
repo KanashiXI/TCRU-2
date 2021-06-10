@@ -1,0 +1,44 @@
+<br>
+<div class="row">
+  <div class="col-12">
+    <p class="link" routerLink="/showFAQ"><span class="material-icons">chevron_left</span>ย้อนกลับ</p>
+  </div>
+</div>
+<div class="main-container" style=" height:90vh;">
+  <div class="row">
+    <div class="col-12">
+      <h3>แก้ไขคำถามพบบ่อย</h3>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <h5>คำถาม</h5>
+          <input formControlName="ask" id="ask" type="text" class="form-control" [formControl]="ask" required>
+          <br><br>
+          <h5>คำตอบ</h5><br>
+          <quill-editor formControlName="answer" [modules]="config" (onContentChanged)="maxLenght($event)"></quill-editor>
+        </div>
+        <div style="text-align: right;">
+          <button class="btn btn-outline-secondary">แสดงตัวอย่าง</button>
+          <button type="submit" class="btn btn-success" (click)="onClickSubmit()">บันทึกข้อความ</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">ตัวอย่างข้อความ</h5>
+          <p class="card-text" [innerHTML]="editorContent"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>

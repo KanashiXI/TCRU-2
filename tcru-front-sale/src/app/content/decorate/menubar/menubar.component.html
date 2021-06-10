@@ -3,7 +3,8 @@
   <div class="row" *ngIf="!(isHandset$ | async)">
     <div class="col-md-1"></div>
     <div class="col-md-5" style="text-align: left;">
-      <!-- <a routerLink="/instruction" *ngIf="loggedIn && !(isHandset$ | async)">วิธีใช้สินค้า</a> -->
+      <a routerLink="/instruction" *ngIf="loggedIn && !(isHandset$ | async)">วิธีใช้สินค้า</a>
+      <a routerLink="/contact" *ngIf="loggedIn && !(isHandset$ | async)">ติดต่อศูนย์</a>
     </div>
     <div class="col-md-5">
       <a routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">บัญชีของฉัน</a>
@@ -28,6 +29,12 @@
         </a>
         <a mat-list-item  routerLink="/cart" *ngIf="loggedIn">
           <span class="material-icons">shopping_cart</span>&nbsp;ตะกร้าสินค้า
+        </a>
+        <a mat-list-item  routerLink="/instruction">
+          <span class="material-icons">tag</span>&nbsp;วิธีใช้สินค้า
+        </a>
+        <a mat-list-item  routerLink="/contact">
+          <span class="material-icons">contact_support</span>&nbsp;ติดต่อศูนย์
         </a>
         <a mat-list-item routerLink="/register" *ngIf="!loggedIn">
           <span class="material-icons">person_add_alt_1</span>&nbsp;ลงทะเบียน

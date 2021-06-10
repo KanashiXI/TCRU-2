@@ -60,4 +60,44 @@ export class ApiConstants {
     public static get getExportAddressURL(): string {
         return '/api/exportexcelAddress';
     }
+    public static get addInstructionURL(): string {
+        return '/api/addinstruction';
+    }
+
+    public static get getInstructionURL(): string {
+        return '/api/getinstruction';
+    }
+
+    public static get deleteInstructionURL(): string {
+        return '/api/deleteinstruction';
+    }
+
+    public static get getOneInstructionURL(): string {
+        return '/api/getoneinstruction';
+    }
+
+    public static get editInstructionURL(): string {
+        return '/api/editinstruction';
+    }
+
+    public static get addFaqURL(): string {
+        return '/api/addfaq';
+    }
+
+    public static get getFaqURL(): string {
+        return '/api/getfaq';
+    }
+
+    public static get deleteFaqURL(): string {
+        return '/api/deletefaq';
+    }
+
+    public static get getOneFaqURL(): string {
+        return '/api/getonefaq';
+    }
+
+    public static get editFaqURL(): string {
+        return '/api/editfaq';
+    }
+
 }

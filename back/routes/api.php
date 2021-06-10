@@ -119,6 +119,20 @@ Route::group([
     Route::get('cartpromotion','PromotionController@getCartPromotion'); //promotion in cart
     Route::post('editpromotionstatus','PromotionController@editPromotionStatus');
 
+    // คำแนะนำใช้สินค้า
+    Route::post('addinstruction','InstructionController@addInstruction'); 
+    Route::get('getinstruction','InstructionController@getInstruction');
+    Route::delete('deleteinstruction/{instruction_id}','InstructionController@deleteInstruction'); 
+    Route::get('getoneinstruction/{instruction_id}', 'InstructionController@getOneInstruction');
+    Route::post('editinstruction','InstructionController@editInstruction');
+
+    //FAQ
+    Route::post('addfaq','FaqController@addFaq'); 
+    Route::get('getfaq','FaqController@getFaq');
+    Route::delete('deletefaq/{faq_id}','FaqController@deleteFaq'); 
+    Route::get('getonefaq/{faq_id}', 'FaqController@getOneFaq');
+    Route::post('editfaq','FaqController@editFaq');
+
         // วัตถุดิบ
     Route::post('/material','MaterialController@addMaterial');
         // แสดงวัตถุดิบ+ประเภท
