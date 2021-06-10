@@ -12,8 +12,6 @@ import { CustomerService } from 'src/app/shared/service/customer.service';
 export class CouponComponent implements OnInit {
 
   couponData: Emloyeeinterface[] = [];
-  // @Output() couponCode = new EventEmitter<string>();
-
   coupon: Emloyeeinterface[] = [];
   constructor(
     private customerService: CustomerService,
@@ -34,7 +32,6 @@ export class CouponComponent implements OnInit {
   }
 
   selectCoupon(item) {
-    // this.couponCode.emit(this.couponData[index].key);
     this.coupon = item.coupon_id;
     console.log('hey I am  clicked in child');
   }

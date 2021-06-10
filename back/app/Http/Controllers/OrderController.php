@@ -14,7 +14,6 @@ class OrderController extends Controller
 {
     public function createOrder(Request $request)
     {     
-        // $result = $edit->save();
         $ldate = date('Y-m-d H:i:s');
         $data = new order;
         $data->order_date = $ldate;
@@ -23,7 +22,6 @@ class OrderController extends Controller
         DB::beginTransaction();
         try {
             $lastid = $data->order_id;
-            // ["data1"=>[],"data"=>122]
             foreach($request->all() as $key => $item){
                 $orderdetail = new orderDetail();
                 $orderdetail['order_id']=$lastid;
@@ -33,7 +31,6 @@ class OrderController extends Controller
                 $orderdetail['retail_price']=$item['retail_price']; 
                 $orderdetail->save();
             } 
-
             DB::commit();
             return response()->json($lastid,201);
         } catch (\Exception $e) {
@@ -53,13 +50,8 @@ class OrderController extends Controller
     }
 
     public function fillImageOrder(Request $request, order $order){ 
-        // $file = order::where('order_id',$request->order_id)->first(); 
-        // $file = $request->file('image');
-        // $file->save();
-
         if ($request->hasFile('image'))
          {
-            // $file = order::where('order_id',$request->order_id)->first(); 
             $file = $request->file('image');
             $file      = $request->file('image');
             $filename  = $file->getClientOriginalName();
@@ -69,15 +61,12 @@ class OrderController extends Controller
             $file->move(public_path('img'), $picture);
             $imageName["image"] =  $filename;
             DB::table("order")->where("order_id",$request->order_id)->update($imageName);
-            //move image to public/img folder
             return response()->json(["message" => "Image Uploaded Succesfully"]);
          } 
         else
         {
             return response()->json(["message" => "Select image first."]);
         }
-
-        // return response()->json([$file],200);
     }
 
     public function fillOrder(Request $request, order $order){       
@@ -95,9 +84,35 @@ class OrderController extends Controller
         return response()->json(true,200);
     }
 
-
-
     public function deleteFromCart(Request $request){
+        try {
+            $ids_to_delete = array_map(
+                function($item){ 
+                    return $item['cart_id']; 
+                }, 
+                $request->all()
+            ); 
+            // $ids_product = array_map(
+            //     function($item){ 
+            //         return $item['project_id']; 
+            //     }, 
+            //     $request->all()
+            // );
+            // $value_to_update = array_map(
+            //     function($item){ 
+            //         return $item['stock'] = $item['stock']-$item['product_quantity']; 
+            //     }, 
+            //     $request->all()
+            // );
+            DB::table('cart')->whereIn('cart_id', $ids_to_delete)->delete(); 
+            // DB::table('product')->whereIn('project_id', $ids_product)->update(['data'=>$value_to_update]);
+            // $values = Value::where('project_id', $id)->update(['data'=>$data]);
+        }
+        catch(\Exception $e){
+        }
+    }
+
+    public function deleteFromStock(Request $request){
         try {
             $ids_to_delete = array_map(function($item){ return $item['cart_id']; }, $request->all());
             DB::table('cart')->whereIn('cart_id', $ids_to_delete)->delete(); 
@@ -109,14 +124,7 @@ class OrderController extends Controller
     public function getOrder()
     {
         $getall = order::all();
-        // $getall = DB::table('order')
-        //     ->join('order_detail', 'order_detail.order_id', '=', 'order.order_id' )
-        //     ->select('*')
-        //     ->where('order.user_id', $request)
-        //     ->groupBy('order.order_id')
-        //     ->get(); 
         return response()->json($getall,200); 
-        // return response()->json($getall,200); 
     }
 
     public function getOrderByUser($request)
@@ -157,14 +165,11 @@ class OrderController extends Controller
 
     public function exportExcel($datefrom, $mountfrom, $yearfrom, $dateto, $mountto, $yearto)
     {
-        // return Excel::download(new ExcelExport, 'orders.xlsx');
         $yearfirst = $yearfrom-543;
         $yearnext = $yearto-543;
         $datef = $yearfirst.'-'.$mountfrom.'-'.$datefrom;
         $datet = $yearnext.'-'.$mountto.'-'.$dateto;
-        // $dateTo = 
         return (new ExcelExport($datef,$datet))->download('orders.xlsx');
-        // return response()->json($datef,200);
     }
 
     public function exportExcelAddress($datefrom, $mountfrom, $yearfrom, $dateto, $mountto, $yearto)

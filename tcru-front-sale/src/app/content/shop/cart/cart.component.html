@@ -1,14 +1,8 @@
 <br>
 <div class="container">
   <div *ngIf="productInCart.length == 0">
-    <!-- <div class="row">
-      <div class="col-md-12">
-        
-      </div>
-    </div> -->
     <br><br>
     <div class="row">
-      <!-- <div class="col-md-4"></div> -->
       <div class="col-md-12 center">
         <img src="../../../../assets/f261d222816d01149261d6237bef4e62.png"
           alt="Icon made from http://www.onlinewebfonts.com/icon Icon Fonts is licensed by CC BY 3.0"
@@ -30,11 +24,9 @@
         <br>
         <br>
       </div>
-
     </div>
     <br><br><br><br>
   </div>
-
   <div [@fadeInOut] *ngIf="cartStatus == false && productInCart.length != 0">
     <div class="row">
       <div class="col-md-12">
@@ -63,19 +55,15 @@
           <br>
           <div class="row" *ngFor="let cart of productInCart;let i = index" style="padding: 30px;">
             <div class="col-md-1" style="text-align: left; padding: 15px;" *ngIf="!(isHandset$ | async)">
-
               <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()">
-
             </div>
             <div class="col-md-2">
               <img mat-card-image src="../../../../assets/{{cart.image}}">
             </div>
             <div class="col-md-4">
               <mat-card-title>
-
                 <input type="checkbox" [(ngModel)]="cart.checked" (change)="changeSelection()"
                   *ngIf="(isHandset$ | async)">
-
                 &nbsp;&nbsp;{{cart.product_name}}
               </mat-card-title>
               <mat-card-subtitle>{{cart.product_description}}</mat-card-subtitle>
@@ -109,49 +97,17 @@
       </div>
     </div>
   </div>
-
   <br>
   <div class="row" [@fadeInOut] *ngIf="cartStatus == false && productInCart.length != 0">
     <div class="col-md-12">
       <mat-card>
         <br>
-        <!-- <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-9">
-            <span class="material-icons">local_shipping</span>&nbsp;&nbsp;
-            &nbsp;&nbsp; เลือกประเภทการจัดส่ง
-          </div>
-        </div> -->
         <br>
-
-        <!-- <div class="row">
-          <div class="col-md-1"></div>
-          <div class="col-md-3">
-            <mat-card *ngFor="let item of shippingBrand; let i = index">
-              <div class="row">
-                <div class="col-md-1 address-padding">
-                  <input type="radio" value="{{i}}" [checked]="item.status == 1" (change)="handleRadio(i)">
-                </div>
-                <div class="col-md-9 address-padding">
-                  จัดส่งด้วย: {{item.brand}}
-                </div>
-                <div class="col-md-1 btn-padding">
-                </div>
-              </div>
-            </mat-card>
-            <br>
-          </div>
-          <div class="col-md-4"></div>
-        </div> -->
-
-
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-9">
           </div>
         </div>
-
-
         <br>
         <div class="row">
           <div class="col-md-1"></div>
@@ -188,8 +144,7 @@
         <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-10">
-
-            <div class="row">
+            <div class="row" *ngIf="couponData.lenght == 0">
               <div class="col-md-8">
                 ใช้คูปอง
               </div>
@@ -199,7 +154,6 @@
               </div>
             </div>
             <br>
-
             <div class="row">
               <div class="col-md-8">
                 <p>ราคารวม</p>
@@ -232,9 +186,7 @@
                 <p><strong>{{cartTotal | currency :'฿':true}}</strong></p>
               </div>
             </div>
-            <!-- {{couponKey|json}} -->
             <br>
-
             <div class="row rightside">
               <div class="col-md-4"></div>
               <div class="col-md-3">
@@ -249,7 +201,4 @@
       </mat-card>
     </div>
   </div>
-
-
-
 </div>
