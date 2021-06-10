@@ -102,7 +102,7 @@ export class CreateInstructionComponent implements OnInit {
     return this.reactiveForm.get('title')
   }
 
-  get datail() {
+  get detail() {
     return this.reactiveForm.get('detail')
   }
 

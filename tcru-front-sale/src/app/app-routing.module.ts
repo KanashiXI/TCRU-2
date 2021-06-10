@@ -1,3 +1,4 @@
+import { FaqComponent } from './content/shop/faq/faq.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BeforeLoginService } from './shared/service/before-login.service';
@@ -121,6 +122,10 @@ const routes: Routes = [
   {
     path: 'contact',
     component: ContactComponent,
+  },
+  {
+    path: 'faq',
+    component: FaqComponent,
   },
   {
     path: '**',

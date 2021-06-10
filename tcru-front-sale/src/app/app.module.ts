@@ -44,6 +44,7 @@ import { InstructucionsComponent } from './content/shop/Instructucions/Instructu
 import { SlipuploadComponent } from './content/user/order/slipupload/slipupload.component';
 import { CouponComponent } from './content/shop/cart/coupon/coupon.component';
 import { ContactComponent } from './content/shop/contact/contact.component';
+import { FaqComponent } from './content/shop/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { ContactComponent } from './content/shop/contact/contact.component';
     SlipuploadComponent,
     CouponComponent,
     ContactComponent,
+    FaqComponent
   ],
   entryComponents: [ProductDetailComponent],
   imports: [

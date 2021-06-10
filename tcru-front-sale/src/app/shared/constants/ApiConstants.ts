@@ -115,5 +115,13 @@ export class ApiConstants {
         return '/api/getshippoint';
     }
 
+    public static get getInstructionURL(): string {
+        return '/api/getinstruction';
+    }
+
+    public static get getFaqURL(): string {
+        return '/api/getfaq';
+    }
+
 
 }

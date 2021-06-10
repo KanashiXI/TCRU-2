@@ -10,7 +10,8 @@ class InstructionController extends Controller
     {
         $new = new instruction;
         $new->title = $request->input('title');
-        $new->detail = $request->input('detail');            
+        $new->detail = $request->input('detail');
+        // $new->image = $request->input('image');         
         $new->save();
         return response()->json(['newitem'=>$new],201);
     }
