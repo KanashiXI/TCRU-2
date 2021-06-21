@@ -200,7 +200,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   increse() {
-    if (this.counter + 1 < 100) {
+    if (this.counter + 1 < this.stock) {
       this.counter++;
     }
   }

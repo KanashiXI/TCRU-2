@@ -186,9 +186,14 @@ export class CartComponent implements OnInit {
     this.dataSource = this.shippingAddressList.filter((value) => {
       return value.status == 1;
     });
+
     this.reactiveForm.patchValue({
       address_id: this.dataSource[0].address_id,
     })
+  }
+
+  patchAddress(){
+    
   }
 
   changestatusCart() {
@@ -295,16 +300,19 @@ export class CartComponent implements OnInit {
   }
 
   handlePlus(cart) {
-    cart.product_quantity++;
-    const oddRetail = Number(cart.retail_price);
-    const sumRetail = Number(cart.price_per_piece) + oddRetail;
-    cart.retail_price = sumRetail;
-    this.editProductQuantityForm.patchValue({
-      retail_price: cart.retail_price,
-      product_id: cart.product_id,
-      product_quantity: cart.product_quantity,
-    })
-    this.updateCart();
+    let count = cart.product_quantity;
+    if(count < cart.stock){
+      cart.product_quantity++;
+      const oddRetail = Number(cart.retail_price);
+      const sumRetail = Number(cart.price_per_piece) + oddRetail;
+      cart.retail_price = sumRetail;
+      this.editProductQuantityForm.patchValue({
+        retail_price: cart.retail_price,
+        product_id: cart.product_id,
+        product_quantity: cart.product_quantity,
+      })
+      this.updateCart();
+    }
   }
 
 

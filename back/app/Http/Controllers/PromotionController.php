@@ -34,7 +34,7 @@ class PromotionController extends Controller
         $new->promotion_name = $request->input('promotion_name');
         $new->detail = $request->input('detail');
         $new->unit = $request->input('unit');
-        // $new->status = $request->input('status');
+        $new->status = 0;
         $new->cost_condidtion = $request->input('cost_condidtion');               
         $new->save();
         return response()->json(['newitem'=>$new],201);

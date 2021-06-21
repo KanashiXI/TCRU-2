@@ -152,7 +152,7 @@ export class AddTaxAddressComponent implements OnInit {
           showConfirmButton: false,
           timer: 2000
         });
-        this.router.navigateByUrl('profile');
+        // this.router.navigateByUrl('profile');
 
       },
       error => {

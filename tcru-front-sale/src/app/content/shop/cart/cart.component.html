@@ -111,7 +111,11 @@
         <br>
         <div class="row">
           <div class="col-md-1"></div>
-          <div class="col-md-9">
+          <div class="col-md-9" *ngIf="dataSource.length == 0">
+            กรุณาเพิ่มที่อยู่จัดส่งสินค้า
+          </div>
+          
+          <div class="col-md-9" *ngIf="dataSource.length != 0">
             <span class="material-icons">location_on</span> &nbsp;&nbsp; จัดส่งที่:
             {{dataSource[0].address}}
             {{dataSource[0].province_name}} {{dataSource[0].amphure_name}} {{dataSource[0].district_name}}

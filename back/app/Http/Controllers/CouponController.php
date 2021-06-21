@@ -39,8 +39,6 @@ class CouponController extends Controller
         // return response()->json($getall,200);
         $total = $getall[0]->sumnet;
         if($total >= 10000){
-
-
         $length = 20;
         // generate coupon    
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

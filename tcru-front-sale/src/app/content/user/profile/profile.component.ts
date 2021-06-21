@@ -34,6 +34,7 @@ export class ProfileComponent implements OnInit {
   couponData: Emloyeeinterface[] = [];
   filterCouponData: Emloyeeinterface[] = [];
   shippingPoint: Emloyeeinterface[] = [];
+  showShippigPoint: number = 0;
   pointShip: number = 0;
   counCoupon: Number = 0;
   constructor(
@@ -56,7 +57,13 @@ export class ProfileComponent implements OnInit {
   getShopPoint(userId) {
     this.customerService.getShopPoint(userId).subscribe(res => {
       this.shippingPoint = res;
-      this.pointShip = Number(this.shippingPoint[0].shopping_point) / 100;
+      if(this.shippingPoint != null){
+        this.pointShip = Number(this.shippingPoint[0].shopping_point) / 100;
+        this.showShippigPoint = Number(this.shippingPoint[0].shopping_point)
+      }else {
+        this.pointShip = 0;
+        this.showShippigPoint = 0;
+      }
     })
   }
 
