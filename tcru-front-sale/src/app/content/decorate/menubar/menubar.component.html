@@ -6,8 +6,8 @@
       <!-- <a routerLink="/contact" *ngIf="loggedIn && !(isHandset$ | async)">ติดต่อศูนย์</a> -->
     </div>
     <div class="col-md-5">
-      <a routerLink="/faq" *ngIf="loggedIn && !(isHandset$ | async)">คำถามพบบ่อย</a>
-      <a routerLink="/contact" *ngIf="loggedIn && !(isHandset$ | async)">ติดต่อศูนย์</a>
+      <a routerLink="/faq" *ngIf="!(isHandset$ | async)">คำถามพบบ่อย</a>
+      <a routerLink="/contact" *ngIf="!(isHandset$ | async)">ติดต่อศูนย์</a>
       <a routerLink="/profile" *ngIf="loggedIn && !(isHandset$ | async)">บัญชีของฉัน</a>
       <a routerLink="/register" *ngIf="!loggedIn && !(isHandset$ | async)">ลงทะเบียน</a>
       <a routerLink="/login" *ngIf="!loggedIn && !(isHandset$ | async)">เข้าสู่ระบบ</a>
