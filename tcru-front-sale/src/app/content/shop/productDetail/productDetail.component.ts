@@ -48,27 +48,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
 
-
-
-  // @ViewChild('content') content: ElementRef;
-  // public downloadPDF() {
-  //   let doc = new jsPDF();
-  //   let specialElementHandlers = {
-  //     '#editor': function (element, renderer) {
-  //       return true;
-  //     }
-  //   };
-
-  //   let content = this.content.nativeElement;
-  //   doc.text("content.innerHTML", 10, 10,);
-  //   doc.save('test.pdf')
-  // }
-
-
-
-
-
-
   handleAddToCart() {
     const requestData = {
       ...Subject,

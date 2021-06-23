@@ -5,6 +5,7 @@ import { ProductviewService } from './services/productview.service';
 import { MatCarousel, MatCarouselComponent } from '@ngmodule/material-carousel';
 import { MatDialog } from '@angular/material/dialog';
 import { Overlay } from '@angular/cdk/overlay';
+import { CartService } from 'src/app/shared/service/cart.service';
 
 
 interface Food {
@@ -40,23 +41,17 @@ export class ShopviewComponent implements OnInit {
   listHotProduct: Product[] = [];
 
   slides = [
-    { 'image': 'https://i.imgur.com/O9UeG0P.jpg'},
+    { 'image': 'https://i.imgur.com/O9UeG0P.jpg' },
     { 'image': 'https://i.imgur.com/hjWuJfK.jpg' },
     { 'image': 'https://i.imgur.com/UH5sZfA.jpg?2' },
-    
+
   ];
-
-
-  // foods: Food[] = [
-  //   { value: 'steak-0', viewValue: 'Steak' },
-  //   { value: 'pizza-1', viewValue: 'Pizza' },
-  //   { value: 'tacos-2', viewValue: 'Tacos' }
-  // ];
 
   constructor(
     private productViewService: ProductviewService,
     public dialog: MatDialog,
     private overlay: Overlay,
+    private cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -71,6 +66,7 @@ export class ShopviewComponent implements OnInit {
             this.listHotProduct = res;
             this.onClickSelectType(0);
             this.allProduct = true;
+
           },
           error => this.errorMessage = <any>error
         )
@@ -80,63 +76,11 @@ export class ShopviewComponent implements OnInit {
     this.productViewService.getHotProducte().subscribe(
       res => {
         this.hotProduct = res;
-        // this.hotProduct.sort(function (a, b) {
-        //   return b.count - a.count;
-        // });
-        // this.hotProductList = res;
-
-        // this.listHotProduct.forEach((element) => {
-        //   this.hotProductList = this.hotProductList.filter((element1) => {
-        //     return element1 == element;
-        //   })
-        // })
         this.loader = true;
-
-
-        // this.hotProductList.forEach((element) => {
-        //   this.productList = this.productList.filter((element1) => {
-        //     return element1 == element;
-        //   })
-        // })
-
-        // var newList = this.productList.filter(function (word) {
-        //   // console.log(this.productList, this.hotProductList)
-        //   return this.hotProductList.includes(word);
-        // })
-        // console.log(newList);
-
-        // for (let index = 0; index < this.productList.length; index++) {
-        //   for (let indexH = 0; indexH < this.hotProductList.length; indexH++) {
-        //     if (this.productList[index].product_id == this.hotProductList[indexH].product_id) {
-        //       console.log(this.productList[index].product_id, '---', this.productList[index].product_id)
-        //     }
-        //   }
-        // }
-
-        // this.sortProduct();       
-        // this.listHotProduct = this.productList.filter((value) => {
-        //   return value.product_id == this.hotProductList[].product_id;
-
-        //   console.log(this.listHotProduct)
-        // });
-        // this.hotProductList.map((obj) => {
-        //   this.cartTotal == Number(obj.product_id);
-        // });
-
-
       }
     )
   }
 
-
-
-
-  // sortProduct() {
-  //   this.productList.sort(function (a, b) {
-  //     return a.count - b.count;
-  //   });
-  //   this.hotProductList = this.productList;
-  // }
 
   onClickSubmit(product_id, retail_price) {
     localStorage.setItem("product_id", product_id);

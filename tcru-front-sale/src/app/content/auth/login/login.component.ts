@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
 import Swal from 'sweetalert2';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { CartService } from 'src/app/shared/service/cart.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit {
     private Token: TokenService,
     private router: Router,
     private Auth: AuthService,
+    private cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -75,14 +77,11 @@ export class LoginComponent implements OnInit {
         this.customerService.getCustomerProfileByEmail(this.reactiveForm.get('email').value).subscribe(
           res => {
             this.dataForm = res;
-
-
             this.reactiveForm.patchValue({
               role: this.dataForm[0].role,
               id: this.dataForm[0].id,
             })
             // this.setRole
-
             const a = this.reactiveForm.get('role').value
             const uid = this.reactiveForm.get('id').value
             localStorage.setItem("user_id", uid);
@@ -108,9 +107,13 @@ export class LoginComponent implements OnInit {
           timer: 2000
         });
       }
+
+
     );
 
   }
+
+
 
   handleError(error) {
     this.LoginError = true
@@ -123,6 +126,7 @@ export class LoginComponent implements OnInit {
       this.Token.handle(data.access_token);
       this.Auth.changeAuthStatus(true);
       this.router.navigateByUrl('');
+      this.cartService.changeCount();
     } else {
       this.Token.handle(data.access_token);
       this.Auth.changeAuthStatus(true);

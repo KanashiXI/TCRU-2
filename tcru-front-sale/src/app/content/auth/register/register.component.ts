@@ -9,6 +9,8 @@ import { TokenService } from 'src/app/shared/service/token.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Emloyeeinterface } from 'src/app/shared/interface/emloyeeinterface';
+import { AuthService } from 'src/app/shared/service/auth.service';
+import { CartService } from 'src/app/shared/service/cart.service';
 
 @Component({
   selector: 'app-register',
@@ -26,10 +28,11 @@ export class RegisterComponent implements OnInit {
     private customerService: CustomerService,
     private http: HttpClient,
     private fb: FormBuilder,
-
     private Jarwis: JarwisService,
     private Token: TokenService,
-    private router: Router
+    private router: Router,
+    private Auth: AuthService,
+    private cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -48,7 +51,9 @@ export class RegisterComponent implements OnInit {
       lastname: ['', [Validators.required]],
       password: ['', [Validators.required]],
       password_confirmation: ['', [Validators.required, compareValidator('password'), Validators.maxLength(16)]],
-      telephone: ['', [Validators.required]]
+      telephone: ['', [Validators.required]],
+      id: [],
+      role: []
     })
     this.roleForm = this.fb.group({
       // role: [1],
@@ -75,7 +80,7 @@ export class RegisterComponent implements OnInit {
               showConfirmButton: false,
               timer: 2000
             });
-          this.router.navigateByUrl('/login');
+
 
         },
         error => {
@@ -88,27 +93,60 @@ export class RegisterComponent implements OnInit {
         }
         // error => this.handleError(error)
       );
-
-
     }
     // console.log(this.reactiveForm.get('telephone').value)
 
   }
 
   handleResponse(data) {
+    // localStorage.setItem("customerUsername", this.reactiveForm.get('email').value);
     this.Token.handle(data.access_token);
-
-
     this.customerService.getCustomerProfileByEmail(this.reactiveForm.get('email').value).subscribe(
       res => {
         this.dataForm = res;
-        this.roleForm.patchValue({
-          id: this.dataForm[0].id,
-        })
+        // this.roleForm.patchValue({
+        //   id: this.dataForm[0].id,
+        // })
+        this.handleLogin()
       }
     )
-    // this.Jarwis.setRole(this.roleForm.getRawValue()).subscribe()
+  }
 
+  handleLogin() {
+    this.Jarwis.login(this.reactiveForm.getRawValue()).subscribe(
+      (response: Response) => {
+        this.customerService.getCustomerProfileByEmail(this.reactiveForm.get('email').value).subscribe(
+          res => {
+            this.dataForm = res;
+            const uid = res[0].id.toString()
+            const uemail = res[0].email.toString()
+            localStorage.setItem("user_id", uid);
+            localStorage.setItem("customerUsername", uemail);
+            this.roleForm.patchValue({
+              role: this.dataForm[0].role,
+              id: this.dataForm[0].id,
+            })
+          })
+        const a = this.reactiveForm.get('role').value
+
+
+        this.handleResponselogin(response, a);
+
+      });
+  }
+
+  handleResponselogin(data, role) {
+    console.log(role)
+    if (role != '1') {
+      this.Token.handle(data.access_token);
+      this.Auth.changeAuthStatus(true);
+      this.router.navigateByUrl('');
+      this.cartService.changeCount();
+    } else {
+      this.Token.handle(data.access_token);
+      this.Auth.changeAuthStatus(true);
+      this.router.navigateByUrl('');
+    }
   }
 
   get name_title() {
