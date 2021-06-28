@@ -66,7 +66,7 @@ export class ShopviewComponent implements OnInit {
             this.listHotProduct = res;
             this.onClickSelectType(0);
             this.allProduct = true;
-
+            this.cartService.changeCount();
           },
           error => this.errorMessage = <any>error
         )

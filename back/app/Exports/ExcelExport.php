@@ -63,36 +63,12 @@ class ExcelExport implements FromCollection, WithHeadings, WithEvents
         ->select( 'order_detail.order_id','order_detail.product_id as product_id', 'product.product_name as product_name', 
                 'order_detail.product_quantity', 'product.retail_price as retail_price', 
                 'order_detail.created_at as created_at',
-                'users.firstname', 'users.lastname',
-                
-                // DB::raw('sum(product_quantity*product.retail_price) as total')
+                'users.firstname', 'users.lastname'
                 )
         ->whereDate('order_detail.created_at','<=', $this->from)
         ->whereDate('order_detail.created_at','>=', $this->to)
         ->get(); 
 
-
-        // $groups = $getdb->groupBy('product_id'); 
-        // $groupwithcount = $groups->mapWithKeys(function ($group, $key) {
-        //     return [
-        //             $key =>
-        //                 [
-        //                     'product_id' => $key,
-        //                     'product_name'=>$group->pluck('product_name')->first(),
-        //                     'product_quantity' => $group->sum('product_quantity'),
-        //                     'retail_price'=>$group->pluck('retail_price')->first(),
-        //                     // 'total' => $group->sum('total'),
-        //                     // 'created_at'=>$group->pluck('created_at')->first(),
-        //                 ]
-        //     ];
-        // });
-        // $sorted = $groupwithcount->sortByDesc('product_quantity');
-
-        
-        // $res = [];
-        // foreach ($sorted  as $key => $value) {
-        //     $res[] = $value;
-        // }
         return $getdb;
     }
 

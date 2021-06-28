@@ -165,10 +165,11 @@ class OrderController extends Controller
 
     public function exportExcel($datefrom, $mountfrom, $yearfrom, $dateto, $mountto, $yearto)
     {
-        $yearfirst = $yearfrom-543;
-        $yearnext = $yearto-543;
-        $datef = $yearfirst.'-'.$mountfrom.'-'.$datefrom;
-        $datet = $yearnext.'-'.$mountto.'-'.$dateto;
+        $yearfirst = $yearfrom;
+        $yearnext = $yearto;
+        $datef = $yearfirst.'-'.$datefrom.'-'.$mountfrom;
+        $datet = $yearnext.'-'.$dateto.'-'.$mountto;
+        // return response()->json($datef,200);
         return (new ExcelExport($datef,$datet))->download('orders.xlsx');
     }
 

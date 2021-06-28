@@ -4,7 +4,7 @@ import { Component, ElementRef, OnInit, ViewChild, } from '@angular/core';
 import { Promotion } from 'src/app/shared/interface/promotion';
 import { CartDataSource, CartItem } from './cart-datasource';
 import { Product } from '../shopview/interfaces/product';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { CartService } from 'src/app/shared/service/cart.service';
 import { ShippingBrand } from 'src/app/shared/interface/shipping-brand';
 import { Observable } from 'rxjs';
@@ -48,6 +48,7 @@ export class CartComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
+  eventSubscription: Subscription;
   isGotPromotion: boolean = false;
   cartStatus: boolean = false;
   checked: boolean = false;
@@ -102,7 +103,11 @@ export class CartComponent implements OnInit {
     private overlay: Overlay,
     private customerService: CustomerService,
 
-  ) { }
+  ) { 
+    this.eventSubscription = this.cartService.getChangeEvent().subscribe(() => {
+      this.ngOnInit()
+    })
+  }
 
   public openPDF(): void {
     let DATA = document.getElementById('htmlData');
@@ -230,40 +235,50 @@ export class CartComponent implements OnInit {
   checkoutCart() {
     if (this.isSelectProduct) {
       if (this.isSelectShipping) {
-        this.cartService.checkoutCart(this.selectItem).subscribe(
-          res => {
-            this.dataForm = res;
-            this.reactiveForm.patchValue({
-              order_id: this.dataForm,
-              request_tax: this.taxCheck
-            });
-            this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
-              res => {
-                this.cartService.deleteFromCart(this.selectItem).subscribe(res => {
-                  this.cartService.changeCount();
-                  this.cartService.deleteCoupon(this.couponKey).subscribe();
-                  this.ngOnInit();
-                });
-                Swal.fire({
-                  icon: 'success',
-                  title: 'ทำรายการสำเร็จ',
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-
-              }, err => {
-                Swal.fire({
-                  icon: 'error',
-                  title: 'ทำรายการไม่สำเร็จ',
-                  showConfirmButton: false,
-                  timer: 2000
-                });
-              }
-            );
-          },
-          error => {
-          }
-        );
+        if(this.dataSource.length != 0){
+          this.cartService.checkoutCart(this.selectItem).subscribe(
+            res => {
+              this.dataForm = res;
+              this.reactiveForm.patchValue({
+                order_id: this.dataForm,
+                request_tax: this.taxCheck
+              });
+              this.cartService.addOrder(this.reactiveForm.getRawValue()).subscribe(
+                res => {
+                  this.cartService.deleteFromCart(this.selectItem).subscribe(res => {
+                    this.cartService.changeCount();
+                    this.cartService.deleteCoupon(this.couponKey).subscribe();
+                    this.ngOnInit();
+                  });
+                  Swal.fire({
+                    icon: 'success',
+                    title: 'ทำรายการสำเร็จ',
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+  
+                }, err => {
+                  Swal.fire({
+                    icon: 'error',
+                    title: 'ทำรายการไม่สำเร็จ',
+                    showConfirmButton: false,
+                    timer: 2000
+                  });
+                }
+              );
+            },
+            error => {
+            }
+          );
+        }else{
+          Swal.fire({
+            icon: 'warning',
+            title: 'โปรดเลือกที่อยุ่จัดส่ง',
+            showConfirmButton: false,
+            timer: 2000
+          });
+        }
+        
       } else {
         Swal.fire({
           icon: 'warning',

@@ -9,6 +9,7 @@ import { Overlay } from '@angular/cdk/overlay';
 import { MatDialog } from '@angular/material/dialog';
 import { EditaddressComponent } from '../editaddress/editaddress.component';
 import { AddaddressComponent } from '../addaddress/addaddress.component';
+import { CartService } from 'src/app/shared/service/cart.service';
 
 @Component({
   selector: 'app-showaddress',
@@ -30,6 +31,7 @@ export class ShowaddressComponent implements OnInit {
     private customerService: CustomerService,
     private overlay: Overlay,
     public dialog: MatDialog,
+    private cartService: CartService,
 
   ) { }
 
@@ -39,7 +41,10 @@ export class ShowaddressComponent implements OnInit {
     });
     var x = i
     this.dataSource[x].status = 1;
-    this.addressService.editStatusAddress(this.dataSource).subscribe();
+    this.addressService.editStatusAddress(this.dataSource).subscribe( res => {
+      this.cartService.changeCount();
+    });
+    
   }
 
 
@@ -78,13 +83,16 @@ export class ShowaddressComponent implements OnInit {
       cancelButtonText: 'ไม่'
     }).then((result) => {
       if (result.value) {
-        this.addressService.deleteAddress(data).subscribe()
-        Swal.fire(
-          'ลบข้อมูลเรียบร้อย',
-          '',
-          'success',
-        )
-        this.ngOnInit()
+        this.addressService.deleteAddress(data).subscribe(res => {
+          Swal.fire(
+            'ลบข้อมูลเรียบร้อย',
+            '',
+            'success',
+          )
+          this.ngOnInit()
+          this.cartService.changeCount();
+        })
+        
       } else if (result.dismiss === Swal.DismissReason.cancel) { }
     })
   }
